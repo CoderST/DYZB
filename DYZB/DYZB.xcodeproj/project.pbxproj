@@ -16,6 +16,8 @@
 		0F84A3601D8A8CC5000705BE /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F84A35E1D8A8CC5000705BE /* Follow.storyboard */; };
 		0F84A3631D8A8CD6000705BE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F84A3611D8A8CD6000705BE /* Profile.storyboard */; };
 		0F84A3711D8A9C45000705BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A36E1D8A9C45000705BE /* MainViewController.swift */; };
+		0F84A3731D8AA147000705BE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A3721D8AA147000705BE /* HomeViewController.swift */; };
+		0F84A3761D8AA275000705BE /* UIBarButotnItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A3751D8AA275000705BE /* UIBarButotnItem+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,8 @@
 		0F84A35F1D8A8CC5000705BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DYZB/Base.lproj/Follow.storyboard; sourceTree = SOURCE_ROOT; };
 		0F84A3621D8A8CD6000705BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DYZB/Base.lproj/Profile.storyboard; sourceTree = SOURCE_ROOT; };
 		0F84A36E1D8A9C45000705BE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0F84A3721D8AA147000705BE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		0F84A3751D8AA275000705BE /* UIBarButotnItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButotnItem+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,12 +107,12 @@
 		0F84A3511D8A7B77000705BE /* Class */ = {
 			isa = PBXGroup;
 			children = (
-				0F84A3571D8A7B91000705BE /* Tools */,
 				0F84A3551D8A7B77000705BE /* Main */,
 				0F84A3531D8A7B77000705BE /* Home */,
 				0F84A3541D8A7B77000705BE /* Live */,
 				0F84A3521D8A7B77000705BE /* Follow */,
 				0F84A3561D8A7B77000705BE /* Profile */,
+				0F84A3571D8A7B91000705BE /* Tools */,
 			);
 			path = Class;
 			sourceTree = "<group>";
@@ -127,7 +131,6 @@
 				0F84A36A1D8A9B8C000705BE /* Controller */,
 				0F84A36B1D8A9B8C000705BE /* Model */,
 				0F84A36C1D8A9B8C000705BE /* View */,
-				0F84A3581D8A8C94000705BE /* Home.storyboard */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -161,6 +164,7 @@
 		0F84A3571D8A7B91000705BE /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				0F84A3741D8AA240000705BE /* Extension */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -168,6 +172,8 @@
 		0F84A36A1D8A9B8C000705BE /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				0F84A3581D8A8C94000705BE /* Home.storyboard */,
+				0F84A3721D8AA147000705BE /* HomeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -207,6 +213,14 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		0F84A3741D8AA240000705BE /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				0F84A3751D8AA275000705BE /* UIBarButotnItem+Extension.swift */,
+			);
+			path = Extension;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -313,8 +327,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0F84A3761D8AA275000705BE /* UIBarButotnItem+Extension.swift in Sources */,
 				0F84A3321D8A3F50000705BE /* AppDelegate.swift in Sources */,
 				0F84A3711D8A9C45000705BE /* MainViewController.swift in Sources */,
+				0F84A3731D8AA147000705BE /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,7 +368,7 @@
 				0F84A3591D8A8C94000705BE /* Base */,
 			);
 			name = Home.storyboard;
-			path = ../Main;
+			path = ../../Main;
 			sourceTree = "<group>";
 		};
 		0F84A35B1D8A8CB0000705BE /* Live.storyboard */ = {
