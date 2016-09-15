@@ -15,7 +15,7 @@
 		0F84A35D1D8A8CB0000705BE /* Live.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F84A35B1D8A8CB0000705BE /* Live.storyboard */; };
 		0F84A3601D8A8CC5000705BE /* Follow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F84A35E1D8A8CC5000705BE /* Follow.storyboard */; };
 		0F84A3631D8A8CD6000705BE /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0F84A3611D8A8CD6000705BE /* Profile.storyboard */; };
-		0F84A3691D8A90EB000705BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A3681D8A90EB000705BE /* MainViewController.swift */; };
+		0F84A3711D8A9C45000705BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A36E1D8A9C45000705BE /* MainViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,7 +41,7 @@
 		0F84A35C1D8A8CB0000705BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DYZB/Base.lproj/Live.storyboard; sourceTree = SOURCE_ROOT; };
 		0F84A35F1D8A8CC5000705BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DYZB/Base.lproj/Follow.storyboard; sourceTree = SOURCE_ROOT; };
 		0F84A3621D8A8CD6000705BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = DYZB/Base.lproj/Profile.storyboard; sourceTree = SOURCE_ROOT; };
-		0F84A3681D8A90EB000705BE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0F84A36E1D8A9C45000705BE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +124,9 @@
 		0F84A3531D8A7B77000705BE /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				0F84A36A1D8A9B8C000705BE /* Controller */,
+				0F84A36B1D8A9B8C000705BE /* Model */,
+				0F84A36C1D8A9B8C000705BE /* View */,
 				0F84A3581D8A8C94000705BE /* Home.storyboard */,
 			);
 			path = Home;
@@ -140,8 +143,9 @@
 		0F84A3551D8A7B77000705BE /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				0F84A3351D8A3F50000705BE /* Main.storyboard */,
-				0F84A3681D8A90EB000705BE /* MainViewController.swift */,
+				0F84A36D1D8A9C45000705BE /* Controller */,
+				0F84A36F1D8A9C45000705BE /* Model */,
+				0F84A3701D8A9C45000705BE /* View */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -159,6 +163,50 @@
 			children = (
 			);
 			path = Tools;
+			sourceTree = "<group>";
+		};
+		0F84A36A1D8A9B8C000705BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0F84A36B1D8A9B8C000705BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0F84A36C1D8A9B8C000705BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0F84A36D1D8A9C45000705BE /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F84A3351D8A3F50000705BE /* Main.storyboard */,
+				0F84A36E1D8A9C45000705BE /* MainViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0F84A36F1D8A9C45000705BE /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0F84A3701D8A9C45000705BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -266,7 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0F84A3321D8A3F50000705BE /* AppDelegate.swift in Sources */,
-				0F84A3691D8A90EB000705BE /* MainViewController.swift in Sources */,
+				0F84A3711D8A9C45000705BE /* MainViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -295,7 +343,7 @@
 				0F84A3361D8A3F50000705BE /* Base */,
 			);
 			name = Main.storyboard;
-			path = ../..;
+			path = ../../..;
 			sourceTree = "<group>";
 		};
 		0F84A3581D8A8C94000705BE /* Home.storyboard */ = {
@@ -487,6 +535,7 @@
 				0F84A34D1D8A3F50000705BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		0F84A34E1D8A3F50000705BE /* Build configuration list for PBXNativeTarget "DYZBUITests" */ = {
 			isa = XCConfigurationList;
@@ -495,6 +544,7 @@
 				0F84A3501D8A3F50000705BE /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
