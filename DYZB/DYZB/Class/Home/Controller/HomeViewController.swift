@@ -19,7 +19,7 @@ class HomeViewController: UIViewController {
     private lazy var pageTitlesView : PageTitlesView = {[weak self] in
         
         let titles = ["1","2","3","4"]
-        let titlesFrame = CGRect(x: 0, y: StatusBar + NavatationBar, width: ScreenW, height: pageTitlesViewH)
+        let titlesFrame = CGRect(x: 0, y: StatusBarH + NavatationBarH, width: ScreenW, height: pageTitlesViewH)
         let pageTitlesView = PageTitlesView(frame: titlesFrame, titles: titles)
         return pageTitlesView
     }()
@@ -27,9 +27,11 @@ class HomeViewController: UIViewController {
     private lazy var pageContentView : PageContentView = {[weak self] in
         
          var childVcs = [UIViewController]()
-        let contentH = ScreenH - StatusBar - NavatationBar - pageTitlesViewH
-        let pageContentViewFrame = CGRect(x: 0, y: StatusBar + NavatationBar + pageTitlesViewH, width: ScreenW, height: contentH)
-        for var index = 0; index < 4; ++index {
+        let contentH = ScreenH - StatusBarH - NavatationBarH - pageTitlesViewH - TabBarH
+        let pageContentViewFrame = CGRect(x: 0, y: StatusBarH + NavatationBarH + pageTitlesViewH, width: ScreenW, height: contentH)
+        let recommendVC = RecommendViewController()
+        childVcs.append(recommendVC)
+        for var index = 0; index < 3; ++index {
 
             let VC = UIViewController()
             childVcs.append(VC)
@@ -65,7 +67,7 @@ extension HomeViewController{
         // 添加Page滚动
         setupPageTitlesView()
         
-        //
+        // 添加ContentView
         setupPageContentView()
         
     }
@@ -73,7 +75,7 @@ extension HomeViewController{
     private func setupNavgationrBar(){
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo")
-        let size = CGSize(width: 35, height: 35)
+        let size = CGSize(width: 40, height: 40)
         let historItem = UIBarButtonItem(imageName: "image_my_history", highImageName: "Image_my_history_click", size: size)
         let searchItem = UIBarButtonItem(imageName: "btn_search", highImageName: "btn_search_clicked", size: size)
         let qrcodeItem = UIBarButtonItem(imageName: "Image_scan", highImageName: "Image_scan_click", size: size)

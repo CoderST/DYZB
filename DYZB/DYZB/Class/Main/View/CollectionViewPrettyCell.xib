@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="" id="gTV-IL-0wX" customClass="CollectionViewPrettyCell" customModule="DYZB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="261" height="282"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="261" height="282"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-Me-dNz">
+                        <rect key="frame" x="5" y="258" width="45" height="14"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="14" id="LHk-ae-hyR"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="北京市" image="ico_location">
+                            <color key="titleColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="秀兜网络" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z1I-4A-VBv">
+                        <rect key="frame" x="5" y="237" width="256" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="A6Z-b9-e7r"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_cell_default_phone" translatesAutoresizingMaskIntoConstraints="NO" id="0v5-Ng-ckx">
+                        <rect key="frame" x="0.0" y="0.0" width="261" height="232"/>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="Z1I-4A-VBv" secondAttribute="trailing" id="6uc-Xj-Dm8"/>
+                <constraint firstAttribute="bottom" secondItem="5cO-Me-dNz" secondAttribute="bottom" constant="10" id="Bwd-Eg-Svb"/>
+                <constraint firstItem="0v5-Ng-ckx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="E4T-c8-RHG"/>
+                <constraint firstItem="Z1I-4A-VBv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="IN6-5d-4r5"/>
+                <constraint firstItem="5cO-Me-dNz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="LjO-0W-4uz"/>
+                <constraint firstItem="5cO-Me-dNz" firstAttribute="top" secondItem="0v5-Ng-ckx" secondAttribute="bottom" constant="5" id="Ocr-aF-Q6x"/>
+                <constraint firstItem="Z1I-4A-VBv" firstAttribute="top" secondItem="0v5-Ng-ckx" secondAttribute="bottom" constant="5" id="P15-wR-lh1"/>
+                <constraint firstItem="5cO-Me-dNz" firstAttribute="top" secondItem="Z1I-4A-VBv" secondAttribute="bottom" constant="5" id="P2k-9M-Qn2"/>
+                <constraint firstAttribute="trailing" secondItem="0v5-Ng-ckx" secondAttribute="trailing" id="YCE-Dx-X1r"/>
+                <constraint firstItem="0v5-Ng-ckx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tU0-5K-l8h"/>
+            </constraints>
+            <size key="customSize" width="261" height="282"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="Ocr-aF-Q6x"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="240.5" y="280"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ico_location" width="12" height="12"/>
+        <image name="live_cell_default_phone" width="103" height="103"/>
+    </resources>
+</document>
