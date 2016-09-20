@@ -8,11 +8,20 @@
 
 import UIKit
 
-class CollectionViewPrettyCell: UICollectionViewCell {
+class CollectionViewPrettyCell: CollectionBaseCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var roomLabel: UILabel!
+
+    @IBOutlet weak var cityButton: UIButton!
+
+    override var anchorModel : AnchorModel?{
+        
+        didSet{
+             guard let anchor = anchorModel else { return }
+            // 将model传递给父类
+            super.anchorModel = anchor
+            roomLabel.text = anchor.room_name
+            cityButton.setTitle(anchor.anchor_city, forState: .Normal)
+        }
     }
-
 }

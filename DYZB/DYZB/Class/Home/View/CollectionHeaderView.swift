@@ -10,9 +10,19 @@ import UIKit
 
 class CollectionHeaderView: UICollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    @IBOutlet weak var iconImageView: UIImageView!
+    @IBOutlet weak var titleLabel: UILabel!
+
+    var anchorGroup : AnchorGroup? {
+        
+        didSet{
+            
+            guard let group = anchorGroup else { return }
+            print(group.tag_name)
+            iconImageView.image = UIImage(named:group.icon_name)
+            titleLabel.text = group.tag_name
+            
+        }
     }
 
 }

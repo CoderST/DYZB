@@ -65,6 +65,10 @@
                     <exclude reference="HEi-AI-Pcj"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="iconImageView" destination="rUP-vm-pZS" id="zrs-9K-rL8"/>
+                <outlet property="titleLabel" destination="esa-wV-ZtZ" id="ofA-h5-jKH"/>
+            </connections>
             <point key="canvasLocation" x="231.5" y="198.5"/>
         </collectionViewCell>
     </objects>

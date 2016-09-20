@@ -144,7 +144,6 @@ extension PageContentView : UICollectionViewDelegate{
                 targetIndex = originalIndex
             }
         }else{
-            print("右滑")
             progress = 1 - ( currentOffset_x / scrollowWidth - floor(currentOffset_x / scrollowWidth))
             
             targetIndex = Int(currentOffset_x / scrollowWidth)

@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="261" height="282"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-Me-dNz">
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-Me-dNz">
                         <rect key="frame" x="5" y="258" width="45" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="LHk-ae-hyR"/>
@@ -56,6 +56,11 @@
                     <exclude reference="Ocr-aF-Q6x"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="cityButton" destination="5cO-Me-dNz" id="EO8-5c-xj5"/>
+                <outlet property="iconImageView" destination="0v5-Ng-ckx" id="e3a-m4-63o"/>
+                <outlet property="roomLabel" destination="Z1I-4A-VBv" id="dHl-rn-hle"/>
+            </connections>
             <point key="canvasLocation" x="240.5" y="280"/>
         </collectionViewCell>
     </objects>

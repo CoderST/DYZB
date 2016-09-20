@@ -58,6 +58,10 @@
                     <exclude reference="RHe-4j-l6q"/>
                 </mask>
             </variation>
+            <connections>
+                <outlet property="iconImageView" destination="cif-tT-vOo" id="AwX-cV-jND"/>
+                <outlet property="roomeLabel" destination="tsH-w6-01C" id="JeY-BY-zdk"/>
+            </connections>
             <point key="canvasLocation" x="259.5" y="241.5"/>
         </collectionViewCell>
     </objects>

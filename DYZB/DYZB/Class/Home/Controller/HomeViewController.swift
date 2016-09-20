@@ -51,6 +51,7 @@ class HomeViewController: UIViewController {
         automaticallyAdjustsScrollViewInsets = false
         
         setupUI()
+        
 
     }
 
@@ -101,7 +102,6 @@ extension HomeViewController : PageTitlesViewDelegate{
         
         pageContentView.setCurrentIndex(index)
         
-        print("-------",index)
     }
 }
 
