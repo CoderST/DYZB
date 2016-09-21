@@ -73,11 +73,11 @@
             <size key="customSize" width="261" height="282"/>
             <variation key="default">
                 <mask key="constraints">
-                    <exclude reference="6Ss-We-1dB"/>
-                    <exclude reference="Ocr-aF-Q6x"/>
                     <exclude reference="KTN-n6-Mdu"/>
                     <exclude reference="Lz2-9e-TLO"/>
                     <exclude reference="XhZ-2Y-LmU"/>
+                    <exclude reference="6Ss-We-1dB"/>
+                    <exclude reference="Ocr-aF-Q6x"/>
                 </mask>
             </variation>
             <connections>

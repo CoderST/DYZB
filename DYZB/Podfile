@@ -6,4 +6,5 @@ target 'DYZB' do
 pod 'Alamofire','3.2.1'
 pod 'SDWebImage'
 pod 'SnapKit', '~> 0.19.1'
+pod 'SVProgressHUD'
 end
