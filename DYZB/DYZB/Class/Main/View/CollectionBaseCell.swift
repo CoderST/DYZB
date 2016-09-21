@@ -10,7 +10,9 @@ import UIKit
 import SDWebImage
 class CollectionBaseCell: UICollectionViewCell {
     
-    @IBOutlet weak var nickNameLabel: UILabel!
+
+    @IBOutlet weak var nickLabel: UILabel!
+    @IBOutlet weak var onLineNumber: UIButton!
     @IBOutlet weak var iconImageView: UIImageView!
     
     var anchorModel : AnchorModel?{
@@ -20,6 +22,16 @@ class CollectionBaseCell: UICollectionViewCell {
 //            nickNameLabel.text = anchor.nickname
             guard let url = NSURL(string: anchor.vertical_src) else { return }
             iconImageView.sd_setImageWithURL(url)
+            
+            // 处理在线人数
+            var onlineString : String = ""
+            if anchor.online > 10000{
+                onlineString = "\(anchor.online / 10000)万人在线"
+            }else{
+                onlineString = "\(anchor.online)在线"
+            }
+            nickLabel.text = anchor.nickname
+            onLineNumber.setTitle(onlineString, forState: .Normal)
         }
     }
     

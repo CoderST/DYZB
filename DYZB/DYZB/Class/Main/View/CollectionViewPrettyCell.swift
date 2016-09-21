@@ -20,7 +20,6 @@ class CollectionViewPrettyCell: CollectionBaseCell {
              guard let anchor = anchorModel else { return }
             // 将model传递给父类
             super.anchorModel = anchor
-            roomLabel.text = anchor.room_name
             cityButton.setTitle(anchor.anchor_city, forState: .Normal)
         }
     }

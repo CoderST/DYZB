@@ -18,7 +18,6 @@ class CollectionHeaderView: UICollectionViewCell {
         didSet{
             
             guard let group = anchorGroup else { return }
-            print(group.tag_name)
             iconImageView.image = UIImage(named:group.icon_name)
             titleLabel.text = group.tag_name
             

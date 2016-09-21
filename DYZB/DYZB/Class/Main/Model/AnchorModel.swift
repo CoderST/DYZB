@@ -27,6 +27,11 @@ class AnchorModel: NSObject {
     /// 所在城市
     var anchor_city : String = ""
     
+    override init() {
+        
+    }
+    
+    // 自定义构造函数 ()
     init(dict : [String : NSObject]) {
         super.init()
         setValuesForKeysWithDictionary(dict)
@@ -35,4 +40,10 @@ class AnchorModel: NSObject {
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
         
     }
+    
+    // MARK:- 重写description属性
+    override var description:String{
+        return dictionaryWithValuesForKeys(["isVertical", "room_name", "nickname"]).description
+    }
+    
 }

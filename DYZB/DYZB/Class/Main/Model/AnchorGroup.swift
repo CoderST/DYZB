@@ -28,7 +28,9 @@ class AnchorGroup: NSObject {
             guard let roomList = room_list else {return}
             
             for dict in roomList{
-                anchors.append(AnchorModel(dict: dict))
+                let anchorModel = AnchorModel(dict: dict)
+                print(anchorModel)
+                anchors.append(anchorModel)
             }
             
         }
@@ -44,7 +46,7 @@ class AnchorGroup: NSObject {
         setValuesForKeysWithDictionary(dict)
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
-        
-    }
+    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
+
+
 }

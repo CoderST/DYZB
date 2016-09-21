@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="261" height="282"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-Me-dNz">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-Me-dNz">
                         <rect key="frame" x="5" y="258" width="45" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="LHk-ae-hyR"/>
@@ -29,42 +29,68 @@
                             <constraint firstAttribute="height" constant="16" id="A6Z-b9-e7r"/>
                         </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="live_cell_default_phone" translatesAutoresizingMaskIntoConstraints="NO" id="0v5-Ng-ckx">
                         <rect key="frame" x="0.0" y="0.0" width="261" height="232"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOz-lG-tpg">
+                        <rect key="frame" x="202" y="8" width="51" height="16"/>
+                        <color key="backgroundColor" red="0.18141288402623693" green="0.18548457621412212" blue="0.19769965277777779" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="8c1-oy-QTz"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                        <state key="normal" title="Button" image="Image_online"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="8c1-oy-QTz"/>
+                            </mask>
+                        </variation>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
+                <constraint firstItem="Z1I-4A-VBv" firstAttribute="top" secondItem="UOz-lG-tpg" secondAttribute="bottom" constant="-5" id="6Ss-We-1dB"/>
                 <constraint firstAttribute="trailing" secondItem="Z1I-4A-VBv" secondAttribute="trailing" id="6uc-Xj-Dm8"/>
                 <constraint firstAttribute="bottom" secondItem="5cO-Me-dNz" secondAttribute="bottom" constant="10" id="Bwd-Eg-Svb"/>
                 <constraint firstItem="0v5-Ng-ckx" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="E4T-c8-RHG"/>
                 <constraint firstItem="Z1I-4A-VBv" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="IN6-5d-4r5"/>
+                <constraint firstAttribute="trailing" secondItem="UOz-lG-tpg" secondAttribute="trailing" constant="15" id="KTN-n6-Mdu"/>
                 <constraint firstItem="5cO-Me-dNz" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="LjO-0W-4uz"/>
+                <constraint firstAttribute="bottom" secondItem="UOz-lG-tpg" secondAttribute="bottom" constant="15" id="Lz2-9e-TLO"/>
                 <constraint firstItem="5cO-Me-dNz" firstAttribute="top" secondItem="0v5-Ng-ckx" secondAttribute="bottom" constant="5" id="Ocr-aF-Q6x"/>
                 <constraint firstItem="Z1I-4A-VBv" firstAttribute="top" secondItem="0v5-Ng-ckx" secondAttribute="bottom" constant="5" id="P15-wR-lh1"/>
                 <constraint firstItem="5cO-Me-dNz" firstAttribute="top" secondItem="Z1I-4A-VBv" secondAttribute="bottom" constant="5" id="P2k-9M-Qn2"/>
+                <constraint firstItem="UOz-lG-tpg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="PtU-Ks-k97"/>
+                <constraint firstAttribute="trailing" secondItem="UOz-lG-tpg" secondAttribute="trailing" constant="-5" id="XhZ-2Y-LmU"/>
                 <constraint firstAttribute="trailing" secondItem="0v5-Ng-ckx" secondAttribute="trailing" id="YCE-Dx-X1r"/>
+                <constraint firstAttribute="trailing" secondItem="UOz-lG-tpg" secondAttribute="trailing" constant="8" id="YDa-Ma-BRJ"/>
                 <constraint firstItem="0v5-Ng-ckx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tU0-5K-l8h"/>
             </constraints>
             <size key="customSize" width="261" height="282"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="6Ss-We-1dB"/>
                     <exclude reference="Ocr-aF-Q6x"/>
+                    <exclude reference="KTN-n6-Mdu"/>
+                    <exclude reference="Lz2-9e-TLO"/>
+                    <exclude reference="XhZ-2Y-LmU"/>
                 </mask>
             </variation>
             <connections>
                 <outlet property="cityButton" destination="5cO-Me-dNz" id="EO8-5c-xj5"/>
                 <outlet property="iconImageView" destination="0v5-Ng-ckx" id="e3a-m4-63o"/>
-                <outlet property="roomLabel" destination="Z1I-4A-VBv" id="dHl-rn-hle"/>
+                <outlet property="nickLabel" destination="Z1I-4A-VBv" id="hiB-mp-7Qk"/>
+                <outlet property="onLineNumber" destination="UOz-lG-tpg" id="cMj-b3-Azs"/>
             </connections>
             <point key="canvasLocation" x="240.5" y="280"/>
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="Image_online" width="16" height="16"/>
         <image name="ico_location" width="12" height="12"/>
         <image name="live_cell_default_phone" width="103" height="103"/>
     </resources>
