@@ -151,7 +151,7 @@ extension PageContentView : UICollectionViewDelegate{
             originalIndex = targetIndex + 1
             
         }
-        
+        // 告诉代理
         delegate?.pageContentView(self, progress: progress, originalIndex: originalIndex, targetIndex: targetIndex)
         
     }
@@ -160,7 +160,9 @@ extension PageContentView : UICollectionViewDelegate{
 
 
 extension PageContentView{
-    
+    /**
+     暴露给外界的函数
+     */
     func setCurrentIndex(currentIndex:Int){
         isForbidScrollDelegate = true
         let offset_X = frame.width * CGFloat(currentIndex)

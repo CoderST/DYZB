@@ -26,6 +26,7 @@ class PageTitlesView: UIView {
     weak var delegate : PageTitlesViewDelegate?
     
     // MARK:- 懒加载
+    /// scrollView
     private lazy var scrollView : UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
@@ -33,19 +34,19 @@ class PageTitlesView: UIView {
         scrollView.bounces = false
         return scrollView
     }()
-    
+    /// 底部的线
     private lazy var bottomLine : UIView = {
         let bottomLine = UIView()
         bottomLine.backgroundColor = UIColor.lightGrayColor()
         return bottomLine
     }()
-    
+    /// 底部滚动的横条
     private lazy var scrollLine : UIView = {
         let scrollLine = UIView()
         scrollLine.backgroundColor = UIColor(r: colorSelected.0, g: colorSelected.1, b: colorSelected.2)
         return scrollLine
     }()
-
+/// 标题数组
     private lazy var titleLabels : [UILabel] = [UILabel]()
     
     // MARK:- 构造函数
@@ -77,7 +78,9 @@ extension PageTitlesView{
         setupBottomLineAndScrollLine()
         
     }
-    
+    /**
+     设置label尺寸和位置
+     */
     private func setupTitleLabels(){
         
         let label_W = ScreenW / CGFloat(titles.count)

@@ -36,12 +36,12 @@ class AnchorModel: NSObject {
         super.init()
         setValuesForKeysWithDictionary(dict)
     }
-    
+    // 必须实现,不然会报错
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {
         
     }
     
-    // MARK:- 重写description属性
+    // MARK:- 重写description属性(方便打印看到信息)
     override var description:String{
         return dictionaryWithValuesForKeys(["isVertical", "room_name", "nickname"]).description
     }

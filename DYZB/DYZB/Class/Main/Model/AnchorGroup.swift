@@ -24,12 +24,12 @@ class AnchorGroup: NSObject {
     var room_list : [[String : NSObject]]?{
         
         didSet{
-            
+            // 对room_list进行效验
             guard let roomList = room_list else {return}
             
             for dict in roomList{
+                // 转为模型,添加到数组
                 let anchorModel = AnchorModel(dict: dict)
-                print(anchorModel)
                 anchors.append(anchorModel)
             }
             
@@ -45,7 +45,7 @@ class AnchorGroup: NSObject {
         super.init()
         setValuesForKeysWithDictionary(dict)
     }
-    
+    // 必须实现,不然会报错
     override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
 
 
