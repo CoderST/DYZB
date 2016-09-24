@@ -37,7 +37,7 @@ class RecommendViewController: UIViewController {
     // MARK:- 懒加载
     private lazy var recommendViewModel : RecommendViewModel = RecommendViewModel()
     
-    private lazy var collectionView : UICollectionView = {
+    private lazy var collectionView : UICollectionView = {[weak self] in
        // 设置layout属性
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: itemWidth, height: itemNormalWidth)
@@ -47,7 +47,7 @@ class RecommendViewController: UIViewController {
         layout.sectionInset = UIEdgeInsets(top: 0, left: margin, bottom: 0, right: margin)
         
         // 创建UICollectionView
-        let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: self!.view.bounds, collectionViewLayout: layout)
         // 设置数据源
         collectionView.dataSource = self
         collectionView.delegate = self
