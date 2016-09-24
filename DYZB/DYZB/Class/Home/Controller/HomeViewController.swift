@@ -4,7 +4,7 @@
 //
 //  Created by xiudou on 16/9/15.
 //  Copyright © 2016年 xiudo. All rights reserved.
-//
+//   首页面内的所有控件
 
 import UIKit
 
@@ -16,21 +16,29 @@ class HomeViewController: UIViewController {
     
     
     // MARK:- 懒加载
+    // 滚动条
     private lazy var pageTitlesView : PageTitlesView = {[weak self] in
         
-        let titles = ["1","2","3","4"]
+        let titles = ["推荐", "游戏", "娱乐", "趣玩"]
         let titlesFrame = CGRect(x: 0, y: StatusBarH + NavatationBarH, width: ScreenW, height: pageTitlesViewH)
         let pageTitlesView = PageTitlesView(frame: titlesFrame, titles: titles)
         return pageTitlesView
     }()
-    
+    // 滚动条下面装着要显示控制器
     private lazy var pageContentView : PageContentView = {[weak self] in
         
+        // 创建零时数组
          var childVcs = [UIViewController]()
+        
+        // 计算高度
         let contentH = ScreenH - StatusBarH - NavatationBarH - pageTitlesViewH - TabBarH
+        // 设定尺寸
         let pageContentViewFrame = CGRect(x: 0, y: StatusBarH + NavatationBarH + pageTitlesViewH, width: ScreenW, height: contentH)
+        
+        // 初始化第一个界面要显示的内容
         let recommendVC = RecommendViewController()
         childVcs.append(recommendVC)
+        // 添加其它的零时控制器
         for var index = 0; index < 3; ++index {
 
             let VC = UIViewController()
@@ -42,7 +50,6 @@ class HomeViewController: UIViewController {
         
         return pageContentView
     }()
-    
     
     // MARK:- 生命周期
     override func viewDidLoad() {
@@ -96,6 +103,7 @@ extension HomeViewController{
     
 }
 
+// MARK:- PageTitlesViewDelegate
 extension HomeViewController : PageTitlesViewDelegate{
     
     func pageTitlesView(pageTitlesView: PageTitlesView, index: Int) {
@@ -105,6 +113,7 @@ extension HomeViewController : PageTitlesViewDelegate{
     }
 }
 
+// MARK:- PageContentViewDelegate
 extension HomeViewController : PageContentViewDelegate{
     
     func pageContentView(pageContentView: PageContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {

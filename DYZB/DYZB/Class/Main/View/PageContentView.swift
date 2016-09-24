@@ -64,11 +64,9 @@ class PageContentView: UIView {
 extension PageContentView{
     
     private func setupUI(){
-               //
         for vc in childVcs{
             
             parentViewController?.addChildViewController(vc)
-//             vc.view.backgroundColor = UIColor(r:CGFloat(arc4random_uniform(256)), g: CGFloat(arc4random_uniform(256)), b: CGFloat(arc4random_uniform(256)))
         }
         
         addSubview(collectionView)

@@ -7,10 +7,12 @@
 //
 
 import UIKit
-private let NetworkHead = "http://capi.douyucdn.cn/api/v1/"
 class RecommendViewModel {
 
     // MARK:- 懒加载属性
+    // 轮播图
+    lazy var cycleDatas : [CycleModel] = [CycleModel]()
+    
     // 最热
     private lazy var bigDataGroup : AnchorGroup = AnchorGroup()
     // 颜值
@@ -18,6 +20,25 @@ class RecommendViewModel {
     // 游戏
     lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
 
+    
+    // MARK:- 轮播图数据
+    func requestCycleData(finishCallBack:()->()){
+        // 设定参数
+        let parameters = ["version" : "2.300"]
+        // 发送网络请求
+        NetworkTools.requestData(.GET, URLString: "http://www.douyutv.com/api/v1/slide/6", parameters: parameters) { (result) -> () in
+            guard let result = result as? [String : NSObject] else { return }
+            
+            guard let resultDataArray = result["data"] as? [[String : NSObject]] else {return}
+            
+            for dict in resultDataArray{
+                let cycleModel = CycleModel(dict: dict)
+                self.cycleDatas.append(cycleModel)
+            }
+            
+            finishCallBack()
+        }
+    }
     
     func request(finishCallBack : ()->()){
         // 设定参数
