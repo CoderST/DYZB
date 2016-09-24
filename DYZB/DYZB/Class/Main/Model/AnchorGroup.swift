@@ -15,6 +15,9 @@ class AnchorGroup: NSObject {
     var tag_name : String = ""
  /// 组图片
     var icon_name : String = "home_header_normal"
+    /// 游戏对应的图标
+    var icon_url : String = ""
+
     
     // MARK:- 懒加载
     /// 定义主播的模型对象数组

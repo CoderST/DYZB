@@ -20,6 +20,8 @@ private let itemNormalWidth : CGFloat = itemWidth * 3 / 4
 private let itemPrettyWidth : CGFloat = itemWidth * 4 / 3
 // 轮播图高度
 private let recommendCycleHeight : CGFloat = ScreenW * 3 / 8
+// 推荐游戏高度
+private let recommendGameHeight : CGFloat = 90
 // section Head尺寸
 private let headerViewH : CGFloat = 50
 
@@ -66,11 +68,21 @@ class RecommendViewController: UIViewController {
         
         let recommendCycleView = RecommendCycleView.creatRecommendCycleView()
         // y = -recommendCycleHeight(因为设置了collectionView.contentInset)
-        recommendCycleView.frame = CGRect(x: 0, y: -recommendCycleHeight, width: ScreenW, height: recommendCycleHeight)
+        recommendCycleView.frame = CGRect(x: 0, y: -(recommendCycleHeight + recommendGameHeight), width: ScreenW, height: recommendCycleHeight)
         return recommendCycleView
         
     }()
     
+    // 推荐游戏view
+    private lazy var recommentGameView : RecommendGameView = {
+       
+        let recommentGameView = RecommendGameView.creatRecommendGameView()
+        
+        let recommentGameViewF = CGRect(x: 0, y: -recommendGameHeight, width: ScreenW, height: recommendGameHeight)
+        recommentGameView.frame = recommentGameViewF
+        return recommentGameView
+        
+    }()
     // MARK:- 生命周期
     override func viewDidLoad() {
         
@@ -89,11 +101,12 @@ extension RecommendViewController{
         // 将collectionView添加到控制器的view中
         view.addSubview(collectionView)
         
-        // 将recommendCycleView轮播图添加到collectionView中
+        // 添加子控间
         collectionView.addSubview(recommendCycleView)
+        collectionView.addSubview(recommentGameView)
         
         // 设置collectionView的内边距
-        collectionView.contentInset = UIEdgeInsets(top: recommendCycleHeight, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: recommendCycleHeight + recommendGameHeight, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -105,6 +118,8 @@ extension RecommendViewController{
         recommendViewModel.request { () -> () in
             
             self.collectionView.reloadData()
+            let anchorGroups = self.recommendViewModel.anchorGroups
+            self.recommentGameView.anchorGroups = anchorGroups
         }
         
         // 请求轮播图数据

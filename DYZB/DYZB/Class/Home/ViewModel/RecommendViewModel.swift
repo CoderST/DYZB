@@ -13,11 +13,11 @@ class RecommendViewModel {
     // 轮播图
     lazy var cycleDatas : [CycleModel] = [CycleModel]()
     
-    // 最热
+    /// 最热
     private lazy var bigDataGroup : AnchorGroup = AnchorGroup()
-    // 颜值
+    /// 颜值
     private lazy var prettyGroup : AnchorGroup = AnchorGroup()
-    // 游戏
+    /// 游戏
     lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
 
     

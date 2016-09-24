@@ -7,13 +7,45 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="60"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="RecommendGameView" customModule="DYZB" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <subviews>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="j17-xZ-eIG">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Wo9-d2-97k">
+                        <size key="itemSize" width="80" height="90"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="iN0-l3-epB" id="Hek-p9-POU"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="gJ7-S7-rw2"/>
+                    </connections>
+                </collectionView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="RVC-yR-gLC">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="90"/>
+                </activityIndicatorView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="RVC-yR-gLC" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="CNE-uC-60c"/>
+                <constraint firstAttribute="trailing" secondItem="j17-xZ-eIG" secondAttribute="trailing" id="GGk-FH-z6A"/>
+                <constraint firstAttribute="bottom" secondItem="j17-xZ-eIG" secondAttribute="bottom" id="Maa-vF-tCz"/>
+                <constraint firstItem="j17-xZ-eIG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Zff-WY-2Nb"/>
+                <constraint firstItem="j17-xZ-eIG" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="kMr-s5-C8h"/>
+                <constraint firstAttribute="bottom" secondItem="RVC-yR-gLC" secondAttribute="bottom" id="pAC-ph-YgV"/>
+                <constraint firstItem="RVC-yR-gLC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="vbn-gg-P0e"/>
+                <constraint firstAttribute="trailing" secondItem="RVC-yR-gLC" secondAttribute="trailing" id="wbN-P4-W9C"/>
+            </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="483.5" y="-46"/>
+            <connections>
+                <outlet property="activityIndicator" destination="RVC-yR-gLC" id="S6X-QW-B1I"/>
+                <outlet property="collectionView" destination="j17-xZ-eIG" id="Hf0-FL-Jw0"/>
+            </connections>
+            <point key="canvasLocation" x="483.5" y="-35.5"/>
         </view>
     </objects>
 </document>
