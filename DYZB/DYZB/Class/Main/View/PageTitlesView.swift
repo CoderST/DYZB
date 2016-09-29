@@ -49,7 +49,7 @@ class PageTitlesView: UIView {
 /// 标题数组
     private lazy var titleLabels : [UILabel] = [UILabel]()
     
-    // MARK:- 构造函数
+    // MARK:- 构造函数(override init)
     init(frame: CGRect,titles:[String]) {
         self.titles = titles
         super.init(frame: frame)
