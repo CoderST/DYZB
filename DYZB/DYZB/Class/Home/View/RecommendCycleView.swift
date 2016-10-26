@@ -79,7 +79,6 @@ extension RecommendCycleView : UICollectionViewDataSource{
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cycleCell = collectionView.dequeueReusableCellWithReuseIdentifier(cycleCellIdentifier, forIndexPath: indexPath) as! CollectionCycleCell
-        print("----",[indexPath.item % cycleModels!.count])
         let cycleModel = cycleModels![indexPath.item % (cycleModels?.count ?? 0)]
         cycleCell.cycleModel = cycleModel
         return cycleCell

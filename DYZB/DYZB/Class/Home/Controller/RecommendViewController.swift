@@ -124,7 +124,6 @@ extension RecommendViewController{
         
         // 请求轮播图数据
         recommendViewModel.requestCycleData { () -> () in
-            print(self.recommendViewModel.cycleDatas)
         
             self.recommendCycleView.cycleModels = self.recommendViewModel.cycleDatas
         }

@@ -8,16 +8,12 @@
 
 import UIKit
 
-class AnchorGroup: NSObject {
-
+class AnchorGroup: BaseGameModel {
+    
     // MARK:- 定义属性
- /// 组名称
-    var tag_name : String = ""
- /// 组图片
+    /// 组图片
     var icon_name : String = "home_header_normal"
-    /// 游戏对应的图标
-    var icon_url : String = ""
-
+    
     
     // MARK:- 懒加载
     /// 定义主播的模型对象数组
@@ -38,18 +34,5 @@ class AnchorGroup: NSObject {
             
         }
     }
-    
-    
-    override init() {
-        
-    }
-    // MARK:- 构造函数
-    init(dict : [String : AnyObject]) {
-        super.init()
-        setValuesForKeysWithDictionary(dict)
-    }
-    // 必须实现,不然会报错
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {}
-
 
 }

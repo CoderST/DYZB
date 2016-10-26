@@ -15,7 +15,7 @@ class CollectionGameCell: UICollectionViewCell {
     
     @IBOutlet weak var titleLabel: UILabel!
     
-    var anchorGroup : AnchorGroup?{
+    var anchorGroup : BaseGameModel?{
         
         didSet{
             titleLabel.text = anchorGroup?.tag_name ?? ""

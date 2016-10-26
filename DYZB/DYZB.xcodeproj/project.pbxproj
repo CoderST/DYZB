@@ -38,6 +38,10 @@
 		0F84A3711D8A9C45000705BE /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A36E1D8A9C45000705BE /* MainViewController.swift */; };
 		0F84A3731D8AA147000705BE /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A3721D8AA147000705BE /* HomeViewController.swift */; };
 		0F84A3761D8AA275000705BE /* UIBarButotnItem+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F84A3751D8AA275000705BE /* UIBarButotnItem+Extension.swift */; };
+		0F8845AE1DC0A68A00836715 /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845AD1DC0A68A00836715 /* GameViewController.swift */; };
+		0F8845B01DC0AFEB00836715 /* GameViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845AF1DC0AFEB00836715 /* GameViewModel.swift */; };
+		0F8845B41DC0B62200836715 /* GameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845B31DC0B62200836715 /* GameModel.swift */; };
+		0F8845B61DC0B63000836715 /* BaseGameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845B51DC0B63000836715 /* BaseGameModel.swift */; };
 		0F8DD0A81D8F81DE007A1625 /* CollectionViewNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DD0A61D8F81DE007A1625 /* CollectionViewNormalCell.swift */; };
 		0F8DD0A91D8F81DE007A1625 /* CollectionViewNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8DD0A71D8F81DE007A1625 /* CollectionViewNormalCell.xib */; };
 		0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DD0AA1D8F8260007A1625 /* CollectionViewPrettyCell.swift */; };
@@ -93,6 +97,10 @@
 		0F84A36E1D8A9C45000705BE /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		0F84A3721D8AA147000705BE /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		0F84A3751D8AA275000705BE /* UIBarButotnItem+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButotnItem+Extension.swift"; sourceTree = "<group>"; };
+		0F8845AD1DC0A68A00836715 /* GameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewController.swift; sourceTree = "<group>"; };
+		0F8845AF1DC0AFEB00836715 /* GameViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameViewModel.swift; sourceTree = "<group>"; };
+		0F8845B31DC0B62200836715 /* GameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameModel.swift; sourceTree = "<group>"; };
+		0F8845B51DC0B63000836715 /* BaseGameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseGameModel.swift; sourceTree = "<group>"; };
 		0F8DD0A61D8F81DE007A1625 /* CollectionViewNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewNormalCell.swift; sourceTree = "<group>"; };
 		0F8DD0A71D8F81DE007A1625 /* CollectionViewNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewNormalCell.xib; sourceTree = "<group>"; };
 		0F8DD0AA1D8F8260007A1625 /* CollectionViewPrettyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewPrettyCell.swift; sourceTree = "<group>"; };
@@ -127,6 +135,7 @@
 			isa = PBXGroup;
 			children = (
 				0F08F3CA1D90B933009CCEAE /* RecommendViewModel.swift */,
+				0F8845AF1DC0AFEB00836715 /* GameViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -244,6 +253,7 @@
 				0F84A3581D8A8C94000705BE /* Home.storyboard */,
 				0F84A3721D8AA147000705BE /* HomeViewController.swift */,
 				0F27D9641D8F6B9000E022A0 /* RecommendViewController.swift */,
+				0F8845AD1DC0A68A00836715 /* GameViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -251,6 +261,7 @@
 		0F84A36B1D8A9B8C000705BE /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				0F8845B31DC0B62200836715 /* GameModel.swift */,
 				0F1D68561D950AC300DDD7A8 /* CycleModel.swift */,
 			);
 			path = Model;
@@ -287,6 +298,7 @@
 			children = (
 				0F08F3CC1D90BD5E009CCEAE /* AnchorModel.swift */,
 				0F08F3CE1D90BEEF009CCEAE /* AnchorGroup.swift */,
+				0F8845B51DC0B63000836715 /* BaseGameModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -498,12 +510,16 @@
 				0F1D684F1D94D87300DDD7A8 /* RecommendCycleView.swift in Sources */,
 				0F08F3C81D90B0F4009CCEAE /* NetworkTools.swift in Sources */,
 				0F84A3761D8AA275000705BE /* UIBarButotnItem+Extension.swift in Sources */,
+				0F8845B01DC0AFEB00836715 /* GameViewModel.swift in Sources */,
 				0F84A3321D8A3F50000705BE /* AppDelegate.swift in Sources */,
+				0F8845AE1DC0A68A00836715 /* GameViewController.swift in Sources */,
 				0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */,
 				0F27D9651D8F6B9000E022A0 /* RecommendViewController.swift in Sources */,
 				0F1D68571D950AC300DDD7A8 /* CycleModel.swift in Sources */,
 				0F8DD0A81D8F81DE007A1625 /* CollectionViewNormalCell.swift in Sources */,
 				0F84A3711D8A9C45000705BE /* MainViewController.swift in Sources */,
+				0F8845B41DC0B62200836715 /* GameModel.swift in Sources */,
+				0F8845B61DC0B63000836715 /* BaseGameModel.swift in Sources */,
 				0F5683FF1D8AEF87002EAD23 /* PageContentView.swift in Sources */,
 				0F08F3CD1D90BD5E009CCEAE /* AnchorModel.swift in Sources */,
 				0F08F3CF1D90BEEF009CCEAE /* AnchorGroup.swift in Sources */,
@@ -675,6 +691,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Xiaodong Xue (56D7AZGMRD)";
 				INFOPLIST_FILE = DYZB/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -701,6 +718,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = "Brand Assets";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Xiaodong Xue (56D7AZGMRD)";
 				INFOPLIST_FILE = DYZB/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

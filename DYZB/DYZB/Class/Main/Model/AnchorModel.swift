@@ -12,7 +12,7 @@ class AnchorModel: NSObject {
     
     
     /// 房间ID
-    var room_id : Int = 0
+//    var room_id : Int = 0
     /// 房间图片对应的URLString
     var vertical_src : String = ""
     /// 判断是手机直播还是电脑直播

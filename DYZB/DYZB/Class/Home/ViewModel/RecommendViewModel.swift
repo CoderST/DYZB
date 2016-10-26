@@ -8,7 +8,7 @@
 
 import UIKit
 class RecommendViewModel {
-
+    
     // MARK:- 懒加载属性
     // 轮播图
     lazy var cycleDatas : [CycleModel] = [CycleModel]()
@@ -19,7 +19,7 @@ class RecommendViewModel {
     private lazy var prettyGroup : AnchorGroup = AnchorGroup()
     /// 游戏
     lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
-
+    
     
     // MARK:- 轮播图数据
     func requestCycleData(finishCallBack:()->()){
@@ -79,23 +79,29 @@ class RecommendViewModel {
         dispatch_group_enter(group)
         NetworkTools.requestData(.GET, URLString: "http://capi.douyucdn.cn/api/v1/getHotCate", parameters: pareameters) { (result) -> () in
             guard let resultDict = result as? [String : NSObject] else {return}
-            
             guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}
-            for dict in dictArray{
-                self.anchorGroups.append(AnchorGroup(dict: dict))
+            for dic in dictArray{
+                let roomList = dic["room_list"] as! [[String : AnyObject]]
+                // 处理房间里没有数据的情况
+                if roomList.count == 0{
+                    
+                    continue
+                }
+                
+                self.anchorGroups.append(AnchorGroup(dic: dic))
             }
             
             dispatch_group_leave(group)
             
         }
-
+        
         // 对数据进行排序
         dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
             self.anchorGroups.insert(self.prettyGroup, atIndex: 0)
             self.anchorGroups.insert(self.bigDataGroup, atIndex: 0)
             finishCallBack()
         }
-
+        
     }
     
 }

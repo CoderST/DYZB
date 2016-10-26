@@ -37,9 +37,11 @@ class HomeViewController: UIViewController {
         
         // 初始化第一个界面要显示的内容
         let recommendVC = RecommendViewController()
+        let gameVC = GameViewController()
         childVcs.append(recommendVC)
+        childVcs.append(gameVC)
         // 添加其它的零时控制器
-        for var index = 0; index < 3; ++index {
+        for var index = 0; index < 2; ++index {
 
             let VC = UIViewController()
             childVcs.append(VC)
