@@ -99,7 +99,6 @@ extension GameViewController{
 // MARK:- UICollectionViewDataSource
 extension GameViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        print("gamesData = \(gameVM.gamesData.count)")
         return gameVM.gamesData.count ?? 0
     }
 

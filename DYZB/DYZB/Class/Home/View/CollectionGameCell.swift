@@ -18,6 +18,9 @@ class CollectionGameCell: UICollectionViewCell {
     var anchorGroup : BaseGameModel?{
         
         didSet{
+            
+            
+            
             titleLabel.text = anchorGroup?.tag_name ?? ""
             let iconURL = NSURL(string: anchorGroup?.icon_url ?? "")!
             iconImageView.sd_setImageWithURL(iconURL, placeholderImage: UIImage(named: "home_more_btn"))

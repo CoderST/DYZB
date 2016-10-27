@@ -13,17 +13,13 @@ private let sColumn : CGFloat = 2
 // 列间距
 private let sMargin : CGFloat = 10
 // 每一个item宽
-private let sItemWidth : CGFloat = (sScreenW - (sColumn + 1) * sMargin) / (sColumn)
+ let sItemWidth : CGFloat = (sScreenW - (sColumn + 1) * sMargin) / (sColumn)
 // 最热item宽度
-private let sItemNormalWidth : CGFloat = sItemWidth * 3 / 4
+ let sItemNormalWidth : CGFloat = sItemWidth * 3 / 4
 // 颜值item宽度
-private let sItemPrettyWidth : CGFloat = sItemWidth * 4 / 3
-// 轮播图高度
-private let sRecommendCycleHeight : CGFloat = sScreenW * 3 / 8
-// 推荐游戏高度
-private let sRecommendGameHeight : CGFloat = 90
+ let sItemPrettyWidth : CGFloat = sItemWidth * 4 / 3
 // section Head尺寸
-private let sHeaderViewH : CGFloat = 50
+ let sHeaderViewH : CGFloat = 50
 
 // 最热cell标识
 private let sCellNormalIdentifier = "cellNormalIdentifier"
@@ -36,11 +32,16 @@ class BaseAnchorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.addSubview(collectionView)
+        setupUI()
+        
+        
 
     }
     
-    private lazy var collectionView : UICollectionView = {[weak self] in
+    // MARK:- 懒加载
+     lazy var recommendViewModel : RecommendViewModel = RecommendViewModel()
+    
+     lazy var collectionView : UICollectionView = {[weak self] in
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: sItemNormalWidth, height: sItemPrettyWidth)
@@ -67,30 +68,37 @@ class BaseAnchorViewController: UIViewController {
 
 }
 
+extension BaseAnchorViewController {
+    
+    func setupUI(){
+        view.addSubview(collectionView)
+    }
+}
+
 extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     
     func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int{
         
-        return 8
+        return recommendViewModel.anchorGroups.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        //        let anchorGroup = recommendViewModel.anchorGroups[section]
+        let anchorGroup = recommendViewModel.anchorGroups[section]
         
-        return 6
+        return anchorGroup.anchors.count ?? 0
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         
         // 取出对应组
-        //        let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
-        //        let anchorModel = anchorGroup.anchors[indexPath.item]
+                let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
+                let anchorModel = anchorGroup.anchors[indexPath.item]
         var cell : CollectionBaseCell!
         
         cell = collectionView.dequeueReusableCellWithReuseIdentifier(sCellNormalIdentifier, forIndexPath: indexPath) as! CollectionViewNormalCell
         // 传递模型
-        //        cell.anchorModel = anchorModel
+        cell.anchorModel = anchorModel
         return cell
         
     }
@@ -98,7 +106,7 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         // 1.取出section的HeaderView
         let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: sCellHeadIdentifier, forIndexPath: indexPath) as!CollectionHeaderView
-        //        headerView.anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
+                headerView.anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
         return headerView
     }
     

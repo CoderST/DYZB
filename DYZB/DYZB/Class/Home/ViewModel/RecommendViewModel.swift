@@ -7,18 +7,17 @@
 //
 
 import UIKit
-class RecommendViewModel {
+class RecommendViewModel : BaseViewModel{
     
     // MARK:- 懒加载属性
     // 轮播图
     lazy var cycleDatas : [CycleModel] = [CycleModel]()
-    
     /// 最热
     private lazy var bigDataGroup : AnchorGroup = AnchorGroup()
     /// 颜值
     private lazy var prettyGroup : AnchorGroup = AnchorGroup()
     /// 游戏
-    lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
+//    lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
     
     
     // MARK:- 轮播图数据
@@ -42,8 +41,8 @@ class RecommendViewModel {
     
     func request(finishCallBack : ()->()){
         // 设定参数
-        let pareameters = ["limit" : "4" , "offset" : "0", "time" : NSDate.getNowDate()]
         let group = dispatch_group_create()
+        let pareameters = ["limit" : "4" , "offset" : "0", "time" : NSDate.getNowDate()]
         dispatch_group_enter(group)
         // MARK:- 发送最热请求
         NetworkTools.requestData(.GET, URLString: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", parameters: pareameters) { (result) -> () in
@@ -74,25 +73,10 @@ class RecommendViewModel {
             
         }
         
-        
         // MARK:- 游戏请求
         dispatch_group_enter(group)
-        NetworkTools.requestData(.GET, URLString: "http://capi.douyucdn.cn/api/v1/getHotCate", parameters: pareameters) { (result) -> () in
-            guard let resultDict = result as? [String : NSObject] else {return}
-            guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}
-            for dic in dictArray{
-                let roomList = dic["room_list"] as! [[String : AnyObject]]
-                // 处理房间里没有数据的情况
-                if roomList.count == 0{
-                    
-                    continue
-                }
-                
-                self.anchorGroups.append(AnchorGroup(dic: dic))
-            }
-            
+        loadAnchDates(true, urlString: "http://capi.douyucdn.cn/api/v1/getHotCate", parameters: pareameters) { () -> () in
             dispatch_group_leave(group)
-            
         }
         
         // 对数据进行排序
