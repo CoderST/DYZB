@@ -20,7 +20,7 @@ class RecommendGameView: UIView {
     // MARK:- 属性
     
     // MARK:- 数据传递
-    var anchorGroups : [AnchorGroup]?{
+    var anchorGroups : [BaseGameModel]?{
         didSet{
 
             // 如果有值在执行下面操作

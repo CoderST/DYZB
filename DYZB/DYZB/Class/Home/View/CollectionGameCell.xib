@@ -7,17 +7,17 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionGameCell" customModule="DYZB" customModuleProvider="target">
+        <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="CollectionGameCell" customModule="DYZB" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="116" height="99"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="116" height="99"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Img_default" translatesAutoresizingMaskIntoConstraints="NO" id="3aJ-Gp-SOU">
-                        <rect key="frame" x="35" y="15" width="45" height="45"/>
+                        <rect key="frame" x="35" y="22" width="45" height="45"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="45" id="plC-R8-9hr"/>
-                            <constraint firstAttribute="height" constant="45" id="qvo-AE-Hfw"/>
+                            <constraint firstAttribute="height" constant="45" id="RTd-uu-kuq"/>
+                            <constraint firstAttribute="width" constant="45" id="lb2-6P-ewW"/>
                         </constraints>
                         <userDefinedRuntimeAttributes>
                             <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -27,22 +27,29 @@
                         </userDefinedRuntimeAttributes>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="王者荣耀" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CIV-Bu-AWV">
-                        <rect key="frame" x="32" y="65" width="52" height="15"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="15" id="QRJ-gr-oC2"/>
-                        </constraints>
+                        <rect key="frame" x="32" y="72" width="52" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view alpha="0.29999999999999999" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kFY-3S-SWE">
+                        <rect key="frame" x="0.0" y="99" width="116" height="1"/>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="spr-uo-0Cp"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             </view>
             <constraints>
-                <constraint firstItem="3aJ-Gp-SOU" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="15" id="4dK-kg-Qdj"/>
-                <constraint firstItem="CIV-Bu-AWV" firstAttribute="top" secondItem="3aJ-Gp-SOU" secondAttribute="bottom" constant="5" id="Nt1-Uo-JdI"/>
-                <constraint firstItem="CIV-Bu-AWV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="VaJ-AF-vdb"/>
-                <constraint firstItem="3aJ-Gp-SOU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="tZJ-lg-dit"/>
+                <constraint firstItem="3aJ-Gp-SOU" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" constant="-5" id="5Ob-3v-SLR"/>
+                <constraint firstAttribute="bottom" secondItem="kFY-3S-SWE" secondAttribute="bottom" constant="-1" id="SXe-KS-umv"/>
+                <constraint firstItem="CIV-Bu-AWV" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="YuB-tR-tBt"/>
+                <constraint firstItem="kFY-3S-SWE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="auU-ym-RcT"/>
+                <constraint firstItem="CIV-Bu-AWV" firstAttribute="top" secondItem="3aJ-Gp-SOU" secondAttribute="bottom" constant="5" id="gMH-hH-wF0"/>
+                <constraint firstItem="3aJ-Gp-SOU" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="lpc-bl-agi"/>
+                <constraint firstAttribute="trailing" secondItem="kFY-3S-SWE" secondAttribute="trailing" id="xQA-bO-uON"/>
             </constraints>
             <size key="customSize" width="116" height="99"/>
             <connections>
