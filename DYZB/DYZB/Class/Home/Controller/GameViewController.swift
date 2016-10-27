@@ -4,20 +4,20 @@
 //
 //  Created by xiudou on 16/10/26.
 //  Copyright © 2016年 xiudo. All rights reserved.
-//
+//  游戏
 
 import UIKit
 // MARK:- 常量
-private let xGameCellInIdentifier = "xGameCellInIdentifier"
-private let xHeadInIdentifier = "xHeadInIdentifier"
+private let sGameCellInIdentifier = "xGameCellInIdentifier"
+private let sHeadInIdentifier = "xHeadInIdentifier"
 
-private let xEdgeMargin : CGFloat = 10
-private let xitemW : CGFloat = (ScreenW - 2 * xEdgeMargin) / 3
-private let xitemH :CGFloat = xitemW * 5.5 / 5
+private let sEdgeMargin : CGFloat = 10
+private let sItemW : CGFloat = (sScreenW - 2 * sEdgeMargin) / 3
+private let sItemH :CGFloat = sItemW * 5.5 / 5
 // 组头部高度
-private let xHeadHeight :CGFloat = 50
+private let sHeadHeight :CGFloat = 50
 // 顶部常用head的高度
-private let xTopHeadHeight :CGFloat = 90
+private let sTopHeadHeight :CGFloat = 90
 
 class GameViewController: UIViewController {
     
@@ -27,11 +27,11 @@ class GameViewController: UIViewController {
     private lazy var collectionView : UICollectionView = {[weak self] in
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: xitemW, height: xitemH)
-        layout.headerReferenceSize = CGSize(width: ScreenW, height: xHeadHeight)
+        layout.itemSize = CGSize(width: sItemW, height: sItemH)
+        layout.headerReferenceSize = CGSize(width: sScreenW, height: sHeadHeight)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        layout.sectionInset = UIEdgeInsets(top: 0, left: xEdgeMargin, bottom: 0, right: xEdgeMargin)
+        layout.sectionInset = UIEdgeInsets(top: 0, left: sEdgeMargin, bottom: 0, right: sEdgeMargin)
         
         // 创建UICollectionView
         let collectionView = UICollectionView(frame: self!.view.bounds, collectionViewLayout: layout)
@@ -42,8 +42,8 @@ class GameViewController: UIViewController {
         collectionView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
         
         // 注册cell
-        collectionView.registerNib(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier : xGameCellInIdentifier)
-        collectionView.registerNib(UINib(nibName: "CollectionHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: xHeadInIdentifier)
+        collectionView.registerNib(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier : sGameCellInIdentifier)
+        collectionView.registerNib(UINib(nibName: "CollectionHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sHeadInIdentifier)
         
         return collectionView;
         
@@ -54,7 +54,7 @@ class GameViewController: UIViewController {
         headView.titleLabel.text = "常用"
         headView.moreButton.hidden = true
         headView.iconImageView.image = UIImage(named: "Img_orange")
-        headView.frame = CGRect(x: 0, y: -(xHeadHeight + xTopHeadHeight), width: ScreenW, height: xTopHeadHeight)
+        headView.frame = CGRect(x: 0, y: -(sHeadHeight + sTopHeadHeight), width: sScreenW, height: sTopHeadHeight)
         return headView
     }()
     // 推荐游戏
@@ -62,7 +62,7 @@ class GameViewController: UIViewController {
        
         let gameOftenView = RecommendGameView.creatRecommendGameView()
         
-        gameOftenView.frame = CGRect(x: 0, y: -xTopHeadHeight, width: ScreenW, height: xTopHeadHeight)
+        gameOftenView.frame = CGRect(x: 0, y: -sTopHeadHeight, width: sScreenW, height: sTopHeadHeight)
         
         return gameOftenView
         
@@ -78,7 +78,7 @@ class GameViewController: UIViewController {
         
         collectionView.addSubview(topGameOftenView)
         
-        collectionView.contentInset = UIEdgeInsets(top: xHeadHeight + xTopHeadHeight, left: 0, bottom: 0, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: sHeadHeight + sTopHeadHeight, left: 0, bottom: 0, right: 0)
         
         loadData()
     }
@@ -105,13 +105,13 @@ extension GameViewController : UICollectionViewDataSource,UICollectionViewDelega
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
         
-        let gameCell = collectionView.dequeueReusableCellWithReuseIdentifier(xGameCellInIdentifier, forIndexPath: indexPath) as!CollectionGameCell
+        let gameCell = collectionView.dequeueReusableCellWithReuseIdentifier(sGameCellInIdentifier, forIndexPath: indexPath) as!CollectionGameCell
         gameCell.anchorGroup = gameVM.gamesData[indexPath.item]
         return gameCell
     }
     
     func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let reusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: xHeadInIdentifier, forIndexPath: indexPath) as!CollectionHeaderView
+        let reusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: sHeadInIdentifier, forIndexPath: indexPath) as!CollectionHeaderView
         // 2.给HeaderView设置属性
         reusableView.titleLabel.text = "全部"
         reusableView.iconImageView.image = UIImage(named: "Img_orange")

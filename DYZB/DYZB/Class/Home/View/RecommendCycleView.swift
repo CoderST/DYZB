@@ -121,7 +121,6 @@ extension RecommendCycleView {
     }
     
     @objc private func scrollToNextPage(){
-        print("-------")
         // 获取当前的偏移量
         let offSet = collectionView.contentOffset.x
         // 即将要滚动的偏移量

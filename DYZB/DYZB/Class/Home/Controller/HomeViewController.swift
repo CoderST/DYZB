@@ -20,50 +20,44 @@ class HomeViewController: UIViewController {
     private lazy var pageTitlesView : PageTitlesView = {[weak self] in
         
         let titles = ["推荐", "游戏", "娱乐", "趣玩"]
-        let titlesFrame = CGRect(x: 0, y: StatusBarH + NavatationBarH, width: ScreenW, height: pageTitlesViewH)
+        let titlesFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH, width: sScreenW, height: pageTitlesViewH)
         let pageTitlesView = PageTitlesView(frame: titlesFrame, titles: titles)
         return pageTitlesView
-    }()
+        }()
     // 滚动条下面装着要显示控制器
     private lazy var pageContentView : PageContentView = {[weak self] in
         
         // 创建零时数组
-         var childVcs = [UIViewController]()
+        var childVcs = [UIViewController]()
         
         // 计算高度
-        let contentH = ScreenH - StatusBarH - NavatationBarH - pageTitlesViewH - TabBarH
+        let contentH = sScreenH - sStatusBarH - sNavatationBarH - pageTitlesViewH - sTabBarH
         // 设定尺寸
-        let pageContentViewFrame = CGRect(x: 0, y: StatusBarH + NavatationBarH + pageTitlesViewH, width: ScreenW, height: contentH)
+        let pageContentViewFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH + pageTitlesViewH, width: sScreenW, height: contentH)
         
         // 初始化第一个界面要显示的内容
-        let recommendVC = RecommendViewController()
-        let gameVC = GameViewController()
-        childVcs.append(recommendVC)
-        childVcs.append(gameVC)
-        // 添加其它的零时控制器
-        for var index = 0; index < 2; ++index {
-
-            let VC = UIViewController()
-            childVcs.append(VC)
-            
-        }
-            let pageContentView = PageContentView(frame: pageContentViewFrame, childVcs: childVcs, parentViewController: self)
+        childVcs.append(RecommendViewController())
+        childVcs.append(GameViewController())
+        childVcs.append(AmuseViewController())
+        childVcs.append(FunnyViewController())
+        
+        let pageContentView = PageContentView(frame: pageContentViewFrame, childVcs: childVcs, parentViewController: self)
         
         
         return pageContentView
-    }()
+        }()
     
     // MARK:- 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         automaticallyAdjustsScrollViewInsets = false
         
         setupUI()
         
-
+        
     }
-
+    
 }
 
 // MARK:- 设置UI
@@ -119,7 +113,7 @@ extension HomeViewController : PageTitlesViewDelegate{
 extension HomeViewController : PageContentViewDelegate{
     
     func pageContentView(pageContentView: PageContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
-//         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
+        //         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
         
         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
     }

@@ -83,7 +83,7 @@ extension PageTitlesView{
      */
     private func setupTitleLabels(){
         
-        let label_W = ScreenW / CGFloat(titles.count)
+        let label_W = sScreenW / CGFloat(titles.count)
         let label_Y :CGFloat  = 0
         let label_H :CGFloat  = frame.size.height - scrollLineH
         
@@ -113,7 +113,7 @@ extension PageTitlesView{
         
         // 底部的线
          scrollView.addSubview(bottomLine)
-        bottomLine.frame = CGRect(x: 0, y: frame.size.height - scrollLineH, width: ScreenW, height: scrollLineH)
+        bottomLine.frame = CGRect(x: 0, y: frame.size.height - scrollLineH, width: sScreenW, height: scrollLineH)
         
         guard let label = titleLabels.first else {return}
         label.textColor = UIColor(r: colorSelected.0, g: colorSelected.1, b: colorSelected.2)
