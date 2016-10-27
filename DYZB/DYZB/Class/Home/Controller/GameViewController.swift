@@ -19,7 +19,7 @@ private let sHeadHeight :CGFloat = 50
 // 顶部常用head的高度
 private let sTopHeadHeight :CGFloat = 90
 
-class GameViewController: UIViewController {
+class GameViewController: BaseViewController {
     
     // MARK:- 懒加载
     private lazy var gameVM : GameViewModel = GameViewModel()
@@ -70,8 +70,8 @@ class GameViewController: UIViewController {
 
     // MARK:- 生命周期
     override func viewDidLoad() {
-        super.viewDidLoad()
-
+        baseContentView = collectionView
+        
         view.addSubview(collectionView)
         
         collectionView.addSubview(topHeadCollectionView)
@@ -79,6 +79,9 @@ class GameViewController: UIViewController {
         collectionView.addSubview(topGameOftenView)
         
         collectionView.contentInset = UIEdgeInsets(top: sHeadHeight + sTopHeadHeight, left: 0, bottom: 0, right: 0)
+        
+        super.viewDidLoad()
+        
         
         loadData()
     }
@@ -92,6 +95,8 @@ extension GameViewController{
             self.collectionView.reloadData()
             
             self.topGameOftenView.anchorGroups = Array(self.gameVM.gamesData[0..<10])
+            
+            self.endAnimation()
         }
     }
 }

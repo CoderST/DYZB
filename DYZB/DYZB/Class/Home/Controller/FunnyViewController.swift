@@ -26,6 +26,9 @@ extension FunnyViewController {
     
     override func setupUI() {
         super.setupUI()
+        
+        baseContentView = collectionView
+        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         layout.headerReferenceSize = CGSizeZero
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
@@ -42,6 +45,8 @@ extension FunnyViewController {
             self.recommendViewModel.anchorGroups = self.funnyViewModel.anchorGroups
             
             self.collectionView.reloadData()
+            
+            self.endAnimation()
         }
     }
 }

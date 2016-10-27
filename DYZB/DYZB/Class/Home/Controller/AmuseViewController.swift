@@ -27,6 +27,9 @@ class AmuseViewController: BaseAnchorViewController {
 extension AmuseViewController {
     override func setupUI() {
         super.setupUI()
+        
+        baseContentView = collectionView
+        
         collectionView.addSubview(amuseMenuView)
         collectionView.contentInset = UIEdgeInsets(top: sHeadViewHeight, left: 0, bottom: 0, right: 0)
         
@@ -46,6 +49,8 @@ extension AmuseViewController {
             var tempGroups = self.amuseVM.anchorGroups
             tempGroups.removeFirst()
             self.amuseMenuView.groups = tempGroups
+            
+            self.endAnimation()
             
         }
         

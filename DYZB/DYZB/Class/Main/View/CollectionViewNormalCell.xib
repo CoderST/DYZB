@@ -79,7 +79,7 @@
                 <outlet property="onLineNumber" destination="Nqm-h5-ZNC" id="m9L-4P-ZT1"/>
                 <outlet property="roomeLabel" destination="tsH-w6-01C" id="JeY-BY-zdk"/>
             </connections>
-            <point key="canvasLocation" x="259.5" y="241.5"/>
+            <point key="canvasLocation" x="331.5" y="237.5"/>
         </collectionViewCell>
     </objects>
     <resources>

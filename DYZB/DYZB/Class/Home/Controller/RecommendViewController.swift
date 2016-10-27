@@ -53,6 +53,7 @@ class RecommendViewController: BaseAnchorViewController {
 extension RecommendViewController{
     
      override func setupUI(){
+        super.setupUI()
         // 将collectionView添加到控制器的view中
         view.addSubview(collectionView)
         
@@ -77,6 +78,8 @@ extension RecommendViewController{
             self.collectionView.reloadData()
             let anchorGroups = self.recommendViewModel.anchorGroups
             self.recommentGameView.anchorGroups = anchorGroups
+            
+            self.endAnimation()
         }
         
         // 请求轮播图数据

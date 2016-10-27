@@ -27,7 +27,7 @@ private let sCellNormalIdentifier = "cellNormalIdentifier"
 private let sCellPrettyIdentifier = "cellPrettyIdentifier"
 // cellHead标识
 private let sCellHeadIdentifier = "cellHeadIdentifier"
-class BaseAnchorViewController: UIViewController {
+class BaseAnchorViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,8 +70,13 @@ class BaseAnchorViewController: UIViewController {
 
 extension BaseAnchorViewController {
     
-    func setupUI(){
+    override func setupUI(){
+        
+        baseContentView = collectionView
+        
         view.addSubview(collectionView)
+        
+        super.setupUI()
     }
 }
 
