@@ -46,7 +46,7 @@ class BaseViewModel {
                 
                 // 2.1.创建组
                 let group = AnchorGroup()
-                print("dictArray = \(dictArray)")
+//                print("dictArray = \(dictArray)")
                 // 2.2.遍历dataArray的所有的字典
                 for dict in dictArray {
                     group.anchors.append(AnchorModel(dict: dict))

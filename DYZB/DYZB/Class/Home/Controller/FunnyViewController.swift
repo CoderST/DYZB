@@ -17,7 +17,9 @@ class FunnyViewController: BaseAnchorViewController {
 
 extension FunnyViewController {
     
+    // 重写父类方法
     override func setupUI() {
+        // 实现父类方法
         super.setupUI()
         
         baseContentView = collectionView
@@ -33,8 +35,8 @@ extension FunnyViewController {
     
     func loadData(){
         funnyViewModel.loadFunnyDatas { () -> () in
-            let array = self.funnyViewModel.anchorGroups[0]
-            print(array.anchors.count)
+//            let array = self.funnyViewModel.anchorGroups[0]
+//            print(array.anchors.count)
             self.recommendViewModel.anchorGroups = self.funnyViewModel.anchorGroups
             
             self.collectionView.reloadData()

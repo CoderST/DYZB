@@ -21,7 +21,7 @@ class CollectionBaseCell: UICollectionViewCell {
             guard let anchor = anchorModel else { return }
 //            nickNameLabel.text = anchor.nickname
             guard let url = NSURL(string: anchor.vertical_src) else { return }
-            iconImageView.sd_setImageWithURL(url)
+            iconImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "Img_default"))
             
             // 处理在线人数
             var onlineString : String = ""
