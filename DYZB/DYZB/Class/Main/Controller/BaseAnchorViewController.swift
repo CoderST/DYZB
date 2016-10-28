@@ -132,7 +132,8 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
     func showAnchorVC(){
         let showVC = ShowAnchorViewController()
         
-        presentViewController(showVC, animated: true, completion: nil)
+//        presentViewController(showVC, animated: true, completion: nil)
+        navigationController?.pushViewController(showVC, animated: true)
     }
     
     func gameAnchorVC(){

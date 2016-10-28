@@ -37,8 +37,9 @@
                             </mask>
                         </variation>
                     </imageView>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqm-h5-ZNC">
-                        <rect key="frame" x="134" y="133" width="51" height="16"/>
+                    <button opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nqm-h5-ZNC">
+                        <rect key="frame" x="139" y="5" width="51" height="16"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.070000000000000007" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" type="system" pointSize="11"/>
                         <state key="normal" title="Button" image="Image_online"/>
                     </button>
@@ -65,11 +66,13 @@
                 <constraint firstAttribute="bottom" secondItem="uJg-Pc-mVk" secondAttribute="bottom" constant="10" id="jfV-Mo-qxP"/>
                 <constraint firstItem="5Ea-0S-11n" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="8" id="ms4-ma-EFT"/>
                 <constraint firstAttribute="trailing" secondItem="cif-tT-vOo" secondAttribute="trailing" constant="-29" id="obE-Uc-8Sy"/>
-                <constraint firstAttribute="trailing" secondItem="Nqm-h5-ZNC" secondAttribute="trailing" constant="10" id="sZo-qu-C9o"/>
+                <constraint firstAttribute="trailing" secondItem="Nqm-h5-ZNC" secondAttribute="trailing" constant="5" id="sZo-qu-C9o"/>
+                <constraint firstItem="Nqm-h5-ZNC" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="wla-Ix-NFw"/>
             </constraints>
             <size key="customSize" width="195" height="183"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="2kZ-oF-oDt"/>
                     <exclude reference="RHe-4j-l6q"/>
                 </mask>
             </variation>

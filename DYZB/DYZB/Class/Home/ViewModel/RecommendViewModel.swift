@@ -74,6 +74,11 @@ class RecommendViewModel : BaseViewModel{
         }
         
         // MARK:- 游戏请求
+        /*
+        经过我的抓取数据发现
+        http://capi.douyucdn.cn/api/v1/getHotCate?aid=ios&client_sys=ios&time=1477668000&auth=5e75eff0b108c909fe48a05e8073e05b
+        http://capi.douyucdn.cn/api/v1/getVerticalRoom?offset=0&client_sys=ios&limit=4
+        */
         dispatch_group_enter(group)
         loadAnchDates(true, urlString: "http://capi.douyucdn.cn/api/v1/getHotCate", parameters: pareameters) { () -> () in
             dispatch_group_leave(group)

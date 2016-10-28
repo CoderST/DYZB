@@ -17,7 +17,7 @@
                     <constraints>
                         <constraint firstAttribute="height" constant="30" id="fqk-W9-Vs8"/>
                     </constraints>
-                    <color key="pageIndicatorTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="currentPageIndicatorTintColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                 </pageControl>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="9vx-VB-mui">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="170"/>
@@ -29,6 +29,7 @@
                     </collectionViewFlowLayout>
                     <connections>
                         <outlet property="dataSource" destination="iN0-l3-epB" id="Rhf-55-hYB"/>
+                        <outlet property="delegate" destination="iN0-l3-epB" id="sWU-Jj-sZc"/>
                     </connections>
                 </collectionView>
             </subviews>

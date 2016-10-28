@@ -9,6 +9,7 @@
 import UIKit
 /// 顶部head的高度
 private let sHeadViewHeight : CGFloat = 200
+
 class AmuseViewController: BaseAnchorViewController {
     
     
@@ -22,19 +23,25 @@ class AmuseViewController: BaseAnchorViewController {
         amuseMenuView.frame = CGRect(x: 0, y: -sHeadViewHeight, width: sScreenW, height: sHeadViewHeight)
         return amuseMenuView
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        loadAmuseDates()
+    }
 }
 
 extension AmuseViewController {
     override func setupUI() {
+        
         super.setupUI()
         
         baseContentView = collectionView
         
         collectionView.addSubview(amuseMenuView)
+        
         collectionView.contentInset = UIEdgeInsets(top: sHeadViewHeight, left: 0, bottom: 0, right: 0)
         
-        
-        loadAmuseDates()
     }
 
 }
@@ -44,10 +51,15 @@ extension AmuseViewController {
     func loadAmuseDates(){
         
         amuseVM.loadAmuseDates { () -> () in
+            
             self.recommendViewModel.anchorGroups = self.amuseVM.anchorGroups
+            
             self.collectionView.reloadData()
+            
             var tempGroups = self.amuseVM.anchorGroups
+            
             tempGroups.removeFirst()
+            
             self.amuseMenuView.groups = tempGroups
             
             self.endAnimation()

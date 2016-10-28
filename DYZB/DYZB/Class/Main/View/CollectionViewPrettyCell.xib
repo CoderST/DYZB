@@ -13,7 +13,7 @@
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="261" height="282"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-Me-dNz">
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5cO-Me-dNz">
                         <rect key="frame" x="5" y="258" width="45" height="14"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="14" id="LHk-ae-hyR"/>
@@ -36,8 +36,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="261" height="232"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UOz-lG-tpg">
-                        <rect key="frame" x="202" y="8" width="51" height="16"/>
-                        <color key="backgroundColor" red="0.18141288402623693" green="0.18548457621412212" blue="0.19769965277777779" alpha="1" colorSpace="calibratedRGB"/>
+                        <rect key="frame" x="205" y="5" width="51" height="16"/>
+                        <color key="backgroundColor" red="0.18141288402623693" green="0.18548457621412212" blue="0.19769965277777779" alpha="0.080000000000000002" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="8c1-oy-QTz"/>
                         </constraints>
@@ -64,10 +64,10 @@
                 <constraint firstItem="5cO-Me-dNz" firstAttribute="top" secondItem="0v5-Ng-ckx" secondAttribute="bottom" constant="5" id="Ocr-aF-Q6x"/>
                 <constraint firstItem="Z1I-4A-VBv" firstAttribute="top" secondItem="0v5-Ng-ckx" secondAttribute="bottom" constant="5" id="P15-wR-lh1"/>
                 <constraint firstItem="5cO-Me-dNz" firstAttribute="top" secondItem="Z1I-4A-VBv" secondAttribute="bottom" constant="5" id="P2k-9M-Qn2"/>
-                <constraint firstItem="UOz-lG-tpg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="8" id="PtU-Ks-k97"/>
+                <constraint firstItem="UOz-lG-tpg" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="PtU-Ks-k97"/>
                 <constraint firstAttribute="trailing" secondItem="UOz-lG-tpg" secondAttribute="trailing" constant="-5" id="XhZ-2Y-LmU"/>
                 <constraint firstAttribute="trailing" secondItem="0v5-Ng-ckx" secondAttribute="trailing" id="YCE-Dx-X1r"/>
-                <constraint firstAttribute="trailing" secondItem="UOz-lG-tpg" secondAttribute="trailing" constant="8" id="YDa-Ma-BRJ"/>
+                <constraint firstAttribute="trailing" secondItem="UOz-lG-tpg" secondAttribute="trailing" constant="5" id="YDa-Ma-BRJ"/>
                 <constraint firstItem="0v5-Ng-ckx" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="tU0-5K-l8h"/>
             </constraints>
             <size key="customSize" width="261" height="282"/>
