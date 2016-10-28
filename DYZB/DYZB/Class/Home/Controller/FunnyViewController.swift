@@ -12,14 +12,7 @@ class FunnyViewController: BaseAnchorViewController {
 
     // MARK:- 懒加载
     private lazy var funnyViewModel : FunnyViewModel  = FunnyViewModel()
-    
 
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        
-//    }
-//
 }
 
 extension FunnyViewController {

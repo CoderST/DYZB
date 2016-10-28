@@ -121,4 +121,23 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
         return CGSize(width: sItemWidth, height: sItemNormalWidth)
     }
     
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        
+        let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
+        let anchorModel = anchorGroup.anchors[indexPath.item]
+
+         anchorModel.isVertical == 0 ? gameAnchorVC() : showAnchorVC()
+    }
+    
+    func showAnchorVC(){
+        let showVC = ShowAnchorViewController()
+        
+        presentViewController(showVC, animated: true, completion: nil)
+    }
+    
+    func gameAnchorVC(){
+        let gameVC = GameAnchorViewController()
+        navigationController?.pushViewController(gameVC, animated: true)
+    }
+    
 }
