@@ -35,6 +35,12 @@ class ShowAnchorViewController: UIViewController {
     
     private lazy var movieFileOutput : AVCaptureMovieFileOutput = AVCaptureMovieFileOutput()
     
+    private lazy var device : UIDevice = {
+       let device = UIDevice()
+        
+        return device
+    }()
+    
     // MARK:- 系统回调
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +48,9 @@ class ShowAnchorViewController: UIViewController {
         view.addSubview(switchCameraButton)
         switchCameraButton.frame = CGRect(x: sScreenW - sButtonW, y: sButtonY, width: sButtonW, height: sButtonH)
 //        let captureSession = AVCaptureSession()
+        
+        setupTest()
+        
         shouQuan()
         setupVideo()
         setupAudio()
@@ -92,6 +101,46 @@ extension ShowAnchorViewController {
     }
 }
 
+// MARK:- 判断是否可以直播条件
+extension ShowAnchorViewController {
+
+    func setupTest() {
+        // 1 判断是否是模拟器
+        if (device.isEqual("iPhone Simulator")){
+            print("请用真机进行测试, 此模块不支持模拟器测试")
+            return
+        }
+        
+        // 2 判断是否有摄像头
+        if ( !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            print("您的设备没有摄像头或者相关的驱动, 不能进行直播")
+            return
+        }
+        
+        // 3 判断是否有摄像头权限
+        // 3.1 获取状态
+        let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        // 3.2 判断各种状态
+        if (authorizationStatus == .Restricted || authorizationStatus == .Denied){
+            print("pp需要访问您的摄像头。\n请启用摄像头-设置/隐私/摄像头")
+            return
+        }
+        
+        // 4 判断是否开启麦克风
+        let audioSession = AVAudioSession.sharedInstance()
+        let selector = Selector("requestRecordPermission:")
+        if (audioSession .respondsToSelector(selector)){
+            audioSession.performSelector(selector)
+            
+        }else{
+            print("app需要访问您的麦克风。\n请启用麦克风-设置/隐私/麦克风")
+            
+            return
+        }
+        
+    }
+}
+
 // MARK:- 授权
 extension ShowAnchorViewController {
     
@@ -115,25 +164,6 @@ extension ShowAnchorViewController {
         case .Denied, .Restricted: break  
             // 用户明确地拒绝授权，或者相机设备无法访问
         }
-    }
-}
-
-// MARK:- 初始化视频输出
-extension ShowAnchorViewController {
-    func setupMovieFileOutput(){
-        // 1 添加输出到会话中
-        if captureSession.canAddOutput(movieFileOutput){
-        captureSession.addOutput(movieFileOutput)
-        }
-        // 2 获取视频的connection
-        let connection = movieFileOutput.connectionWithMediaType(AVMediaTypeVideo)
-        // 3 设置视频稳定模式
-        connection.preferredVideoStabilizationMode = .Auto
-        // 4 开始写入视频
-//        movieFileOutput.startRecordingToOutputFileURL(movieFileOutput.outputFileURL, recordingDelegate: self)
-        // 5 停止写入
-        movieFileOutput.stopRecording()
-        
     }
 }
 
@@ -212,6 +242,26 @@ extension ShowAnchorViewController {
         guard let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) else { return }
         previewLayer.frame = view.bounds
         view.layer.insertSublayer(previewLayer, atIndex: 0)
+    }
+}
+
+
+// MARK:- 初始化视频输出
+extension ShowAnchorViewController {
+    func setupMovieFileOutput(){
+        // 1 添加输出到会话中
+        if captureSession.canAddOutput(movieFileOutput){
+            captureSession.addOutput(movieFileOutput)
+        }
+        // 2 获取视频的connection
+        let connection = movieFileOutput.connectionWithMediaType(AVMediaTypeVideo)
+        // 3 设置视频稳定模式
+        connection.preferredVideoStabilizationMode = .Auto
+        // 4 开始写入视频
+        //        movieFileOutput.startRecordingToOutputFileURL(movieFileOutput.outputFileURL, recordingDelegate: self)
+        // 5 停止写入
+        movieFileOutput.stopRecording()
+        
     }
 }
 

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (3.2.1)
+  - MJRefresh (3.1.12)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
   - SDWebImage/Core (3.8.1)
@@ -8,16 +9,18 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 3.2.1)
+  - MJRefresh (~> 3.1.12)
   - SDWebImage
   - SnapKit (~> 0.19.1)
   - SVProgressHUD
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: e3c236e338c9da80dde839c0e96a583cc54c9ca6
+PODFILE CHECKSUM: 6d83235e8809a3f04ab9939f1d81779920f6fa16
 
 COCOAPODS: 1.0.1
