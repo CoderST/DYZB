@@ -43,6 +43,7 @@ class RecommendViewModel : BaseViewModel{
         // 设定参数
         let group = dispatch_group_create()
         let pareameters = ["limit" : "4" , "offset" : "0", "time" : NSDate.getNowDate()]
+        print("NSDate.getNowDate() = \(NSDate.getNowDate())")
         dispatch_group_enter(group)
         // MARK:- 发送最热请求
         NetworkTools.requestData(.GET, URLString: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", parameters: pareameters) { (result) -> () in

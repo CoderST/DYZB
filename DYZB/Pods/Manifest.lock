@@ -1,5 +1,7 @@
 PODS:
   - Alamofire (3.2.1)
+  - LFLiveKit (2.3)
+  - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
   - SDWebImage (3.8.1):
     - SDWebImage/Core (= 3.8.1)
@@ -9,6 +11,8 @@ PODS:
 
 DEPENDENCIES:
   - Alamofire (= 3.2.1)
+  - LFLiveKit (~> 2.3)
+  - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
   - SDWebImage
   - SnapKit (~> 0.19.1)
@@ -16,11 +20,13 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  LFLiveKit: 76a5cb34509f8cbe25e3a95824cf80f36d36679b
+  MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: 35f9627a3e44b4f292a8a8ce6a531fa488239b91
   SnapKit: eff58d6e3451bf2f482db2eccf86aecf371dc62d
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 6d83235e8809a3f04ab9939f1d81779920f6fa16
+PODFILE CHECKSUM: 55ad48f4180c3f53f00b70cecabb5f50f29ef06f
 
 COCOAPODS: 1.0.1

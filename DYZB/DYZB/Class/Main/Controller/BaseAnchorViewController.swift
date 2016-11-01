@@ -126,14 +126,15 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
         let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
         let anchorModel = anchorGroup.anchors[indexPath.item]
 
-         anchorModel.isVertical == 0 ? gameAnchorVC() : showAnchorVC()
+        let roomID = anchorModel.room_id
+         anchorModel.isVertical == 0 ? gameAnchorVC() : showAnchorVC(roomID)
     }
     
-    func showAnchorVC(){
+    func showAnchorVC(room_id : Int64){
         let showVC = ShowAnchorViewController()
-        
-//        presentViewController(showVC, animated: true, completion: nil)
-        navigationController?.pushViewController(showVC, animated: true)
+        showVC.room_id = room_id
+        presentViewController(showVC, animated: true, completion: nil)
+//        navigationController?.pushViewController(showVC, animated: true)
     }
     
     func gameAnchorVC(){

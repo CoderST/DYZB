@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GameAnchorViewController: UIViewController {
+class GameAnchorViewController: BaseShowViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -8,4 +8,6 @@ pod 'SDWebImage'
 pod 'SnapKit', '~> 0.19.1'
 pod 'SVProgressHUD'
 pod 'MJRefresh', '~> 3.1.12'
+pod 'LFLiveKit', '~> 2.3'
+pod 'MJExtension', '~> 3.0.13'
 end
