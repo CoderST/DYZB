@@ -12,18 +12,35 @@ import SnapKit
 private var GifImageView_Key = 0
 extension UIViewController{
     
+    
+    // 给UIViewController添加UIImageView属性
+    private struct AssociatedKeys {
+        static var DescriptiveName = "nsh_DescriptiveName"
+    }
+    var gifImageView: UIImageView? {
+        get {
+            return objc_getAssociatedObject(self, &AssociatedKeys.DescriptiveName) as? UIImageView
+        }
+        set {
+            if let newValue = newValue {
+                objc_setAssociatedObject(self,&AssociatedKeys.DescriptiveName,newValue as UIImageView?,
+                    objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+                
+            }
+        }
+    }
 
     /**
      给系统UIViewController添加getGifImageView对象
      */
-    func getGifImageView()->AnyObject?{
-        
-        return objc_getAssociatedObject(self, &GifImageView_Key)
-    }
-    
-    func setGifImageView(){
-        objc_setAssociatedObject(self, &GifImageView_Key, getGifImageView(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
-    }
+//    func getGifImageView()->AnyObject?{
+//        
+//        return objc_getAssociatedObject(self, &GifImageView_Key)
+//    }
+//    
+//    func setGifImageView(){
+//        objc_setAssociatedObject(self, &GifImageView_Key, getGifImageView(), objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
+//    }
     
     /**
      显示GIF加载动画
@@ -39,7 +56,7 @@ extension UIViewController{
             inView = view
         }
         inView?.addSubview(gifImage)
-        
+        gifImageView = gifImage
         gifImage.snp_makeConstraints { (make) -> Void in
             make.center.equalTo(0)
             make.width.equalTo(60)
@@ -53,8 +70,7 @@ extension UIViewController{
      隐藏动画
      */
     func hideGifLoading(){
-        var gifView = getGifImageView() as? UIImageView
-        gifView!.stopAnimating()
-        gifView = nil
+        gifImageView!.stopAnimating()
+        gifImageView = nil
     }
 }

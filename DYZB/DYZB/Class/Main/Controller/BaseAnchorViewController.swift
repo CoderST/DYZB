@@ -138,8 +138,11 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
     }
     
     func gameAnchorVC(){
-        let gameVC = GameAnchorViewController()
-        navigationController?.pushViewController(gameVC, animated: true)
+        // 先注释了,下面是直播控制器
+        
+//        let gameVC = GameAnchorViewController()
+        let showListVC = ShowAnchorListVC()
+        navigationController?.pushViewController(showListVC, animated: true)
     }
     
 }

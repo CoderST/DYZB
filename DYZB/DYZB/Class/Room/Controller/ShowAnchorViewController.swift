@@ -53,8 +53,12 @@ class ShowAnchorViewController: UIViewController {
        
     }
     
+    deinit{
+        print("ShowAnchorViewController - 界面销毁")
+    }
+    
     // MARK:- 自定义方法
-    func refreshGifHeaderAction(){
+     func refreshGifHeaderAction(){
         currentIndex++
         if currentIndex == roomAnchorVM.roomYKModelArray.count{
             currentIndex = 0
@@ -69,6 +73,8 @@ class ShowAnchorViewController: UIViewController {
     }
     
     
+   
+    
 }
 // MARK:- 网络请求
 extension ShowAnchorViewController {
@@ -76,10 +82,20 @@ extension ShowAnchorViewController {
     private func getNetworkData(){
         // 其实这里有个问题:如果要实现喵播上拉下拉
         tableView.mj_header.beginRefreshing()
-        roomAnchorVM.getRoomAnchorData(room_id) { () -> () in
+//        roomAnchorVM.getRoomAnchorData(1) { () -> () in
+//            
+//            self.tableView.mj_header.endRefreshing()
+//            self.tableView.reloadData()
+//        }
+        
+        roomAnchorVM.getRoomAnchorData(1, finishCallBack: { () -> () in
             
             self.tableView.mj_header.endRefreshing()
             self.tableView.reloadData()
+            
+            }) { () -> () in
+                // 没有数据
+                print("没有数据")
         }
 
     }
