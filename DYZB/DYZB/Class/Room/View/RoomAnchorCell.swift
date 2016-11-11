@@ -4,7 +4,7 @@
 //
 //  Created by xiudou on 16/10/31.
 //  Copyright © 2016年 xiudo. All rights reserved.
-//  直播显示的cell
+//  直播显示的cell(只能下拉刷新)
 
 import UIKit
 import SDWebImage

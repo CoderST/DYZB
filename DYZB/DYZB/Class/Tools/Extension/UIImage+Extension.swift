@@ -66,5 +66,49 @@ extension UIImage{
         
         return returnImage
     }
+
+    
+    /**
+     返回一张带有边框的图片
+     
+     - parameter originImage: 原始图片
+     - parameter borderColor: 边框颜色
+     - parameter borderWidth: 边框宽度
+     
+     - returns: 图片
+     */
+    class func circleImage(originImage : UIImage, borderColor : UIColor, borderWidth : CGFloat) ->UIImage{
+        
+        //设置边框宽度
+        let imageWH = originImage.size.width
+        
+        //计算外圆的尺寸
+        let outWH = imageWH + 2 * borderWidth;
+        
+        //开启上下文
+        UIGraphicsBeginImageContextWithOptions(originImage.size, false, 0);
+        
+        //画一个大的圆形
+        let path = UIBezierPath.init(ovalInRect: CGRect(x: 0, y: 0, width: outWH, height: outWH))
+        borderColor.set()
+        path.fill()
+
+        //设置裁剪区域
+        let clipPath = UIBezierPath.init(ovalInRect: CGRect(x: borderWidth, y: borderWidth, width: imageWH, height: imageWH))
+        clipPath.addClip()
+        
+        //绘制图片
+        originImage.drawAtPoint(CGPoint(x: borderWidth, y: borderWidth))
+        
+        //从上下文中获取图片
+        let resultImage = UIGraphicsGetImageFromCurrentImageContext()
+        
+        //关闭上下文
+        UIGraphicsEndImageContext()
+        
+        return resultImage
+
+        
+    }
     
 }

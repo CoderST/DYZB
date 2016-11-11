@@ -8,22 +8,21 @@
 
 import UIKit
 import SnapKit
-//static var *gifKey = &gifKey
-private var GifImageView_Key = 0
+//private var GifImageView_Key = 0
 extension UIViewController{
     
     
     // 给UIViewController添加UIImageView属性
-    private struct AssociatedKeys {
-        static var DescriptiveName = "nsh_DescriptiveName"
+    private struct charNameKeys {
+        static var charName = "charName"
     }
     var gifImageView: UIImageView? {
         get {
-            return objc_getAssociatedObject(self, &AssociatedKeys.DescriptiveName) as? UIImageView
+            return objc_getAssociatedObject(self, &charNameKeys.charName) as? UIImageView
         }
         set {
             if let newValue = newValue {
-                objc_setAssociatedObject(self,&AssociatedKeys.DescriptiveName,newValue as UIImageView?,
+                objc_setAssociatedObject(self,&charNameKeys.charName,newValue as UIImageView?,
                     objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN)
                 
             }

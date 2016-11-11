@@ -4,7 +4,9 @@
 //
 //  Created by xiudou on 16/10/31.
 //  Copyright © 2016年 xiudo. All rights reserved.
-//  直播显示的cell
+//  直播显示的cell(可以上下滚动)
+
+// MARK:- 92行添加手势后会与ShowAnchorHeardView里的代理点击事件冲突,待解决
 
 import UIKit
 import SDWebImage
@@ -28,6 +30,11 @@ class ShowAnchorVCCell: UITableViewCell {
     var liziTime : NSTimer?
     
     // MARK:- 懒加载
+    /// 顶部用户信息的view
+    private lazy var userInforView : ShowAnchorHeardView = {
+        let aa = ShowAnchorHeardView.creatShowAnchorHeardView()
+        return aa
+    }()
     /// 弹幕渲染器
     private lazy var renderer : BarrageRenderer = {
         
@@ -44,8 +51,6 @@ class ShowAnchorVCCell: UITableViewCell {
         
         return textArray
     }()
-    
-    
     // 底部的view
     private lazy var bottomView : RoomAchorBottomView = RoomAchorBottomView()
     // 展位图
@@ -54,13 +59,26 @@ class ShowAnchorVCCell: UITableViewCell {
         let placeHolderImageView = UIImageView()
         return placeHolderImageView
     }()
+     // 🐱👂
+     lazy var catView : ShowAnchorCatView = {[weak self] in
+        let catView = ShowAnchorCatView()
+        catView.frame = CGRect(x: sScreenW - 100, y: 250, width: 100, height: 100)
+        catView.center = CGPoint(x: sScreenW - 100 * 0.6, y: 250)
+        catView.layer.cornerRadius = catView.frame.size.height * 0.5
+        catView.delegate = self
+        return catView
+        
+    }()
     
-    // MARK:- 系统回调
+       
+    
+        // MARK:- 系统回调
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
+        // 去除选中状态
+        selectionStyle = .None
 
         // 1 danmu
-        
         contentView.addSubview(renderer.view!)
         renderer.canvasMargin = UIEdgeInsetsMake(sScreenH * 0.3, 10, 10, 10)
         renderer.view!.userInteractionEnabled = true;
@@ -83,7 +101,16 @@ class ShowAnchorVCCell: UITableViewCell {
             make.height.equalTo(50)
         }
         
+        // 0 添加用户信息的view
+        contentView.addSubview(userInforView)
         
+       }
+    
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        userInforView.frame = CGRect(x: 0, y: 30, width: contentView.frame.size.width, height: 100)
     }
     
     // MARK:- SET方法
@@ -91,6 +118,7 @@ class ShowAnchorVCCell: UITableViewCell {
         
         didSet{
             guard let roomA = roomAnchor else { return }
+            userInforView.anchorModel = roomA
             isSelected = false
             renderer.stop()
             if playerVC != nil{
@@ -98,7 +126,6 @@ class ShowAnchorVCCell: UITableViewCell {
                 playerVC!.shutdown()
                 playerVC!.view.removeFromSuperview()
                 playerVC = nil;
-                NSNotificationCenter.defaultCenter().removeObserver(self)
                 
             }
             // 1 设置占位图
@@ -111,32 +138,55 @@ class ShowAnchorVCCell: UITableViewCell {
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
                         
                         // 3 加载gif动画
-                        self.parentVc?.showGifLoading(nil, inView: self.placeHolderImageView)
-                        self.placeHolderImageView.image = UIImage.boxBlurImage(image, withBlurNumber: 0.4)
+                        if finished{
+                            
+                            self.parentVc?.showGifLoading(nil, inView: self.placeHolderImageView)
+                            self.placeHolderImageView.image = UIImage.boxBlurImage(image, withBlurNumber: 0.4)
+                        }
                     })
                 })
             }
-
-            
-//            playingWithPlaceHoldImageView(roomA)
-            // 设置监听
-            
         }
         
     }
     
+    var subAnchorModel : RoomYKModel?{
+        didSet{
+            
+            guard let model = subAnchorModel else { return }
+   
+            // 复原位置
+             catView.center = CGPoint(x: sScreenW - 100 * 0.6, y: 250)
+//            catView.setNeedsLayout()
+            catView.anchor = model
+        }
+    }
+    
     // MARK:- 自定义方法
+    
+    func addTapGestureRecognizer(){
+        
+        let tap = UITapGestureRecognizer(target: self, action: "tapAction:")
+        contentView.addGestureRecognizer(tap)
+    }
+    
+    func tapAction(action: UITapGestureRecognizer){
+        
+            autoliziTimeAction()
+        
+    }
     
     
      func playingWithPlaceHoldImageView(roomA : RoomYKModel){
         
         if playerVC != nil{
-            shutdown()
+            shutdownAction()
             playerVCQuit()
             playerVC?.view.removeFromSuperview()
             playerVC = nil
         }
-        initObserver()
+       
+        
                // 4.1 获取直播URL
         guard let url = NSURL(string: roomA.flv ?? "") else { return }
         // 4.2 创建直播对象
@@ -162,6 +212,8 @@ class ShowAnchorVCCell: UITableViewCell {
         contentView.insertSubview(playerVC!.view, atIndex: 0)
         // 10 播放准备
         playerVC!.prepareToPlay()
+        // 添加通知
+        initObserver()
         
     }
     
@@ -184,11 +236,11 @@ class ShowAnchorVCCell: UITableViewCell {
     
     func quit(){
         
-        shutdown()
+        shutdownAction()
         
         barrageTimeAction()
         
-        liziTimeAction()
+        invalidateliziTimeAction()
         
         rendererAction()
         
@@ -200,7 +252,7 @@ class ShowAnchorVCCell: UITableViewCell {
         print("RoomAnchorCell - 退出了")
     }
     
-    func shutdown(){
+    func shutdownAction(){
         if playerVC != nil{
             playerVC?.shutdown()
             NSNotificationCenter.defaultCenter().removeObserver(self)
@@ -208,11 +260,10 @@ class ShowAnchorVCCell: UITableViewCell {
         
     }
     
-    func liziTimeAction(){
+    func invalidateliziTimeAction(){
         liziTime?.invalidate()
         liziTime = nil
     }
-    
     
     func barrageTimeAction(){
         
@@ -235,15 +286,15 @@ class ShowAnchorVCCell: UITableViewCell {
         
         // 加载状态改变通知
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "stateDidChangeNotification", name:IJKMPMoviePlayerLoadStateDidChangeNotification, object: playerVC)
-        
-        
+              
     }
+    
     // MARK:- 通知事件
     func didFinishNotification(){
         //加载状态....... IJKMPMovieLoadState(rawValue: 3) IJKMPMoviePlaybackState
         print("加载状态didFinishNotification.......", self.playerVC!.loadState, self.playerVC!.playbackState)
         // IJKMPMovieLoadStateStalled
-        if (playerVC!.loadState == IJKMPMovieLoadState(rawValue: 4)){
+        if (playerVC!.loadState.rawValue == 4){
             parentVc?.showGifLoading(nil, inView: playerVC?.view)
             
             return
@@ -256,14 +307,17 @@ class ShowAnchorVCCell: UITableViewCell {
     
     func stateDidChangeNotification(){
         print("加载状态stateDidChangeNotification.......", self.playerVC!.loadState)
-        if (playerVC?.loadState == IJKMPMovieLoadState(rawValue: 3)){
+        print(IJKMPMovieLoadState.Playable.rawValue,IJKMPMovieLoadState.PlaythroughOK.rawValue)
+//        let type = IJKMPMovieLoadState.Playable.rawValue
+        if (playerVC?.loadState.rawValue != IJKMPMovieLoadState.Stalled.rawValue){
             if playerVC?.isPlaying() == false{
                 playerVC?.play()
+                 contentView.addSubview(catView)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(1 *  NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
                     
                     self.placeHolderImageView.hidden = true
                     self.playerVC?.view.addSubview(self.renderer.view!)
-//
+                    //
                 })
                 if let imageView = parentVc?.gifImageView {
                     
@@ -273,7 +327,7 @@ class ShowAnchorVCCell: UITableViewCell {
                             self.parentVc?.hideGifLoading()
                         })
                     }
-
+                    
                 }
                 
             }else{
@@ -287,63 +341,13 @@ class ShowAnchorVCCell: UITableViewCell {
                     }
                 }
             }
-        }else if(playerVC?.loadState == IJKMPMovieLoadState(rawValue: 4)){
+        }else if(playerVC?.loadState.rawValue == 4){
             parentVc?.showGifLoading(nil, inView: playerVC?.view)
-            print("网络不好")
         }
         
     }
     
-//    func playbackStateDidChangeNotification(){
-//        if playerVC?.playbackState != nil{
-//            guard let type = playerVC?.playbackState.rawValue else { return }
-//            
-//            if type == 1 {
-//                if playerVC?.isPlaying() == false{
-//                    playerVC?.play()
-//                    dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(1 *  NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
-//                        
-//                        self.placeHolderImageView.hidden = true
-//                        self.playerVC?.view.addSubview(self.renderer.view!)
-//                        
-//                    })
-//                    
-//                    
-//                }
-//            }else if (type == 2){
-//                if playerVC?.isPlaying() == true{
-//                    
-//                    playerVC?.pause()
-//                    playerVC?.stop()
-//                }
-//            }
-//            
-//         
-//            /**
-//            // IJKMPMoviePlaybackStateStopped, 停止
-//            // IJKMPMoviePlaybackStatePlaying, 正在播放
-//            // IJKMPMoviePlaybackStatePaused, 暂停
-//            // IJKMPMoviePlaybackStateInterrupted, 打断
-//            // IJKMPMoviePlaybackStateSeekingForward, 快进
-//            // IJKMPMoviePlaybackStateSeekingBackward 快退
-//
-//
-//            */
-////            if type == 0{
-////                print("我是0")
-////            }else if type == 1{
-////                print("我是1")
-////            }else if type == 2{
-////                print("我是2")
-////            }else if type == 3{
-////                print("我是3")
-////            }else if type == 4{
-////                print("我是4")
-////            }     
-//        }
-//        
-//    }
-    
+       
     
     // MARK:- 界面销毁
     deinit{
@@ -406,14 +410,30 @@ extension ShowAnchorVCCell{
         
         let speed = CGFloat(arc4random_uniform(100) + 50)
         descriptor.params["speed"] = speed
-        
-        //        descriptor.params["direction"] = direction
         return descriptor
     }
     
     
 }
 
-
-
-
+extension ShowAnchorVCCell : ShowAnchorCatViewDelegate {
+    
+    // 实现长按手势代理
+    func ShowAnchorCatViewLongPress(showAnchorCatView: ShowAnchorCatView, gesture: UIGestureRecognizer) {
+                let state = gesture.state
+                switch state {
+                case .Began:
+                    let point = gesture.locationInView(self)
+                    ""
+                case .Changed:
+                    let oriPoint = gesture.locationInView(self)
+                    let translation = gesture.locationInView(self)
+                    gesture.view?.center = CGPoint(x: oriPoint.x + translation.x, y: oriPoint.y + translation.y)
+                    let supViewPoint = convertPoint(oriPoint, toView: contentView)
+                    catView.center = supViewPoint
+                default:
+                    "default"
+                }
+    }
+    
+}
