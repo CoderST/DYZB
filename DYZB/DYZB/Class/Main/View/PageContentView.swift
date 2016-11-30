@@ -78,7 +78,7 @@ extension PageContentView{
     
 }
 
-
+// MARK:- UICollectionViewDataSource
 extension PageContentView : UICollectionViewDataSource{
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -89,7 +89,7 @@ extension PageContentView : UICollectionViewDataSource{
         
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(collectionViewIdentifier, forIndexPath: indexPath)
         for view in cell.contentView.subviews{
-            
+            print("------------")
             view.removeFromSuperview()
         }
         let viewController = childVcs[indexPath.item]

@@ -12,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7r2-c2-3Ts">
-                    <rect key="frame" x="0.0" y="0.0" width="129" height="40"/>
+                    <rect key="frame" x="10" y="0.0" width="129" height="40"/>
                     <subviews>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="L3z-CR-Rjb">
                             <rect key="frame" x="5" y="5" width="30" height="30"/>
@@ -20,6 +20,12 @@
                                 <constraint firstAttribute="width" constant="30" id="UmH-na-c8b"/>
                                 <constraint firstAttribute="height" constant="30" id="bmf-7c-vOy"/>
                             </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </imageView>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="A95-U5-Hkv">
                             <rect key="frame" x="40" y="5" width="29" height="14.5"/>
@@ -29,15 +35,21 @@
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="REt-88-zp0">
                             <rect key="frame" x="84" y="5" width="40" height="30"/>
-                            <color key="backgroundColor" red="1" green="0.92728943139999997" blue="0.14517770469999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" red="1" green="0.1490535881" blue="0.89030506200000004" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="40" id="ZTo-vm-PU5"/>
                                 <constraint firstAttribute="height" constant="30" id="uV3-0b-h4Y"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="13"/>
                             <state key="normal" title="关注">
-                                <color key="titleColor" red="1" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="15"/>
+                                </userDefinedRuntimeAttribute>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="88888" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Tx-LM-7mw">
                             <rect key="frame" x="40" y="23" width="33" height="12"/>
@@ -46,7 +58,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.14999999999999999" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstItem="L3z-CR-Rjb" firstAttribute="top" secondItem="7r2-c2-3Ts" secondAttribute="top" constant="5" id="1UW-g0-dcG"/>
                         <constraint firstItem="REt-88-zp0" firstAttribute="leading" secondItem="A95-U5-Hkv" secondAttribute="trailing" constant="15" id="2Ez-8f-wX2"/>
@@ -61,32 +73,41 @@
                         <constraint firstItem="A95-U5-Hkv" firstAttribute="leading" secondItem="L3z-CR-Rjb" secondAttribute="trailing" constant="5" id="pGq-aW-Sb1"/>
                         <constraint firstItem="7Tx-LM-7mw" firstAttribute="bottom" secondItem="L3z-CR-Rjb" secondAttribute="bottom" id="uWc-Bn-vb2"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="hPy-Zx-gEz"/>
                         </mask>
                     </variation>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzu-Ky-L6g">
-                    <rect key="frame" x="0.0" y="40" width="87.5" height="20"/>
+                <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fzu-Ky-L6g">
+                    <rect key="frame" x="10" y="50" width="87.5" height="20"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONx-A9-TAN">
+                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ONx-A9-TAN">
                             <rect key="frame" x="5" y="5" width="30" height="10"/>
-                            <color key="backgroundColor" red="0.1107754901" green="1" blue="0.07163770991" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="10" id="nbl-2c-RFe"/>
                             </constraints>
-                            <fontDescription key="fontDescription" type="system" pointSize="6"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="10"/>
                             <state key="normal" title="哈哈" image="cat_food_18x12"/>
                         </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="66666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiQ-Mo-ubK">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="66666" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NiQ-Mo-ubK">
                             <rect key="frame" x="50" y="5" width="32.5" height="12"/>
                             <fontDescription key="fontDescription" type="system" pointSize="10"/>
-                            <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <nil key="highlightedColor"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                            </userDefinedRuntimeAttributes>
                         </label>
                     </subviews>
-                    <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.16154453744082611" green="0.16133956767481814" blue="0.16491987893838378" alpha="0.20000000000000001" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="1pd-05-4gM"/>
                         <constraint firstItem="NiQ-Mo-ubK" firstAttribute="top" secondItem="fzu-Ky-L6g" secondAttribute="top" constant="5" id="K3e-pC-PzO"/>
@@ -96,14 +117,21 @@
                         <constraint firstItem="ONx-A9-TAN" firstAttribute="leading" secondItem="fzu-Ky-L6g" secondAttribute="leading" constant="5" id="sex-en-yaY"/>
                         <constraint firstItem="ONx-A9-TAN" firstAttribute="top" secondItem="fzu-Ky-L6g" secondAttribute="top" constant="5" id="u0T-mV-3Et"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="10"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                     <variation key="default">
                         <mask key="constraints">
                             <exclude reference="Lgv-XU-WG9"/>
                         </mask>
                     </variation>
                 </view>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vOM-sX-W9w">
-                    <rect key="frame" x="139" y="0.0" width="281" height="40"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vOM-sX-W9w">
+                    <rect key="frame" x="149" y="0.0" width="271" height="40"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="40" id="10T-dO-I8d"/>
                     </constraints>
@@ -113,12 +141,19 @@
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="20"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="clipsToBounds" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </collectionView>
             </subviews>
             <color key="backgroundColor" red="0.43529411759999997" green="0.4431372549" blue="0.47450980390000003" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstItem="7r2-c2-3Ts" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="64l-N9-hU5"/>
-                <constraint firstItem="fzu-Ky-L6g" firstAttribute="top" secondItem="7r2-c2-3Ts" secondAttribute="bottom" id="8hL-xf-ZFJ"/>
+                <constraint firstItem="7r2-c2-3Ts" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="64l-N9-hU5"/>
+                <constraint firstItem="fzu-Ky-L6g" firstAttribute="top" secondItem="7r2-c2-3Ts" secondAttribute="bottom" constant="10" id="8hL-xf-ZFJ"/>
+                <constraint firstItem="fzu-Ky-L6g" firstAttribute="leading" secondItem="7r2-c2-3Ts" secondAttribute="leading" id="PFl-Mu-vFe"/>
                 <constraint firstItem="vOM-sX-W9w" firstAttribute="leading" secondItem="7r2-c2-3Ts" secondAttribute="trailing" constant="10" id="XKG-2U-XVM"/>
                 <constraint firstAttribute="trailing" secondItem="vOM-sX-W9w" secondAttribute="trailing" constant="10" id="axV-lu-HYX"/>
                 <constraint firstItem="7r2-c2-3Ts" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gzP-GY-oOT"/>
@@ -127,6 +162,11 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="s7S-ur-ebR"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="collectionView" destination="vOM-sX-W9w" id="b1L-Xo-QcN"/>
                 <outlet property="userBabyNunberLabel" destination="NiQ-Mo-ubK" id="ApB-1b-k8V"/>

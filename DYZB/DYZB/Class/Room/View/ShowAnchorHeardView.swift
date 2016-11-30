@@ -7,7 +7,7 @@
 //  左上角主播信息
 
 import UIKit
-
+import SDWebImage
 // MARK:- 常量
 private let ShowAnchorHeadFollowPersonCellIdentifier = "ShowAnchorHeadFollowPersonCellIdentifier"
 
@@ -39,12 +39,21 @@ class ShowAnchorHeardView: UIView {
         didSet{
             
             guard let model = anchorModel else { return }
-            userIconImageView.sd_setImageWithURL(NSURL(string: model.smallpic), placeholderImage: nil)
+            SDWebImageDownloader.sharedDownloader().downloadImageWithURL(NSURL(string: model.smallpic), options: .UseNSURLCache, progress: nil) {[weak self] (image : UIImage!, _, error : NSError!, finished : Bool) -> Void in
+                if finished{
+                    let circleImage = UIImage.circleImage(image, borderColor: UIColor.whiteColor(), borderWidth: 2)
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        
+                        self?.userIconImageView.image = circleImage
+                    })
+                }
+            }
+//            userIconImageView.sd_setImageWithURL(NSURL(string: model.smallpic), placeholderImage: nil)
             userNameLabel.text = model.myname
             userNumberLabel.text = String(model.allnum)
             
             // 这里是固定值了,更具需要,可以自己改动
-            userFishBtn.setTitle("14351", forState: .Normal)
+            userFishBtn.setTitle("猫粮:14351", forState: .Normal)
             userBabyNunberLabel.text = "宝宝:1233242"
             
         }
@@ -54,8 +63,6 @@ class ShowAnchorHeardView: UIView {
         super.awakeFromNib()
         userInteractionEnabled = true
         backgroundColor = UIColor.clearColor()
-        userInforMainView.backgroundColor = UIColor.clearColor()
-        userFellowButton.backgroundColor = UIColor.yellowColor()
         setupCollectionView()
         getDatas()
     }

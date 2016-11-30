@@ -16,14 +16,16 @@ class HomeViewController: UIViewController {
     
     
     // MARK:- 懒加载
+    
     // 滚动条
-    private lazy var pageTitlesView : PageTitlesView = {[weak self] in
+    private lazy var pageTitlesView : PageTitlesView = {
         
         let titles = ["推荐", "游戏", "娱乐", "趣玩"]
         let titlesFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH, width: sScreenW, height: pageTitlesViewH)
         let pageTitlesView = PageTitlesView(frame: titlesFrame, titles: titles)
         return pageTitlesView
         }()
+    
     // 滚动条下面装着要显示控制器
     private lazy var pageContentView : PageContentView = {[weak self] in
         

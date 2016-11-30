@@ -155,7 +155,7 @@ extension ShowAnchorVC :UITableViewDataSource {
             roomcell.playingWithPlaceHoldImageView(tempAnchor!)
             // 3 副播视频数据
             let subIndex = movieIndex + 1
-            if subIndex <= currentShowArray!.count - 1{
+            if subIndex <= currentShowArray!.count{
             }else{
                 subIndex == 0
             }
@@ -180,12 +180,12 @@ extension ShowAnchorVC : UITableViewDelegate{
         // 注意:shutdown()方法里一定要移除通知
         
         // 处理手指轻微弹起一下,会再次调用此方法
-        if willDisappearCell.playerVC != nil{
+        if willDisappearCell.playerController != nil{
             // 处理主界面播放器逻辑
             willDisappearCell.shutdownAction()
-            willDisappearCell.playerVCQuit()
-            willDisappearCell.playerVC?.view.removeFromSuperview()
-            willDisappearCell.playerVC = nil
+            willDisappearCell.playerControllerQuit()
+            willDisappearCell.playerController!.view.removeFromSuperview()
+            willDisappearCell.playerController = nil
             
         }
         
@@ -252,7 +252,7 @@ extension ShowAnchorVC : UIScrollViewDelegate{
             // 2 副播视频数据
             let subIndex = movieIndex + 1
             // 3 判断是否越界
-            if subIndex <= currentShowArray!.count - 1{
+            if subIndex <= currentShowArray!.count{
                 subIndex == movieIndex + 1
             }else{
                 subIndex == 0

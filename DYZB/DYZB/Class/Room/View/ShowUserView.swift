@@ -31,19 +31,25 @@ class ShowUserView: UIView {
         didSet{
             
             guard let model = userModel else { return }
-            iconImageView.image = UIImage(named: "placeholder_head")
-            let sdDownloader = SDWebImageDownloader.sharedDownloader()
-            sdDownloader.downloadImageWithURL(NSURL(string: model.photo ?? ""), options: SDWebImageDownloaderOptions.UseNSURLCache, progress: nil) { [weak self](downLoadImage : UIImage!, data : NSData!, error : NSError!, finished : Bool) -> Void in
-                
-                if finished{
-                    // 回主线程刷新UI
-                    dispatch_async(dispatch_get_main_queue()) {
-                        let resultImage = UIImage.circleImage(downLoadImage, borderColor: UIColor.redColor(), borderWidth: 1.0)
-                        self?.iconImageView.image = resultImage
-                        
-                    }
+            iconImageView.sd_setImageWithURL(NSURL(string: model.photo ?? ""), placeholderImage: UIImage(named: "placeholder_head"), options: .RefreshCached) { (image : UIImage!, error : NSError!, cacheType : SDImageCacheType, url : NSURL!) -> Void in
+                if error == nil{
+                    let image = UIImage.circleImage(image, borderColor: UIColor.whiteColor(), borderWidth: 1)
+                    self.iconImageView.image = image
                 }
             }
+//            iconImageView.image = UIImage(named: "placeholder_head")
+//            let sdDownloader = SDWebImageDownloader.sharedDownloader()
+//            sdDownloader.downloadImageWithURL(NSURL(string: model.photo ?? ""), options: SDWebImageDownloaderOptions.UseNSURLCache, progress: nil) { [weak self](downLoadImage : UIImage!, data : NSData!, error : NSError!, finished : Bool) -> Void in
+//                
+//                if finished{
+//                    // 回主线程刷新UI
+//                    dispatch_async(dispatch_get_main_queue()) {
+//                        let resultImage = UIImage.circleImage(downLoadImage, borderColor: UIColor.redColor(), borderWidth: 1.0)
+//                        self?.iconImageView.image = resultImage
+//                        
+//                    }
+//                }
+//            }
             
             nickNameLabel.text = model.nickname ?? ""
             

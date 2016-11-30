@@ -19,8 +19,8 @@ class ShowAnchorVCCell: UITableViewCell {
     private let sMarginT :CGFloat = 30
     
     // MARK:- 定义属性
-    var playerVC : IJKFFMoviePlayerController?
-    
+    var playerController : IJKFFMoviePlayerController?
+    /// 引用父控件
     weak var parentVc : UIViewController?
     
     var isSelected : Bool? = false
@@ -30,7 +30,7 @@ class ShowAnchorVCCell: UITableViewCell {
     var liziTime : NSTimer?
     
     // MARK:- 懒加载
-    /// 顶部用户信息的view
+    /// 顶部用户信息的view(头像,名称...)
     private lazy var userInforView : ShowAnchorHeardView = {
         let aa = ShowAnchorHeardView.creatShowAnchorHeardView()
         return aa
@@ -39,7 +39,9 @@ class ShowAnchorVCCell: UITableViewCell {
     private lazy var renderer : BarrageRenderer = {
         
         let renderer = BarrageRenderer()
-        
+        renderer.canvasMargin = UIEdgeInsetsMake(sScreenH * 0.3, 10, 10, 10)
+        renderer.view!.userInteractionEnabled = true;
+
         return renderer
         
     }()
@@ -52,8 +54,12 @@ class ShowAnchorVCCell: UITableViewCell {
         return textArray
     }()
     // 底部的view
-    private lazy var bottomView : RoomAchorBottomView = RoomAchorBottomView()
-    // 展位图
+    private lazy var bottomView : RoomAchorBottomView = {
+        let bottomView = RoomAchorBottomView()
+        bottomView.delegate = self
+        return bottomView
+    }()
+    // 展位图(模糊背景图)
     private lazy var placeHolderImageView : UIImageView = {
         
         let placeHolderImageView = UIImageView()
@@ -78,32 +84,13 @@ class ShowAnchorVCCell: UITableViewCell {
         // 去除选中状态
         selectionStyle = .None
 
-        // 1 danmu
-        contentView.addSubview(renderer.view!)
-        renderer.canvasMargin = UIEdgeInsetsMake(sScreenH * 0.3, 10, 10, 10)
-        renderer.view!.userInteractionEnabled = true;
-        contentView.sendSubviewToBack(renderer.view!)
+        // 1 添加子控件,初始化尺寸
+        setupSubView()
         
         // 2 time
         barrageTime = NSTimer.scheduledTimerWithTimeInterval(0.5, target: self, selector: "autoSendBarrage", userInfo: nil, repeats: true)
         liziTime = NSTimer.scheduledTimerWithTimeInterval(2.0, target: self, selector: "autoliziTimeAction", userInfo: nil, repeats: true)
-        
-        parentVc?.showGifLoading(nil, inView: placeHolderImageView)
-        contentView.addSubview(placeHolderImageView)
-        contentView.addSubview(bottomView)
-        bottomView.delegate = self
-        placeHolderImageView.snp_makeConstraints { (make) -> Void in
-            make.left.right.top.bottom.equalTo(contentView)
-        }
-        
-        bottomView.snp_makeConstraints { (make) -> Void in
-            make.left.right.bottom.equalTo(contentView)
-            make.height.equalTo(50)
-        }
-        
-        // 0 添加用户信息的view
-        contentView.addSubview(userInforView)
-        
+
        }
     
     
@@ -118,14 +105,18 @@ class ShowAnchorVCCell: UITableViewCell {
         
         didSet{
             guard let roomA = roomAnchor else { return }
+            // 1 传递主播数据
             userInforView.anchorModel = roomA
+            // 2 控制弹幕
             isSelected = false
+            // 3 弹幕停止
             renderer.stop()
-            if playerVC != nil{
-                contentView.insertSubview(placeHolderImageView, aboveSubview: playerVC!.view)
-                playerVC!.shutdown()
-                playerVC!.view.removeFromSuperview()
-                playerVC = nil;
+            
+            if playerController != nil{
+                contentView.insertSubview(placeHolderImageView, aboveSubview: playerController!.view)
+                playerController!.shutdown()
+                playerController!.view.removeFromSuperview()
+                playerController = nil;
                 
             }
             // 1 设置占位图
@@ -164,6 +155,26 @@ class ShowAnchorVCCell: UITableViewCell {
     
     // MARK:- 自定义方法
     
+    private func setupSubView(){
+        contentView.addSubview(renderer.view!)
+        contentView.sendSubviewToBack(renderer.view!)
+        contentView.addSubview(placeHolderImageView)
+        contentView.addSubview(bottomView)
+        contentView.addSubview(userInforView)
+        
+        
+        parentVc?.showGifLoading(nil, inView: placeHolderImageView)
+        placeHolderImageView.snp_makeConstraints { (make) -> Void in
+            make.left.right.top.bottom.equalTo(contentView)
+        }
+        
+        bottomView.snp_makeConstraints { (make) -> Void in
+            make.left.right.bottom.equalTo(contentView)
+            make.height.equalTo(50)
+        }
+
+    }
+    
     func addTapGestureRecognizer(){
         
         let tap = UITapGestureRecognizer(target: self, action: "tapAction:")
@@ -176,21 +187,23 @@ class ShowAnchorVCCell: UITableViewCell {
         
     }
     
-    
+    /**
+     主播播放相关
+     */
      func playingWithPlaceHoldImageView(roomA : RoomYKModel){
         
-        if playerVC != nil{
+        if playerController != nil{
             shutdownAction()
-            playerVCQuit()
-            playerVC?.view.removeFromSuperview()
-            playerVC = nil
+            playerControllerQuit()
+            playerController?.view.removeFromSuperview()
+            playerController = nil
         }
        
         
-               // 4.1 获取直播URL
+        // 4.1 获取直播URL
         guard let url = NSURL(string: roomA.flv ?? "") else { return }
         // 4.2 创建直播对象
-         playerVC = IJKFFMoviePlayerController(contentURL: url, withOptions: nil)
+         playerController = IJKFFMoviePlayerController(contentURL: url, withOptions: nil)
         // 不打印
         IJKFFMoviePlayerController.setLogReport(false)
         // 4.3 根据这个我们就可以在初始化播放器时对options进行调整(Options初始化不能少[IJKFFOptions.optionsByDefault())
@@ -200,23 +213,24 @@ class ShowAnchorVCCell: UITableViewCell {
         options.setPlayerOptionIntValue(Int64(29.97), forKey: "r")
         // 4.5 -vol——设置音量大小，256为标准音量。（要设置成两倍音量时则输入512，依此类推
         options.setPlayerOptionIntValue(513, forKey: "vol")
-        // 5 设置playerVC对象中VIEW的尺寸
-        playerVC?.view.frame = contentView.bounds
+        // 5 设置playerController对象中VIEW的尺寸
+        playerController!.view.frame = contentView.bounds
         // 6 填充fill
-        playerVC?.scalingMode = .Fill
+        playerController!.scalingMode = .Fill
         // 7 设置自动播放(必须设置为NO, 防止自动播放, 才能更好的控制直播的状态)
-        playerVC?.shouldAutoplay = false
+        playerController!.shouldAutoplay = false
         // 8 默认不显示
-        playerVC?.shouldShowHudView = false
+        playerController!.shouldShowHudView = false
         // 9 添加到contentView的最底层
-        contentView.insertSubview(playerVC!.view, atIndex: 0)
+        contentView.insertSubview(playerController!.view, atIndex: 0)
         // 10 播放准备
-        playerVC!.prepareToPlay()
-        // 添加通知
+        playerController!.prepareToPlay()
+        // 添加通知监听
         initObserver()
         
     }
     
+    // 弹幕
     func autoSendBarrage(){
         let number = renderer.spritesNumberWithName(nil)
         if number <= 50 {
@@ -225,15 +239,15 @@ class ShowAnchorVCCell: UITableViewCell {
         }
         
     }
-    
+    // 粒子
     func autoliziTimeAction(){
         let liziAnimation = ZanAnimation.shareInstance
-        if playerVC != nil{
+        if playerController != nil{
             
-            liziAnimation.startAnimation(playerVC!.view, center_X: sScreenW - 30, center_Y: sScreenH - 30)
+            liziAnimation.startAnimation(playerController!.view, center_X: sScreenW - 30, center_Y: sScreenH - 30)
         }
     }
-    
+    // 退出
     func quit(){
         
         shutdownAction()
@@ -242,60 +256,63 @@ class ShowAnchorVCCell: UITableViewCell {
         
         invalidateliziTimeAction()
         
-        rendererAction()
+        rendererStopAction()
         
-        playerVCQuit()
+        playerControllerQuit()
         
+        if parentVc != nil{
         parentVc!.dismissViewControllerAnimated(true, completion: nil)
         
-        
+        }
         print("RoomAnchorCell - 退出了")
     }
     
     func shutdownAction(){
-        if playerVC != nil{
-            playerVC?.shutdown()
+        if playerController != nil{
+            playerController?.shutdown()
             NSNotificationCenter.defaultCenter().removeObserver(self)
         }
         
     }
     
+    // 清除粒子time
     func invalidateliziTimeAction(){
         liziTime?.invalidate()
         liziTime = nil
     }
     
+    // 清除弹幕time
     func barrageTimeAction(){
         
         barrageTime?.invalidate()
         barrageTime = nil
     }
     
-    // 弹幕渲染器
-    func rendererAction (){
+    // 弹幕停止渲染
+    func rendererStopAction (){
         
         renderer.stop()
         renderer.view?.removeFromSuperview()
         
     }
     
-    // MARK:- 监听通知
+    // MARK:- 直播监听通知
     func initObserver(){
         // 播放结束通知
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didFinishNotification", name:IJKMPMoviePlayerPlaybackDidFinishNotification, object: playerVC)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "didFinishNotification", name:IJKMPMoviePlayerPlaybackDidFinishNotification, object: playerController)
         
         // 加载状态改变通知
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "stateDidChangeNotification", name:IJKMPMoviePlayerLoadStateDidChangeNotification, object: playerVC)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "stateDidChangeNotification", name:IJKMPMoviePlayerLoadStateDidChangeNotification, object: playerController)
               
     }
     
     // MARK:- 通知事件
     func didFinishNotification(){
         //加载状态....... IJKMPMovieLoadState(rawValue: 3) IJKMPMoviePlaybackState
-        print("加载状态didFinishNotification.......", self.playerVC!.loadState, self.playerVC!.playbackState)
+        print("加载状态didFinishNotification.......", self.playerController!.loadState, self.playerController!.playbackState)
         // IJKMPMovieLoadStateStalled
-        if (playerVC!.loadState.rawValue == 4){
-            parentVc?.showGifLoading(nil, inView: playerVC?.view)
+        if (playerController!.loadState.rawValue == 4){
+            parentVc?.showGifLoading(nil, inView: playerController?.view)
             
             return
         }
@@ -306,18 +323,18 @@ class ShowAnchorVCCell: UITableViewCell {
     }
     
     func stateDidChangeNotification(){
-        print("加载状态stateDidChangeNotification.......", self.playerVC!.loadState)
+        print("加载状态stateDidChangeNotification.......", self.playerController!.loadState)
         print(IJKMPMovieLoadState.Playable.rawValue,IJKMPMovieLoadState.PlaythroughOK.rawValue)
 //        let type = IJKMPMovieLoadState.Playable.rawValue
-        if (playerVC?.loadState.rawValue != IJKMPMovieLoadState.Stalled.rawValue){
-            if playerVC?.isPlaying() == false{
-                playerVC?.play()
+        guard let player = playerController else { return }
+        if (player.loadState.rawValue != IJKMPMovieLoadState.Stalled.rawValue){
+            if player.isPlaying() == false{
+                player.play()
                  contentView.addSubview(catView)
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW,Int64(1 *  NSEC_PER_SEC)), dispatch_get_main_queue(), { () -> Void in
                     
                     self.placeHolderImageView.hidden = true
-                    self.playerVC?.view.addSubview(self.renderer.view!)
-                    //
+                    player.view.addSubview(self.renderer.view!)
                 })
                 if let imageView = parentVc?.gifImageView {
                     
@@ -341,8 +358,8 @@ class ShowAnchorVCCell: UITableViewCell {
                     }
                 }
             }
-        }else if(playerVC?.loadState.rawValue == 4){
-            parentVc?.showGifLoading(nil, inView: playerVC?.view)
+        }else if(player.loadState.rawValue == 4){
+            parentVc?.showGifLoading(nil, inView: player.view)
         }
         
     }
@@ -352,13 +369,14 @@ class ShowAnchorVCCell: UITableViewCell {
     // MARK:- 界面销毁
     deinit{
         SDWebImageManager.sharedManager().cancelAll()
-        playerVCQuit()
+        NSNotificationCenter.defaultCenter().removeObserver(self)
+        playerControllerQuit()
         
     }
     
-    func playerVCQuit(){
-        playerVC?.pause()
-        playerVC?.stop()
+    func playerControllerQuit(){
+        playerController?.pause()
+        playerController?.stop()
     }
     
     required init?(coder aDecoder: NSCoder) {

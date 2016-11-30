@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SDWebImage
 // MARK:- 常量
 private let iconImageViewWH :CGFloat = 30
 
@@ -26,9 +26,7 @@ class ShowAnchorHeadFollowPersonCell: UICollectionViewCell {
         didSet{
             
             guard let model = roomFollowPerson else { return }
-            
             iconImageView.sd_setImageWithURL(NSURL(string: model.photo), placeholderImage: UIImage(named: "placeholder_head"))
-            
         }
     }
     
@@ -40,6 +38,8 @@ class ShowAnchorHeadFollowPersonCell: UICollectionViewCell {
         
         iconImageView.layer.cornerRadius = iconImageViewWH * 0.5
         iconImageView.clipsToBounds = true
+        iconImageView.layer.borderWidth = 5
+        iconImageView.layer.borderColor = UIColor.greenColor().CGColor
         
     }
 
