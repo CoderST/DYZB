@@ -32,9 +32,7 @@ extension AmuseMenuViewCell {
     
     override func layoutSubviews() {
         super.layoutSubviews()
-//        print(frame)
         collectionView.frame = contentView.bounds
-        
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
         let itemW = collectionView.bounds.size.width / 4
         let itemH = collectionView.bounds.size.height / 2

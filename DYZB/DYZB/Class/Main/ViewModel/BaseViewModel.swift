@@ -20,7 +20,6 @@ class BaseViewModel {
             if isGroup == true{
                 for dic in dictArray{
                     let roomList = dic["room_list"] as! [[String : AnyObject]]
-                    //                    print("roomList==\(roomList)")
                     // 处理房间里没有数据的情况
                     if roomList.count == 0{
                         
@@ -28,14 +27,12 @@ class BaseViewModel {
                     }
                     self.anchorGroups.append(AnchorGroup(dic: dic))
                 }
-                print("oooooooo = \(self.anchorGroups.count)")
                 
             }else{
 
                 
                 // 2.1.创建组
                 let group = AnchorGroup()
-//                print("dictArray = \(dictArray)")
                 // 2.2.遍历dataArray的所有的字典
                 for dict in dictArray {
                     group.anchors.append(AnchorModel(dict: dict))

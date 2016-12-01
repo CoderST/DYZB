@@ -55,7 +55,6 @@ extension AmuseMenuView : UICollectionViewDataSource {
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
         if groups == nil { return 0 }
-        print("pppppppp",groups?.count)
         let pageNum = (groups!.count - 1) / 8 + 1
         pageControl.numberOfPages = pageNum
         
@@ -81,7 +80,6 @@ extension AmuseMenuView : UICollectionViewDataSource {
             endItem = groups!.count - 1
         }
         let tempGroup = Array(groups![startItem ... endItem])
-//        print("temp = ",tempGroup.count)
         cell.groups = tempGroup
     }
 }
