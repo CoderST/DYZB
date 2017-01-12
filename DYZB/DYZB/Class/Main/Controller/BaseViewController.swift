@@ -22,12 +22,12 @@ class BaseViewController: UIViewController {
     }
     
     // MARK:- 懒加载
-    private lazy var animationImageView : UIImageView = { [weak self] in
+    fileprivate lazy var animationImageView : UIImageView = { [weak self] in
        
          let animationImageView = UIImageView(image: UIImage(named: "img_loading_1"))
         animationImageView.center = self!.view.center
         animationImageView.animationImages = [UIImage(named: "img_loading_1")!,UIImage(named: "img_loading_2")!]
-        animationImageView.autoresizingMask = [.FlexibleTopMargin,.FlexibleBottomMargin]
+        animationImageView.autoresizingMask = [.flexibleTopMargin,.flexibleBottomMargin]
         animationImageView.animationDuration = 0.5
         animationImageView.animationRepeatCount = LONG_MAX
         return animationImageView
@@ -40,11 +40,11 @@ extension BaseViewController {
     
     func setupUI(){
         // 1 停止子类view的显示
-        baseContentView?.hidden = true
+        baseContentView?.isHidden = true
         // 2 添加加载动画控件
         view.addSubview(animationImageView)
         // 3 显示加载动画控件
-        animationImageView.hidden = false
+        animationImageView.isHidden = false
         // 4 开始加载动画
         animationImageView.startAnimating()
         // 5 设置背景颜色
@@ -58,8 +58,8 @@ extension BaseViewController {
         
         animationImageView.stopAnimating()
         
-        animationImageView.hidden = true
+        animationImageView.isHidden = true
         
-        baseContentView?.hidden = false
+        baseContentView?.isHidden = false
     }
 }

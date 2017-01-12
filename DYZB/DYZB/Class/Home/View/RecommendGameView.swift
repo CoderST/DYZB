@@ -46,11 +46,11 @@ class RecommendGameView: UIView {
     
     
     override func awakeFromNib() {
-        backgroundColor = UIColor.greenColor()
-        autoresizingMask = .None
+        backgroundColor = UIColor.green
+        autoresizingMask = UIViewAutoresizing()
         
         // 注册cell
-        collectionView.registerNib(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier: recommendGameViewCellIdentifier)
+        collectionView.register(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier: recommendGameViewCellIdentifier)
         
         // 给collectionView添加内边距
         collectionView.contentInset = UIEdgeInsets(top: 0, left: edgeInsetMargin, bottom: 0, right: edgeInsetMargin)
@@ -63,19 +63,19 @@ extension RecommendGameView{
     
     class func creatRecommendGameView()->RecommendGameView{
         
-        return NSBundle.mainBundle().loadNibNamed("RecommendGameView", owner: nil, options: nil).first as!RecommendGameView
+        return Bundle.main.loadNibNamed("RecommendGameView", owner: nil, options: nil)!.first as!RecommendGameView
     }
 }
 
 // MARK:- UICollectionViewDataSource
 extension RecommendGameView : UICollectionViewDataSource{
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return anchorGroups?.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(recommendGameViewCellIdentifier, forIndexPath: indexPath) as! CollectionGameCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: recommendGameViewCellIdentifier, for: indexPath) as! CollectionGameCell
         cell.anchorGroup = anchorGroups![indexPath.item]
         return cell
     }

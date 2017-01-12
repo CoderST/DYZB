@@ -10,16 +10,16 @@ import UIKit
 
 class STPresentationController: UIPresentationController {
 
-    var presentedFrame : CGRect = CGRectZero
+    var presentedFrame : CGRect = CGRect.zero
     
     // MARK:- 懒加载
-    private lazy var coverView : UIView = UIView()
+    fileprivate lazy var coverView : UIView = UIView()
     
     
     override func containerViewWillLayoutSubviews() {
         super.containerViewWillLayoutSubviews()
         
-        presentedView()?.frame = presentedFrame
+        presentedView?.frame = presentedFrame
         
         setupConverView()
     }
@@ -28,13 +28,13 @@ class STPresentationController: UIPresentationController {
 
 extension STPresentationController {
     
-    private func setupConverView(){
+    fileprivate func setupConverView(){
         
-        containerView?.insertSubview(coverView, atIndex: 0)
+        containerView?.insertSubview(coverView, at: 0)
         coverView.backgroundColor = UIColor(white: 1.0, alpha: 0.0)
         coverView.frame = containerView!.bounds
         
-        let tapGes = UITapGestureRecognizer(target: self, action: "coverViewClick")
+        let tapGes = UITapGestureRecognizer(target: self, action: #selector(STPresentationController.coverViewClick))
         coverView.addGestureRecognizer(tapGes)
 
     }
@@ -42,7 +42,7 @@ extension STPresentationController {
 
 extension STPresentationController {
     
-    @objc private func coverViewClick(){
-        presentedViewController.dismissViewControllerAnimated(true, completion: nil)
+    @objc fileprivate func coverViewClick(){
+        presentedViewController.dismiss(animated: true, completion: nil)
     }
 }

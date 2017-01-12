@@ -13,19 +13,19 @@ class RecommendViewModel : BaseViewModel{
     // 轮播图
     lazy var cycleDatas : [CycleModel] = [CycleModel]()
     /// 最热
-    private lazy var bigDataGroup : AnchorGroup = AnchorGroup()
+    fileprivate lazy var bigDataGroup : AnchorGroup = AnchorGroup()
     /// 颜值
-    private lazy var prettyGroup : AnchorGroup = AnchorGroup()
+    fileprivate lazy var prettyGroup : AnchorGroup = AnchorGroup()
     /// 游戏
 //    lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
     
     
     // MARK:- 轮播图数据
-    func requestCycleData(finishCallBack:()->()){
+    func requestCycleData(_ finishCallBack:@escaping ()->()){
         // 设定参数
         let parameters = ["version" : "2.300"]
         // 发送网络请求
-        NetworkTools.requestData(.GET, URLString: "http://www.douyutv.com/api/v1/slide/6", parameters: parameters) { (result) -> () in
+        NetworkTools.requestData(.get, URLString: "http://www.douyutv.com/api/v1/slide/6", parameters: parameters) { (result) -> () in
             guard let result = result as? [String : NSObject] else { return }
             
             guard let resultDataArray = result["data"] as? [[String : NSObject]] else {return}
@@ -39,14 +39,14 @@ class RecommendViewModel : BaseViewModel{
         }
     }
     
-    func request(finishCallBack : ()->()){
+    func request(_ finishCallBack : @escaping ()->()){
         // 设定参数
-        let group = dispatch_group_create()
-        let pareameters = ["limit" : "4" , "offset" : "0", "time" : NSDate.getNowDate()]
-        print("NSDate.getNowDate() = \(NSDate.getNowDate())")
-        dispatch_group_enter(group)
+        let group = DispatchGroup()
+        let pareameters = ["limit" : "4" , "offset" : "0", "time" : Date.getNowDate()]
+        print("NSDate.getNowDate() = \(Date.getNowDate())")
+        group.enter()
         // MARK:- 发送最热请求
-        NetworkTools.requestData(.GET, URLString: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", parameters: pareameters) { (result) -> () in
+        NetworkTools.requestData(.get, URLString: "http://capi.douyucdn.cn/api/v1/getbigDataRoom", parameters: pareameters) { (result) -> () in
             guard let resultDict = result as? [String : NSObject] else {return}
             guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}
             self.bigDataGroup.tag_name = "热门"
@@ -54,13 +54,13 @@ class RecommendViewModel : BaseViewModel{
             for dict in dictArray{
                 self.bigDataGroup.anchors.append(AnchorModel(dict: dict))
             }
-            dispatch_group_leave(group)
+            group.leave()
             
         }
         
         // MARK:- 颜值请求
-        dispatch_group_enter(group)
-        NetworkTools.requestData(.GET, URLString: "http://capi.douyucdn.cn/api/v1/getVerticalRoom", parameters: pareameters) { (result) -> () in
+        group.enter()
+        NetworkTools.requestData(.get, URLString: "http://capi.douyucdn.cn/api/v1/getVerticalRoom", parameters: pareameters) { (result) -> () in
             guard let resultDict = result as? [String : NSObject] else {return}
             
             guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}
@@ -70,7 +70,7 @@ class RecommendViewModel : BaseViewModel{
                 self.prettyGroup.anchors.append(AnchorModel(dict: dict))
             }
             
-            dispatch_group_leave(group)
+            group.leave()
             
         }
         
@@ -80,15 +80,15 @@ class RecommendViewModel : BaseViewModel{
         http://capi.douyucdn.cn/api/v1/getHotCate?aid=ios&client_sys=ios&time=1477668000&auth=5e75eff0b108c909fe48a05e8073e05b
         http://capi.douyucdn.cn/api/v1/getVerticalRoom?offset=0&client_sys=ios&limit=4
         */
-        dispatch_group_enter(group)
+        group.enter()
         loadAnchDates(true, urlString: "http://capi.douyucdn.cn/api/v1/getHotCate", parameters: pareameters) { () -> () in
-            dispatch_group_leave(group)
+            group.leave()
         }
         
         // 对数据进行排序
-        dispatch_group_notify(group, dispatch_get_main_queue()) { () -> Void in
-            self.anchorGroups.insert(self.prettyGroup, atIndex: 0)
-            self.anchorGroups.insert(self.bigDataGroup, atIndex: 0)
+        group.notify(queue: DispatchQueue.main) { () -> Void in
+            self.anchorGroups.insert(self.prettyGroup, at: 0)
+            self.anchorGroups.insert(self.bigDataGroup, at: 0)
             finishCallBack()
         }
         

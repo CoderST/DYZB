@@ -14,7 +14,7 @@ class ShowUserVC: UIViewController {
     var testview : UILabel?
     
     // MARK:- 懒加载
-    private lazy var showUserView : ShowUserView = ShowUserView()
+    fileprivate lazy var showUserView : ShowUserView = ShowUserView()
     
     var roomAnchor : RoomFollowPerson? {
         
@@ -30,11 +30,11 @@ class ShowUserVC: UIViewController {
         super.viewDidLoad()
         view.layer.cornerRadius = 15
         view.clipsToBounds = true
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         view.addSubview(showUserView)
         showUserView.delegate = self
         
-        showUserView.snp_makeConstraints(closure: { (make) -> Void in
+        showUserView.snp.makeConstraints({ (make) -> Void in
             make.left.right.top.bottom.equalTo(view)
         })
     }
@@ -42,7 +42,7 @@ class ShowUserVC: UIViewController {
 
 // MARK:- ShowUserViewDelegate
 extension ShowUserVC : ShowUserViewDelegate {
-    func showUserViewCloseVC(showUserView: ShowUserView) {
-        dismissViewControllerAnimated(true, completion: nil)
+    func showUserViewCloseVC(_ showUserView: ShowUserView) {
+        dismiss(animated: true, completion: nil)
     }
 }

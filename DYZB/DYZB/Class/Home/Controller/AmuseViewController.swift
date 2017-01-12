@@ -14,12 +14,12 @@ class AmuseViewController: BaseAnchorViewController {
     
     
     // MARK:- 懒加载
-    private lazy var amuseVM = AmuseViewModel()
+    fileprivate lazy var amuseVM = AmuseViewModel()
     // collectionView顶部head
-    private lazy var amuseMenuView : AmuseMenuView = {
+    fileprivate lazy var amuseMenuView : AmuseMenuView = {
         let amuseMenuView = AmuseMenuView.creatAmuseMenuView()
         // 一定要设置autoresizingMask,不然界面很牛逼哦~~
-        amuseMenuView.autoresizingMask = .None
+        amuseMenuView.autoresizingMask = UIViewAutoresizing()
         amuseMenuView.frame = CGRect(x: 0, y: -sHeadViewHeight, width: sScreenW, height: sHeadViewHeight)
         return amuseMenuView
     }()

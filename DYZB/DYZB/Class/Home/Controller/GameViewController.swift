@@ -22,9 +22,9 @@ private let sTopHeadHeight :CGFloat = 90
 class GameViewController: BaseViewController {
     
     // MARK:- 懒加载
-    private lazy var gameVM : GameViewModel = GameViewModel()
+    fileprivate lazy var gameVM : GameViewModel = GameViewModel()
     // 展示主界面的collectionView
-    private lazy var collectionView : UICollectionView = {[weak self] in
+    fileprivate lazy var collectionView : UICollectionView = {[weak self] in
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: sItemW, height: sItemH)
@@ -38,27 +38,27 @@ class GameViewController: BaseViewController {
         // 设置数据源
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.whiteColor()
-        collectionView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        collectionView.backgroundColor = UIColor.white
+        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         // 注册cell
-        collectionView.registerNib(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier : sGameCellInIdentifier)
-        collectionView.registerNib(UINib(nibName: "CollectionHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sHeadInIdentifier)
+        collectionView.register(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier : sGameCellInIdentifier)
+        collectionView.register(UINib(nibName: "CollectionHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sHeadInIdentifier)
         
         return collectionView;
         
         }()
     // 每组collectionView的headView
-    private lazy var topHeadCollectionView : CollectionHeaderView = {
+    fileprivate lazy var topHeadCollectionView : CollectionHeaderView = {
        let headView = CollectionHeaderView.collectionHeaderView()
         headView.titleLabel.text = "常用"
-        headView.moreButton.hidden = true
+        headView.moreButton.isHidden = true
         headView.iconImageView.image = UIImage(named: "Img_orange")
         headView.frame = CGRect(x: 0, y: -(sHeadHeight + sTopHeadHeight), width: sScreenW, height: sTopHeadHeight)
         return headView
     }()
     // 推荐游戏
-    private lazy var topGameOftenView : RecommendGameView = {
+    fileprivate lazy var topGameOftenView : RecommendGameView = {
        
         let gameOftenView = RecommendGameView.creatRecommendGameView()
         
@@ -103,23 +103,23 @@ extension GameViewController{
 
 // MARK:- UICollectionViewDataSource
 extension GameViewController : UICollectionViewDataSource,UICollectionViewDelegate{
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         return gameVM.gamesData.count ?? 0
     }
 
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
-        let gameCell = collectionView.dequeueReusableCellWithReuseIdentifier(sGameCellInIdentifier, forIndexPath: indexPath) as!CollectionGameCell
+        let gameCell = collectionView.dequeueReusableCell(withReuseIdentifier: sGameCellInIdentifier, for: indexPath) as!CollectionGameCell
         gameCell.anchorGroup = gameVM.gamesData[indexPath.item]
         return gameCell
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
-        let reusableView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: sHeadInIdentifier, forIndexPath: indexPath) as!CollectionHeaderView
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let reusableView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: sHeadInIdentifier, for: indexPath) as!CollectionHeaderView
         // 2.给HeaderView设置属性
         reusableView.titleLabel.text = "全部"
         reusableView.iconImageView.image = UIImage(named: "Img_orange")
-        reusableView.moreButton.hidden = true
+        reusableView.moreButton.isHidden = true
         
 
         return reusableView

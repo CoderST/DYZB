@@ -10,7 +10,7 @@ import UIKit
 
 class FunnyViewModel: BaseViewModel {
 
-    func loadFunnyDatas(finishCallBack:()->()){
+    func loadFunnyDatas(_ finishCallBack:@escaping ()->()){
         
         loadAnchDates(false, urlString: "http://capi.douyucdn.cn/api/v1/getColumnRoom/3", parameters: ["limit" : "0","offset" : "0"], finishCallBack: finishCallBack)
     

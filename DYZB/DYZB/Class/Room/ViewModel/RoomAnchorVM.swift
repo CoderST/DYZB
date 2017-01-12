@@ -10,18 +10,18 @@ import UIKit
 
 class RoomAnchorVM: NSObject {
 
-    private let urlS = "http://live.9158.com/Fans/GetHotLive?page="
+    fileprivate let urlS = "http://live.9158.com/Fans/GetHotLive?page="
     
 //    lazy var roomAnchor : RoomAnchorModel = RoomAnchorModel()
     lazy var roomYKModelArray : [RoomYKModel] = [RoomYKModel]()
     
-    func getRoomAnchorData(page : Int,finishCallBack : ()->(),noDataCallBack:()->()){
+    func getRoomAnchorData(_ page : Int,finishCallBack : @escaping ()->(),noDataCallBack:@escaping ()->()){
         
         
         // 此处用的是YK/MB的链接
         let urlString = urlS + String(page)
         print(urlString)
-        NetworkTools.requestData(.GET ,URLString: urlString, parameters: nil) { (result) -> () in
+        NetworkTools.requestData(.get ,URLString: urlString, parameters: nil) { (result) -> () in
 //            print("page==\(page)",result)
             guard let resultDict = result as? [String : NSObject] else {return}
             guard let dict = resultDict["data"] as? [String : NSObject] else { return }

@@ -14,7 +14,7 @@ private let iconImageViewWH :CGFloat = 30
 class ShowAnchorHeadFollowPersonCell: UICollectionViewCell {
 
     // MARK:- 懒加载
-    private lazy var iconImageView : UIImageView = {
+    fileprivate lazy var iconImageView : UIImageView = {
         let iconImageView = UIImageView()
         iconImageView.frame = CGRect(x: 0, y: 0, width: iconImageViewWH, height: iconImageViewWH)
         return iconImageView
@@ -26,7 +26,7 @@ class ShowAnchorHeadFollowPersonCell: UICollectionViewCell {
         didSet{
             
             guard let model = roomFollowPerson else { return }
-            iconImageView.sd_setImageWithURL(NSURL(string: model.photo), placeholderImage: UIImage(named: "placeholder_head"))
+            iconImageView.sd_setImage(with: URL(string: model.photo), placeholderImage: UIImage(named: "placeholder_head"))
         }
     }
     
@@ -39,7 +39,7 @@ class ShowAnchorHeadFollowPersonCell: UICollectionViewCell {
         iconImageView.layer.cornerRadius = iconImageViewWH * 0.5
         iconImageView.clipsToBounds = true
         iconImageView.layer.borderWidth = 5
-        iconImageView.layer.borderColor = UIColor.greenColor().CGColor
+        iconImageView.layer.borderColor = UIColor.green.cgColor
         
     }
 

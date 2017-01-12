@@ -8,10 +8,10 @@
 
 import UIKit
 
-extension NSDate{
+extension Date{
     
-    class func getNowDate() ->String{
-        let date = NSDate()
+    static func getNowDate() ->String{
+        let date = Date()
         
         let time = Int(date.timeIntervalSince1970)
         

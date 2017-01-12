@@ -33,27 +33,40 @@ class ShowAnchorHeardView: UIView {
     @IBOutlet weak var userInforMainView: UIView!
     
     // MARK:- 懒加载
-    private lazy var followPersonArray : [RoomFollowPerson] = [RoomFollowPerson]()
+    fileprivate lazy var followPersonArray : [RoomFollowPerson] = [RoomFollowPerson]()
     
     var anchorModel : RoomYKModel?{
         didSet{
             
             guard let model = anchorModel else { return }
-            SDWebImageDownloader.sharedDownloader().downloadImageWithURL(NSURL(string: model.smallpic), options: .UseNSURLCache, progress: nil) {[weak self] (image : UIImage!, _, error : NSError!, finished : Bool) -> Void in
-                if finished{
-                    let circleImage = UIImage.circleImage(image, borderColor: UIColor.whiteColor(), borderWidth: 2)
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        
-                        self?.userIconImageView.image = circleImage
-                    })
-                }
+//            SDWebImageDownloader.shared().downloadImage(with: URL(string: model.smallpic), options: .useNSURLCache, progress: nil) {[weak self] (image : UIImage!, _, error : NSError!, finished : Bool) -> Void in
+//                if finished{
+//                    let circleImage = UIImage.circleImage(image, borderColor: UIColor.white, borderWidth: 2)
+//                    DispatchQueue.main.async(execute: { () -> Void in
+//                        
+//                        self?.userIconImageView.image = circleImage
+//                    })
+//                }
+//            }
+            
+            SDWebImageDownloader.shared().downloadImage(with: URL(string: model.smallpic), options: .useNSURLCache, progress: nil) {[weak self] (image, data, error, finished) in
+//                                if finished{
+                guard let image = image else { return }
+                                    let circleImage = UIImage.circleImage(image, borderColor: UIColor.white, borderWidth: 2)
+                                    DispatchQueue.main.async(execute: { () -> Void in
+                
+                                        self?.userIconImageView.image = circleImage
+                                    })
+//                                }
+
             }
+            
 //            userIconImageView.sd_setImageWithURL(NSURL(string: model.smallpic), placeholderImage: nil)
             userNameLabel.text = model.myname
             userNumberLabel.text = String(model.allnum)
             
             // 这里是固定值了,更具需要,可以自己改动
-            userFishBtn.setTitle("猫粮:14351", forState: .Normal)
+            userFishBtn.setTitle("猫粮:14351", for: UIControlState())
             userBabyNunberLabel.text = "宝宝:1233242"
             
         }
@@ -61,24 +74,24 @@ class ShowAnchorHeardView: UIView {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        userInteractionEnabled = true
-        backgroundColor = UIColor.clearColor()
+        isUserInteractionEnabled = true
+        backgroundColor = UIColor.clear
         setupCollectionView()
         getDatas()
     }
     
     func setupCollectionView(){
         let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .Horizontal
+        layout.scrollDirection = .horizontal
         layout.itemSize = CGSize(width: followPersonItemWH, height: followPersonItemWH)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.collectionViewLayout = layout
-        collectionView.registerClass(ShowAnchorHeadFollowPersonCell.self, forCellWithReuseIdentifier: ShowAnchorHeadFollowPersonCellIdentifier)
+        collectionView.register(ShowAnchorHeadFollowPersonCell.self, forCellWithReuseIdentifier: ShowAnchorHeadFollowPersonCellIdentifier)
     }
     
-    private func getDatas(){
-        guard let path = NSBundle.mainBundle().pathForResource("user.plist", ofType: nil) else { return }
+    fileprivate func getDatas(){
+        guard let path = Bundle.main.path(forResource: "user.plist", ofType: nil) else { return }
         guard let dicArray = NSArray(contentsOfFile: path) as? [[String : AnyObject]] else { return }
         for dic in dicArray{
             let person = RoomFollowPerson(dic: dic)
@@ -94,25 +107,32 @@ class ShowAnchorHeardView: UIView {
         }
     }
     
+//    class func creatShowAnchorHeardView()->ShowAnchorHeardView{
+//        
+//        return Bundle.main.loadNibNamed("ShowAnchorHeardView", owner: nil, options: nil)!.first as! ShowAnchorHeardView
+//    
+//        
+//    }
+    
+    
     class func creatShowAnchorHeardView()->ShowAnchorHeardView{
         
-        return NSBundle.mainBundle().loadNibNamed("ShowAnchorHeardView", owner: nil, options: nil).first as! ShowAnchorHeardView
-    
+        return Bundle.main.loadNibNamed("ShowAnchorHeardView", owner: nil, options: nil)?.first as! ShowAnchorHeardView
     }
 }
 
 extension ShowAnchorHeardView : UICollectionViewDataSource{
     
-    func collectionView(collectionView: UICollectionView,numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView,numberOfItemsInSection section: Int) -> Int {
             
-        return followPersonArray.count ?? 0
+        return followPersonArray.count 
         
     }
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ShowAnchorHeadFollowPersonCellIdentifier, forIndexPath: indexPath) as! ShowAnchorHeadFollowPersonCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShowAnchorHeadFollowPersonCellIdentifier, for: indexPath) as! ShowAnchorHeadFollowPersonCell
         cell.roomFollowPerson = followPersonArray[indexPath.item]
         return cell
     }
@@ -120,11 +140,11 @@ extension ShowAnchorHeardView : UICollectionViewDataSource{
 
 extension ShowAnchorHeardView : UICollectionViewDelegate{
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         // 1 取出对象
         let user = followPersonArray[indexPath.item]
         // 2 发出通知
-        NSNotificationCenter.defaultCenter().postNotificationName(sNotificationName_ClickUser, object: nil, userInfo: ["user" : user])
+        NotificationCenter.default.post(name: Notification.Name(rawValue: sNotificationName_ClickUser), object: nil, userInfo: ["user" : user])
     }
     
 }

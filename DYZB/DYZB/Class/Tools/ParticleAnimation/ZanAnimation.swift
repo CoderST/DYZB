@@ -18,7 +18,7 @@ class ZanAnimation: NSObject {
     // MARK:- 懒加载
     
     // 加载的数组   此处主要是循环利用对象
-    private lazy var keepArray : [UIImageView] = {
+    fileprivate lazy var keepArray : [UIImageView] = {
         
         let keepArray = [UIImageView]()
         return keepArray
@@ -26,7 +26,7 @@ class ZanAnimation: NSObject {
     }()
     
     // 删除的数组
-    private lazy var deletArray : [UIImageView] = {
+    fileprivate lazy var deletArray : [UIImageView] = {
         
         let deletArray = [UIImageView]()
         return deletArray
@@ -39,7 +39,7 @@ class ZanAnimation: NSObject {
      - parameter center_X: 动画的起始中心点X
      - parameter center_Y: 动画的起始中心点Y
      */
-    func startAnimation(view : UIView,center_X : CGFloat,center_Y : CGFloat){
+    func startAnimation(_ view : UIView,center_X : CGFloat,center_Y : CGFloat){
         
         if zanCount == INT_MAX{
             zanCount = 0
@@ -55,20 +55,20 @@ class ZanAnimation: NSObject {
             guard let image = UIImage.init(named: imageName) else { return }
             tempImageView = UIImageView.init(image: image)
             // 初始位置(随便设置一个屏幕外的位置)
-            tempImageView!.center = CGPointMake(-5000, -5000)
+            tempImageView!.center = CGPoint(x: -5000, y: -5000)
         }
         view.addSubview(tempImageView!)
         keepArray.append(tempImageView!)
         let group = groupAnimation(center_X, center_Y: center_Y)
-        tempImageView!.layer.addAnimation(group, forKey: "ZanAnimation\(zanCount)")
+        tempImageView!.layer.add(group, forKey: "ZanAnimation\(zanCount)")
         
     }
     
     
     
-    private  func groupAnimation(center_X : CGFloat,center_Y : CGFloat) -> CAAnimationGroup{
+    fileprivate  func groupAnimation(_ center_X : CGFloat,center_Y : CGFloat) -> CAAnimationGroup{
         
-        let group = CAAnimationGroup.init()
+        let group = CAAnimationGroup()
         group.duration = 2.0;
         group.repeatCount = 1;
         let animation = scaleAnimation()
@@ -80,12 +80,12 @@ class ZanAnimation: NSObject {
     }
     
     
-    private  func scaleAnimation() -> CABasicAnimation {
+    fileprivate  func scaleAnimation() -> CABasicAnimation {
         // 设定为缩放
         let animation = CABasicAnimation.init(keyPath: "transform.scale")
         // 动画选项设定
         animation.duration = 0.5// 动画持续时间
-        animation.removedOnCompletion = false
+        animation.isRemovedOnCompletion = false
         
         // 缩放倍数
         animation.fromValue = 0.1 // 开始时的倍率
@@ -94,24 +94,27 @@ class ZanAnimation: NSObject {
     }
     
     
-    private  func positionAnimatin(center_X : CGFloat,center_Y : CGFloat) -> CAKeyframeAnimation {
+    fileprivate  func positionAnimatin(_ center_X : CGFloat,center_Y : CGFloat) -> CAKeyframeAnimation {
         
-        let keyAnima=CAKeyframeAnimation.init()
+        let keyAnima=CAKeyframeAnimation()
         keyAnima.keyPath="position"
         //1.1告诉系统要执行什么动画
         //创建一条路径
-        let path = CGPathCreateMutable()
-        CGPathMoveToPoint(path, nil, center_X , center_Y)
+        let path = CGMutablePath()
+        let transform = CGAffineTransform.identity
+        path.move(to: CGPoint(x: center_X, y: center_Y), transform: transform)
         // 控制点X波动值
         let controlX = Int((arc4random() % UInt32(60))) - 30
         // 控制点Y波动值
         let controlY = Int((arc4random() % UInt32(50)))
         // 端点X波动值
         let entX = Int((arc4random() % UInt32(100))) - Int(50)
-        CGPathAddQuadCurveToPoint(path, nil, CGFloat(Int(center_X) - controlX), CGFloat(Int(center_Y) - controlY), CGFloat(Int(center_X) + entX), CGFloat(arc4random() % UInt32(50) + 150))
+//        CGPathAddQuadCurveToPoint(path, &transform, CGFloat(Int(center_X) - controlX), CGFloat(Int(center_Y) - controlY), CGFloat(Int(center_X) + entX), CGFloat(arc4random() % UInt32(50) + 150))
+        
+        path.addQuadCurve(to: CGPoint(x: CGFloat(Int(center_X) + entX), y: CGFloat(arc4random() % UInt32(50) + 150)), control: CGPoint(x: CGFloat(Int(center_X) - controlX), y: CGFloat(Int(center_Y) - controlY)), transform: transform)
         keyAnima.path=path;
         //1.2设置动画执行完毕后，不删除动画
-        keyAnima.removedOnCompletion = false
+        keyAnima.isRemovedOnCompletion = false
         //1.3设置保存动画的最新状态
         keyAnima.fillMode=kCAFillModeForwards
         //1.4设置动画执行的时间
@@ -122,11 +125,11 @@ class ZanAnimation: NSObject {
     }
     
     
-    private  func alphaAnimatin() -> CABasicAnimation {
+    fileprivate  func alphaAnimatin() -> CABasicAnimation {
         let alphaAnimation = CABasicAnimation.init(keyPath: "opacity")
         // 动画选项设定
         alphaAnimation.duration = 1.5 // 动画持续时间
-        alphaAnimation.removedOnCompletion = false
+        alphaAnimation.isRemovedOnCompletion = false
         
         alphaAnimation.fromValue = 1.0
         alphaAnimation.toValue = 0.1
@@ -135,7 +138,7 @@ class ZanAnimation: NSObject {
         
         return alphaAnimation
     }
-    private func randomImageName() -> String {
+    fileprivate func randomImageName() -> String {
         
         let number = Int(arc4random() % (8 + 1));
         var randomImageName: String
@@ -173,13 +176,19 @@ class ZanAnimation: NSObject {
 }
 
 // MARK:- CAAnimationGroup代理方法
-extension ZanAnimation{
-    override func animationDidStop(anim: CAAnimation, finished flag: Bool) {
-        guard let tempImageView = keepArray.first else { return }
-        tempImageView.layer.removeAllAnimations()
-        deletArray.append(tempImageView)
-        keepArray.removeFirst()
+extension ZanAnimation : CAAnimationDelegate{
+//    override func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+//        guard let tempImageView = keepArray.first else { return }
+//        tempImageView.layer.removeAllAnimations()
+//        deletArray.append(tempImageView)
+//        keepArray.removeFirst()
+//    }
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+                guard let tempImageView = keepArray.first else { return }
+                tempImageView.layer.removeAllAnimations()
+                deletArray.append(tempImageView)
+                keepArray.removeFirst()
+
     }
-    
 }
 

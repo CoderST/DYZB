@@ -18,10 +18,10 @@ extension String{
      
      - returns: size
      */
-     func sizeWithFont(font:UIFont,size:CGSize) -> CGSize {
+     func sizeWithFont(_ font:UIFont,size:CGSize) -> CGSize {
         let attributes = [NSFontAttributeName: font]
-        let option = NSStringDrawingOptions.UsesLineFragmentOrigin
-        let size = self.boundingRectWithSize(size, options: option, attributes: attributes, context: nil).size
+        let option = NSStringDrawingOptions.usesLineFragmentOrigin
+        let size = self.boundingRect(with: size, options: option, attributes: attributes, context: nil).size
         return size;
     }
 

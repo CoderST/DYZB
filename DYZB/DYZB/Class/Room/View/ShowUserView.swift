@@ -16,12 +16,10 @@ private let iconImageViewWH : CGFloat = 70
 private let ediMargin : CGFloat = 15
 protocol ShowUserViewDelegate : NSObjectProtocol{
     
-    func showUserViewCloseVC(showUserView : ShowUserView)
+    func showUserViewCloseVC(_ showUserView : ShowUserView)
 }
 
 class ShowUserView: UIView {
-    
-    
     
     weak var delegate : ShowUserViewDelegate?
     
@@ -31,27 +29,19 @@ class ShowUserView: UIView {
         didSet{
             
             guard let model = userModel else { return }
-            iconImageView.sd_setImageWithURL(NSURL(string: model.photo ?? ""), placeholderImage: UIImage(named: "placeholder_head"), options: .RefreshCached) { (image : UIImage!, error : NSError!, cacheType : SDImageCacheType, url : NSURL!) -> Void in
-                if error == nil{
-                    let image = UIImage.circleImage(image, borderColor: UIColor.whiteColor(), borderWidth: 1)
-                    self.iconImageView.image = image
-                }
-            }
-//            iconImageView.image = UIImage(named: "placeholder_head")
-//            let sdDownloader = SDWebImageDownloader.sharedDownloader()
-//            sdDownloader.downloadImageWithURL(NSURL(string: model.photo ?? ""), options: SDWebImageDownloaderOptions.UseNSURLCache, progress: nil) { [weak self](downLoadImage : UIImage!, data : NSData!, error : NSError!, finished : Bool) -> Void in
-//                
-//                if finished{
-//                    // 回主线程刷新UI
-//                    dispatch_async(dispatch_get_main_queue()) {
-//                        let resultImage = UIImage.circleImage(downLoadImage, borderColor: UIColor.redColor(), borderWidth: 1.0)
-//                        self?.iconImageView.image = resultImage
-//                        
-//                    }
-//                }
-//            }
             
-            nickNameLabel.text = model.nickname ?? ""
+            iconImageView.sd_setImage(with: URL(string: model.photo ), placeholderImage: UIImage(named: "placeholder_head"), options: .refreshCached) { (image, error, cacheType, url) in
+                    if error == nil{
+                        if let safeImage = image{
+    
+                            let image = UIImage.circleImage(safeImage, borderColor: UIColor.white, borderWidth: 1)
+                            self.iconImageView.image = image
+                        }
+                    }
+
+            }
+            
+            nickNameLabel.text = model.nickname 
             
             
         }
@@ -59,44 +49,44 @@ class ShowUserView: UIView {
     
     // MARK:- 懒加载
     // 举报
-    private lazy var reportButton : UIButton = {
+    fileprivate lazy var reportButton : UIButton = {
         let reportButton = UIButton()
-        reportButton.setTitle("举报", forState: .Normal)
-        reportButton.setTitleColor(UIColor.blackColor(), forState: .Normal)
-        reportButton.titleLabel?.font = UIFont.systemFontOfSize(reportButtonFontSize)
-        reportButton.addTarget(self, action: "reportButtonClick", forControlEvents: .TouchUpInside)
+        reportButton.setTitle("举报", for: UIControlState())
+        reportButton.setTitleColor(UIColor.black, for: UIControlState())
+        reportButton.titleLabel?.font = UIFont.systemFont(ofSize: reportButtonFontSize)
+        reportButton.addTarget(self, action: #selector(ShowUserView.reportButtonClick), for: .touchUpInside)
         return reportButton
         
     }()
     
     // 关闭
-    private lazy var closeButton : UIButton = {
+    fileprivate lazy var closeButton : UIButton = {
         let closeButton = UIButton()
-        closeButton.setImage(UIImage(named: "user_close_15x15"), forState: .Normal)
-        closeButton.addTarget(self, action: "closeButtonClick", forControlEvents: .TouchUpInside)
+        closeButton.setImage(UIImage(named: "user_close_15x15"), for: UIControlState())
+        closeButton.addTarget(self, action: #selector(ShowUserView.closeButtonClick), for: .touchUpInside)
         return closeButton
         
     }()
     
     // 中间包裹的view
-    private lazy var centerCoverView : UIView = {
+    fileprivate lazy var centerCoverView : UIView = {
         let centerCoverView = UIView()
         return centerCoverView
         
     }()
     
     //  用户头像
-    private lazy var iconImageView : UIImageView = {
+    fileprivate lazy var iconImageView : UIImageView = {
         let iconImageView = UIImageView()
         return iconImageView
         
     }()
     
     // 用户名称
-    private lazy var nickNameLabel : UILabel = {
+    fileprivate lazy var nickNameLabel : UILabel = {
         let nickNameLabel = UILabel()
-        nickNameLabel.textColor = UIColor.blackColor()
-        nickNameLabel.font = UIFont.systemFontOfSize(nickNameLabelFontSize)
+        nickNameLabel.textColor = UIColor.black
+        nickNameLabel.font = UIFont.systemFont(ofSize: nickNameLabelFontSize)
         return nickNameLabel
         
     }()
@@ -115,8 +105,8 @@ class ShowUserView: UIView {
     }
     
     deinit{
-        let manage = SDWebImageManager.sharedManager()
-        manage.cancelAll()
+        let manage = SDWebImageManager.shared()
+        manage?.cancelAll()
     }
     
 }
@@ -133,32 +123,32 @@ extension ShowUserView {
         centerCoverView.addSubview(iconImageView)
         centerCoverView.addSubview(nickNameLabel)
         
-        reportButton.snp_makeConstraints { (make) -> Void in
+        reportButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(20)
             make.left.equalTo(30)
         }
         
-        closeButton.snp_makeConstraints { (make) -> Void in
+        closeButton.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(reportButton)
             make.right.equalTo(-30)
         }
         
-        centerCoverView.snp_makeConstraints { (make) -> Void in
-            make.top.equalTo(reportButton.snp_bottom).offset(10)
+        centerCoverView.snp.makeConstraints { (make) -> Void in
+            make.top.equalTo(reportButton.snp.bottom).offset(10)
             make.left.equalTo(ediMargin)
             make.right.equalTo(-ediMargin)
             make.bottom.equalTo(self)
         }
         
-        iconImageView.snp_makeConstraints { (make) -> Void in
+        iconImageView.snp.makeConstraints { (make) -> Void in
             make.top.equalTo(ediMargin)
             make.centerX.equalTo(centerCoverView)
             make.width.height.equalTo(iconImageViewWH)
         }
         
-        nickNameLabel.snp_makeConstraints { (make) -> Void in
+        nickNameLabel.snp.makeConstraints { (make) -> Void in
             make.centerX.equalTo(iconImageView)
-            make.top.equalTo(iconImageView.snp_bottom).offset(10)
+            make.top.equalTo(iconImageView.snp.bottom).offset(10)
         }
         
         
@@ -167,10 +157,10 @@ extension ShowUserView {
 
 // MARK:- 按钮点击事件
 extension ShowUserView {
-    @objc private func reportButtonClick(){
+    @objc fileprivate func reportButtonClick(){
     }
     
-    @objc private func closeButtonClick(){
+    @objc fileprivate func closeButtonClick(){
         delegate?.showUserViewCloseVC(self)
     }
     

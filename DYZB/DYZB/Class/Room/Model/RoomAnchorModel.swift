@@ -30,16 +30,16 @@ class RoomAnchorModel: NSObject {
     // 自定义构造函数 ()
     init(dict : [String : NSObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     // 必须实现,不然会报错
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         
     }
     
     // MARK:- 重写description属性(方便打印看到信息)
     override var description:String{
-        return dictionaryWithValuesForKeys(["isVertical", "room_name", "nickname"]).description
+        return dictionaryWithValues(forKeys: ["isVertical", "room_name", "nickname"]).description
     }
     
 }

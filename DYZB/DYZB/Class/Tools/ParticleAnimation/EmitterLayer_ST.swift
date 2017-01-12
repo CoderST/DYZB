@@ -30,7 +30,7 @@ class EmitterLayer_ST: CAEmitterLayer {
             let imageName = "good\(i)_30x30"
             let image = UIImage(named: imageName)
             // 粒子显示的内容
-            stepCell.contents = image?.CGImage
+            stepCell.contents = image?.cgImage
             // 粒子的运动速度
             stepCell.velocity = CGFloat(arc4random_uniform(100) + 100);
             // 粒子速度的容差

@@ -14,23 +14,23 @@ class GameAnchorViewController: BaseShowViewController {
         super.viewDidLoad()
 
 
-        view.backgroundColor = UIColor.orangeColor()
+        view.backgroundColor = UIColor.orange
     
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        navigationController?.navigationBarHidden = true
+        navigationController?.isNavigationBarHidden = true
         
     }
     
     
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         
-        navigationController?.navigationBarHidden = false
+        navigationController?.isNavigationBarHidden = false
     }
 
 }

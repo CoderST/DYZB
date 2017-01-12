@@ -12,8 +12,8 @@ class GameViewModel {
 
     lazy var gamesData : [GameModel] = [GameModel]()
     
-    func requestGameData(finishCallBack:()->()){
-        NetworkTools.requestData(.GET, URLString: "http://capi.douyucdn.cn/api/v1/getColumnDetail", parameters: ["shortName" : "game"]) { (result) -> () in
+    func requestGameData(_ finishCallBack:@escaping ()->()){
+        NetworkTools.requestData(.get, URLString: "http://capi.douyucdn.cn/api/v1/getColumnDetail", parameters: ["shortName" : "game"]) { (result) -> () in
             guard let resultDic = result as? [String : AnyObject] else {return}
             
             guard let resultArray = resultDic["data"] as?[[String : AnyObject]] else {return}

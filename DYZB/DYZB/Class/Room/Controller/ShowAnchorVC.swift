@@ -13,9 +13,9 @@ import IJKMediaFramework
 class ShowAnchorVC: UIViewController {
     
     // MARK:- 常量
-    private let sMarginLR :CGFloat = 15
-    private let sMarginT :CGFloat = 30
-    private let RoomAnchorCellIdentifier = "RoomAnchorCellIdentifier"
+    fileprivate let sMarginLR :CGFloat = 15
+    fileprivate let sMarginT :CGFloat = 30
+    fileprivate let RoomAnchorCellIdentifier = "RoomAnchorCellIdentifier"
     
     // MARK:- 变量
     var lastContentOffset : CGFloat = 0
@@ -43,26 +43,26 @@ class ShowAnchorVC: UIViewController {
     var roomcell : ShowAnchorVCCell!
     
     // MARK:- 懒加载
-    private lazy var tableView : UITableView = {
+    fileprivate lazy var tableView : UITableView = {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.pagingEnabled = true
+        tableView.isPagingEnabled = true
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = sScreenH
-        tableView.registerClass(ShowAnchorVCCell.self, forCellReuseIdentifier: self.RoomAnchorCellIdentifier)
+        tableView.register(ShowAnchorVCCell.self, forCellReuseIdentifier: self.RoomAnchorCellIdentifier)
         return tableView
     }()
     
-    private lazy var persentModel : PresentModel = PresentModel()
+    fileprivate lazy var persentModel : PresentModel = PresentModel()
     
     // MARK:- 系统回调
     override func viewDidLoad() {
         
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         setupUI()
         
@@ -71,50 +71,50 @@ class ShowAnchorVC: UIViewController {
     
     // MARK:- 监听通知
     func initObserver(){
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "ClickUser:", name: sNotificationName_ClickUser, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.ClickUser(_:)), name: NSNotification.Name(rawValue: sNotificationName_ClickUser), object: nil)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "TapCatClick:", name: sNotificationName_TapCatClick, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.TapCatClick(_:)), name: NSNotification.Name(rawValue: sNotificationName_TapCatClick), object: nil)
         
         
     }
     
     // MARK:- 通知事件
-    func ClickUser(notification : NSNotification){
+    func ClickUser(_ notification : Notification){
         guard let infor = notification.userInfo else { return }
         guard let user = infor["user"] as? RoomFollowPerson else { return }
         
         let showUserVC = ShowUserVC()
         showUserVC.roomAnchor = user
-        showUserVC.modalPresentationStyle = .Custom
+        showUserVC.modalPresentationStyle = .custom
         showUserVC.transitioningDelegate = persentModel
         persentModel.presentedFrame = CGRect(x: 15, y: 100, width: sScreenW - 30, height: sScreenH - 200)
-        presentViewController(showUserVC, animated: true, completion: nil)
+        present(showUserVC, animated: true, completion: nil)
         
     }
     
-    func TapCatClick(notification : NSNotification){
+    func TapCatClick(_ notification : Notification){
         print("TapCatClickTapCatClickTapCatClick")
         cellOneLock = false
-        ++movieIndex
-        let indexPath = NSIndexPath(forRow: movieIndex, inSection: 0)
-        tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+        movieIndex += 1
+        let indexPath = IndexPath(row: movieIndex, section: 0)
+        tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
     }
     
     
     
     // MARK:- 控制器销毁
     deinit{
-        NSNotificationCenter.defaultCenter().removeObserver(self)
+        NotificationCenter.default.removeObserver(self)
         print("ShowAnchorViewController - 界面销毁")
         
     }
     
     // MARK:- 自定义方法
-    func getShowDatasAndIndexPath(showArray : [RoomYKModel],indexPath : NSIndexPath?){
+    func getShowDatasAndIndexPath(_ showArray : [RoomYKModel],indexPath : IndexPath?){
         print("indexPath!.row",indexPath!.row)
         currentShowArray = showArray
         movieIndex = indexPath!.row
-        tableView.scrollToRowAtIndexPath(indexPath!, atScrollPosition: UITableViewScrollPosition.Top, animated: false)
+        tableView.scrollToRow(at: indexPath!, at: UITableViewScrollPosition.top, animated: false)
     }
     
 }
@@ -124,7 +124,7 @@ extension ShowAnchorVC {
     func setupUI(){
         view.addSubview(tableView)
         
-        tableView.snp_makeConstraints { (make) -> Void in
+        tableView.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(view)
             make.top.equalTo(view)
             make.left.equalTo(view)
@@ -136,32 +136,34 @@ extension ShowAnchorVC {
 // MARK:- UITableViewDataSource
 extension ShowAnchorVC :UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
         return currentShowArray?.count ?? 0
     }
     
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
-        roomcell = tableView.dequeueReusableCellWithIdentifier(RoomAnchorCellIdentifier, forIndexPath: indexPath) as! ShowAnchorVCCell
+        roomcell = tableView.dequeueReusableCell(withIdentifier: RoomAnchorCellIdentifier, for: indexPath) as! ShowAnchorVCCell
         roomcell.parentVc = self
         
         // 1 传递主播图片数据
         let roomAnchor = currentShowArray![indexPath.row]
         roomcell.roomAnchor = roomAnchor
+        
         if cellOneLock == false{
             // 2 传递主播视频数据
             tempAnchor = currentShowArray![movieIndex]
-            roomcell.playingWithPlaceHoldImageView(tempAnchor!)
+            roomcell.playingVideo(tempAnchor!)
             // 3 副播视频数据
-            let subIndex = movieIndex + 1
+            var subIndex = movieIndex + 1
             if subIndex <= currentShowArray!.count{
             }else{
-                subIndex == 0
+                subIndex = 0
             }
             roomcell.subAnchorModel = currentShowArray![subIndex]
             cellOneLock = true
         }
+        movieIndex = indexPath.row
         return roomcell
     }
 }
@@ -169,21 +171,24 @@ extension ShowAnchorVC :UITableViewDataSource {
 // MARK:- UITableViewDelegate(以下是手动控制视频数据的传递)
 extension ShowAnchorVC : UITableViewDelegate{
     // cell高度
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         
         return sScreenH
     }
     
     // 已经结束显示的cell
-    func tableView(tableView: UITableView, didEndDisplayingCell cell: UITableViewCell, forRowAtIndexPath indexPath: NSIndexPath){
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath){
+        
+        
+        
         let willDisappearCell = cell as!ShowAnchorVCCell
+        
         // 注意:shutdown()方法里一定要移除通知
         
         // 处理手指轻微弹起一下,会再次调用此方法
         if willDisappearCell.playerController != nil{
             // 处理主界面播放器逻辑
             willDisappearCell.shutdownAction()
-            willDisappearCell.playerControllerQuit()
             willDisappearCell.playerController!.view.removeFromSuperview()
             willDisappearCell.playerController = nil
             
@@ -195,7 +200,7 @@ extension ShowAnchorVC : UITableViewDelegate{
             willDisappearCell.catView.movieModel?.view.removeFromSuperview()
             willDisappearCell.catView.movieModel = nil
             willDisappearCell.catView.removeFromSuperview()
-            
+        
         }
     }
     
@@ -205,71 +210,81 @@ extension ShowAnchorVC : UITableViewDelegate{
 extension ShowAnchorVC : UIScrollViewDelegate{
     
     // 手指接触拖拽
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         scrollowViewOneLock = true
         userTouch = true
         lastContentOffset = scrollView.contentOffset.y
+//        scrollView.isScrollEnabled = true
     }
     
-    // 手指离开拖拽
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool){
-        
-        userTouch = false
-        
-    }
+
     
     // 控制
-    func scrollViewDidScroll(scrollView: UIScrollView){
-        let height = UIScreen.mainScreen().bounds.size.height * 0.5
-        if scrollowViewOneLock == true{
-            // 向上滚动
-            if(lastContentOffset + height < scrollView.contentOffset.y && upLock == false && userTouch == false){
-                print(movieIndex)
-                movieIndex++
-                print(movieIndex)
-                upLock = true
-                
-            }
-            // 向下滚动
-            if(scrollView.contentOffset.y < lastContentOffset - height && downLock == false && userTouch == false){
-                
-                movieIndex--
-                downLock = true
-            }
-        }
-        
-    }
+//    func scrollViewDidScroll(_ scrollView: UIScrollView){
+//        let height = UIScreen.main.bounds.size.height * 0.5
+//        if scrollowViewOneLock == true{
+//            // 向上滚动
+//            if(lastContentOffset + height < scrollView.contentOffset.y && upLock == false && userTouch == false){
+//                print(movieIndex)
+//                movieIndex += 1
+//                print(movieIndex)
+//                upLock = true
+//                
+//            }
+//            // 向下滚动
+//            if(scrollView.contentOffset.y < lastContentOffset - height && downLock == false && userTouch == false){
+//                
+//                movieIndex -= 1
+//                downLock = true
+//            }
+//        }
+//        
+//    }
     
     
     // 已经完成减速
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView){
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
         
-        if tempAnchor != currentShowArray![movieIndex]{
+        didEndAction()
+//        scrollView.isScrollEnabled = true
+        
+           }
+    
+    // 手指离开拖拽
+//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool){
+//        
+//        if !decelerate{
+//            didEndAction()
+//            
+//        }else{
+////            scrollView.isScrollEnabled = false
+//
+//        }
+//    }
+    
+
+    func didEndAction() {
+//        if tempAnchor != currentShowArray![movieIndex]{
             // 1 主播视频数据
             let roomAnchor = currentShowArray![movieIndex]
-            roomcell.playingWithPlaceHoldImageView(roomAnchor)
+            roomcell.playingVideo(roomAnchor)
             
-            // 2 副播视频数据
-            let subIndex = movieIndex + 1
-            // 3 判断是否越界
-            if subIndex <= currentShowArray!.count{
-                subIndex == movieIndex + 1
-            }else{
-                subIndex == 0
-            }
-            
+//            // 2 副播视频数据
+//            var subIndex = movieIndex + 1
+//            // 3 判断是否越界
+//            if subIndex <= currentShowArray!.count{
+//                subIndex = movieIndex + 1
+//            }else{
+//                subIndex = 0
+//            }
+//            
             // 4 传递副播数据
-            roomcell.subAnchorModel = currentShowArray![subIndex]
+            roomcell.subAnchorModel = currentShowArray![movieIndex + 1]
             tempAnchor = roomAnchor
             downLock = false
             upLock = false
-        }
-        
-        
-    }
-    
-    func scrollViewDidEndScrollingAnimation(scrollView: UIScrollView){
-        
-        print("scrollViewDidEndScrollingAnimation")
+            userTouch = false
+//        }
+
     }
 }

@@ -29,7 +29,7 @@ class AmuseMenuView: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        collectionView.registerNib(UINib(nibName: "AmuseMenuViewCell", bundle: nil), forCellWithReuseIdentifier: sAmuseMenuIdentifier)
+        collectionView.register(UINib(nibName: "AmuseMenuViewCell", bundle: nil), forCellWithReuseIdentifier: sAmuseMenuIdentifier)
         
     }
     
@@ -44,7 +44,7 @@ class AmuseMenuView: UIView {
 extension AmuseMenuView {
     
     class func creatAmuseMenuView()->AmuseMenuView{
-        return NSBundle.mainBundle().loadNibNamed("AmuseMenuView", owner: nil, options: nil).first as! AmuseMenuView
+        return Bundle.main.loadNibNamed("AmuseMenuView", owner: nil, options: nil)!.first as! AmuseMenuView
         
     }
 }
@@ -52,7 +52,7 @@ extension AmuseMenuView {
 extension AmuseMenuView : UICollectionViewDataSource {
     
     // 需要展示几个item,
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
         if groups == nil { return 0 }
         let pageNum = (groups!.count - 1) / 8 + 1
@@ -61,14 +61,14 @@ extension AmuseMenuView : UICollectionViewDataSource {
         return pageNum
 
     }
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sAmuseMenuIdentifier, forIndexPath: indexPath) as! AmuseMenuViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sAmuseMenuIdentifier, for: indexPath) as! AmuseMenuViewCell
         setupCell(cell, indexPath: indexPath)
         return cell
     }
     
-    func setupCell(cell : AmuseMenuViewCell,indexPath : NSIndexPath){
+    func setupCell(_ cell : AmuseMenuViewCell,indexPath : IndexPath){
         // 1  0 ~ 7
         // 2  8 ~ 15
         // 3  16 ~ 23
@@ -85,7 +85,7 @@ extension AmuseMenuView : UICollectionViewDataSource {
 }
 
 extension AmuseMenuView : UIScrollViewDelegate{
-    func scrollViewDidScroll(scrollView: UIScrollView) {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let currentPage = scrollView.contentOffset.x / scrollView.frame.size.width
         pageControl.currentPage = Int(currentPage)
     }

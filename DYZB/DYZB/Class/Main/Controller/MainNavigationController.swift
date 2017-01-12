@@ -20,11 +20,11 @@ class MainNavigationController: UINavigationController {
         // 2 获取手势对应view
         guard let popGestureView = popGesture.view else { return }
         // 3 获取系统手势中targets的所有事件
-        guard let targets = popGesture.valueForKey("_targets") as? [NSObject] else { return }
+        guard let targets = popGesture.value(forKey: "_targets") as? [NSObject] else { return }
         // 4 取出手势对象
         guard let targetObec = targets.first else { return }
         // 5 获得手势事件
-        let target = targetObec.valueForKey("target")
+        let target = targetObec.value(forKey: "target")
         // 6 创建action
         let action = Selector("handleNavigationTransition:")
         // 7 创建自己的手势
@@ -36,7 +36,7 @@ class MainNavigationController: UINavigationController {
         
     }
     
-    override func pushViewController(viewController: UIViewController, animated: Bool) {
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         
         viewController.hidesBottomBarWhenPushed = true
         

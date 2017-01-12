@@ -10,9 +10,9 @@ import UIKit
 
 class PraiseEmitterView: UIView {
 
-    private var timer: NSTimer?
+    fileprivate var timer: Timer?
     
-    private let emitter: CAEmitterLayer! = {
+    fileprivate let emitter: CAEmitterLayer! = {
         let emitter = CAEmitterLayer()
         return emitter
     }()
@@ -25,13 +25,13 @@ class PraiseEmitterView: UIView {
         super.init(coder: aDecoder)
         setup()
     }
-    private func setup() {
+    fileprivate func setup() {
         emitter.frame = bounds
         emitter.birthRate = 0
         emitter.emitterShape = kCAEmitterLayerLine
-        emitter.emitterPosition = CGPointMake(0,CGRectGetHeight(bounds))
+        emitter.emitterPosition = CGPoint(x: 0,y: bounds.height)
         emitter.emitterSize = bounds.size
-        emitter.emitterCells = [getEmitterCell(UIImage(named: "good1_30x30")!.CGImage!), getEmitterCell(UIImage(named: "good2_30x30")!.CGImage!)]
+        emitter.emitterCells = [getEmitterCell(UIImage(named: "good1_30x30")!.cgImage!), getEmitterCell(UIImage(named: "good2_30x30")!.cgImage!)]
         self.layer.addSublayer(emitter)
     }
     func timeoutSelector() {
@@ -40,9 +40,9 @@ class PraiseEmitterView: UIView {
     func emit() {
         emitter.birthRate = 2
         timer?.invalidate()
-        timer = NSTimer.scheduledTimerWithTimeInterval(2, target: self, selector: "timeoutSelector", userInfo: nil, repeats: false)
+        timer = Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(PraiseEmitterView.timeoutSelector), userInfo: nil, repeats: false)
     }
-    private func getEmitterCell(contentImage: CGImage) -> CAEmitterCell {
+    fileprivate func getEmitterCell(_ contentImage: CGImage) -> CAEmitterCell {
         
         let emitterCell = CAEmitterCell()
         emitterCell.contents = contentImage

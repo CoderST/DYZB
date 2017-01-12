@@ -18,7 +18,7 @@ class HomeViewController: UIViewController {
     // MARK:- 懒加载
     
     // 滚动条
-    private lazy var pageTitlesView : PageTitlesView = {
+    fileprivate lazy var pageTitlesView : PageTitlesView = {
         
         let titles = ["推荐", "游戏", "娱乐", "趣玩"]
         let titlesFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH, width: sScreenW, height: pageTitlesViewH)
@@ -27,7 +27,7 @@ class HomeViewController: UIViewController {
         }()
     
     // 滚动条下面装着要显示控制器
-    private lazy var pageContentView : PageContentView = {[weak self] in
+    fileprivate lazy var pageContentView : PageContentView = {[weak self] in
         
         // 创建零时数组
         var childVcs = [UIViewController]()
@@ -65,7 +65,7 @@ class HomeViewController: UIViewController {
 // MARK:- 设置UI
 extension HomeViewController{
     
-    private func setupUI(){
+    fileprivate func setupUI(){
         
         // 设置导航栏
         setupNavgationrBar()
@@ -78,7 +78,7 @@ extension HomeViewController{
         
     }
     
-    private func setupNavgationrBar(){
+    fileprivate func setupNavgationrBar(){
         
         navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo")
         let size = CGSize(width: 40, height: 40)
@@ -89,12 +89,12 @@ extension HomeViewController{
         
     }
     
-    private func setupPageTitlesView(){
+    fileprivate func setupPageTitlesView(){
         view.addSubview(pageTitlesView)
         pageTitlesView.delegate = self
     }
     
-    private func setupPageContentView(){
+    fileprivate func setupPageContentView(){
         view.addSubview(pageContentView)
         pageContentView.delegate = self
     }
@@ -104,7 +104,7 @@ extension HomeViewController{
 // MARK:- PageTitlesViewDelegate
 extension HomeViewController : PageTitlesViewDelegate{
     
-    func pageTitlesView(pageTitlesView: PageTitlesView, index: Int) {
+    func pageTitlesView(_ pageTitlesView: PageTitlesView, index: Int) {
         
         pageContentView.setCurrentIndex(index)
         
@@ -114,7 +114,7 @@ extension HomeViewController : PageTitlesViewDelegate{
 // MARK:- PageContentViewDelegate
 extension HomeViewController : PageContentViewDelegate{
     
-    func pageContentView(pageContentView: PageContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
+    func pageContentView(_ pageContentView: PageContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
         //         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
         
         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)

@@ -21,9 +21,9 @@ class AmuseMenuViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        collectionView.autoresizingMask = [.FlexibleHeight,.FlexibleWidth]
+        collectionView.autoresizingMask = [.flexibleHeight,.flexibleWidth]
         
-        collectionView.registerNib(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier: sAmuseMenuCellIdentifier)
+        collectionView.register(UINib(nibName: "CollectionGameCell", bundle: nil), forCellWithReuseIdentifier: sAmuseMenuCellIdentifier)
     }
 
 }
@@ -43,15 +43,15 @@ extension AmuseMenuViewCell {
 extension AmuseMenuViewCell : UICollectionViewDataSource {
     
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
 
             return  groups?.count ?? 0
         
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell{
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(sAmuseMenuCellIdentifier, forIndexPath: indexPath) as! CollectionGameCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: sAmuseMenuCellIdentifier, for: indexPath) as! CollectionGameCell
         cell.clipsToBounds = true
         cell.anchorGroup = groups![indexPath.item]
         return cell

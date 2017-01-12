@@ -11,7 +11,7 @@ import SDWebImage
 class ShowAnchorListCell: UICollectionViewCell {
 
     // MARK:- 常量
-    private let iconRadius : CGFloat = 20
+    fileprivate let iconRadius : CGFloat = 20
     // MARK:- 变量
     
     // MARK:- 控件属性
@@ -30,7 +30,7 @@ class ShowAnchorListCell: UICollectionViewCell {
             guard let model = anchorModel else { return }
             iconImageView.layer.cornerRadius = iconRadius
             iconImageView.clipsToBounds = true
-             iconImageView.sd_setImageWithURL(NSURL(string: model.smallpic ?? ""), placeholderImage: UIImage(named: "placeholder_head"))
+             iconImageView.sd_setImage(with: URL(string: model.smallpic ?? ""), placeholderImage: UIImage(named: "placeholder_head"))
              userNameLabel.text = model.myname ?? "秀兜用户"
 //             zhiBoImageView
             
@@ -40,7 +40,7 @@ class ShowAnchorListCell: UICollectionViewCell {
              locationLabel.text = model.gps
 
             
-            backGroundImageView.sd_setImageWithURL(NSURL(string: model.bigpic ?? ""), placeholderImage: UIImage(named: "profile_user_375x375"))
+            backGroundImageView.sd_setImage(with: URL(string: model.bigpic ?? ""), placeholderImage: UIImage(named: "profile_user_375x375"))
             
         }
     }

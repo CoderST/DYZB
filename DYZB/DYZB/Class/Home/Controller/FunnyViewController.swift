@@ -11,7 +11,7 @@ import UIKit
 class FunnyViewController: BaseAnchorViewController {
 
     // MARK:- 懒加载
-    private lazy var funnyViewModel : FunnyViewModel  = FunnyViewModel()
+    fileprivate lazy var funnyViewModel : FunnyViewModel  = FunnyViewModel()
 
 }
 
@@ -25,7 +25,7 @@ extension FunnyViewController {
         baseContentView = collectionView
         
         let layout = collectionView.collectionViewLayout as! UICollectionViewFlowLayout
-        layout.headerReferenceSize = CGSizeZero
+        layout.headerReferenceSize = CGSize.zero
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 0, right: 0)
         loadData()
     }

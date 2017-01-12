@@ -10,7 +10,7 @@ import UIKit
 
 class AmuseViewModel: BaseViewModel {
 
-    func loadAmuseDates(finishCallBack:()->()){
+    func loadAmuseDates(_ finishCallBack:@escaping ()->()){
         
         loadAnchDates(true, urlString: "http://capi.douyucdn.cn/api/v1/getHotRoom/2", finishCallBack: finishCallBack)
     }

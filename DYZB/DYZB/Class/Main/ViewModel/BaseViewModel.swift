@@ -12,8 +12,8 @@ class BaseViewModel {
     
     lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
     
-    func loadAnchDates(isGroup : Bool, urlString : String, parameters : [String : AnyObject]? = nil,finishCallBack:()->()){
-        NetworkTools.requestData(.GET, URLString: urlString, parameters: parameters) { (result) -> () in
+    func loadAnchDates(_ isGroup : Bool, urlString : String, parameters : [String : Any]? = nil,finishCallBack:@escaping ()->()){
+        NetworkTools.requestData(.get, URLString: urlString, parameters: parameters) { (result) -> () in
             
             guard let resultDict = result as? [String : NSObject] else {return}
             guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}

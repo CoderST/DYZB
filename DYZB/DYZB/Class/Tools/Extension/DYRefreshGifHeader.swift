@@ -12,13 +12,13 @@ class DYRefreshGifHeader: MJRefreshGifHeader {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        lastUpdatedTimeLabel?.hidden = true
-        stateLabel?.hidden = true
-        setImages([UIImage(named: "reflesh1_60x55")!,UIImage(named: "reflesh2_60x55")!,UIImage(named: "reflesh3_60x55")!], forState: .Refreshing)
+        lastUpdatedTimeLabel?.isHidden = true
+        stateLabel?.isHidden = true
+        setImages([UIImage(named: "reflesh1_60x55")!,UIImage(named: "reflesh2_60x55")!,UIImage(named: "reflesh3_60x55")!], for: .refreshing)
         
-        setImages([UIImage(named: "reflesh1_60x55")!,UIImage(named: "reflesh2_60x55")!,UIImage(named: "reflesh3_60x55")!], forState: .Pulling)
+        setImages([UIImage(named: "reflesh1_60x55")!,UIImage(named: "reflesh2_60x55")!,UIImage(named: "reflesh3_60x55")!], for: .pulling)
         
-        setImages([UIImage(named: "reflesh1_60x55")!,UIImage(named: "reflesh2_60x55")!,UIImage(named: "reflesh3_60x55")!], forState: .Idle)
+        setImages([UIImage(named: "reflesh1_60x55")!,UIImage(named: "reflesh2_60x55")!,UIImage(named: "reflesh3_60x55")!], for: .idle)
         
     }
 

@@ -14,7 +14,7 @@ class DYRefreshAutoNormalFooter: MJRefreshAutoStateFooter {
         super.prepare()
         // 控制底部的高度
         mj_h = 0
-        automaticallyChangeAlpha = true
+        isAutomaticallyChangeAlpha = true
 //        automaticallyHidden = true
         // 控制拖拽显示的比例
         triggerAutomaticallyRefreshPercent = -10.0

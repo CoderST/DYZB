@@ -55,12 +55,12 @@ class BaseAnchorViewController: BaseViewController {
         // 设置数据源
         collectionView.dataSource = self
         collectionView.delegate = self
-        collectionView.backgroundColor = UIColor.whiteColor()
-        collectionView.autoresizingMask = [.FlexibleHeight, .FlexibleWidth]
+        collectionView.backgroundColor = UIColor.white
+        collectionView.autoresizingMask = [.flexibleHeight, .flexibleWidth]
         
         // 注册cell
-        collectionView.registerNib(UINib(nibName: "CollectionViewNormalCell", bundle: nil), forCellWithReuseIdentifier : sCellNormalIdentifier)
-        collectionView.registerNib(UINib(nibName: "CollectionHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sCellHeadIdentifier)
+        collectionView.register(UINib(nibName: "CollectionViewNormalCell", bundle: nil), forCellWithReuseIdentifier : sCellNormalIdentifier)
+        collectionView.register(UINib(nibName: "CollectionHeaderView", bundle: nil), forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: sCellHeadIdentifier)
         
         return collectionView;
         
@@ -82,46 +82,46 @@ extension BaseAnchorViewController {
 
 extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionViewDelegate{
     
-    func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int{
+    func numberOfSections(in collectionView: UICollectionView) -> Int{
         
         return recommendViewModel.anchorGroups.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let anchorGroup = recommendViewModel.anchorGroups[section]
         
         return anchorGroup.anchors.count ?? 0
     }
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // 取出对应组
                 let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
                 let anchorModel = anchorGroup.anchors[indexPath.item]
         var cell : CollectionBaseCell!
         
-        cell = collectionView.dequeueReusableCellWithReuseIdentifier(sCellNormalIdentifier, forIndexPath: indexPath) as! CollectionViewNormalCell
+        cell = collectionView.dequeueReusableCell(withReuseIdentifier: sCellNormalIdentifier, for: indexPath) as! CollectionViewNormalCell
         // 传递模型
         cell.anchorModel = anchorModel
         return cell
         
     }
     
-    func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         // 1.取出section的HeaderView
-        let headerView = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: sCellHeadIdentifier, forIndexPath: indexPath) as!CollectionHeaderView
+        let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: sCellHeadIdentifier, for: indexPath) as!CollectionHeaderView
                 headerView.anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
         return headerView
     }
     
     
-    func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         
         return CGSize(width: sItemWidth, height: sItemNormalWidth)
     }
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
         let anchorModel = anchorGroup.anchors[indexPath.item]
@@ -130,10 +130,10 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
          anchorModel.isVertical == 0 ? gameAnchorVC() : showAnchorVC(roomID)
     }
     
-    func showAnchorVC(room_id : Int64){
+    func showAnchorVC(_ room_id : Int64){
         let showVC = ShowAnchorViewController()
         showVC.room_id = room_id
-        presentViewController(showVC, animated: true, completion: nil)
+        present(showVC, animated: true, completion: nil)
 //        navigationController?.pushViewController(showVC, animated: true)
     }
     

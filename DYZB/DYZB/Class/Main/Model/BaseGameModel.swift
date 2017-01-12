@@ -20,10 +20,10 @@ class BaseGameModel: NSObject {
     init(dic:[String : AnyObject]){
         super.init()
         
-        setValuesForKeysWithDictionary(dic)
+        setValuesForKeys(dic)
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         
     }
 }

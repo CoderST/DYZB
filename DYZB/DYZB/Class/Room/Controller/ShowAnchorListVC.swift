@@ -14,31 +14,31 @@ class ShowAnchorListVC: UIViewController {
     // MARK:- 属性
 //    @IBOutlet weak var collectionView: UICollectionView!
     // MARK:- 常量
-    private let ShowAnchorListCellInden = "ShowAnchorListCellInden"
+    fileprivate let ShowAnchorListCellInden = "ShowAnchorListCellInden"
     // MARK:- 变量
-    private var page : Int = 1
+    fileprivate var page : Int = 1
     
     // MARK:- 懒加载
-    private let roomAnchorVM : RoomAnchorVM = RoomAnchorVM()
+    fileprivate let roomAnchorVM : RoomAnchorVM = RoomAnchorVM()
     
-    private let collectionView : UICollectionView = {
+    fileprivate let collectionView : UICollectionView = {
        
         let layout = UICollectionViewFlowLayout()
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         layout.itemSize = CGSize(width: sScreenW, height: sScreenH - sNavatationBarH - sStatusBarH)
         let collectionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: sScreenW, height: sScreenH), collectionViewLayout: layout)
-        collectionView.backgroundColor = UIColor.whiteColor()
+        collectionView.backgroundColor = UIColor.white
         return collectionView
         
     }()
     
     
-    @IBAction func quickTopButton(sender: UIButton) {
-        UIView.animateWithDuration(0.5) { () -> Void in
-            let indexPath = NSIndexPath(forItem: 0, inSection: 0)
-            self.collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
-        }
+    @IBAction func quickTopButton(_ sender: UIButton) {
+        UIView.animate(withDuration: 0.5, animations: { () -> Void in
+            let indexPath = IndexPath(item: 0, section: 0)
+            self.collectionView.scrollToItem(at: indexPath, at: .top, animated: true)
+        }) 
     }
     
     // MARK:- 系统回调
@@ -53,25 +53,25 @@ class ShowAnchorListVC: UIViewController {
         
     }
     
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         SVProgressHUD.dismiss()
     }
     
      func setupCollectionDownReloadData(){
-        let refreshGifHeader = DYRefreshGifHeader(refreshingTarget: self, refreshingAction: "downReloadData")
-        refreshGifHeader?.stateLabel?.hidden = true
-        refreshGifHeader.setTitle("", forState: .Pulling)
-        refreshGifHeader.setTitle("", forState: .Idle)
+        let refreshGifHeader = DYRefreshGifHeader(refreshingTarget: self, refreshingAction: #selector(ShowAnchorListVC.downReloadData))
+        refreshGifHeader?.stateLabel?.isHidden = true
+        refreshGifHeader?.setTitle("", for: .pulling)
+        refreshGifHeader?.setTitle("", for: .idle)
         collectionView.mj_header = refreshGifHeader
-        collectionView.mj_header.automaticallyChangeAlpha = true
+        collectionView.mj_header.isAutomaticallyChangeAlpha = true
         collectionView.mj_header.beginRefreshing()
 
     }
     
      func setupCollectionUpLoadMore(){
         // MJRefreshAutoFooterIdleText
-        let foot = DYRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: "upLoadMore")
+        let foot = DYRefreshAutoNormalFooter(refreshingTarget: self, refreshingAction: #selector(ShowAnchorListVC.upLoadMore))
         collectionView.mj_footer = foot
         
     }
@@ -96,7 +96,7 @@ extension ShowAnchorListVC {
     
     // 上拉加载更多
      func upLoadMore(){
-        page++
+        page += 1
         roomAnchorVM.getRoomAnchorData(page, finishCallBack: { () -> () in
             
             self.collectionView.mj_footer.endRefreshing()
@@ -106,8 +106,8 @@ extension ShowAnchorListVC {
             }) { () -> () in
                 
                 print("没有数据了")
-                SVProgressHUD.setDefaultStyle(.Dark)
-                SVProgressHUD.showInfoWithStatus("没有了哦~~")
+                SVProgressHUD.setDefaultStyle(.dark)
+                SVProgressHUD.showInfo(withStatus: "没有了哦~~")
         }
     }
 }
@@ -115,9 +115,9 @@ extension ShowAnchorListVC {
 // MARK:- UI设置
 extension ShowAnchorListVC {
     // 1 初始化collectionView
-    private func setupCollectionView(){
+    fileprivate func setupCollectionView(){
         view.addSubview(collectionView)
-        collectionView.registerNib(UINib(nibName: "ShowAnchorListCell", bundle: nil), forCellWithReuseIdentifier: ShowAnchorListCellInden)
+        collectionView.register(UINib(nibName: "ShowAnchorListCell", bundle: nil), forCellWithReuseIdentifier: ShowAnchorListCellInden)
         collectionView.dataSource = self
         collectionView.delegate = self
 
@@ -128,16 +128,16 @@ extension ShowAnchorListVC {
 // MARK:- UICollectionViewDataSource
 extension ShowAnchorListVC : UICollectionViewDataSource{
     
-    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
         return roomAnchorVM.roomYKModelArray.count ?? 0
     }
     
     
-    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(ShowAnchorListCellInden, forIndexPath: indexPath) as! ShowAnchorListCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ShowAnchorListCellInden, for: indexPath) as! ShowAnchorListCell
         
         let model = roomAnchorVM.roomYKModelArray[indexPath.item]
         cell.anchorModel = model
@@ -148,10 +148,10 @@ extension ShowAnchorListVC : UICollectionViewDataSource{
 // MARK:- UICollectionViewDelegate
 extension ShowAnchorListVC : UICollectionViewDelegate {
     
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         let showAnchorVC = ShowAnchorVC()
         showAnchorVC.getShowDatasAndIndexPath(roomAnchorVM.roomYKModelArray, indexPath: indexPath)
-        presentViewController(showAnchorVC, animated: true, completion: nil)
+        present(showAnchorVC, animated: true, completion: nil)
     }
 }

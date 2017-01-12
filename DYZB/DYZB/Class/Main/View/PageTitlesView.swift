@@ -10,7 +10,7 @@ import UIKit
 // MARK:- 协议
 protocol PageTitlesViewDelegate : class {
     
-    func pageTitlesView(pageTitlesView:PageTitlesView, index : Int)
+    func pageTitlesView(_ pageTitlesView:PageTitlesView, index : Int)
 }
 // MARK:- 常量
 private let scrollLineH : CGFloat = 2
@@ -21,13 +21,13 @@ private let colorSelected : (CGFloat, CGFloat ,CGFloat) = (255 ,128 ,0)
 class PageTitlesView: UIView {
     
     // MARK:- 定义属性
-    private var titles : [String]
-    private var currentIndex : Int = 0
+    fileprivate var titles : [String]
+    fileprivate var currentIndex : Int = 0
     weak var delegate : PageTitlesViewDelegate?
     
     // MARK:- 懒加载
     /// scrollView
-    private lazy var scrollView : UIScrollView = {
+    fileprivate lazy var scrollView : UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.showsHorizontalScrollIndicator = false
         scrollView.scrollsToTop = false
@@ -35,19 +35,19 @@ class PageTitlesView: UIView {
         return scrollView
     }()
     /// 底部的线
-    private lazy var bottomLine : UIView = {
+    fileprivate lazy var bottomLine : UIView = {
         let bottomLine = UIView()
-        bottomLine.backgroundColor = UIColor.lightGrayColor()
+        bottomLine.backgroundColor = UIColor.lightGray
         return bottomLine
     }()
     /// 底部滚动的横条
-    private lazy var scrollLine : UIView = {
+    fileprivate lazy var scrollLine : UIView = {
         let scrollLine = UIView()
         scrollLine.backgroundColor = UIColor(r: colorSelected.0, g: colorSelected.1, b: colorSelected.2)
         return scrollLine
     }()
 /// 标题数组
-    private lazy var titleLabels : [UILabel] = [UILabel]()
+    fileprivate lazy var titleLabels : [UILabel] = [UILabel]()
     
     // MARK:- 构造函数(override init)
     init(frame: CGRect,titles:[String]) {
@@ -65,7 +65,7 @@ class PageTitlesView: UIView {
 // MARK:- 初始化UI
 extension PageTitlesView{
     
-    private func setupUI(){
+    fileprivate func setupUI(){
         
         // 添加 scrollView
         addSubview(scrollView)
@@ -81,13 +81,13 @@ extension PageTitlesView{
     /**
      设置label尺寸和位置
      */
-    private func setupTitleLabels(){
+    fileprivate func setupTitleLabels(){
         
         let label_W = sScreenW / CGFloat(titles.count)
         let label_Y :CGFloat  = 0
         let label_H :CGFloat  = frame.size.height - scrollLineH
         
-        for (index,title) in titles.enumerate(){
+        for (index,title) in titles.enumerated(){
             let label = UILabel()
             titleLabels.append(label)
             scrollView .addSubview(label)
@@ -95,21 +95,21 @@ extension PageTitlesView{
             label.tag = index
             label.text = title
             label.textColor = UIColor(r: colorNormal.0, g: colorNormal.1, b: colorNormal.2)
-            label.textAlignment = .Center
-            label.font = UIFont.systemFontOfSize(17)
+            label.textAlignment = .center
+            label.font = UIFont.systemFont(ofSize: 17)
             // 设置尺寸
             let label_X :CGFloat = CGFloat(index) * label_W
             label.frame = CGRect(x: label_X, y: label_Y, width: label_W, height: label_H)
             
             // 开启用户交互
-            label.userInteractionEnabled = true
+            label.isUserInteractionEnabled = true
             // 创建手势
-            let tap = UITapGestureRecognizer(target: self, action: "tapGestureRecognizer:")
+            let tap = UITapGestureRecognizer(target: self, action: #selector(PageTitlesView.tapGestureRecognizer(_:)))
             label.addGestureRecognizer(tap)
         }
     }
     
-    private func setupBottomLineAndScrollLine(){
+    fileprivate func setupBottomLineAndScrollLine(){
         
         // 底部的线
          scrollView.addSubview(bottomLine)
@@ -126,7 +126,7 @@ extension PageTitlesView{
 
 // MARK:- 监听label点击事件
 extension PageTitlesView{
-    @objc private func tapGestureRecognizer(tap : UIGestureRecognizer){
+    @objc fileprivate func tapGestureRecognizer(_ tap : UIGestureRecognizer){
         
         // as后面更上?  因为如果是! 就不可以用guard
         guard let label = tap.view as? UILabel else {return}
@@ -140,9 +140,9 @@ extension PageTitlesView{
         
         // 让滑块滚动
         let scrollLine_X = CGFloat(currentIndex) * label.frame.size.width
-        UIView.animateWithDuration(0.2) {[weak self] () -> Void in
+        UIView.animate(withDuration: 0.2, animations: {[weak self] () -> Void in
             self?.scrollLine.frame.origin.x = scrollLine_X
-        }
+        }) 
 
         
         // 通知代理
@@ -153,7 +153,7 @@ extension PageTitlesView{
 extension PageTitlesView{
     
  
-    func setPageTitlesView(progress: CGFloat, originalIndex: Int, targetIndex: Int) {
+    func setPageTitlesView(_ progress: CGFloat, originalIndex: Int, targetIndex: Int) {
         
         // 原来的label
         let originalLabel = titleLabels[originalIndex]

@@ -23,9 +23,9 @@ struct Platform {
 class BaseShowViewController: UIViewController {
     
     // MARK:- 常量
-    private let sButtonY : CGFloat = 80
-    private let sButtonW : CGFloat = 150
-    private let sButtonH : CGFloat = 30
+    fileprivate let sButtonY : CGFloat = 80
+    fileprivate let sButtonW : CGFloat = 150
+    fileprivate let sButtonH : CGFloat = 30
     
     // MARK:- 属性
     /// The AVCaptureConnection from which the audio was received
@@ -36,22 +36,22 @@ class BaseShowViewController: UIViewController {
     var currentDeviceInput : AVCaptureDeviceInput?
     
     // MARK:- 懒加载
-    private lazy var switchCameraButton : UIButton = {
+    fileprivate lazy var switchCameraButton : UIButton = {
         let button = UIButton()
-        button.setTitle("前后摄像头转换", forState: .Normal)
-        button.setTitleColor(UIColor.orangeColor(), forState: .Normal)
-        button.backgroundColor = UIColor.clearColor()
-        button.addTarget(self, action: "switchCameraButtonClick", forControlEvents: .TouchUpInside)
+        button.setTitle("前后摄像头转换", for: UIControlState())
+        button.setTitleColor(UIColor.orange, for: UIControlState())
+        button.backgroundColor = UIColor.clear
+        button.addTarget(self, action: #selector(BaseShowViewController.switchCameraButtonClick), for: .touchUpInside)
         return button
     }()
-    private lazy var captureSession : AVCaptureSession = AVCaptureSession()
-    private lazy var movieFileOutput : AVCaptureMovieFileOutput = AVCaptureMovieFileOutput()
+    fileprivate lazy var captureSession : AVCaptureSession = AVCaptureSession()
+    fileprivate lazy var movieFileOutput : AVCaptureMovieFileOutput = AVCaptureMovieFileOutput()
 
     // MARK:- 系统回调
     override func viewDidLoad() {
         super.viewDidLoad()
 
-                view.backgroundColor = UIColor.whiteColor()
+                view.backgroundColor = UIColor.white
                 view.addSubview(switchCameraButton)
                 switchCameraButton.frame = CGRect(x: sScreenW - sButtonW, y: sButtonY, width: sButtonW, height: sButtonH)
         //        let captureSession = AVCaptureSession()
@@ -66,13 +66,13 @@ class BaseShowViewController: UIViewController {
 
 // MARK:- 按钮点击事件
 extension BaseShowViewController {
-    @objc private func switchCameraButtonClick() {
+    @objc fileprivate func switchCameraButtonClick() {
         // 1 当前的videoInput
         guard let videoInput = currentDeviceInput else { return }
         // 2 需要获得的方向
-        let position  = videoInput.device.position == AVCaptureDevicePosition.Front ? AVCaptureDevicePosition.Back : AVCaptureDevicePosition.Front
+        let position  = videoInput.device.position == AVCaptureDevicePosition.front ? AVCaptureDevicePosition.back : AVCaptureDevicePosition.front
         // 3 获取AVCaptureDevice数组
-        guard let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as? [AVCaptureDevice] else { return }
+        guard let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) as? [AVCaptureDevice] else { return }
 
         // 4 获得新的设备
         var newDevice : AVCaptureDevice?
@@ -114,24 +114,24 @@ extension BaseShowViewController {
                 
                 
                 // 2 判断是否有摄像头
-                if ( !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+                if ( !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
                     print("您的设备没有摄像头或者相关的驱动, 不能进行直播")
                     return
                 }
                 
                 // 3 判断是否有摄像头权限
                 // 3.1 获取状态
-                let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+                let authorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
                 // 3.2 判断各种状态
-                if (authorizationStatus == .Restricted || authorizationStatus == .Denied){
+                if (authorizationStatus == .restricted || authorizationStatus == .denied){
                     print("APP需要访问您的摄像头。\n请启用摄像头-设置/隐私/摄像头")
                     return
                 }
                 
                 // 4 判断是否开启麦克风
                 let audioSession = AVAudioSession.sharedInstance()
-                let selector = Selector("requestRecordPermission:")
-                if (audioSession .respondsToSelector(selector)){
+                let selector = #selector(AVAudioSession.requestRecordPermission(_:))
+                if (audioSession .responds(to: selector)){
 //                    audioSession.performSelector(selector)
                     
                 }else{
@@ -160,11 +160,11 @@ extension BaseShowViewController {
 extension BaseShowViewController {
     
     func shouQuan(){
-        let authorizationStatus = AVCaptureDevice.authorizationStatusForMediaType(AVMediaTypeVideo)
+        let authorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
         switch authorizationStatus {
-        case .NotDetermined:
+        case .notDetermined:
             // 许可对话没有出现，发起授权许可
-            AVCaptureDevice.requestAccessForMediaType(AVMediaTypeVideo,
+            AVCaptureDevice.requestAccess(forMediaType: AVMediaTypeVideo,
                 completionHandler: { (granted:Bool) -> Void in
                     if granted {
                         // 继续
@@ -174,9 +174,9 @@ extension BaseShowViewController {
                         print("用户拒绝，无法继续")
                     }
             })
-        case .Authorized: break
+        case .authorized: break
             // 继续
-        case .Denied, .Restricted: break
+        case .denied, .restricted: break
             // 用户明确地拒绝授权，或者相机设备无法访问
         }
     }
@@ -189,11 +189,11 @@ extension BaseShowViewController {
     func setupVideo(){
         
         // 1 获取设备
-        let devices = AVCaptureDevice.devicesWithMediaType(AVMediaTypeVideo) as! [AVCaptureDevice]
+        let devices = AVCaptureDevice.devices(withMediaType: AVMediaTypeVideo) as! [AVCaptureDevice]
         
         var device : AVCaptureDevice?
         for devi in devices{
-            if devi.position == .Front{
+            if devi.position == .front{
                 device = devi
             }
         }
@@ -204,7 +204,7 @@ extension BaseShowViewController {
         
         // 3 获得输出源
         let videoOutput = AVCaptureVideoDataOutput()
-        let videoQueue = dispatch_queue_create("Audio Capture Queue", DISPATCH_QUEUE_SERIAL)
+        let videoQueue = DispatchQueue(label: "Audio Capture Queue", attributes: [])
         videoOutput.setSampleBufferDelegate(self, queue: videoQueue)
         
         if captureSession.canAddInput(videoInput){
@@ -215,7 +215,7 @@ extension BaseShowViewController {
             captureSession.addOutput(videoOutput)
         }
         
-        videoConnect = videoOutput.connectionWithMediaType(AVMediaTypeVideo)
+        videoConnect = videoOutput.connection(withMediaType: AVMediaTypeVideo)
     }
 
 }
@@ -226,7 +226,7 @@ extension BaseShowViewController {
     func setupAudio(){
         
         // 1 获取设备
-        guard let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeAudio) else { return }
+        guard let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeAudio) else { return }
         
         // 2 获取输入源
         guard let audioInput = try? AVCaptureDeviceInput(device: device) else { return }
@@ -234,7 +234,7 @@ extension BaseShowViewController {
         // 3 获取输出源
         let audioOutput =  AVCaptureAudioDataOutput()
         // dispatch_queue_t audioQueue = dispatch_queue_create("Audio Capture Queue", DISPATCH_QUEUE_SERIAL);
-        let audioQueue = dispatch_queue_create("Audio Capture Queue", DISPATCH_QUEUE_SERIAL)
+        let audioQueue = DispatchQueue(label: "Audio Capture Queue", attributes: [])
         audioOutput.setSampleBufferDelegate(self, queue: audioQueue)
         
         
@@ -259,7 +259,7 @@ extension BaseShowViewController {
     func addShowAnimation(){
         guard let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession) else { return }
         previewLayer.frame = view.bounds
-        view.layer.insertSublayer(previewLayer, atIndex: 0)
+        view.layer.insertSublayer(previewLayer, at: 0)
     }
 }
 
@@ -272,9 +272,9 @@ extension BaseShowViewController {
             captureSession.addOutput(movieFileOutput)
         }
         // 2 获取视频的connection
-        let connection = movieFileOutput.connectionWithMediaType(AVMediaTypeVideo)
+        let connection = movieFileOutput.connection(withMediaType: AVMediaTypeVideo)
         // 3 设置视频稳定模式
-        connection.preferredVideoStabilizationMode = .Auto
+        connection?.preferredVideoStabilizationMode = .auto
         // 4 开始写入视频
         //        movieFileOutput.startRecordingToOutputFileURL(movieFileOutput.outputFileURL, recordingDelegate: self)
         // 5 停止写入
@@ -297,7 +297,7 @@ extension BaseShowViewController {
 // MARK:-AVCaptureAudioDataOutputSampleBufferDelegate,AVCaptureVideoDataOutputSampleBufferDelegate
 extension BaseShowViewController : AVCaptureAudioDataOutputSampleBufferDelegate,AVCaptureVideoDataOutputSampleBufferDelegate {
     
-    func captureOutput(captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, fromConnection connection: AVCaptureConnection!){
+    func captureOutput(_ captureOutput: AVCaptureOutput!, didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!){
         if videoConnect == connection{
             
             //            guard let imageBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
@@ -339,52 +339,52 @@ extension BaseShowViewController : AVCaptureAudioDataOutputSampleBufferDelegate,
 
 extension BaseShowViewController {
     
-    func react(sampleBuffer: CMSampleBuffer){
-        var buffer: CMBlockBuffer? = nil
-        
-        // Needs to be initialized somehow, even if we take only the address
-        var audioBufferList = AudioBufferList(mNumberBuffers: 1,
-            mBuffers: AudioBuffer(mNumberChannels: 1, mDataByteSize: 0, mData: nil))
-        
-        CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
-            sampleBuffer,
-            nil,
-            &audioBufferList,
-            sizeof(audioBufferList.dynamicType),
-            nil,
-            nil,
-            UInt32(kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment),
-            &buffer
-        )
-        
-        let abl = UnsafeMutableAudioBufferListPointer(&audioBufferList)
-        
-        for buffer in abl {
-            let samples = UnsafeMutableBufferPointer<Int16>(start: UnsafeMutablePointer(buffer.mData),
-                count: Int(buffer.mDataByteSize)/sizeof(Int16))
-            
-            var sum:Int64 = 0
-            
-            for sample in samples {
-                let s = Int64(sample)
-                sum = (sum + s*s)
-            }
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                //                    print(sum)
-                print( String(sqrt(Float(sum/Int64(samples.count)))))
-            }
-        }
-    }
+//    func react(_ sampleBuffer: CMSampleBuffer){
+//        var buffer: CMBlockBuffer? = nil
+//        
+//        // Needs to be initialized somehow, even if we take only the address
+//        var audioBufferList = AudioBufferList(mNumberBuffers: 1,
+//            mBuffers: AudioBuffer(mNumberChannels: 1, mDataByteSize: 0, mData: nil))
+//        
+//        CMSampleBufferGetAudioBufferListWithRetainedBlockBuffer(
+//            sampleBuffer,
+//            nil,
+//            &audioBufferList,
+//            MemoryLayout<AudioBufferList>.size,
+//            nil,
+//            nil,
+//            UInt32(kCMSampleBufferFlag_AudioBufferList_Assure16ByteAlignment),
+//            &buffer
+//        )
+//        
+//        let abl = UnsafeMutableAudioBufferListPointer(&audioBufferList)
+//        
+//        for buffer in abl {
+//            let samples = UnsafeMutableBufferPointer<Int16>(start: UnsafeMutablePointer(buffer.mData),
+//                count: Int(buffer.mDataByteSize)/sizeof(Int16))
+//            
+//            var sum:Int64 = 0
+//            
+//            for sample in samples {
+//                let s = Int64(sample)
+//                sum = (sum + s*s)
+//            }
+//            
+//            DispatchQueue.main.async {
+//                //                    print(sum)
+//                print( String(sqrt(Float(sum/Int64(samples.count)))))
+//            }
+//        }
+//    }
 }
 
 // MARK:- AVCaptureFileOutputRecordingDelegate
 extension BaseShowViewController : AVCaptureFileOutputRecordingDelegate{
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAtURL fileURL: NSURL!, fromConnections connections: [AnyObject]!){
+    func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!){
         print("1111")
     }
     
-    func captureOutput(captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAtURL outputFileURL: NSURL!, fromConnections connections: [AnyObject]!, error: NSError!){
+    func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!){
         print("2222")
     }
 }

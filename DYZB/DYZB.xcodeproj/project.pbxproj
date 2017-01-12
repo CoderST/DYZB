@@ -707,9 +707,11 @@
 				TargetAttributes = {
 					0F84A32D1D8A3F50000705BE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
 					};
 					0F84A3411D8A3F50000705BE = {
 						CreatedOnToolsVersion = 7.2;
+						LastSwiftMigration = 0820;
 						TestTargetID = 0F84A32D1D8A3F50000705BE;
 					};
 				};
@@ -1070,6 +1072,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiudou.xiudouiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a71647a9-a26d-4964-b1f8-11dc204d273f";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -1102,6 +1105,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiudou.xiudouiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "a71647a9-a26d-4964-b1f8-11dc204d273f";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
@@ -1112,6 +1116,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiudou.DYZBUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DYZB;
 				USES_XCTRUNNER = YES;
 			};
@@ -1124,6 +1129,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiudou.DYZBUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_TARGET_NAME = DYZB;
 				USES_XCTRUNNER = YES;
 			};

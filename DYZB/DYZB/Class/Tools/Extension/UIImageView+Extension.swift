@@ -14,7 +14,7 @@ extension UIImageView{
     /**
      开始动画
      */
-    func playGifAnimation(images : [UIImage]?){
+    func playGifAnimation(_ images : [UIImage]?){
         guard let imageArray = images else { return }
         animationImages = imageArray
         animationDuration = 0.5
@@ -26,7 +26,7 @@ extension UIImageView{
      结束动画
      */
     func stopGifAnimation(){
-        if isAnimating() == true{
+        if isAnimating == true{
             stopAnimating()
         }
         

@@ -12,78 +12,78 @@ import LFLiveKit
 class ShowBaseSanFangViewController: UIViewController {
 
     // MARK:- 常量
-    private let sEdiMargin : CGFloat = 15
-    private let sTopMargin : CGFloat = 30
-    private let startLiveingBtnH : CGFloat = 50
-    private let sStatusLabelFontSize : CGFloat = 12
+    fileprivate let sEdiMargin : CGFloat = 15
+    fileprivate let sTopMargin : CGFloat = 30
+    fileprivate let startLiveingBtnH : CGFloat = 50
+    fileprivate let sStatusLabelFontSize : CGFloat = 12
     // MARK:- 自定义属性
     var rtmpUrl : String = ""
     
     // MARK:- 懒加载
-    private lazy var livingPreView : UIView = {
+    fileprivate lazy var livingPreView : UIView = {
        
         let livingPreView = UIView()
 //        livingPreView.frame = self.view.bounds
 //        livingPreView.autoresizingMask = [.FlexibleHeight,.FlexibleWidth]
-        self.view.insertSubview(livingPreView, atIndex: 0)
+        self.view.insertSubview(livingPreView, at: 0)
         return livingPreView
         
     }()
     /// 关闭直播
-    private lazy var closeLiveingBtn : UIButton = {
+    fileprivate lazy var closeLiveingBtn : UIButton = {
         
         let closeLiveingBtn = UIButton ()
-        closeLiveingBtn.setTitle("关闭直播", forState: .Normal)
-        closeLiveingBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        closeLiveingBtn.addTarget(self, action: "closeLiveingBtnClick", forControlEvents: .TouchUpInside)
+        closeLiveingBtn.setTitle("关闭直播", for: UIControlState())
+        closeLiveingBtn.setTitleColor(UIColor.white, for: UIControlState())
+        closeLiveingBtn.addTarget(self, action: #selector(ShowBaseSanFangViewController.closeLiveingBtnClick), for: .touchUpInside)
         return closeLiveingBtn
         
     }()
     /// 状态label
-    private lazy var statusLabel : UILabel = {
+    fileprivate lazy var statusLabel : UILabel = {
         let statusLabel = UILabel()
-        statusLabel.font = UIFont.systemFontOfSize(self.sStatusLabelFontSize)
+        statusLabel.font = UIFont.systemFont(ofSize: self.sStatusLabelFontSize)
         statusLabel.text = "状态:未知"
-        statusLabel.textAlignment = .Center
-        statusLabel.textColor = UIColor.whiteColor()
+        statusLabel.textAlignment = .center
+        statusLabel.textColor = UIColor.white
         return statusLabel
     }()
     /// 美颜
-    private lazy var beautifulBtn : UIButton = {
+    fileprivate lazy var beautifulBtn : UIButton = {
         let beautifulBtn = UIButton ()
-        beautifulBtn.setTitle("开启美颜", forState: .Selected)
-        beautifulBtn.setTitle("关闭美颜", forState: .Normal)
-        beautifulBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
-        beautifulBtn.addTarget(self, action: "beautifulFaceClick:", forControlEvents: .TouchUpInside)
+        beautifulBtn.setTitle("开启美颜", for: .selected)
+        beautifulBtn.setTitle("关闭美颜", for: UIControlState())
+        beautifulBtn.setTitleColor(UIColor.white, for: UIControlState())
+        beautifulBtn.addTarget(self, action: #selector(ShowBaseSanFangViewController.beautifulFaceClick(_:)), for: .touchUpInside)
         return beautifulBtn
         
     }()
     /// 开始直播
-    private lazy var startLiveingBtn : UIButton = {
+    fileprivate lazy var startLiveingBtn : UIButton = {
         let startLiveingBtn = UIButton ()
-        startLiveingBtn.backgroundColor = UIColor.redColor()
-        startLiveingBtn.setTitle("开始直播", forState: .Normal)
-        startLiveingBtn.setTitle("结束直播", forState: .Selected)
-        startLiveingBtn.setTitleColor(UIColor.whiteColor(), forState: .Normal)
+        startLiveingBtn.backgroundColor = UIColor.red
+        startLiveingBtn.setTitle("开始直播", for: UIControlState())
+        startLiveingBtn.setTitle("结束直播", for: .selected)
+        startLiveingBtn.setTitleColor(UIColor.white, for: UIControlState())
         startLiveingBtn.layer.cornerRadius = self.startLiveingBtnH * 0.5
-        startLiveingBtn.addTarget(self, action: "startLiveingBtnClick:", forControlEvents: .TouchUpInside)
-        startLiveingBtn.setTitleColor(UIColor.blackColor(), forState: .Normal)
+        startLiveingBtn.addTarget(self, action: #selector(ShowBaseSanFangViewController.startLiveingBtnClick(_:)), for: .touchUpInside)
+        startLiveingBtn.setTitleColor(UIColor.black, for: UIControlState())
         return startLiveingBtn
         
     }()
     /// 调换摄像头方向
-    private lazy var switchCameraDirectionBtn : UIButton = {
+    fileprivate lazy var switchCameraDirectionBtn : UIButton = {
         let switchCameraDirectionBtn = UIButton()
-        switchCameraDirectionBtn.setTitle("前摄像头", forState: .Normal)
-        switchCameraDirectionBtn.setTitle("后摄像头", forState: .Selected)
-        switchCameraDirectionBtn.addTarget(self, action: "switchCameraDirectionBtnClick:", forControlEvents: .TouchUpInside)
+        switchCameraDirectionBtn.setTitle("前摄像头", for: UIControlState())
+        switchCameraDirectionBtn.setTitle("后摄像头", for: .selected)
+        switchCameraDirectionBtn.addTarget(self, action: #selector(ShowBaseSanFangViewController.switchCameraDirectionBtnClick(_:)), for: .touchUpInside)
         return switchCameraDirectionBtn
         
     }()
     /// session
-    private lazy var session : LFLiveSession = {
+    fileprivate lazy var session : LFLiveSession = {
        
-        let session = LFLiveSession(audioConfiguration: LFLiveAudioConfiguration.defaultConfiguration(), videoConfiguration: LFLiveVideoConfiguration.defaultConfigurationForQuality(.Medium2))
+        let session = LFLiveSession(audioConfiguration: LFLiveAudioConfiguration.default(), videoConfiguration: LFLiveVideoConfiguration.defaultConfiguration(for: .medium2))
 //        
 //        let session = LFLiveSession(audioConfiguration: LFLiveAudioConfiguration.defaultConfiguration(), videoConfiguration: LFLiveVideoConfiguration.defaultConfigurationForQuality(.Medium2), captureType: LFLiveCaptureTypeMask.CaptureMaskAll)
         
@@ -100,28 +100,28 @@ class ShowBaseSanFangViewController: UIViewController {
     // MARK:- 系统回调
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         setupUI()
-        session.captureDevicePosition = .Front
+        session.captureDevicePosition = .front
         
         print("pppp",closeLiveingBtn)
     }
     
     // MARK:- 按钮点击
     // 关闭直播
-    @objc private func closeLiveingBtnClick(){
+    @objc fileprivate func closeLiveingBtnClick(){
 
-        if session.state == .Pending || session.state == .Start{
+        if session.state == .pending || session.state == .start{
             session.stopLive()
         }
-        dismissViewControllerAnimated(true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
     
     // 开始直播
-    @objc private func startLiveingBtnClick(button:UIButton){
-        button.selected = !button.selected
+    @objc fileprivate func startLiveingBtnClick(_ button:UIButton){
+        button.isSelected = !button.isSelected
         
-        if button.selected{
+        if button.isSelected{
             // 开始直播
             let stream = LFLiveStreamInfo()
             stream.url = "rtmp://192.168.1.101:1935/rtmplive/room"
@@ -138,17 +138,17 @@ class ShowBaseSanFangViewController: UIViewController {
     }
     
     // 美颜
-    @objc private func beautifulFaceClick(button: UIButton){
-        button.selected = !button.selected;
+    @objc fileprivate func beautifulFaceClick(_ button: UIButton){
+        button.isSelected = !button.isSelected;
         // 默认是开启了美颜功能的
         session.beautyFace = !self.session.beautyFace;
     }
     
     // 调换摄像头方向
-    @objc private func switchCameraDirectionBtnClick(button : UIButton){
+    @objc fileprivate func switchCameraDirectionBtnClick(_ button : UIButton){
         
         let direction = session.captureDevicePosition
-        session.captureDevicePosition = (direction == AVCaptureDevicePosition.Front ? AVCaptureDevicePosition.Back : AVCaptureDevicePosition.Front)
+        session.captureDevicePosition = (direction == AVCaptureDevicePosition.front ? AVCaptureDevicePosition.back : AVCaptureDevicePosition.front)
         
     }
 
@@ -208,19 +208,19 @@ extension ShowBaseSanFangViewController {
 extension ShowBaseSanFangViewController:LFLiveSessionDelegate {
     
     /** live status changed will callback */
-    func liveSession(session: LFLiveSession?, liveStateDidChange state: LFLiveState){
+    func liveSession(_ session: LFLiveSession?, liveStateDidChange state: LFLiveState){
 
         var tempState = ""
         switch state{
-        case .Ready:
+        case .ready:
             tempState = "准备中"
-        case .Pending:
+        case .pending:
             tempState = "链接中"
-        case .Start:
+        case .start:
             tempState = "已链接"
-        case .Stop:
+        case .stop:
             tempState = "已断开"
-        case .Error:
+        case .error:
             tempState = "连接出错"
             
         default: break
@@ -229,11 +229,11 @@ extension ShowBaseSanFangViewController:LFLiveSessionDelegate {
         
     }
     /** live debug info callback */
-    func liveSession(session: LFLiveSession?, debugInfo: LFLiveDebug?){
+    func liveSession(_ session: LFLiveSession?, debugInfo: LFLiveDebug?){
         print("live debug")
     }
     /** callback socket errorcode */
-    func liveSession(session: LFLiveSession?, errorCode: LFLiveSocketErrorCode){
+    func liveSession(_ session: LFLiveSession?, errorCode: LFLiveSocketErrorCode){
         print("callback socket")
     }
 }

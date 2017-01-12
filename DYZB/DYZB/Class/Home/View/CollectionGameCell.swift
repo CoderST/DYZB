@@ -22,8 +22,10 @@ class CollectionGameCell: UICollectionViewCell {
             
             
             titleLabel.text = anchorGroup?.tag_name ?? ""
-            let iconURL = NSURL(string: anchorGroup?.icon_url ?? "")!
-            iconImageView.sd_setImageWithURL(iconURL, placeholderImage: UIImage(named: "Img_default"))
+            guard let string = anchorGroup?.icon_url else { return }
+            guard let url = URL(string: string) else { return }
+            iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "Img_default"))
+            
         }
     }
 

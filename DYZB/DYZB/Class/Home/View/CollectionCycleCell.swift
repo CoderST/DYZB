@@ -19,7 +19,7 @@ class CollectionCycleCell: UICollectionViewCell {
         didSet{
             guard let cycleM = cycleModel else {return}
             cycleNameLabel.text = cycleM.title
-            cycleBackgroundImage.sd_setImageWithURL(NSURL(string: cycleM.pic_url), placeholderImage: UIImage(named: "Img_default"))
+            cycleBackgroundImage.sd_setImage(with: URL(string: cycleM.pic_url), placeholderImage: UIImage(named: "Img_default"))
         }
     }
 

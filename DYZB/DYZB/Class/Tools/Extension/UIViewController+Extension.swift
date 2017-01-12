@@ -13,7 +13,7 @@ extension UIViewController{
     
     
     // 给UIViewController添加UIImageView属性
-    private struct charNameKeys {
+    fileprivate struct charNameKeys {
         static var charName = "charName"
     }
     var gifImageView: UIImageView? {
@@ -44,20 +44,18 @@ extension UIViewController{
     /**
      显示GIF加载动画
      */
-    func showGifLoading(var images : [UIImage]?,var inView:UIView?){
- 
+    func showGifLoading(_ images : [UIImage]?,inView : UIView?){
+        var images = images
+        guard let safeView = inView else { return }
         if images == nil{
             images = [UIImage(named: "hold1_60x72")!,UIImage(named: "hold2_60x72")!,UIImage(named: "hold3_60x72")!]
         }
         
         let gifImage = UIImageView()
-        if inView == nil{
-            inView = view
-        }
-        inView?.addSubview(gifImage)
+        safeView.addSubview(gifImage)
         gifImageView = gifImage
-        gifImage.snp_makeConstraints { (make) -> Void in
-            make.center.equalTo(0)
+        gifImage.snp.makeConstraints { (make) -> Void in
+            make.center.equalTo(safeView)
             make.width.equalTo(60)
             make.height.equalTo(70)
         }

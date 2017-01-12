@@ -20,8 +20,8 @@ class CollectionBaseCell: UICollectionViewCell {
         didSet{
             guard let anchor = anchorModel else { return }
 //            nickNameLabel.text = anchor.nickname
-            guard let url = NSURL(string: anchor.vertical_src) else { return }
-            iconImageView.sd_setImageWithURL(url, placeholderImage: UIImage(named: "Img_default"))
+            guard let url = URL(string: anchor.vertical_src) else { return }
+            iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "Img_default"))
             
             // 处理在线人数
             var onlineString : String = ""
@@ -31,7 +31,7 @@ class CollectionBaseCell: UICollectionViewCell {
                 onlineString = "\(anchor.online)在线"
             }
             nickLabel.text = anchor.nickname
-            onLineNumber.setTitle(onlineString, forState: .Normal)
+            onLineNumber.setTitle(onlineString, for: UIControlState())
         }
     }
     

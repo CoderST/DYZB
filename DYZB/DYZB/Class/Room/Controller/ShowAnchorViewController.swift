@@ -12,9 +12,9 @@ import MJRefresh
 import IJKMediaFramework
 class ShowAnchorViewController: UIViewController {
     // MARK:- 常量
-    private let sMarginLR :CGFloat = 15
-    private let sMarginT :CGFloat = 30
-    private let RoomAnchorCellIdentifier = "RoomAnchorCellIdentifier"
+    fileprivate let sMarginLR :CGFloat = 15
+    fileprivate let sMarginT :CGFloat = 30
+    fileprivate let RoomAnchorCellIdentifier = "RoomAnchorCellIdentifier"
     
     // MARK:- 自定义属性
     var room_id : Int64 = 0
@@ -24,17 +24,17 @@ class ShowAnchorViewController: UIViewController {
     var refreshGifHeader : DYRefreshGifHeader?
     
     // MARK:- 懒加载
-    private lazy var roomAnchorVM : RoomAnchorVM = RoomAnchorVM()
-        private lazy var tableView : UITableView = {
+    fileprivate lazy var roomAnchorVM : RoomAnchorVM = RoomAnchorVM()
+        fileprivate lazy var tableView : UITableView = {
         
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.pagingEnabled = true
+        tableView.isPagingEnabled = true
         tableView.showsHorizontalScrollIndicator = false
         tableView.showsVerticalScrollIndicator = false
         tableView.rowHeight = sScreenH
-        tableView.registerClass(RoomAnchorCell.self, forCellReuseIdentifier: self.RoomAnchorCellIdentifier)
+        tableView.register(RoomAnchorCell.self, forCellReuseIdentifier: self.RoomAnchorCellIdentifier)
         return tableView
     }()
     
@@ -42,10 +42,10 @@ class ShowAnchorViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.whiteColor()
+        view.backgroundColor = UIColor.white
         
         setupUI()
-         refreshGifHeader  = DYRefreshGifHeader(refreshingTarget: self, refreshingAction: "refreshGifHeaderAction")
+         refreshGifHeader  = DYRefreshGifHeader(refreshingTarget: self, refreshingAction: #selector(ShowAnchorViewController.refreshGifHeaderAction))
         tableView.mj_header = refreshGifHeader
         getNetworkData()
         
@@ -59,13 +59,13 @@ class ShowAnchorViewController: UIViewController {
     
     // MARK:- 自定义方法
      func refreshGifHeaderAction(){
-        currentIndex++
+        currentIndex += 1
         if currentIndex == roomAnchorVM.roomYKModelArray.count{
             currentIndex = 0
         }
-        refreshGifHeader?.stateLabel?.hidden = false
-        refreshGifHeader?.setTitle("下拉切换另一个", forState: .Pulling)
-        refreshGifHeader?.setTitle("下拉切换另一个", forState: .Idle)
+        refreshGifHeader?.stateLabel?.isHidden = false
+        refreshGifHeader?.setTitle("下拉切换另一个", for: .pulling)
+        refreshGifHeader?.setTitle("下拉切换另一个", for: .idle)
         if roomAnchorVM.roomYKModelArray.count > 0{
         tableView.mj_header.endRefreshing()
         tableView.reloadData()
@@ -79,7 +79,7 @@ class ShowAnchorViewController: UIViewController {
 // MARK:- 网络请求
 extension ShowAnchorViewController {
     
-    private func getNetworkData(){
+    fileprivate func getNetworkData(){
         // 其实这里有个问题:如果要实现喵播上拉下拉
         tableView.mj_header.beginRefreshing()
 //        roomAnchorVM.getRoomAnchorData(1) { () -> () in
@@ -118,12 +118,12 @@ extension ShowAnchorViewController {
 
 extension ShowAnchorViewController :UITableViewDataSource {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         return 1
     }
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell{
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
         
-        let roomcell = tableView.dequeueReusableCellWithIdentifier(RoomAnchorCellIdentifier, forIndexPath: indexPath) as! RoomAnchorCell
+        let roomcell = tableView.dequeueReusableCell(withIdentifier: RoomAnchorCellIdentifier, for: indexPath) as! RoomAnchorCell
         if roomAnchorVM.roomYKModelArray.count > 0{
             roomcell.parentVc = self
             let anchor = roomAnchorVM.roomYKModelArray[currentIndex]
@@ -134,7 +134,7 @@ extension ShowAnchorViewController :UITableViewDataSource {
 }
 
 extension ShowAnchorViewController : UITableViewDelegate{
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat{
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         
         return sScreenH
     }

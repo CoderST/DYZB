@@ -15,7 +15,7 @@ protocol ShowAnchorCatViewDelegate : NSObjectProtocol{
     /**
      长按手势代理
      */
-    func ShowAnchorCatViewLongPress(showAnchorCatView : ShowAnchorCatView, gesture : UIGestureRecognizer)
+    func ShowAnchorCatViewLongPress(_ showAnchorCatView : ShowAnchorCatView, gesture : UIGestureRecognizer)
 }
 
 class ShowAnchorCatView: UIView {
@@ -24,7 +24,7 @@ class ShowAnchorCatView: UIView {
     var delegate : ShowAnchorCatViewDelegate?
     
     // MARK:- 懒加载
-    private lazy var catImageView : UIImageView = {
+    fileprivate lazy var catImageView : UIImageView = {
         
         let catImageView =  UIImageView()
         catImageView.image = UIImage(named: "public_catEar_98x25")
@@ -36,7 +36,7 @@ class ShowAnchorCatView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        backgroundColor = UIColor.purpleColor()
+        backgroundColor = UIColor.purple
         
         setupUI()
         addGestureAction()
@@ -46,23 +46,23 @@ class ShowAnchorCatView: UIView {
     
     func addGestureAction(){
         // 长按手势
-        let longGress = UILongPressGestureRecognizer(target: self, action: "longPress:")
+        let longGress = UILongPressGestureRecognizer(target: self, action: #selector(ShowAnchorCatView.longPress(_:)))
         addGestureRecognizer(longGress)
         
         // 点击手势
         
-        let tapGress = UITapGestureRecognizer(target: self, action: "tapPress:")
+        let tapGress = UITapGestureRecognizer(target: self, action: #selector(ShowAnchorCatView.tapPress(_:)))
         addGestureRecognizer(tapGress)
     }
     
-    @objc private func longPress(gesture : UILongPressGestureRecognizer){
+    @objc fileprivate func longPress(_ gesture : UILongPressGestureRecognizer){
         
         delegate?.ShowAnchorCatViewLongPress(self, gesture: gesture)
     }
     
-    @objc private func tapPress(gesture : UITapGestureRecognizer){
+    @objc fileprivate func tapPress(_ gesture : UITapGestureRecognizer){
         
-        NSNotificationCenter.defaultCenter().postNotificationName(sNotificationName_TapCatClick, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: Notification.Name(rawValue: sNotificationName_TapCatClick), object: nil, userInfo: nil)
     }
     
     // MARK:- SET
@@ -71,15 +71,15 @@ class ShowAnchorCatView: UIView {
         didSet{
             
             guard let model = anchor else { return }
-            let ffoptions = IJKFFOptions.optionsByDefault()
-            ffoptions.setPlayerOptionValue("1", forKey: "an")
+            let ffoptions = IJKFFOptions.byDefault()
+            ffoptions?.setPlayerOptionValue("1", forKey: "an")
             // 硬解码
-            ffoptions.setPlayerOptionValue("1", forKey: "videotoolbox")
-            movieModel = IJKFFMoviePlayerController(contentURLString: model.flv ?? "", withOptions: ffoptions)
+            ffoptions?.setPlayerOptionValue("1", forKey: "videotoolbox")
+            movieModel = IJKFFMoviePlayerController(contentURLString: model.flv ?? "", with: ffoptions)
             movieModel!.view.frame = bounds
             movieModel!.view.layer.cornerRadius = frame.size.height * 0.5
             movieModel!.view.clipsToBounds = true
-            movieModel!.scalingMode = .Fill
+            movieModel!.scalingMode = .fill
             movieModel!.shouldAutoplay = true
             addSubview(movieModel!.view)
             movieModel!.prepareToPlay()
@@ -117,7 +117,7 @@ class ShowAnchorCatView: UIView {
 // MARK:- UI布局
 extension ShowAnchorCatView {
     
-    private func setupUI(){
+    fileprivate func setupUI(){
         
         addSubview(catImageView)
         

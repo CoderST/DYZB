@@ -9,18 +9,17 @@
 import UIKit
 import Alamofire
 enum MethodType {
-    
-    case GET
-    case POST
+    case get
+    case post
 }
 class NetworkTools {
 
-    class func requestData(type : MethodType,URLString : String,parameters:[String : AnyObject]? = nil,finishCallBack : (result : AnyObject) -> ()){
+    class func requestData(_ type : MethodType,URLString : String,parameters:[String : Any]? = nil,finishCallBack : @escaping (_ result : Any) -> ()){
         // 确定请求类型
-        let method = type == .GET ? Method.GET : Method.POST
+        let method = type == .get ? HTTPMethod.get : HTTPMethod.post
         
         // 发送网络请求
-       Alamofire.request(method, URLString, parameters: parameters).responseJSON { (response) -> Void in
+       Alamofire.request(URLString, method: method, parameters: parameters).responseJSON { (response) in
         
         // 守护结果
         guard let result = response.result.value else{

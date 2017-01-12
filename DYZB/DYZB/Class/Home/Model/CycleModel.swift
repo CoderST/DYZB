@@ -23,10 +23,10 @@ class CycleModel: NSObject {
     // 自定义构造函数
     init(dict : [String : NSObject]) {
         super.init()
-        setValuesForKeysWithDictionary(dict)
+        setValuesForKeys(dict)
     }
     
-    override func setValue(value: AnyObject?, forUndefinedKey key: String) {
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
         
     }
     

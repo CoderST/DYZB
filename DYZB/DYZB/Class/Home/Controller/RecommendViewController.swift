@@ -19,7 +19,7 @@ class RecommendViewController: BaseAnchorViewController {
 
     // MARK:- 懒加载
     // 轮播图的view
-    private lazy var recommendCycleView : RecommendCycleView = {
+    fileprivate lazy var recommendCycleView : RecommendCycleView = {
         
         let recommendCycleView = RecommendCycleView.creatRecommendCycleView()
         // y = -recommendCycleHeight(因为设置了collectionView.contentInset)
@@ -29,7 +29,7 @@ class RecommendViewController: BaseAnchorViewController {
     }()
     
     // 推荐游戏view
-    private lazy var recommentGameView : RecommendGameView = {
+    fileprivate lazy var recommentGameView : RecommendGameView = {
        
         let recommentGameView = RecommendGameView.creatRecommendGameView()
         
@@ -57,7 +57,7 @@ extension RecommendViewController{
         // 将collectionView添加到控制器的view中
         view.addSubview(collectionView)
         
-        collectionView.registerNib(UINib(nibName: "CollectionViewPrettyCell", bundle: nil), forCellWithReuseIdentifier : sCellPrettyIdentifier)
+        collectionView.register(UINib(nibName: "CollectionViewPrettyCell", bundle: nil), forCellWithReuseIdentifier : sCellPrettyIdentifier)
         
         // 添加子控间
         collectionView.addSubview(recommendCycleView)
@@ -70,7 +70,7 @@ extension RecommendViewController{
 
 extension RecommendViewController{
     
-    private func setupNetWork(){
+    fileprivate func setupNetWork(){
         
         // 请求推荐数据
         recommendViewModel.request { () -> () in
@@ -95,24 +95,24 @@ extension RecommendViewController{
 extension RecommendViewController{
     
     
-     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         // 取出对应组
         let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
         let anchorModel = anchorGroup.anchors[indexPath.item]
         var cell : CollectionBaseCell!
         if indexPath.section == 1{
-             cell = collectionView.dequeueReusableCellWithReuseIdentifier(sCellPrettyIdentifier, forIndexPath: indexPath) as! CollectionViewPrettyCell
+             cell = collectionView.dequeueReusableCell(withReuseIdentifier: sCellPrettyIdentifier, for: indexPath) as! CollectionViewPrettyCell
             cell.anchorModel = anchorModel
             return cell
         }else{
-            return super.collectionView(collectionView, cellForItemAtIndexPath: indexPath)
+            return super.collectionView(collectionView, cellForItemAt: indexPath)
         }
         
     }
 
 
-    override func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+    override func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         if indexPath.section == 1 {
             return CGSize(width: sItemWidth, height: sItemPrettyWidth)
         }
