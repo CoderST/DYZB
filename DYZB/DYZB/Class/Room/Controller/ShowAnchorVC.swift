@@ -23,10 +23,6 @@ class ShowAnchorVC: UIViewController {
     var movieIndex : Int = 0
     /// 猥琐了一把,就是控制cell一次操作
     var cellOneLock : Bool = false
-    /// 向上滚动的锁🔐
-    var upLock : Bool = false
-    /// 向下滚动的锁🔐
-    var downLock : Bool = false
     /// 手指是否离开屏幕
     var userTouch : Bool = false
     
@@ -216,30 +212,7 @@ extension ShowAnchorVC : UIScrollViewDelegate{
         lastContentOffset = scrollView.contentOffset.y
 //        scrollView.isScrollEnabled = true
     }
-    
 
-    
-    // 控制
-//    func scrollViewDidScroll(_ scrollView: UIScrollView){
-//        let height = UIScreen.main.bounds.size.height * 0.5
-//        if scrollowViewOneLock == true{
-//            // 向上滚动
-//            if(lastContentOffset + height < scrollView.contentOffset.y && upLock == false && userTouch == false){
-//                print(movieIndex)
-//                movieIndex += 1
-//                print(movieIndex)
-//                upLock = true
-//                
-//            }
-//            // 向下滚动
-//            if(scrollView.contentOffset.y < lastContentOffset - height && downLock == false && userTouch == false){
-//                
-//                movieIndex -= 1
-//                downLock = true
-//            }
-//        }
-//        
-//    }
     
     
     // 已经完成减速
@@ -264,27 +237,13 @@ extension ShowAnchorVC : UIScrollViewDelegate{
     
 
     func didEndAction() {
-//        if tempAnchor != currentShowArray![movieIndex]{
             // 1 主播视频数据
             let roomAnchor = currentShowArray![movieIndex]
             roomcell.playingVideo(roomAnchor)
-            
-//            // 2 副播视频数据
-//            var subIndex = movieIndex + 1
-//            // 3 判断是否越界
-//            if subIndex <= currentShowArray!.count{
-//                subIndex = movieIndex + 1
-//            }else{
-//                subIndex = 0
-//            }
-//            
             // 4 传递副播数据
             roomcell.subAnchorModel = currentShowArray![movieIndex + 1]
             tempAnchor = roomAnchor
-            downLock = false
-            upLock = false
             userTouch = false
-//        }
 
     }
 }
