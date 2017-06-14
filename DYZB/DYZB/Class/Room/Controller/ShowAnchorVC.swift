@@ -18,25 +18,21 @@ class ShowAnchorVC: UIViewController {
     fileprivate let RoomAnchorCellIdentifier = "RoomAnchorCellIdentifier"
     
     // MARK:- 变量
-    var lastContentOffset : CGFloat = 0
     /// 控制主播的index
-    var movieIndex : Int = 0
+    fileprivate var movieIndex : Int = 0
     /// 猥琐了一把,就是控制cell一次操作
-    var cellOneLock : Bool = false
-    /// 手指是否离开屏幕
-    var userTouch : Bool = false
-    
-    var scrollowViewOneLock : Bool = false
-    
+    fileprivate var cellOneLock : Bool = false
     /// 零时变量记录当前主播的信息
-    var tempAnchor : RoomYKModel?
+    fileprivate var tempAnchor : RoomYKModel?
+    /// 是否为当前主播
+    fileprivate var currentAnchor : RoomYKModel?
     
     // MARK:- 自定义属性
-    var room_id : Int64 = 0
-    
-    var currentShowArray : [RoomYKModel]?
-    
-    var roomcell : ShowAnchorVCCell!
+    fileprivate var room_id : Int64 = 0
+    /// 当前需要展示主播数组
+    fileprivate var currentShowArray : [RoomYKModel] = [RoomYKModel]()
+    /// 记录cell
+    fileprivate var roomcell : ShowAnchorVCCell!
     
     // MARK:- 懒加载
     fileprivate lazy var tableView : UITableView = {
@@ -60,57 +56,18 @@ class ShowAnchorVC: UIViewController {
         
         view.backgroundColor = UIColor.white
         
+        // 设置UI
         setupUI()
         
-        initObserver()
+        // 监听通知
+        notificationCenterAddObserver()
     }
-    
-    // MARK:- 监听通知
-    func initObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.ClickUser(_:)), name: NSNotification.Name(rawValue: sNotificationName_ClickUser), object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.TapCatClick(_:)), name: NSNotification.Name(rawValue: sNotificationName_TapCatClick), object: nil)
-        
-        
-    }
-    
-    // MARK:- 通知事件
-    func ClickUser(_ notification : Notification){
-        guard let infor = notification.userInfo else { return }
-        guard let user = infor["user"] as? RoomFollowPerson else { return }
-        
-        let showUserVC = ShowUserVC()
-        showUserVC.roomAnchor = user
-        showUserVC.modalPresentationStyle = .custom
-        showUserVC.transitioningDelegate = persentModel
-        persentModel.presentedFrame = CGRect(x: 15, y: 100, width: sScreenW - 30, height: sScreenH - 200)
-        present(showUserVC, animated: true, completion: nil)
-        
-    }
-    
-    func TapCatClick(_ notification : Notification){
-        print("TapCatClickTapCatClickTapCatClick")
-        cellOneLock = false
-        movieIndex += 1
-        let indexPath = IndexPath(row: movieIndex, section: 0)
-        tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
-    }
-    
-    
     
     // MARK:- 控制器销毁
     deinit{
         NotificationCenter.default.removeObserver(self)
         print("ShowAnchorViewController - 界面销毁")
         
-    }
-    
-    // MARK:- 自定义方法
-    func getShowDatasAndIndexPath(_ showArray : [RoomYKModel],indexPath : IndexPath?){
-        print("indexPath!.row",indexPath!.row)
-        currentShowArray = showArray
-        movieIndex = indexPath!.row
-        tableView.scrollToRow(at: indexPath!, at: UITableViewScrollPosition.top, animated: false)
     }
     
 }
@@ -129,12 +86,61 @@ extension ShowAnchorVC {
     }
 }
 
+// MARK:- 监听通知 - 通知事件
+extension ShowAnchorVC {
+    
+    
+    func notificationCenterAddObserver(){
+        // 点击关注用户通知
+        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.ClickUser(_:)), name: NSNotification.Name(rawValue: sNotificationName_ClickUser), object: nil)
+        
+        // 点击猫耳朵通知
+        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.TapCatClick(_:)), name: NSNotification.Name(rawValue: sNotificationName_TapCatClick), object: nil)
+        
+        
+    }
+    
+    @objc fileprivate func ClickUser(_ notification : Notification){
+        guard let infor = notification.userInfo else { return }
+        guard let user = infor["user"] as? RoomFollowPerson else { return }
+        
+        let showUserVC = ShowUserVC()
+        showUserVC.roomAnchor = user
+        showUserVC.modalPresentationStyle = .custom
+        showUserVC.transitioningDelegate = persentModel
+        persentModel.presentedFrame = CGRect(x: 15, y: 100, width: sScreenW - 30, height: sScreenH - 200)
+        present(showUserVC, animated: true, completion: nil)
+        
+    }
+    
+    @objc fileprivate func TapCatClick(_ notification : Notification){
+        print("TapCatClickTapCatClickTapCatClick")
+        cellOneLock = false
+        movieIndex += 1
+        let indexPath = IndexPath(row: movieIndex, section: 0)
+        tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+    }
+
+}
+
+// MARK:- 自定义方法
+extension ShowAnchorVC {
+    
+    /// 获取主要数据
+    func getShowDatasAndIndexPath(_ showArray : [RoomYKModel],indexPath : IndexPath?){
+        guard let indexPath = indexPath else { return }
+        currentShowArray = showArray
+        movieIndex = indexPath.row
+        tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+    }
+}
+
 // MARK:- UITableViewDataSource
 extension ShowAnchorVC :UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int{
         
-        return currentShowArray?.count ?? 0
+        return currentShowArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell{
@@ -142,21 +148,21 @@ extension ShowAnchorVC :UITableViewDataSource {
         roomcell = tableView.dequeueReusableCell(withIdentifier: RoomAnchorCellIdentifier, for: indexPath) as! ShowAnchorVCCell
         roomcell.parentVc = self
         
-        // 1 传递主播图片数据
-        let roomAnchor = currentShowArray![indexPath.row]
+        // 1 传递主播数据
+        let roomAnchor = currentShowArray[indexPath.row]
         roomcell.roomAnchor = roomAnchor
         
         if cellOneLock == false{
             // 2 传递主播视频数据
-            tempAnchor = currentShowArray![movieIndex]
+            tempAnchor = currentShowArray[movieIndex]
             roomcell.playingVideo(tempAnchor!)
             // 3 副播视频数据
             var subIndex = movieIndex + 1
-            if subIndex <= currentShowArray!.count{
+            if subIndex <= currentShowArray.count{
             }else{
                 subIndex = 0
             }
-            roomcell.subAnchorModel = currentShowArray![subIndex]
+            roomcell.subAnchorModel = currentShowArray[subIndex]
             cellOneLock = true
         }
         movieIndex = indexPath.row
@@ -175,7 +181,10 @@ extension ShowAnchorVC : UITableViewDelegate{
     // 已经结束显示的cell
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath){
         
-        
+        if movieIndex == indexPath.row{
+            
+            return
+        }
         
         let willDisappearCell = cell as!ShowAnchorVCCell
         
@@ -205,45 +214,30 @@ extension ShowAnchorVC : UITableViewDelegate{
 // MARK:-UIScrollViewDelegate 以下是处理滚动cell时传递视频数据
 extension ShowAnchorVC : UIScrollViewDelegate{
     
-    // 手指接触拖拽
-    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
-        scrollowViewOneLock = true
-        userTouch = true
-        lastContentOffset = scrollView.contentOffset.y
-//        scrollView.isScrollEnabled = true
-    }
 
     
     
     // 已经完成减速
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
+
         
         didEndAction()
-//        scrollView.isScrollEnabled = true
         
            }
-    
-    // 手指离开拖拽
-//    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool){
-//        
-//        if !decelerate{
-//            didEndAction()
-//            
-//        }else{
-////            scrollView.isScrollEnabled = false
-//
-//        }
-//    }
-    
+
 
     func didEndAction() {
             // 1 主播视频数据
-            let roomAnchor = currentShowArray![movieIndex]
+            let roomAnchor = currentShowArray[movieIndex]
+//            currentAnchor = roomAnchor
+        if tempAnchor?.userId == roomAnchor.userId{
+            return
+        }
             roomcell.playingVideo(roomAnchor)
             // 4 传递副播数据
-            roomcell.subAnchorModel = currentShowArray![movieIndex + 1]
+            roomcell.subAnchorModel = currentShowArray[movieIndex + 1]
+       
             tempAnchor = roomAnchor
-            userTouch = false
 
     }
 }

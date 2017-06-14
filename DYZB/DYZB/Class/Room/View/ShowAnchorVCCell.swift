@@ -19,8 +19,6 @@ class ShowAnchorVCCell: UITableViewCell {
     fileprivate let sMarginLR :CGFloat = 15
     fileprivate let sMarginT :CGFloat = 30
     
-    fileprivate var currentTempUserId : String = ""
-    
     // MARK:- 定义属性
     var playerController : IJKFFMoviePlayerController?
     /// 引用父控件
@@ -117,13 +115,6 @@ class ShowAnchorVCCell: UITableViewCell {
             // 3 弹幕停止
             renderer.stop()
             
-            //            if playerController != nil{
-            //                contentView.insertSubview(placeHolderImageView, aboveSubview: playerController!.view)
-            //                playerController!.shutdown()
-            //                playerController!.view.removeFromSuperview()
-            //                playerController = nil;
-            //
-            //            }
             // 1 设置占位图
             if let imageUrl = URL(string: roomA.bigpic){
                 // 1 显示占位图
@@ -149,6 +140,7 @@ class ShowAnchorVCCell: UITableViewCell {
         
     }
     
+    // 传递猫耳朵
     var subAnchorModel : RoomYKModel?{
         didSet{
             
@@ -200,10 +192,7 @@ class ShowAnchorVCCell: UITableViewCell {
      */
     func playingVideo(_ roomA : RoomYKModel){
         // 4.1 获取直播URL
-        if currentTempUserId != roomA.userId{
-            print("不相同")
             guard let url = URL(string: roomA.flv ) else { return }
-            currentTempUserId = roomA.userId
             // 4.2 创建直播对象
             playerController = IJKFFMoviePlayerController(contentURL: url, with: nil)
             // 不打印
@@ -238,7 +227,6 @@ class ShowAnchorVCCell: UITableViewCell {
             // 添加通知监听
             initObserver()
             
-        }
         
     }
     
@@ -280,6 +268,7 @@ class ShowAnchorVCCell: UITableViewCell {
     // 播放器关闭
     func shutdownAction(){
         if playerController != nil{
+            
             playerController?.pause()
             playerController?.stop()
             playerController?.shutdown()
@@ -311,6 +300,11 @@ class ShowAnchorVCCell: UITableViewCell {
     
     // MARK:- 直播监听通知
     func initObserver(){
+        /*
+         IJKMPMoviePlayerLoadStateDidChangeNotification(加载状态改变通知)
+         IJKMPMoviePlayerPlaybackDidFinishNotification(播放结束通知)
+         IJKMPMoviePlayerPlaybackStateDidChangeNotification(播放状态改变通知)
+         */
         // 播放结束,或者 用户退出 通知
         NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVCCell.didFinishNotification), name:NSNotification.Name.IJKMPMoviePlayerPlaybackDidFinish, object: playerController)
         
@@ -353,7 +347,6 @@ class ShowAnchorVCCell: UITableViewCell {
             if playerController?.isPlaying() == false{
                 //开始播放
                 playerController?.play()
-                currentTempUserId = ""
                 contentView.addSubview(catView)
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Double(Int64(1 *  NSEC_PER_SEC)) / Double(NSEC_PER_SEC), execute: { () -> Void in
                     

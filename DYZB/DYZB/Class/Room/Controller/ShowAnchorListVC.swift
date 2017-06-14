@@ -131,7 +131,7 @@ extension ShowAnchorListVC : UICollectionViewDataSource{
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         
-        return roomAnchorVM.roomYKModelArray.count ?? 0
+        return roomAnchorVM.roomYKModelArray.count 
     }
     
     
@@ -149,9 +149,11 @@ extension ShowAnchorListVC : UICollectionViewDataSource{
 extension ShowAnchorListVC : UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
+        // 1 创建主播界面
         let showAnchorVC = ShowAnchorVC()
+        // 2 传递主播数组
         showAnchorVC.getShowDatasAndIndexPath(roomAnchorVM.roomYKModelArray, indexPath: indexPath)
+        // 3 弹出主播界面
         present(showAnchorVC, animated: true, completion: nil)
     }
 }
