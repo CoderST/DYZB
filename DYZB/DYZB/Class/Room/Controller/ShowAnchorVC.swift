@@ -59,10 +59,17 @@ class ShowAnchorVC: UIViewController {
         // 设置UI
         setupUI()
         
-        setupData()
-        
         // 监听通知
         notificationCenterAddObserver()
+    }
+    
+    
+    /// 获取主要数据
+    func getShowDatasAndIndexPath(_ showArray : [RoomYKModel],indexPath : IndexPath?){
+        guard let indexPath = indexPath else { return }
+        currentShowArray = showArray
+        movieIndex = indexPath.row
+        tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
     }
     
     // MARK:- 控制器销毁
@@ -85,22 +92,6 @@ extension ShowAnchorVC {
             make.left.equalTo(view)
             make.bottom.equalTo(view)
         }
-    }
-}
-
-// MARK:- 主要数据
-extension ShowAnchorVC {
-    
-    func setupData(){
-        
-        /// 获取主要数据
-        func getShowDatasAndIndexPath(_ showArray : [RoomYKModel],indexPath : IndexPath?){
-            guard let indexPath = indexPath else { return }
-            currentShowArray = showArray
-            movieIndex = indexPath.row
-            tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
-        }
-
     }
 }
 

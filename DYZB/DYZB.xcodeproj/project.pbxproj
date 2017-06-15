@@ -79,6 +79,7 @@
 		0F8DD0AD1D8F8260007A1625 /* CollectionViewPrettyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8DD0AB1D8F8260007A1625 /* CollectionViewPrettyCell.xib */; };
 		0F8DD0B11D8FA912007A1625 /* CollectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DD0AF1D8FA912007A1625 /* CollectionHeaderView.swift */; };
 		0F8DD0B21D8FA912007A1625 /* CollectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8DD0B01D8FA912007A1625 /* CollectionHeaderView.xib */; };
+		0FB05C971EF20A0D008F13B7 /* QrcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */; };
 		0FE1D65A1DC5B78C00ACFAFA /* BaseShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D6591DC5B78C00ACFAFA /* BaseShowViewController.swift */; };
 		0FE1D65D1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D65B1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift */; };
 		0FF151AF1DC6185500454F7C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF151AE1DC6185500454F7C /* ProfileViewController.swift */; };
@@ -197,6 +198,7 @@
 		0F8DD0AB1D8F8260007A1625 /* CollectionViewPrettyCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewPrettyCell.xib; sourceTree = "<group>"; };
 		0F8DD0AF1D8FA912007A1625 /* CollectionHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionHeaderView.swift; sourceTree = "<group>"; };
 		0F8DD0B01D8FA912007A1625 /* CollectionHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionHeaderView.xib; sourceTree = "<group>"; };
+		0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QrcodeViewController.swift; sourceTree = "<group>"; };
 		0FE1D6591DC5B78C00ACFAFA /* BaseShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseShowViewController.swift; sourceTree = "<group>"; };
 		0FE1D65B1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowBaseSanFangViewController.swift; sourceTree = "<group>"; };
 		0FF151AE1DC6185500454F7C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -503,6 +505,7 @@
 				0F8845AD1DC0A68A00836715 /* GameViewController.swift */,
 				0F8845B81DC1997200836715 /* AmuseViewController.swift */,
 				0F8845BA1DC199FD00836715 /* FunnyViewController.swift */,
+				0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 				0F8845C91DC1DA6A00836715 /* AmuseMenuViewCell.swift in Sources */,
 				0F08F3C81D90B0F4009CCEAE /* NetworkTools.swift in Sources */,
 				0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */,
+				0FB05C971EF20A0D008F13B7 /* QrcodeViewController.swift in Sources */,
 				0F84A3761D8AA275000705BE /* UIBarButotnItem+Extension.swift in Sources */,
 				0F05BC2D1DD3541B000D9D27 /* STPresentationController.swift in Sources */,
 				0F8845B01DC0AFEB00836715 /* GameViewModel.swift in Sources */,

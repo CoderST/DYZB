@@ -119,15 +119,17 @@ extension HomeViewController{
 
     
     @objc fileprivate func historItemAction(){
-        print("historItemAction")
+        print("historItemAction - 历史记录")
     }
     
     @objc fileprivate func searchItemAction(){
-        print("searchItemAction")
+        print("searchItemAction - 搜索")
     }
     
     @objc fileprivate func qrcodeItemAction(){
-        print("qrcodeItemAction")
+        print("qrcodeItemAction - 二维码")
+        let qrc = QrcodeViewController()
+        navigationController?.pushViewController(qrc, animated: true)
     }
 
 }

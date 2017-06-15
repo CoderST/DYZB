@@ -153,6 +153,7 @@ extension ShowAnchorListVC : UICollectionViewDelegate {
         let showAnchorVC = ShowAnchorVC()
         // 2 传递主播数组
         showAnchorVC.getShowDatasAndIndexPath(roomAnchorVM.roomYKModelArray, indexPath: indexPath)
+        
         // 3 弹出主播界面
         present(showAnchorVC, animated: true, completion: nil)
     }
