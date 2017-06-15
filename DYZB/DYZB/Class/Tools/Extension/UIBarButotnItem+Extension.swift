@@ -12,8 +12,9 @@ extension UIBarButtonItem{
     
     // MARK:- 构造函数
     
-    convenience init(imageName:String,highImageName:String = "",size:CGSize = CGSize.zero) {
+    convenience init(imageName:String,highImageName:String = "",size:CGSize = CGSize.zero,target: Any?, action: Selector) {
         let btn = UIButton()
+        btn.addTarget(target, action: action, for: .touchUpInside)
         btn.setImage(UIImage(named: imageName), for: UIControlState())
         if (highImageName != ""){
             btn.setImage(UIImage(named: highImageName), for: .highlighted)

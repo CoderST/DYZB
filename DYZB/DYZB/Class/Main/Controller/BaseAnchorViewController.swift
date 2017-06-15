@@ -84,14 +84,14 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
         
-        return recommendViewModel.anchorGroups.count ?? 0
+        return recommendViewModel.anchorGroups.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
         let anchorGroup = recommendViewModel.anchorGroups[section]
         
-        return anchorGroup.anchors.count ?? 0
+        return anchorGroup.anchors.count 
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

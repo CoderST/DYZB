@@ -249,8 +249,10 @@ class ShowAnchorVCCell: UITableViewCell {
     }
     // 退出
     fileprivate func quit(){
-        
+        // 主播停播
         shutdownAction()
+        // 副播停播
+        catView.removeMovieModel()
         
         barrageTimeAction()
         

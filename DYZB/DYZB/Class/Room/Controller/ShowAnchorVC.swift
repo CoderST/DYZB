@@ -59,6 +59,8 @@ class ShowAnchorVC: UIViewController {
         // 设置UI
         setupUI()
         
+        setupData()
+        
         // 监听通知
         notificationCenterAddObserver()
     }
@@ -86,20 +88,37 @@ extension ShowAnchorVC {
     }
 }
 
+// MARK:- 主要数据
+extension ShowAnchorVC {
+    
+    func setupData(){
+        
+        /// 获取主要数据
+        func getShowDatasAndIndexPath(_ showArray : [RoomYKModel],indexPath : IndexPath?){
+            guard let indexPath = indexPath else { return }
+            currentShowArray = showArray
+            movieIndex = indexPath.row
+            tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
+        }
+
+    }
+}
+
 // MARK:- 监听通知 - 通知事件
 extension ShowAnchorVC {
     
     
-    func notificationCenterAddObserver(){
-        // 点击关注用户通知
+    fileprivate func notificationCenterAddObserver(){
+        /// 点击关注用户通知
         NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.ClickUser(_:)), name: NSNotification.Name(rawValue: sNotificationName_ClickUser), object: nil)
         
-        // 点击猫耳朵通知
+        /// 点击猫耳朵通知
         NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.TapCatClick(_:)), name: NSNotification.Name(rawValue: sNotificationName_TapCatClick), object: nil)
         
         
     }
     
+    /// 关注用户
     @objc fileprivate func ClickUser(_ notification : Notification){
         guard let infor = notification.userInfo else { return }
         guard let user = infor["user"] as? RoomFollowPerson else { return }
@@ -113,6 +132,7 @@ extension ShowAnchorVC {
         
     }
     
+    /// 猫耳朵
     @objc fileprivate func TapCatClick(_ notification : Notification){
         print("TapCatClickTapCatClickTapCatClick")
         cellOneLock = false
@@ -120,20 +140,9 @@ extension ShowAnchorVC {
         let indexPath = IndexPath(row: movieIndex, section: 0)
         tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
     }
-
-}
-
-// MARK:- 自定义方法
-extension ShowAnchorVC {
     
-    /// 获取主要数据
-    func getShowDatasAndIndexPath(_ showArray : [RoomYKModel],indexPath : IndexPath?){
-        guard let indexPath = indexPath else { return }
-        currentShowArray = showArray
-        movieIndex = indexPath.row
-        tableView.scrollToRow(at: indexPath, at: UITableViewScrollPosition.top, animated: false)
-    }
 }
+
 
 // MARK:- UITableViewDataSource
 extension ShowAnchorVC :UITableViewDataSource {
@@ -172,13 +181,13 @@ extension ShowAnchorVC :UITableViewDataSource {
 
 // MARK:- UITableViewDelegate(以下是手动控制视频数据的传递)
 extension ShowAnchorVC : UITableViewDelegate{
-    // cell高度
+    /// cell高度
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat{
         
         return sScreenH
     }
     
-    // 已经结束显示的cell
+    /// 已经结束显示的cell
     func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath){
         
         if movieIndex == indexPath.row{
@@ -186,27 +195,9 @@ extension ShowAnchorVC : UITableViewDelegate{
             return
         }
         
-        let willDisappearCell = cell as!ShowAnchorVCCell
+        // 逻辑处理
+        anchorAndCatCellAction(cell)
         
-        // 注意:shutdown()方法里一定要移除通知
-        
-        // 处理手指轻微弹起一下,会再次调用此方法
-        if willDisappearCell.playerController != nil{
-            // 处理主界面播放器逻辑
-            willDisappearCell.shutdownAction()
-            willDisappearCell.playerController!.view.removeFromSuperview()
-            willDisappearCell.playerController = nil
-            
-        }
-        
-        // 处理猫耳朵播放器
-        if willDisappearCell.catView.movieModel != nil{
-            willDisappearCell.catView.movieModel?.shutdown()
-            willDisappearCell.catView.movieModel?.view.removeFromSuperview()
-            willDisappearCell.catView.movieModel = nil
-            willDisappearCell.catView.removeFromSuperview()
-        
-        }
     }
     
 }
@@ -214,30 +205,59 @@ extension ShowAnchorVC : UITableViewDelegate{
 // MARK:-UIScrollViewDelegate 以下是处理滚动cell时传递视频数据
 extension ShowAnchorVC : UIScrollViewDelegate{
     
-
-    
-    
-    // 已经完成减速
+    /// 已经完成减速
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView){
-
         
         didEndAction()
         
-           }
+    }
+    
+    
+}
 
 
-    func didEndAction() {
-            // 1 主播视频数据
-            let roomAnchor = currentShowArray[movieIndex]
-//            currentAnchor = roomAnchor
+// MARK:- 自定义方法
+extension ShowAnchorVC {
+    
+    /// 滚动结束调用
+    fileprivate func didEndAction() {
+        // 1 主播视频数据
+        let roomAnchor = currentShowArray[movieIndex]
+        //            currentAnchor = roomAnchor
         if tempAnchor?.userId == roomAnchor.userId{
             return
         }
-            roomcell.playingVideo(roomAnchor)
-            // 4 传递副播数据
-            roomcell.subAnchorModel = currentShowArray[movieIndex + 1]
-       
-            tempAnchor = roomAnchor
+        roomcell.playingVideo(roomAnchor)
+        // 4 传递副播数据
+        roomcell.subAnchorModel = currentShowArray[movieIndex + 1]
+        
+        tempAnchor = roomAnchor
+        
+    }
+    
+    fileprivate func anchorAndCatCellAction(_ cell: UITableViewCell){
+        let willDisappearCell = cell as!ShowAnchorVCCell
+        
+        // 注意:shutdown()方法里一定要移除通知
+        
+        // 处理主界面播放器逻辑(手指轻微弹起一下,会再次调用此方法)
+        if willDisappearCell.playerController != nil{
+            
+            willDisappearCell.shutdownAction()
+            willDisappearCell.playerController!.view.removeFromSuperview()
+            willDisappearCell.playerController = nil
+            
+        }
+        
+        // 处理猫耳朵播放器
+        if willDisappearCell.catView.subPlayerController != nil{
+            willDisappearCell.catView.subPlayerController?.shutdown()
+            willDisappearCell.catView.subPlayerController?.view.removeFromSuperview()
+            willDisappearCell.catView.subPlayerController = nil
+            willDisappearCell.catView.removeFromSuperview()
+            
+        }
 
     }
+
 }

@@ -20,7 +20,7 @@ protocol ShowAnchorCatViewDelegate : NSObjectProtocol{
 
 class ShowAnchorCatView: UIView {
     
-    var movieModel : IJKFFMoviePlayerController?
+    var subPlayerController : IJKFFMoviePlayerController?
     var delegate : ShowAnchorCatViewDelegate?
     
     // MARK:- 懒加载
@@ -75,14 +75,14 @@ class ShowAnchorCatView: UIView {
             ffoptions?.setPlayerOptionValue("1", forKey: "an")
             // 硬解码
             ffoptions?.setPlayerOptionValue("1", forKey: "videotoolbox")
-            movieModel = IJKFFMoviePlayerController(contentURLString: model.flv ?? "", with: ffoptions)
-            movieModel!.view.frame = bounds
-            movieModel!.view.layer.cornerRadius = frame.size.height * 0.5
-            movieModel!.view.clipsToBounds = true
-            movieModel!.scalingMode = .fill
-            movieModel!.shouldAutoplay = true
-            addSubview(movieModel!.view)
-            movieModel!.prepareToPlay()
+            subPlayerController = IJKFFMoviePlayerController(contentURLString: model.flv , with: ffoptions)
+            subPlayerController!.view.frame = bounds
+            subPlayerController!.view.layer.cornerRadius = frame.size.height * 0.5
+            subPlayerController!.view.clipsToBounds = true
+            subPlayerController!.scalingMode = .fill
+            subPlayerController!.shouldAutoplay = true
+            addSubview(subPlayerController!.view)
+            subPlayerController!.prepareToPlay()
         }
     }
     
@@ -99,10 +99,10 @@ class ShowAnchorCatView: UIView {
     }
     
     func removeMovieModel(){
-        if movieModel != nil{
-            movieModel!.shutdown()
-            movieModel!.view.removeFromSuperview()
-            movieModel = nil
+        if subPlayerController != nil{
+            subPlayerController!.shutdown()
+            subPlayerController!.view.removeFromSuperview()
+            subPlayerController = nil
         }
         
     }
@@ -121,7 +121,7 @@ extension ShowAnchorCatView {
         
         addSubview(catImageView)
         
-        catImageView.snp_makeConstraints { (make) -> Void in
+        catImageView.snp.makeConstraints { (make) -> Void in
             make.left.right.top.equalTo(self)
             make.height.equalTo(30)
         }

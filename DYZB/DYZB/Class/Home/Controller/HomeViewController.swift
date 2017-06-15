@@ -79,13 +79,19 @@ extension HomeViewController{
     }
     
     fileprivate func setupNavgationrBar(){
-        
-        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo")
+        // LOGO
+        navigationItem.leftBarButtonItem = UIBarButtonItem(imageName: "logo", target: self, action: #selector(HomeViewController.logoAction))
         let size = CGSize(width: 40, height: 40)
-        let historItem = UIBarButtonItem(imageName: "image_my_history", highImageName: "Image_my_history_click", size: size)
-        let searchItem = UIBarButtonItem(imageName: "btn_search", highImageName: "btn_search_clicked", size: size)
-        let qrcodeItem = UIBarButtonItem(imageName: "Image_scan", highImageName: "Image_scan_click", size: size)
+        // 历史记录
+         let historItem = UIBarButtonItem(imageName: "image_my_history", highImageName: "Image_my_history_click", size: size, target: self, action: #selector(HomeViewController.historItemAction))
+        // 搜索
+        let searchItem = UIBarButtonItem(imageName: "btn_search", highImageName: "btn_search_clicked", size: size, target: self, action: #selector(HomeViewController.searchItemAction))
+        // 二维码
+        let qrcodeItem = UIBarButtonItem(imageName: "Image_scan", highImageName: "Image_scan_click", size: size, target: self, action: #selector(HomeViewController.qrcodeItemAction))
+        
         navigationItem.rightBarButtonItems = [historItem,searchItem,qrcodeItem]
+        
+       
         
     }
     
@@ -99,6 +105,31 @@ extension HomeViewController{
         pageContentView.delegate = self
     }
     
+    
+    
+    
+}
+
+// MARK:- 点击事件
+extension HomeViewController{
+    
+    @objc fileprivate func logoAction(){
+        print("logoAction")
+    }
+
+    
+    @objc fileprivate func historItemAction(){
+        print("historItemAction")
+    }
+    
+    @objc fileprivate func searchItemAction(){
+        print("searchItemAction")
+    }
+    
+    @objc fileprivate func qrcodeItemAction(){
+        print("qrcodeItemAction")
+    }
+
 }
 
 // MARK:- PageTitlesViewDelegate
