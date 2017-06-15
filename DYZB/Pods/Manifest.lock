@@ -13,7 +13,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - BarrageRenderer (~> 1.9.0)
-  - LFLiveKit (~> 2.3)
+  - LFLiveKit (~> 2.6)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
   - SDWebImage
@@ -30,6 +30,6 @@ SPEC CHECKSUMS:
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
 
-PODFILE CHECKSUM: 2bbb0249fffce0e5f1acc8b3882389922174ee67
+PODFILE CHECKSUM: d129bc0013051636056f0d1c814969a76e2582c4
 
 COCOAPODS: 1.1.1

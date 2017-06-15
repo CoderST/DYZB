@@ -105,7 +105,7 @@ extension ShowAnchorViewController {
     func setupUI(){
         view.addSubview(tableView)
         
-        tableView.snp_makeConstraints { (make) -> Void in
+        tableView.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(view)
             make.top.equalTo(view)
             make.left.equalTo(view)

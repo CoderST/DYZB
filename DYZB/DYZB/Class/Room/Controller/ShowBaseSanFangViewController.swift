@@ -123,8 +123,8 @@ class ShowBaseSanFangViewController: UIViewController {
         
         if button.isSelected{
             // 开始直播
-            let stream = LFLiveStreamInfo()
-            stream.url = "rtmp://192.168.1.101:1935/rtmplive/room"
+            let stream = LFLiveStreamInfo() // 192.168.31.173
+            stream.url = "rtmp://192.168.31.173:1935/rtmplive/room"
             rtmpUrl = stream.url
             session.startLive(stream)
         }else{
@@ -165,19 +165,19 @@ extension ShowBaseSanFangViewController {
         view.addSubview(switchCameraDirectionBtn)
         
         // 关闭
-        closeLiveingBtn.snp_makeConstraints { (make) -> Void in
+        closeLiveingBtn.snp.makeConstraints { (make) -> Void in
             make.right.equalTo(-sEdiMargin)
             make.top.equalTo(sTopMargin)
         }
         
         // 美颜
-        beautifulBtn.snp_makeConstraints { (make) -> Void in
+        beautifulBtn.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(sEdiMargin)
             make.top.equalTo(sTopMargin)
         }
         
         // session
-        livingPreView.snp_makeConstraints { (make) -> Void in
+        livingPreView.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(view)
             make.right.equalTo(view)
             make.top.equalTo(view)
@@ -185,21 +185,21 @@ extension ShowBaseSanFangViewController {
         }
         
         // 状态Label
-        statusLabel.snp_makeConstraints { (make) -> Void in
+        statusLabel.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(150)
             make.top.equalTo(100)
         }
         
-        startLiveingBtn.snp_makeConstraints { (make) -> Void in
+        startLiveingBtn.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(sEdiMargin)
             make.right.equalTo(-sEdiMargin)
             make.bottom.equalTo(-sTopMargin)
             make.height.equalTo(startLiveingBtnH)
         }
         
-        switchCameraDirectionBtn.snp_makeConstraints { (make) -> Void in
+        switchCameraDirectionBtn.snp.makeConstraints { (make) -> Void in
             make.left.equalTo(beautifulBtn)
-            make.top.equalTo(beautifulBtn.snp_bottom).offset(sTopMargin)
+            make.top.equalTo(beautifulBtn.snp.bottom).offset(sTopMargin)
         }
         
     }
@@ -230,10 +230,10 @@ extension ShowBaseSanFangViewController:LFLiveSessionDelegate {
     }
     /** live debug info callback */
     func liveSession(_ session: LFLiveSession?, debugInfo: LFLiveDebug?){
-        print("live debug")
+        print("sssssssslive debug",debugInfo!)
     }
     /** callback socket errorcode */
     func liveSession(_ session: LFLiveSession?, errorCode: LFLiveSocketErrorCode){
-        print("callback socket")
+        print("sssssssscallback socket",errorCode)
     }
 }
