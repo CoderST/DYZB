@@ -18,35 +18,38 @@ class HomeViewController: UIViewController {
     // MARK:- 懒加载
     
     // 滚动条
-    fileprivate lazy var pageTitlesView : PageTitlesView = {
-        
-        let titles = ["推荐", "游戏", "娱乐", "趣玩"]
-        let titlesFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH, width: sScreenW, height: pageTitlesViewH)
-        let pageTitlesView = PageTitlesView(frame: titlesFrame, titles: titles)
-        return pageTitlesView
-        }()
+//    fileprivate lazy var titlesView : STTitlesView = {
+//        
+//        let titles = ["推荐", "游戏", "娱乐", "趣玩"]
+//        let titlesFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH, width: sScreenW, height: pageTitlesViewH)
+//        let style = STPageViewStyle()
+//        let titlesView = STTitlesView(frame: titlesFrame, titles: titles, style: style)
+//        return titlesView
+//        }()
+    
+    
     
     // 滚动条下面装着要显示控制器
-    fileprivate lazy var pageContentView : PageContentView = {[weak self] in
+    fileprivate lazy var pageView : STPageView = {[weak self] in
         
-        // 创建零时数组
-        var childVcs = [UIViewController]()
-        
-        // 计算高度
-        let contentH = sScreenH - sStatusBarH - sNavatationBarH - pageTitlesViewH - sTabBarH
-        // 设定尺寸
-        let pageContentViewFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH + pageTitlesViewH, width: sScreenW, height: contentH)
-        
-        // 初始化第一个界面要显示的内容
-        childVcs.append(RecommendViewController())
-        childVcs.append(GameViewController())
-        childVcs.append(AmuseViewController())
-        childVcs.append(FunnyViewController())
-        
-        let pageContentView = PageContentView(frame: pageContentViewFrame, childVcs: childVcs, parentViewController: self)
-        
-        
-        return pageContentView
+        let titles = ["推荐", "游戏", "娱乐", "趣玩"]
+        let rect = CGRect(x: 0, y: 64, width: sScreenW, height: sScreenH - 64 - 49)
+        var childsVC = [UIViewController]()
+        let recommendViewController = RecommendViewController()
+        let gameViewController = GameViewController()
+        let amuseViewController = AmuseViewController()
+        let funnyViewController = FunnyViewController()
+        childsVC.append(recommendViewController)
+        childsVC.append(gameViewController)
+        childsVC.append(amuseViewController)
+        childsVC.append(funnyViewController)
+        // 样式
+        let style = STPageViewStyle()
+        style.titleViewHeight = 44
+        style.isShowScrollLine = true
+
+        let pageView = STPageView(frame: rect, titles: titles, childsVC: childsVC, parentVC: self!, style: style, parentView: nil)
+        return pageView
         }()
     
     // MARK:- 生命周期
@@ -56,8 +59,6 @@ class HomeViewController: UIViewController {
         automaticallyAdjustsScrollViewInsets = false
         
         setupUI()
-        
-        
     }
     
 }
@@ -71,7 +72,7 @@ extension HomeViewController{
         setupNavgationrBar()
         
         // 添加Page滚动
-        setupPageTitlesView()
+//        setupPageTitlesView()
         
         // 添加ContentView
         setupPageContentView()
@@ -95,14 +96,14 @@ extension HomeViewController{
         
     }
     
-    fileprivate func setupPageTitlesView(){
-        view.addSubview(pageTitlesView)
-        pageTitlesView.delegate = self
-    }
+//    fileprivate func setupPageTitlesView(){
+//        view.addSubview(titlesView)
+////        titlesView.delegate = self
+//    }
     
     fileprivate func setupPageContentView(){
-        view.addSubview(pageContentView)
-        pageContentView.delegate = self
+        view.addSubview(pageView)
+//        pageView.delegate = self
     }
     
     
@@ -135,23 +136,29 @@ extension HomeViewController{
 }
 
 // MARK:- PageTitlesViewDelegate
-extension HomeViewController : PageTitlesViewDelegate{
+//extension HomeViewController : STTitlesViewDelegate{
+
+//    func pageTitlesView(_ pageTitlesView: PageTitlesView, index: Int) {
+//        
+//        pageContentView.setCurrentIndex(index)
+//        
+//    }
     
-    func pageTitlesView(_ pageTitlesView: PageTitlesView, index: Int) {
-        
-        pageContentView.setCurrentIndex(index)
-        
-    }
-}
+//    func stTitlesView(_ stTitlesView: STTitlesView, toIndex: Int) {
+//        pageContentView.setCurrentIndex(toIndex)
+//    }
+//}
 
 // MARK:- PageContentViewDelegate
-extension HomeViewController : PageContentViewDelegate{
-    
-    func pageContentView(_ pageContentView: PageContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
-        //         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
-        
-        pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
-    }
-    
-    
-}
+//extension HomeViewController : STPageCollectionViewDelegate{
+//    
+//    func pageContentView(_ pageContentView: PageContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
+//        //         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
+//        
+////        pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
+//        
+//        pageTitlesView.setTitleWithProgress(progress, sourceIndex: originalIndex, targetIndex: targetIndex)
+//    }
+//    
+//    
+//}

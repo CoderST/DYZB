@@ -9,6 +9,7 @@ PODS:
   - SDWebImage/Core (3.8.2)
   - SnapKit (3.1.2)
   - SVProgressHUD (2.1.2)
+  - XHLaunchAd (3.3.0)
 
 DEPENDENCIES:
   - Alamofire
@@ -19,6 +20,7 @@ DEPENDENCIES:
   - SDWebImage
   - SnapKit
   - SVProgressHUD
+  - XHLaunchAd (~> 3.3.0)
 
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
@@ -29,7 +31,8 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
+  XHLaunchAd: 6e30e509f09a6a16222a4615afa03c7409e2db59
 
-PODFILE CHECKSUM: d129bc0013051636056f0d1c814969a76e2582c4
+PODFILE CHECKSUM: f8ea3487a0863c33bd2f4a0848bd9732148ea2c6
 
 COCOAPODS: 1.1.1

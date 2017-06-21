@@ -51,6 +51,14 @@ extension UIViewController{
             images = [UIImage(named: "hold1_60x72")!,UIImage(named: "hold2_60x72")!,UIImage(named: "hold3_60x72")!]
         }
         
+        for imageView in safeView.subviews{
+            if  imageView is UIImageView{
+                
+                imageView.removeFromSuperview()
+            }
+            
+        }
+        
         let gifImage = UIImageView()
         safeView.addSubview(gifImage)
         gifImageView = gifImage

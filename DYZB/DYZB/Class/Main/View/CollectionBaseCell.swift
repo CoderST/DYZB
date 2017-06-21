@@ -19,9 +19,9 @@ class CollectionBaseCell: UICollectionViewCell {
         
         didSet{
             guard let anchor = anchorModel else { return }
-//            nickNameLabel.text = anchor.nickname
             guard let url = URL(string: anchor.vertical_src) else { return }
-            iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "Img_default"))
+            // 可以访问https网络图片
+            iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "Img_default"), options: .allowInvalidSSLCertificates)
             
             // 处理在线人数
             var onlineString : String = ""

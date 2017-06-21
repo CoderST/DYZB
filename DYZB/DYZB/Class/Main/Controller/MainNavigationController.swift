@@ -14,6 +14,8 @@ class MainNavigationController: UINavigationController {
         
         super.viewDidLoad()
         
+//        navigationBar.barTintColor = UIColor.orange
+        
         // 手势 -> 手势对应的view -> target , arction
         // 1 获取系统手势
         guard let popGesture = interactivePopGestureRecognizer else { return }
@@ -26,7 +28,7 @@ class MainNavigationController: UINavigationController {
         // 5 获得手势事件
         let target = targetObec.value(forKey: "target")
         // 6 创建action
-        let action = Selector("handleNavigationTransition:")
+        let action = Selector(("handleNavigationTransition:"))
         // 7 创建自己的手势
         let panGest = UIPanGestureRecognizer()
         // 8 添加手势

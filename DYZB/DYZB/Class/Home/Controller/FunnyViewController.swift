@@ -12,13 +12,18 @@ class FunnyViewController: BaseAnchorViewController {
 
     // MARK:- 懒加载
     fileprivate lazy var funnyViewModel : FunnyViewModel  = FunnyViewModel()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupFunnyViewControllerUI()
+    }
 
 }
 
 extension FunnyViewController {
     
     // 重写父类方法
-    override func setupUI() {
+     func setupFunnyViewControllerUI() {
         // 实现父类方法
         super.setupUI()
         
