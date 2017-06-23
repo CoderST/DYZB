@@ -4,7 +4,7 @@
 use_frameworks!
 target 'DYZB' do
 pod 'Alamofire'
-pod 'SDWebImage'
+pod 'SDWebImage', '~> 3.8.0'
 pod 'SnapKit'
 pod 'SVProgressHUD'
 pod 'MJRefresh', '~> 3.1.12'
@@ -12,4 +12,7 @@ pod 'LFLiveKit', '~> 2.6'
 pod 'MJExtension', '~> 3.0.13'
 pod 'BarrageRenderer', '~> 1.9.0'
 pod 'XHLaunchAd', '~> 3.3.0'
+
+#pod 'STCustomWidthLayout'
+pod 'STRowLayout'
 end

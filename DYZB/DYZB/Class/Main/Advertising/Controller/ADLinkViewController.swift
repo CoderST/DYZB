@@ -32,6 +32,9 @@ class ADLinkViewController: UIViewController {
         webView.loadRequest(request)
     }
 
+    deinit {
+        SVProgressHUD.dismiss()
+    }
 }
 
 extension ADLinkViewController : UIWebViewDelegate {

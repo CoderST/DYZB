@@ -12,23 +12,7 @@ private let pageTitlesViewH :CGFloat = 40
 
 class HomeViewController: UIViewController {
     
-    // MARK:- 定义属性
-    
-    
     // MARK:- 懒加载
-    
-    // 滚动条
-//    fileprivate lazy var titlesView : STTitlesView = {
-//        
-//        let titles = ["推荐", "游戏", "娱乐", "趣玩"]
-//        let titlesFrame = CGRect(x: 0, y: sStatusBarH + sNavatationBarH, width: sScreenW, height: pageTitlesViewH)
-//        let style = STPageViewStyle()
-//        let titlesView = STTitlesView(frame: titlesFrame, titles: titles, style: style)
-//        return titlesView
-//        }()
-    
-    
-    
     // 滚动条下面装着要显示控制器
     fileprivate lazy var pageView : STPageView = {[weak self] in
         
@@ -92,22 +76,11 @@ extension HomeViewController{
         
         navigationItem.rightBarButtonItems = [historItem,searchItem,qrcodeItem]
         
-       
-        
     }
-    
-//    fileprivate func setupPageTitlesView(){
-//        view.addSubview(titlesView)
-////        titlesView.delegate = self
-//    }
     
     fileprivate func setupPageContentView(){
         view.addSubview(pageView)
-//        pageView.delegate = self
     }
-    
-    
-    
     
 }
 
@@ -121,10 +94,14 @@ extension HomeViewController{
     
     @objc fileprivate func historItemAction(){
         print("historItemAction - 历史记录")
+        let watchHistoryVC = WatchHistoryViewController()
+        navigationController?.pushViewController(watchHistoryVC, animated: true)
     }
     
     @objc fileprivate func searchItemAction(){
         print("searchItemAction - 搜索")
+        let searchVC = SearchViewController()
+        present(searchVC, animated: true, completion: nil)
     }
     
     @objc fileprivate func qrcodeItemAction(){
@@ -134,31 +111,3 @@ extension HomeViewController{
     }
 
 }
-
-// MARK:- PageTitlesViewDelegate
-//extension HomeViewController : STTitlesViewDelegate{
-
-//    func pageTitlesView(_ pageTitlesView: PageTitlesView, index: Int) {
-//        
-//        pageContentView.setCurrentIndex(index)
-//        
-//    }
-    
-//    func stTitlesView(_ stTitlesView: STTitlesView, toIndex: Int) {
-//        pageContentView.setCurrentIndex(toIndex)
-//    }
-//}
-
-// MARK:- PageContentViewDelegate
-//extension HomeViewController : STPageCollectionViewDelegate{
-//    
-//    func pageContentView(_ pageContentView: PageContentView, progress: CGFloat, originalIndex: Int, targetIndex: Int) {
-//        //         pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
-//        
-////        pageTitlesView.setPageTitlesView(progress, originalIndex: originalIndex, targetIndex: targetIndex)
-//        
-//        pageTitlesView.setTitleWithProgress(progress, sourceIndex: originalIndex, targetIndex: targetIndex)
-//    }
-//    
-//    
-//}

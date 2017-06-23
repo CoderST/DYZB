@@ -8,6 +8,7 @@ PODS:
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
   - SnapKit (3.1.2)
+  - STRowLayout (1.0.1)
   - SVProgressHUD (2.1.2)
   - XHLaunchAd (3.3.0)
 
@@ -17,8 +18,9 @@ DEPENDENCIES:
   - LFLiveKit (~> 2.6)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
-  - SDWebImage
+  - SDWebImage (~> 3.8.0)
   - SnapKit
+  - STRowLayout
   - SVProgressHUD
   - XHLaunchAd (~> 3.3.0)
 
@@ -30,9 +32,10 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
+  STRowLayout: 319cabddac815c544670b148304c0b6bdb1c1e9d
   SVProgressHUD: c404a55d78acbeb7ebb78b76d3faf986475a6994
   XHLaunchAd: 6e30e509f09a6a16222a4615afa03c7409e2db59
 
-PODFILE CHECKSUM: f8ea3487a0863c33bd2f4a0848bd9732148ea2c6
+PODFILE CHECKSUM: 16efdcb7e06333effbbcbd19962e9ede411874d6
 
 COCOAPODS: 1.1.1

@@ -57,11 +57,9 @@ class ShowAnchorHeardView: UIView {
                 
                                         self?.userIconImageView.image = circleImage
                                     })
-//                                }
 
             }
             
-//            userIconImageView.sd_setImageWithURL(NSURL(string: model.smallpic), placeholderImage: nil)
             userNameLabel.text = model.myname
             userNumberLabel.text = String(model.allnum)
             

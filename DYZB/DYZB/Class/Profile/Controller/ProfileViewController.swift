@@ -7,36 +7,38 @@
 //
 
 import UIKit
-fileprivate let headViewHeight : CGFloat = sScreenW * 2 / 3
+fileprivate let headViewHeight : CGFloat = sScreenW * 5 / 6
 fileprivate let ProfileCellIdentifier  = "ProfileCellIdentifier"
 class ProfileViewController: UIViewController {
     
     // MARK:- 懒加载
-    fileprivate let headView : ProfileHeadView = {
+    fileprivate lazy var headView : ProfileHeadView = {
        
         let headView = ProfileHeadView()
-        headView.backgroundColor = UIColor.yellow
         headView.frame = CGRect(x: 0, y: -headViewHeight, width: sScreenW, height: headViewHeight)
         return headView
         
     }()
     
-    fileprivate var groupDatas : [ProfileGroupModel] = [ProfileGroupModel]()
+    fileprivate lazy var profileVM : ProfileViewModel = ProfileViewModel()
+    
     
     fileprivate lazy var collectionView : UICollectionView = {
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: sScreenW, height: 44)
-        layout.minimumInteritemSpacing = 10
-        layout.minimumLineSpacing = 10
+        layout.minimumInteritemSpacing = 0
+        layout.minimumLineSpacing = 0
         
         // 创建UICollectionView
-        let collectionView = UICollectionView(frame: CGRect(x: 0, y:-20, width: sScreenW, height: sScreenH), collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y:0, width: sScreenW, height: sScreenH), collectionViewLayout: layout)
         collectionView.contentInset = UIEdgeInsets(top: headViewHeight, left: 0, bottom: 0, right: 0)
 
         // 设置数据源
         collectionView.dataSource = self
         collectionView.delegate = self
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.showsHorizontalScrollIndicator = false
         collectionView.backgroundColor = UIColor(r: 239, g: 239, b: 239)
         
         // 注册cell
@@ -49,10 +51,11 @@ class ProfileViewController: UIViewController {
     // MARK:- 生命周期
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         
-        setupDatas()
+        setupProfileDatas()
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -73,7 +76,6 @@ class ProfileViewController: UIViewController {
 extension ProfileViewController {
     
     fileprivate func setupUI() {
-        
         // 添加collectionView
         view.addSubview(collectionView)
         // 添加collectionView上面的headView
@@ -83,33 +85,21 @@ extension ProfileViewController {
 
 // MARK:- 主数据
 extension ProfileViewController {
-    fileprivate func setupDatas(){
-        // 第一组数据
-        let recruit = ProfileModel(imageName: "image_my_recruitment", titleName: "主播招募", subTitleName: "", targetClass: RecruitViewController.self)
-        let groupOne = ProfileGroupModel()
-        groupOne.groupModels = [recruit]
+    // 本地数据
+    fileprivate func setupProfileDatas(){
         
-        // 第二组数据
-        let myVideo = ProfileModel(imageName: "image_my_video_icon", titleName: "我的视频", subTitleName: "", targetClass: RecruitViewController.self)
-        let videoCollect = ProfileModel(imageName: "image_my_video_collection", titleName: "视频收藏", subTitleName: "", targetClass: RecruitViewController.self)
-        let groupTwo = ProfileGroupModel()
-        groupTwo.groupModels = [myVideo,videoCollect]
-        
-        // 第三组数据
-        let myAccount = ProfileModel(imageName: "image_my_account", titleName: "我的账户", subTitleName: "", targetClass: RecruitViewController.self)
-        let platCenter = ProfileModel(imageName: "image_my_recommend", titleName: "游戏中心", subTitleName: "", targetClass: RecruitViewController.self)
-        let groupThree = ProfileGroupModel()
-        groupThree.groupModels = [myAccount,platCenter]
-        
-        // 第四组数据
-        let remind = ProfileModel(imageName: "image_my_remind", titleName: "开播提醒", subTitleName: "", targetClass: RecruitViewController.self)
-        let groupFour = ProfileGroupModel()
-        groupFour.groupModels = [remind]
-        
-        groupDatas = [groupOne,groupTwo,groupThree,groupFour]
-        
-        collectionView.reloadData()
+        profileVM.loadProfileDatas({ 
+            if let user = self.profileVM.user{
+                self.headView.user = user
+            }
+            self.collectionView.reloadData()
+        }, { (message) in
+            print("message = ",message)
+        }) { 
+            print("失败")
+        }
     }
+
 }
 
 
@@ -117,12 +107,12 @@ extension ProfileViewController : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
         
-        return groupDatas.count
+        return profileVM.groupDatas.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        let group = groupDatas[section]
-        
+        let group = profileVM.groupDatas[section]
+        print(section,group.groupModels.count)
         return group.groupModels.count
     }
     
@@ -130,15 +120,14 @@ extension ProfileViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCellIdentifier, for: indexPath) as! ProfileCell
-        cell.contentView.backgroundColor = UIColor.gray
-        let group = groupDatas[indexPath.section]
+        let group = profileVM.groupDatas[indexPath.section]
         let profileModel = group.groupModels[indexPath.item]
         cell.profileModel = profileModel
         return cell
     }
 }
 
-extension ProfileViewController : UICollectionViewDelegate {
+extension ProfileViewController : UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         print("contentOffsetY",scrollView.contentOffset.y)
@@ -146,36 +135,21 @@ extension ProfileViewController : UICollectionViewDelegate {
         if scrollView.contentOffset.y <= -headViewHeight {
             scrollView.contentOffset.y = -headViewHeight
         }
-        // 禁止上拉
-//        if scrollView.contentOffset.y >= scrollView.contentSize.height - scrollView.bounds.size.height {
-//            scrollView.contentOffset.y = scrollView.contentSize.height - scrollView.bounds.size.height
-//        }  
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let group = profileVM.groupDatas[indexPath.section]
+        let profileModel = group.groupModels[indexPath.item]
+        if let desVC = profileModel.targetClass as? UIViewController.Type {
+            let vc = desVC.init()
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
+    
+    // 组间距
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
     }
 }
 
-extension ProfileViewController {
-    
-    func test() {
-        
-        let now = Date()
-        //当前时间的时间戳
-        let timeInterval:TimeInterval = now.timeIntervalSince1970
-        let timeStamp = Int(timeInterval)
-        /*
-         posid	800001
-         roomid	0
-         */
-        let params = ["posid" : 800001]
-        let URLString = String(format: "http://capi.douyucdn.cn/api/v1/my_info?aid=ios&client_sys=ios&time=%d&auth=%@", timeStamp,AUTH)
-        NetworkTools.requestData(.post, URLString: URLString, parameters: params) { (result) in
-            guard let result = result as? [String : Any] else { return }
-            
-            guard let error = result["error"] as? Int else { return }
-            
-            if error != 0 {
-                print("广告有错误,待处理!!",result)
-            }
-            
-        }
-    }
-}

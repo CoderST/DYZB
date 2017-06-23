@@ -26,7 +26,7 @@ class ShowAnchorHeadFollowPersonCell: UICollectionViewCell {
         didSet{
             
             guard let model = roomFollowPerson else { return }
-            iconImageView.sd_setImage(with: URL(string: model.photo), placeholderImage: UIImage(named: "placeholder_head"))
+            iconImageView.sd_setImage(with: URL(string: model.photo), placeholderImage: UIImage(named: "placeholder_head"), options: .allowInvalidSSLCertificates)
         }
     }
     

@@ -15,7 +15,8 @@ let sTabBarH : CGFloat = 49
 let sScreenW = UIScreen.main.bounds.width
 let sScreenH = UIScreen.main.bounds.height
 
-let AUTH = "b11a9f554c9d7aded93bec214e37f28d"   // 取不到最新的 广告数据出不来
+let TOKEN = "94153348_11_a18f67c6400a16fd_2_22753003" // 重新获取最新
+let AUTH = "0503c5fe8a235774963013ec5ffc9344"   // 取不到最新的 广告数据出不来
 
 // MARK:- 通知
 // 关注用户

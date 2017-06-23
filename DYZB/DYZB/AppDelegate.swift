@@ -55,17 +55,17 @@ extension AppDelegate {
     func addAd(){
         //设置数据等待时间 请求广告URL前,必须设置,否则会先进入window的RootVC
         XHLaunchAd.setWaitDataDuration(3)
-        let now = Date()
-        //当前时间的时间戳
-        let timeInterval:TimeInterval = now.timeIntervalSince1970
-        let timeStamp = Int(timeInterval)
+//        let now = Date()
+//        //当前时间的时间戳
+//        let timeInterval:TimeInterval = now.timeIntervalSince1970
+//        let timeStamp = Int(timeInterval)
         /*
          posid	800001
          roomid	0
          */
         // http://capi.douyucdn.cn/lapi/sign/appapi/getinfo?aid=ios&client_sys=ios&time=1498010940&token=94153348_11_8156dadc9bd1725c_2_22753001&auth=7b28d8c1af4ca89c77af7dd59408645f
         let params = ["posid" : 800001, "roomid" : 0]
-        let URLString = String(format: "http://capi.douyucdn.cn/lapi/sign/appapi/getinfo?aid=ios&client_sys=ios&time=%d&token=94153348_11_8156dadc9bd1725c_2_22753001&auth=%@", timeStamp,AUTH)
+        let URLString = String(format: "http://capi.douyucdn.cn/lapi/sign/appapi/getinfo?aid=ios&client_sys=ios&time=%@&token=\(TOKEN)&auth=%@", Date.getNowDate(),AUTH)
         
         NetworkTools.requestData(.post, URLString: URLString, parameters: params) { (result) in
             

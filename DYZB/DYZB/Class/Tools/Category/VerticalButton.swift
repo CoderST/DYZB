@@ -13,7 +13,8 @@ class VerticalButton: UIButton {
         super.init(frame: frame)
         imageView?.contentMode = .center
         titleLabel?.textAlignment = .center
-        titleLabel
+//        titleLabel?.textColor = .black
+        titleLabel?.font = UIFont.systemFont(ofSize: 12)
     }
     
     required init?(coder aDecoder: NSCoder) {
