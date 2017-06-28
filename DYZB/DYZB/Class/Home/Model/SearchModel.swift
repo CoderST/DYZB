@@ -17,4 +17,9 @@ class SearchModel: NSObject {
         super.init()
         setValuesForKeys(dict)
     }
+    
+    
+    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+        
+    }
 }

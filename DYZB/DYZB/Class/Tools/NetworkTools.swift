@@ -23,7 +23,7 @@ class NetworkTools {
         
         // 守护结果
         guard let result = response.result.value else{
-            print("没有结果")
+            debugLog("没有结果")
             return
         }
         

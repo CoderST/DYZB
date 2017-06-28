@@ -89,10 +89,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/LFLiveKit/LFLiveKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJExtension/MJExtension.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJRefresh/MJRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/STRowLayout/STRowLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XHLaunchAd/XHLaunchAd.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -101,9 +104,12 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "$BUILT_PRODUCTS_DIR/LFLiveKit/LFLiveKit.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJExtension/MJExtension.framework"
   install_framework "$BUILT_PRODUCTS_DIR/MJRefresh/MJRefresh.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/Realm/Realm.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/RealmSwift/RealmSwift.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SDWebImage/SDWebImage.framework"
   install_framework "$BUILT_PRODUCTS_DIR/STRowLayout/STRowLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SVProgressHUD/SVProgressHUD.framework"
   install_framework "$BUILT_PRODUCTS_DIR/SnapKit/SnapKit.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/UICollectionViewLeftAlignedLayout/UICollectionViewLeftAlignedLayout.framework"
   install_framework "$BUILT_PRODUCTS_DIR/XHLaunchAd/XHLaunchAd.framework"
 fi

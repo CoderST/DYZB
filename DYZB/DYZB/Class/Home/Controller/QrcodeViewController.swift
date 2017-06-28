@@ -74,7 +74,7 @@ class QrcodeViewController: UIViewController {
         
         // 1 判断是否有摄像头
         if ( !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
-            print("您的设备没有摄像头或者相关的驱动, 不能进行")
+            debugLog("您的设备没有摄像头或者相关的驱动, 不能进行")
             return
         }
         
@@ -87,7 +87,7 @@ class QrcodeViewController: UIViewController {
             input = try AVCaptureDeviceInput(device: device)
         }catch
         {
-            print("没有摄像头",error)
+            debugLog(error)
         }
         
         // 3. 设置元数据输出处理
@@ -157,7 +157,7 @@ extension QrcodeViewController: AVCaptureMetadataOutputObjectsDelegate {
             if (obj as AnyObject).isKind(of: AVMetadataMachineReadableCodeObject.self)
             {
                 var codeObj = obj as! AVMetadataMachineReadableCodeObject
-                print("结果 : ",codeObj.stringValue)
+                debugLog(codeObj.stringValue)
                 self.title = codeObj.stringValue
 
                 // 使用预览图层转换坐标系

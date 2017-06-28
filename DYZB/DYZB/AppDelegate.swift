@@ -70,11 +70,12 @@ extension AppDelegate {
         NetworkTools.requestData(.post, URLString: URLString, parameters: params) { (result) in
             
             guard let result = result as? [String : Any] else { return }
-            print(result)
+            
+            debugLog(result)
             guard let error = result["error"] as? Int else { return }
             
             if error != 0 {
-                print("广告有错误,auth要最新的",error,result)
+                debugLog(error)
                 return
             }
             

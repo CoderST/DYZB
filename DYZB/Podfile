@@ -12,7 +12,8 @@ pod 'LFLiveKit', '~> 2.6'
 pod 'MJExtension', '~> 3.0.13'
 pod 'BarrageRenderer', '~> 1.9.0'
 pod 'XHLaunchAd', '~> 3.3.0'
-
+pod 'UICollectionViewLeftAlignedLayout'
 #pod 'STCustomWidthLayout'
 pod 'STRowLayout'
+pod 'RealmSwift'
 end

@@ -94,9 +94,9 @@ extension ProfileViewController {
             }
             self.collectionView.reloadData()
         }, { (message) in
-            print("message = ",message)
+            debugLog(message)
         }) { 
-            print("失败")
+            debugLog("失败")
         }
     }
 
@@ -112,7 +112,6 @@ extension ProfileViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         let group = profileVM.groupDatas[section]
-        print(section,group.groupModels.count)
         return group.groupModels.count
     }
     
@@ -130,7 +129,7 @@ extension ProfileViewController : UICollectionViewDataSource {
 extension ProfileViewController : UICollectionViewDelegateFlowLayout {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        print("contentOffsetY",scrollView.contentOffset.y)
+        debugLog(scrollView.contentOffset.y)
         // 禁止下拉
         if scrollView.contentOffset.y <= -headViewHeight {
             scrollView.contentOffset.y = -headViewHeight

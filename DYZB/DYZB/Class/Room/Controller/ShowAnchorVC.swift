@@ -74,7 +74,7 @@ class ShowAnchorVC: UIViewController {
     
     // MARK:- 控制器销毁
     deinit{
-        NotificationCenter.default.removeObserver(self)
+        notificationCenter.removeObserver(self)
         print("ShowAnchorViewController - 界面销毁")
         
     }
@@ -101,10 +101,10 @@ extension ShowAnchorVC {
     
     fileprivate func notificationCenterAddObserver(){
         /// 点击关注用户通知
-        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.ClickUser(_:)), name: NSNotification.Name(rawValue: sNotificationName_ClickUser), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(ShowAnchorVC.ClickUser(_:)), name: NSNotification.Name(rawValue: sNotificationName_ClickUser), object: nil)
         
         /// 点击猫耳朵通知
-        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVC.TapCatClick(_:)), name: NSNotification.Name(rawValue: sNotificationName_TapCatClick), object: nil)
+        notificationCenter.addObserver(self, selector: #selector(ShowAnchorVC.TapCatClick(_:)), name: NSNotification.Name(rawValue: sNotificationName_TapCatClick), object: nil)
         
         
     }

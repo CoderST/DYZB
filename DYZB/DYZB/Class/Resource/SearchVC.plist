@@ -6,12 +6,6 @@
 	<array>
 		<dict>
 			<key>title</key>
-			<string>今日热搜</string>
-			<key>rank</key>
-			<string>0</string>
-		</dict>
-		<dict>
-			<key>title</key>
 			<string>lpl</string>
 			<key>rank</key>
 			<string>1</string>

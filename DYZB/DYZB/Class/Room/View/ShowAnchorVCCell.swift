@@ -274,7 +274,7 @@ class ShowAnchorVCCell: UITableViewCell {
             playerController?.pause()
             playerController?.stop()
             playerController?.shutdown()
-            NotificationCenter.default.removeObserver(self)
+            notificationCenter.removeObserver(self)
         }
         
     }
@@ -308,10 +308,10 @@ class ShowAnchorVCCell: UITableViewCell {
          IJKMPMoviePlayerPlaybackStateDidChangeNotification(播放状态改变通知)
          */
         // 播放结束,或者 用户退出 通知
-        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVCCell.didFinishNotification), name:NSNotification.Name.IJKMPMoviePlayerPlaybackDidFinish, object: playerController)
+        notificationCenter.addObserver(self, selector: #selector(ShowAnchorVCCell.didFinishNotification), name:NSNotification.Name.IJKMPMoviePlayerPlaybackDidFinish, object: playerController)
         
         // 加载 状态改变 通知
-        NotificationCenter.default.addObserver(self, selector: #selector(ShowAnchorVCCell.stateDidChangeNotification), name:NSNotification.Name.IJKMPMoviePlayerLoadStateDidChange, object: playerController)
+        notificationCenter.addObserver(self, selector: #selector(ShowAnchorVCCell.stateDidChangeNotification), name:NSNotification.Name.IJKMPMoviePlayerLoadStateDidChange, object: playerController)
         
     }
     
@@ -385,7 +385,7 @@ class ShowAnchorVCCell: UITableViewCell {
         SDWebImageManager.shared().cancelAll()
         playerController?.shutdown()
         playerController = nil
-        NotificationCenter.default.removeObserver(self)
+        notificationCenter.removeObserver(self)
         
     }
     

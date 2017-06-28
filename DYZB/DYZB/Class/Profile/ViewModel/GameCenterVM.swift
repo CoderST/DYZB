@@ -24,7 +24,7 @@ class GameCenterVM: NSObject {
                 return }
             
             if error != 0 {
-                print("数据有错误!!",error,result)
+                debugLog(error)
                 return
             }
             guard let dict = result["data"] as? [String : Any] else {

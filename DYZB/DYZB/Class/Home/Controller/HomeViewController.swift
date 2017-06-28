@@ -88,24 +88,24 @@ extension HomeViewController{
 extension HomeViewController{
     
     @objc fileprivate func logoAction(){
-        print("logoAction")
+        debugLog("logoAction")
     }
 
     
     @objc fileprivate func historItemAction(){
-        print("historItemAction - 历史记录")
+        debugLog("historItemAction - 历史记录")
         let watchHistoryVC = WatchHistoryViewController()
         navigationController?.pushViewController(watchHistoryVC, animated: true)
     }
     
     @objc fileprivate func searchItemAction(){
-        print("searchItemAction - 搜索")
+        debugLog("searchItemAction - 搜索")
         let searchVC = SearchViewController()
         present(searchVC, animated: true, completion: nil)
     }
     
     @objc fileprivate func qrcodeItemAction(){
-        print("qrcodeItemAction - 二维码")
+        debugLog("qrcodeItemAction - 二维码")
         let qrc = QrcodeViewController()
         navigationController?.pushViewController(qrc, animated: true)
     }

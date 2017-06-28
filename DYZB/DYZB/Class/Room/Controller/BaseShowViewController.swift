@@ -108,14 +108,14 @@ extension BaseShowViewController {
             
             if Platform.isSimulator {
                 // Do one thing
-                print("请用真机进行测试, 此模块不支持模拟器测试")
+                debugLog("请用真机进行测试, 此模块不支持模拟器测试")
             }
             else {
                 
                 
                 // 2 判断是否有摄像头
                 if ( !UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.camera)){
-                    print("您的设备没有摄像头或者相关的驱动, 不能进行直播")
+                    debugLog("您的设备没有摄像头或者相关的驱动, 不能进行直播")
                     return
                 }
                 
@@ -124,7 +124,7 @@ extension BaseShowViewController {
                 let authorizationStatus = AVCaptureDevice.authorizationStatus(forMediaType: AVMediaTypeVideo)
                 // 3.2 判断各种状态
                 if (authorizationStatus == .restricted || authorizationStatus == .denied){
-                    print("APP需要访问您的摄像头。\n请启用摄像头-设置/隐私/摄像头")
+                    debugLog("APP需要访问您的摄像头。\n请启用摄像头-设置/隐私/摄像头")
                     return
                 }
                 
@@ -135,7 +135,7 @@ extension BaseShowViewController {
 //                    audioSession.performSelector(selector)
                     
                 }else{
-                    print("APP需要访问您的麦克风。\n请启用麦克风-设置/隐私/麦克风")
+                    debugLog("APP需要访问您的麦克风。\n请启用麦克风-设置/隐私/麦克风")
                     
                     return
                 }
@@ -168,10 +168,10 @@ extension BaseShowViewController {
                 completionHandler: { (granted:Bool) -> Void in
                     if granted {
                         // 继续
-                        print("继续")
+                        debugLog("继续")
                     }
                     else {
-                        print("用户拒绝，无法继续")
+                        debugLog("用户拒绝，无法继续")
                     }
             })
         case .authorized: break
@@ -381,11 +381,11 @@ extension BaseShowViewController {
 // MARK:- AVCaptureFileOutputRecordingDelegate
 extension BaseShowViewController : AVCaptureFileOutputRecordingDelegate{
     func capture(_ captureOutput: AVCaptureFileOutput!, didStartRecordingToOutputFileAt fileURL: URL!, fromConnections connections: [Any]!){
-        print("1111")
+        debugLog("1111")
     }
     
     func capture(_ captureOutput: AVCaptureFileOutput!, didFinishRecordingToOutputFileAt outputFileURL: URL!, fromConnections connections: [Any]!, error: Error!){
-        print("2222")
+        debugLog("2222")
     }
 }
 

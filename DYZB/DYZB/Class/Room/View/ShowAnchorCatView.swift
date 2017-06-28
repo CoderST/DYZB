@@ -62,7 +62,7 @@ class ShowAnchorCatView: UIView {
     
     @objc fileprivate func tapPress(_ gesture : UITapGestureRecognizer){
         
-        NotificationCenter.default.post(name: Notification.Name(rawValue: sNotificationName_TapCatClick), object: nil, userInfo: nil)
+        notificationCenter.post(name: Notification.Name(rawValue: sNotificationName_TapCatClick), object: nil, userInfo: nil)
     }
     
     // MARK:- SET

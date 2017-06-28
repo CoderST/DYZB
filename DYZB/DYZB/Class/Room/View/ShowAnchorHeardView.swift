@@ -142,7 +142,7 @@ extension ShowAnchorHeardView : UICollectionViewDelegate{
         // 1 取出对象
         let user = followPersonArray[indexPath.item]
         // 2 发出通知
-        NotificationCenter.default.post(name: Notification.Name(rawValue: sNotificationName_ClickUser), object: nil, userInfo: ["user" : user])
+        notificationCenter.post(name: Notification.Name(rawValue: sNotificationName_ClickUser), object: nil, userInfo: ["user" : user])
     }
     
 }

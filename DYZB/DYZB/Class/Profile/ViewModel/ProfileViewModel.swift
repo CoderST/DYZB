@@ -67,7 +67,7 @@ class ProfileViewModel: NSObject {
             
             if error != 0 {
                 group.leave()
-                print("广告有错误,待处理!!",result)
+                debugLog(result)
                 failCallBack()
                 return
             }
@@ -75,7 +75,7 @@ class ProfileViewModel: NSObject {
                 failCallBack()
                 return }
             self.user = User(dict: dict)
-            print("成功了",dict)
+            debugLog(dict)
             group.leave()
             finishCallBack()
         }

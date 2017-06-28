@@ -17,7 +17,7 @@ class LiveViewModel: BaseViewModel {
         
         NetworkTools.requestData(.get, URLString: "http://capi.douyucdn.cn/api/v1/getColumnList") { (result) in
         
-//            print("result=",result)
+            debugLog(result)
             guard let resultDict = result as? [String : Any] else {return}
             guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}
             

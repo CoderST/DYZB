@@ -97,7 +97,7 @@ class RoomAnchorCell: UITableViewCell {
                 playerVC!.shutdown()
                 playerVC!.view.removeFromSuperview()
                 playerVC = nil;
-                NotificationCenter.default.removeObserver(self)
+                notificationCenter.removeObserver(self)
                 
             }
             
@@ -189,13 +189,13 @@ class RoomAnchorCell: UITableViewCell {
         parentVc!.dismiss(animated: true, completion: nil)
 
 
-        print("RoomAnchorCell - 退出了")
+        debugLog("RoomAnchorCell - 退出了")
     }
     
     func shutdown(){
         if playerVC != nil{
             playerVC?.shutdown()
-            NotificationCenter.default.removeObserver(self)
+            notificationCenter.removeObserver(self)
         }
 
     }
@@ -223,9 +223,9 @@ class RoomAnchorCell: UITableViewCell {
     // MARK:- 监听通知
     func initObserver(){
         
-        NotificationCenter.default.addObserver(self, selector: #selector(RoomAnchorCell.didFinishNotification), name:NSNotification.Name.IJKMPMoviePlayerPlaybackDidFinish, object: playerVC)
+        notificationCenter.addObserver(self, selector: #selector(RoomAnchorCell.didFinishNotification), name:NSNotification.Name.IJKMPMoviePlayerPlaybackDidFinish, object: playerVC)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(RoomAnchorCell.stateDidChangeNotification), name:NSNotification.Name.IJKMPMoviePlayerLoadStateDidChange, object: playerVC)
+        notificationCenter.addObserver(self, selector: #selector(RoomAnchorCell.stateDidChangeNotification), name:NSNotification.Name.IJKMPMoviePlayerLoadStateDidChange, object: playerVC)
         
         
     }

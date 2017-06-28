@@ -7,33 +7,44 @@
 //
 
 import UIKit
-import STRowLayout
-fileprivate let searchHeadViewIdentifier  = "searchHeadViewIdentifier"
+fileprivate let dissmissButtonWH : CGFloat = 50
+fileprivate let lineViewHeight : CGFloat = 1
 class SearchHeadView: UIView {
 
-    fileprivate lazy var searchHeadVM : SearchHeadVM = SearchHeadVM()
-    // 展示主界面的collectionView
-    fileprivate lazy var collectionView : UICollectionView = {
-        // 设置layout属性
-        let layout = STRowLayout()
-        layout.delegate = self
-        // 创建UICollectionView
-        let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
-        // 设置数据源
-//        collectionView.dataSource = self
-        collectionView.backgroundColor = UIColor.white
+    fileprivate lazy var dissmissButton : UIButton = {
         
-        // 注册cell
-        collectionView.register(SearchHeadCell.self, forCellWithReuseIdentifier: searchHeadViewIdentifier)
-        return collectionView;
+        let dissmissButton = UIButton()
+        dissmissButton.setTitle("取消", for: .normal)
+        dissmissButton.titleLabel?.font = UIFont.systemFont(ofSize: titleFontSize)
+        dissmissButton.setTitleColor(.orange, for: .normal)
+        return dissmissButton
+    }()
+    
+    fileprivate lazy var lineView : UIView = {
+       
+        let lineView = UIView()
+        lineView.backgroundColor = .gray
+        return lineView
         
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        backgroundColor = .white
+        addSubview(dissmissButton)
         
-        // 1 添加collectionView
-        // 2 添加数据
-        // 3 计算多少行来控制collectionView的高度
+        dissmissButton.addTarget(self, action: #selector(dissmissButtonClick), for: .touchUpInside)
+    }
+    
+    @objc fileprivate func dissmissButtonClick() {
+        notificationCenter.post(name: Notification.Name(rawValue: sNotificationName_Dismiss), object: nil, userInfo: nil)
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        dissmissButton.frame = CGRect(x: frame.width - dissmissButtonWH - 10, y: 0, width: dissmissButtonWH, height: frame.height)
+        
+        lineView.frame = CGRect(x: 0, y: frame.height - lineViewHeight, width: frame.width, height: lineViewHeight)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -41,27 +52,4 @@ class SearchHeadView: UIView {
     }
 }
 
-extension SearchHeadView : STRowLayoutDelegate{
-    func stLayout(_ stLayout: STRowLayout!, widthtForRowAt indexPath: IndexPath!) -> CGFloat {
-        
-        return 40
-    }
-    
-    // Height of Item
-    func heightForRow(atIndexPath stLayout: STRowLayout!) -> CGFloat{
-        
-        return 40
-    }
-    
-    // Space of Colums
-    func layoutcolumnSpacingStLayout(_ stLayout: STRowLayout!) -> CGFloat{
-        
-        return 10
-    }
-    
-    // Space of Row
-    func layoutRowSpacingStLayout(_ stLayout: STRowLayout!) -> CGFloat{
-        
-        return 10
-    }
-}
+
