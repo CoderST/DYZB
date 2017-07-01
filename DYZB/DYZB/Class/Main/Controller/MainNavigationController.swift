@@ -9,12 +9,12 @@
 import UIKit
 
 class MainNavigationController: UINavigationController {
-
+    
     override func viewDidLoad() {
         
         super.viewDidLoad()
-        
-//        navigationBar.barTintColor = UIColor.orange
+        setupNavigation()
+        //        navigationBar.barTintColor = UIColor.orange
         
         // 手势 -> 手势对应的view -> target , arction
         // 1 获取系统手势
@@ -40,10 +40,56 @@ class MainNavigationController: UINavigationController {
     
     override func pushViewController(_ viewController: UIViewController, animated: Bool) {
         if viewControllers.count > 0{
-        viewController.hidesBottomBarWhenPushed = true
+            
+            setupBack(viewController)
+            
+            viewController.hidesBottomBarWhenPushed = true
         }
         
         super.pushViewController(viewController, animated: true)
     }
+    
+}
 
+/// 设置全局Navigation
+extension MainNavigationController{
+    func setupNavigation(){
+        let bar = UINavigationBar.appearance()
+        let backgroundImage = UIImage(named: "Img_orange")
+        bar.setBackgroundImage(backgroundImage, for: .default)
+        
+        var barAttrs : [String : Any] = [String : Any]()
+        barAttrs[NSForegroundColorAttributeName] = UIColor.white
+        barAttrs[NSFontAttributeName] = UIFont.systemFont(ofSize: 18)
+        bar.titleTextAttributes = barAttrs
+        
+        let item = UIBarButtonItem.appearance()
+        
+        var normalAttrs : [String : Any] = [String : Any]()
+        normalAttrs[NSForegroundColorAttributeName] = UIColor.white
+        normalAttrs[NSFontAttributeName] = UIFont.systemFont(ofSize: 15)
+        item.setTitleTextAttributes(normalAttrs, for: .normal)
+        
+        var disableAttrs : [String : Any] = [String : Any]()
+        disableAttrs[NSForegroundColorAttributeName] = UIColor.gray
+        item.setTitleTextAttributes(disableAttrs, for: .disabled)
+    }
+}
+
+/// 设置全局返回
+extension MainNavigationController{
+    
+    func setupBack(_ viewController: UIViewController){
+        let backButton = UIButton(type: .custom)
+        let image = UIImage(named: "navBackBtn")
+        backButton.setImage(image, for: .normal)
+        backButton.sizeToFit()
+        backButton.addTarget(self, action: #selector(backButtonAction), for: .touchUpInside)
+        backButton.contentEdgeInsets = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 0)
+        viewController.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
+    }
+    
+    @objc fileprivate func backButtonAction(){
+        popViewController(animated: true)
+    }
 }

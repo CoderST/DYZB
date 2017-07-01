@@ -20,18 +20,18 @@ class WatchHistoryVM: NSObject {
 //        let ids = [2124270,1882763,2127419,573449,134000,796666]
         let params = ["token" : TOKEN]
         NetworkTools.requestData(.post, URLString: urlString, parameters: params) { (result) in
-            guard let result = result as? [String : Any] else {
+            guard let resultDict = result as? [String : Any] else {
 //                messageCallBack(result["data"] as! String)
                 return }
-           print("resultttt = \(result)")
-            guard let error = result["error"] as? Int else{
+           print("resultttt = \(resultDict)")
+            guard let error = resultDict["error"] as? Int else{
                 return }
             
             if error != 0 {
-                print("数据有错误!!",error,result)
+                print("数据有错误!!",error,resultDict)
                 return
             }
-            guard let dictArray = result["data"] as? [[String : Any]] else {
+            guard let dictArray = resultDict["data"] as? [[String : Any]] else {
                 return }
             
             for dict in dictArray{
@@ -43,4 +43,27 @@ class WatchHistoryVM: NSObject {
         }
     }
 
+}
+
+extension WatchHistoryVM{
+    // http://apiv2.douyucdn.cn/Livenc/User/clearViewHistory?token=94153348_11_cd79b4bb454aed7b_2_22753003&client_sys=ios
+    func clearHistory(_ finishCallBack : @escaping ()->()){
+        let urlString = "http://apiv2.douyucdn.cn/Livenc/User/clearViewHistory?token=\(TOKEN)&client_sys=ios"
+        NetworkTools.requestData(.get, URLString: urlString) { (result) in
+            guard let resultDict = result as? [String : Any] else {
+                return }
+            print(result,resultDict)
+            guard let error = resultDict["error"] as? Int else{
+                return }
+            
+            if error != 0 {
+                print("数据有错误!!",error,resultDict)
+                return
+            }
+
+            guard let _ = resultDict["data"] as? String else { return }
+            self.watchHistoryModelFrameArray.removeAll()
+            finishCallBack()
+        }
+    }
 }

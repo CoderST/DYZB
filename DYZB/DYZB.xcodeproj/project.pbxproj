@@ -103,6 +103,7 @@
 		0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97482A1EF5120700C5B543 /* LiveViewController.swift */; };
 		0F97482E1EF5180C00C5B543 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97482D1EF5180C00C5B543 /* LiveViewModel.swift */; };
 		0F9748301EF52D9D00C5B543 /* LiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97482F1EF52D9D00C5B543 /* LiveModel.swift */; };
+		0FA46EF71F077EE200ECB9DA /* MessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA46EF61F077EE200ECB9DA /* MessageViewController.swift */; };
 		0FA757D51F05D596007EF12C /* SearchAnchorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757D41F05D596007EF12C /* SearchAnchorCell.swift */; };
 		0FA757D71F05D8BE007EF12C /* SearchRoomGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757D61F05D8BE007EF12C /* SearchRoomGroupModel.swift */; };
 		0FA757D91F060000007EF12C /* SearchRoomNavagationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757D81F060000007EF12C /* SearchRoomNavagationBar.swift */; };
@@ -276,6 +277,7 @@
 		0F97482A1EF5120700C5B543 /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		0F97482D1EF5180C00C5B543 /* LiveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewModel.swift; sourceTree = "<group>"; };
 		0F97482F1EF52D9D00C5B543 /* LiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveModel.swift; sourceTree = "<group>"; };
+		0FA46EF61F077EE200ECB9DA /* MessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageViewController.swift; sourceTree = "<group>"; };
 		0FA757D41F05D596007EF12C /* SearchAnchorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAnchorCell.swift; sourceTree = "<group>"; };
 		0FA757D61F05D8BE007EF12C /* SearchRoomGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomGroupModel.swift; sourceTree = "<group>"; };
 		0FA757D81F060000007EF12C /* SearchRoomNavagationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomNavagationBar.swift; sourceTree = "<group>"; };
@@ -660,6 +662,7 @@
 				0F0C0DF81EFCE68B00B6828D /* SearchViewController.swift */,
 				0F6B0C131F04DF75006E7F60 /* SearchRoomViewController.swift */,
 				0F6B0C151F04E1CD006E7F60 /* SearchSubRoomViewController.swift */,
+				0FA46EF61F077EE200ECB9DA /* MessageViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1147,6 +1150,7 @@
 				0FA757DB1F063C62007EF12C /* WatchHistoryModelFrame.swift in Sources */,
 				0F8845B61DC0B63000836715 /* BaseGameModel.swift in Sources */,
 				0FDA59911EFB6FF200691013 /* GameCenterModel.swift in Sources */,
+				0FA46EF71F077EE200ECB9DA /* MessageViewController.swift in Sources */,
 				0F97482E1EF5180C00C5B543 /* LiveViewModel.swift in Sources */,
 				0F05BC271DD31EE9000D9D27 /* PresentModel.swift in Sources */,
 				0F0C0E0B1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift in Sources */,

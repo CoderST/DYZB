@@ -43,14 +43,37 @@ class WatchHistoryViewController: BaseViewController {
         
         super.viewDidLoad()
 
+        title = "观看历史"
        view.addSubview(collectionView)
         
-        watchHistoryVM.loadWatchHistoryDatas({ 
+        setupNavigationBar()
+        
+     setupData()
+     
+    }
+}
+
+extension WatchHistoryViewController{
+    
+    fileprivate func setupNavigationBar(){
+        
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "清除", style: .done, target: self, action: #selector(clearHistoryAction))
+    }
+    
+    func clearHistoryAction(){
+        watchHistoryVM.clearHistory {
+            self.collectionView.reloadData()
+            SVProgressHUD.showSuccess(withStatus: "清楚成功")
+        }
+    }
+    
+    fileprivate func setupData(){
+        watchHistoryVM.loadWatchHistoryDatas({
             self.collectionView.reloadData()
             self.endAnimation()
         }, { (message) in
-           SVProgressHUD.showError(withStatus: message)
-        }) { 
+            SVProgressHUD.showError(withStatus: message)
+        }) {
             
         }
     }

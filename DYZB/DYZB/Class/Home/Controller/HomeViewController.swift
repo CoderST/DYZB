@@ -74,7 +74,10 @@ extension HomeViewController{
         // 二维码
         let qrcodeItem = UIBarButtonItem(imageName: "Image_scan", highImageName: "Image_scan_click", size: size, target: self, action: #selector(HomeViewController.qrcodeItemAction))
         
-        navigationItem.rightBarButtonItems = [historItem,searchItem,qrcodeItem]
+        // 二维码
+        let messageItem = UIBarButtonItem(imageName: "messageNormal", highImageName: "messageNormalHL", size: size, target: self, action: #selector(HomeViewController.messageItemAction))
+        
+        navigationItem.rightBarButtonItems = [searchItem,qrcodeItem,historItem,messageItem]
         
     }
     
@@ -108,6 +111,12 @@ extension HomeViewController{
         debugLog("qrcodeItemAction - 二维码")
         let qrc = QrcodeViewController()
         navigationController?.pushViewController(qrc, animated: true)
+    }
+    
+    @objc fileprivate func messageItemAction(){
+        debugLog("messageItemAction - 消息")
+        let messageVC = MessageViewController()
+        navigationController?.pushViewController(messageVC, animated: true)
     }
 
 }
