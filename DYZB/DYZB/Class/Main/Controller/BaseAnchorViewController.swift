@@ -9,9 +9,9 @@
 import UIKit
 // MARK:- 常量
 // 列数
-private let sColumn : CGFloat = 2
+fileprivate let sColumn : CGFloat = 2
 // 列间距
-private let sMargin : CGFloat = 10
+fileprivate let sMargin : CGFloat = 10
 // 每一个item宽
  let sItemWidth : CGFloat = (sScreenW - (sColumn + 1) * sMargin) / (sColumn)
 // 最热item宽度

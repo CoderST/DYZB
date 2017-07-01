@@ -13,13 +13,14 @@ protocol STContentViewDelegate : class{
     /// 滚动过程时调用
     func stContentView(_ stContentView : STContentView, currentIndex : Int, targetIndex : Int, process : CGFloat)
 }
-private let stContentViewCellIdentifier = "stContentViewCellIdentifier"
+fileprivate let stContentViewCellIdentifier = "stContentViewCellIdentifier"
 class STContentView: UIView {
 
 
     // MARK:- 定义属性
     fileprivate var childsVC : [UIViewController]
     fileprivate var parentVC : UIViewController
+    fileprivate var style : STPageViewStyle
     
     var sourceIndex : Int = 0
     var targetIndex : Int = 0
@@ -53,10 +54,11 @@ class STContentView: UIView {
     }()
     
     // MARK:- 自定义构造函数
-    init(frame: CGRect, childsVC : [UIViewController], parentVC : UIViewController) {
+    init(frame: CGRect, childsVC : [UIViewController], parentVC : UIViewController, style : STPageViewStyle) {
         // 初始化前一定要给属性赋值,不然会报super dont init 错误
         self.parentVC = parentVC
         self.childsVC = childsVC
+        self.style = style
         super.init(frame: frame)
         
         stupUI()
@@ -98,7 +100,7 @@ extension STContentView {
 extension STContentView {
     
     fileprivate func stupUI(){
-        
+        collectionView.isScrollEnabled = style.isScrollEnabled
         addSubview(collectionView)
         
         // 1 添加子控制器

@@ -18,8 +18,8 @@ let historyKey : String = "historyKey"
 let sScreenW = UIScreen.main.bounds.width
 let sScreenH = UIScreen.main.bounds.height
 
-let TOKEN = "94153348_11_a18f67c6400a16fd_2_22753003" // 重新获取最新
-let AUTH = "0503c5fe8a235774963013ec5ffc9344"   // 取不到最新的 广告数据出不来
+let TOKEN = "94153348_11_cd79b4bb454aed7b_2_22753003" // 重新获取最新
+let AUTH = "fe73812c89c1a6fe5671cfc31a529331"   // 取不到最新的 广告数据出不来
 
 // MARK:- 通知
 let notificationCenter = NotificationCenter.default
@@ -31,6 +31,8 @@ let sNotificationName_TapCatClick = "sNotificationName_TapCatClick"
 let sNotificationName_DelHistory = "sNotificationName_DelHistory"
 // 搜索界面dismiss
 let sNotificationName_Dismiss = "sNotificationName_Dismiss"
+// 搜索Room界面dismiss
+let sNotificationName_RoomDismiss = "sNotificationName_RoomDismiss"
 
 func debugLog<T>(_ message : T, file : String = #file, lineNumber : Int = #line) {
     

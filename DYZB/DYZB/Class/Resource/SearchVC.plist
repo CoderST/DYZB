@@ -4,66 +4,16 @@
 <dict>
 	<key>searchArray</key>
 	<array>
-		<dict>
-			<key>title</key>
-			<string>lpl</string>
-			<key>rank</key>
-			<string>1</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>豆豆龙</string>
-			<key>rank</key>
-			<string>2</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>lck</string>
-			<key>rank</key>
-			<string>3</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>英雄无敌</string>
-			<key>rank</key>
-			<string>4</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>阿凯</string>
-			<key>rank</key>
-			<string>5</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>王者荣耀</string>
-			<key>rank</key>
-			<string>6</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>绝地求生</string>
-			<key>rank</key>
-			<string>7</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>狼人杀</string>
-			<key>rank</key>
-			<string>8</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>纳豆</string>
-			<key>rank</key>
-			<string>9</string>
-		</dict>
-		<dict>
-			<key>title</key>
-			<string>火影忍者</string>
-			<key>rank</key>
-			<string>10</string>
-		</dict>
+		<string>lpl</string>
+		<string>豆豆龙</string>
+		<string>lck</string>
+		<string>英雄无敌</string>
+		<string>阿凯</string>
+		<string>王者荣耀</string>
+		<string>绝地求生</string>
+		<string>狼人杀</string>
+		<string>纳豆</string>
+		<string>火影忍者</string>
 	</array>
 </dict>
 </plist>

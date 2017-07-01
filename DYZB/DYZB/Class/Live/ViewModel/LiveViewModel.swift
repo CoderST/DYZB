@@ -19,7 +19,7 @@ class LiveViewModel: BaseViewModel {
         
             debugLog(result)
             guard let resultDict = result as? [String : Any] else {return}
-            guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}
+            guard let dictArray = resultDict["data"] as? [[String : Any]] else {return}
             
             for dict in dictArray{
                 

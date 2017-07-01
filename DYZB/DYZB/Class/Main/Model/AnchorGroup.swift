@@ -20,7 +20,7 @@ class AnchorGroup: BaseGameModel {
     lazy var anchors : [AnchorModel] = [AnchorModel]()
     
     // MARK:- set 字典数组
-    var room_list : [[String : NSObject]]?{
+    var room_list : [[String : Any]]?{
         
         didSet{
             // 对room_list进行效验

@@ -17,7 +17,7 @@ class BaseGameModel: NSObject {
         
     }
     
-    init(dic:[String : AnyObject]){
+    init(dic:[String : Any]){
         super.init()
         
         setValuesForKeys(dic)

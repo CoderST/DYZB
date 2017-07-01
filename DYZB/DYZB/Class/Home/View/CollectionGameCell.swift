@@ -18,11 +18,24 @@ class CollectionGameCell: UICollectionViewCell {
     var anchorGroup : BaseGameModel?{
         
         didSet{
+
+            guard let anchorGroup = anchorGroup else { return }
             
+            titleLabel.text = anchorGroup.tag_name
+            let string = anchorGroup.icon_url
+            guard let url = URL(string: string) else { return }
+            iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "Img_default"), options: .allowInvalidSSLCertificates)
+        }
+    }
+    
+    /// 搜索结果显示的cate分类
+    var searchRoomModel : SearchRoomModel?{
+        
+        didSet{
+           guard let searchRoomModel = searchRoomModel else { return }
             
-            
-            titleLabel.text = anchorGroup?.tag_name ?? ""
-            guard let string = anchorGroup?.icon_url else { return }
+            titleLabel.text = searchRoomModel.noRed
+            let string = searchRoomModel.icon_url
             guard let url = URL(string: string) else { return }
             iconImageView.sd_setImage(with: url, placeholderImage: UIImage(named: "Img_default"), options: .allowInvalidSSLCertificates)
         }

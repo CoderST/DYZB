@@ -8,12 +8,12 @@
 
 import UIKit
 // MARK:- 常量
-private let sGameCellInIdentifier = "xGameCellInIdentifier"
-private let sHeadInIdentifier = "xHeadInIdentifier"
+fileprivate let sGameCellInIdentifier = "xGameCellInIdentifier"
+fileprivate let sHeadInIdentifier = "xHeadInIdentifier"
 
-private let sEdgeMargin : CGFloat = 10
-private let sItemW : CGFloat = (sScreenW - 2 * sEdgeMargin) / 3
-private let sItemH :CGFloat = sItemW * 5.5 / 5
+fileprivate let sEdgeMargin : CGFloat = 10
+fileprivate let sItemW : CGFloat = (sScreenW - 2 * sEdgeMargin) / 3
+fileprivate let sItemH :CGFloat = sItemW * 5.5 / 5
 // 组头部高度
 private let sHeadHeight :CGFloat = 50
 // 顶部常用head的高度

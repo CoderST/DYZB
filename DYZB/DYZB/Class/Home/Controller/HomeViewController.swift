@@ -100,7 +100,7 @@ extension HomeViewController{
     
     @objc fileprivate func searchItemAction(){
         debugLog("searchItemAction - 搜索")
-        let searchVC = SearchViewController()
+        let searchVC = SearchBaseViewController()
         present(searchVC, animated: true, completion: nil)
     }
     

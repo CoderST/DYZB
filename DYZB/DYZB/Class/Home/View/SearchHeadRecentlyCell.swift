@@ -4,11 +4,11 @@
 //
 //  Created by xiudou on 2017/6/23.
 //  Copyright © 2017年 xiudo. All rights reserved.
-//
+//  最近搜索cell
 
 import UIKit
 
-class SearchHeadCell: UICollectionViewCell {
+class SearchHeadRecentlyCell: UICollectionViewCell {
  
     
     fileprivate let titleLabel : UILabel = {

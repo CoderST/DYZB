@@ -15,11 +15,11 @@ class BaseViewModel {
     func loadAnchDates(_ isGroup : Bool, urlString : String, parameters : [String : Any]? = nil,finishCallBack:@escaping ()->()){
         NetworkTools.requestData(.get, URLString: urlString, parameters: parameters) { (result) -> () in
             
-            guard let resultDict = result as? [String : NSObject] else {return}
-            guard let dictArray = resultDict["data"] as? [[String : NSObject]] else {return}
+            guard let resultDict = result as? [String : Any] else {return}
+            guard let dictArray = resultDict["data"] as? [[String : Any]] else {return}
             if isGroup == true{
                 for dic in dictArray{
-                    let roomList = dic["room_list"] as! [[String : AnyObject]]
+                    let roomList = dic["room_list"] as! [[String : Any]]
                     // 处理房间里没有数据的情况
                     if roomList.count == 0{
                         

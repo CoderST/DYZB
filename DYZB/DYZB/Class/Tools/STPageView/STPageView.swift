@@ -55,8 +55,8 @@ extension STPageView {
     }
     
     fileprivate func stupTitleView(){
-        let titleviewF = CGRect(x: 0, y: 0, width: self.frame.width, height: style.titleViewHeight)
-        titleView = STTitlesView(frame: titleviewF, titles: self.titles, style: self.style)
+        let titleviewF = CGRect(x: 0, y: 0, width: frame.width, height: style.titleViewHeight)
+        titleView = STTitlesView(frame: titleviewF, titles: titles, style: style)
         titleView.backgroundColor = style.titleViewBackgroundColor
         if parentView == nil{
             
@@ -79,8 +79,9 @@ extension STPageView {
             contentViewH = frame.height
         }
         
-        let contentViewF = CGRect(x: 0, y: contentViewY, width: self.frame.width, height: contentViewH)
-        let contentView = STContentView(frame: contentViewF, childsVC: self.childsVC, parentVC: self.parentVC)
+        let contentViewF = CGRect(x: 0, y: contentViewY, width: frame.width, height: contentViewH)
+        
+        let contentView = STContentView(frame: contentViewF, childsVC: childsVC, parentVC: parentVC, style: style)
         addSubview(contentView)
         
         titleView.delegate = contentView

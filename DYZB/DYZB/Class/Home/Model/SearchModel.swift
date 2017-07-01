@@ -11,15 +11,17 @@ import UIKit
 class SearchModel: NSObject {
 
     var title : String = ""
-    var rank : String = ""
+    var rank : Int = 0
     
-    init(dict : [String : Any]) {
+    init(title : String, rank : Int) {
         super.init()
-        setValuesForKeys(dict)
+//        setValuesForKeys(dict)
+        self.title = title
+        self.rank = rank
     }
     
     
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        
-    }
+//    override func setValue(_ value: Any?, forUndefinedKey key: String) {
+//        
+//    }
 }

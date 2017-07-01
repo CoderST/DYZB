@@ -25,7 +25,10 @@ class STPageViewStyle {
     var scaleRange : CGFloat = 1.2
     /***************** titleView相关设置 ******************/
      
-     
+     /***************** contentView相关设置 ******************/
+    /// 是否可以滚动
+    var isScrollEnabled : Bool = true
+    /***************** contentView相关设置 ******************/
      
      /***************** 底部滚动条相关设置 ******************/
      // 是否可以滚动

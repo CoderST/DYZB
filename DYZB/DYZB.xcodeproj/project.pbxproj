@@ -15,7 +15,7 @@
 		0F05C7EA1EF8EC4800AFD492 /* ProfileGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C7E91EF8EC4800AFD492 /* ProfileGroupModel.swift */; };
 		0F05C7EC1EF8EF1500AFD492 /* ProfileCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C7EB1EF8EF1500AFD492 /* ProfileCell.swift */; };
 		0F05C7EF1EF924CE00AFD492 /* VerticalButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F05C7EE1EF924CE00AFD492 /* VerticalButton.swift */; };
-		0F08F3C61D90AFE8009CCEAE /* NSDate+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08F3C51D90AFE8009CCEAE /* NSDate+Extension.swift */; };
+		0F08F3C61D90AFE8009CCEAE /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08F3C51D90AFE8009CCEAE /* Date+Extension.swift */; };
 		0F08F3C81D90B0F4009CCEAE /* NetworkTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08F3C71D90B0F4009CCEAE /* NetworkTools.swift */; };
 		0F08F3CB1D90B933009CCEAE /* RecommendViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08F3CA1D90B933009CCEAE /* RecommendViewModel.swift */; };
 		0F08F3CD1D90BD5E009CCEAE /* AnchorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F08F3CC1D90BD5E009CCEAE /* AnchorModel.swift */; };
@@ -29,9 +29,10 @@
 		0F0C0E031EFD03B600B6828D /* searchViewTitles.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F0C0E021EFD03B600B6828D /* searchViewTitles.plist */; };
 		0F0C0E051EFD04FD00B6828D /* SearchHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C0E041EFD04FD00B6828D /* SearchHeadView.swift */; };
 		0F0C0E071EFD051A00B6828D /* SearchHeadVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C0E061EFD051A00B6828D /* SearchHeadVM.swift */; };
-		0F0C0E0B1EFD0D6700B6828D /* SearchHeadCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C0E0A1EFD0D6700B6828D /* SearchHeadCell.swift */; };
+		0F0C0E0B1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C0E0A1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift */; };
 		0F0FA5021DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0FA5011DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift */; };
 		0F0FA5041DD19D8200B8E7C5 /* ShowAnchorHeardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F0FA5031DD19D8200B8E7C5 /* ShowAnchorHeardView.xib */; };
+		0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1307A11F03AC2F004D01A0 /* UserDefaultsManage.swift */; };
 		0F1867F91DD1D8EF00FD8E9A /* user.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F1867F81DD1D8EF00FD8E9A /* user.plist */; };
 		0F1867FB1DD2033C00FD8E9A /* RoomFollowPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1867FA1DD2033C00FD8E9A /* RoomFollowPerson.swift */; };
 		0F1867FE1DD208F100FD8E9A /* ShowAnchorHeadFollowPersonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1867FC1DD208F100FD8E9A /* ShowAnchorHeadFollowPersonCell.swift */; };
@@ -56,6 +57,12 @@
 		0F601CF21DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF11DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift */; };
 		0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */; };
 		0F601D231DCF2BC300FD001B /* ShowAnchorVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601D221DCF2BC300FD001B /* ShowAnchorVCCell.swift */; };
+		0F6B0C121F048763006E7F60 /* SearchHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */; };
+		0F6B0C141F04DF75006E7F60 /* SearchRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C131F04DF75006E7F60 /* SearchRoomViewController.swift */; };
+		0F6B0C161F04E1CD006E7F60 /* SearchSubRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C151F04E1CD006E7F60 /* SearchSubRoomViewController.swift */; };
+		0F6B0C181F04FBA7006E7F60 /* SearchBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C171F04FBA7006E7F60 /* SearchBaseViewController.swift */; };
+		0F6B0C1C1F050455006E7F60 /* SearchRoomVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C1B1F050455006E7F60 /* SearchRoomVM.swift */; };
+		0F6B0C1E1F050765006E7F60 /* SearchRoomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C1D1F050765006E7F60 /* SearchRoomModel.swift */; };
 		0F77DD141F01EB4900497D84 /* SearchModelFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F77DD131F01EB4900497D84 /* SearchModelFrame.swift */; };
 		0F77DD161F01EEA200497D84 /* SearchModelGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F77DD151F01EEA200497D84 /* SearchModelGroup.swift */; };
 		0F77DD181F01F87E00497D84 /* SearchSectionHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F77DD171F01F87E00497D84 /* SearchSectionHeadView.swift */; };
@@ -96,6 +103,10 @@
 		0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97482A1EF5120700C5B543 /* LiveViewController.swift */; };
 		0F97482E1EF5180C00C5B543 /* LiveViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97482D1EF5180C00C5B543 /* LiveViewModel.swift */; };
 		0F9748301EF52D9D00C5B543 /* LiveModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F97482F1EF52D9D00C5B543 /* LiveModel.swift */; };
+		0FA757D51F05D596007EF12C /* SearchAnchorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757D41F05D596007EF12C /* SearchAnchorCell.swift */; };
+		0FA757D71F05D8BE007EF12C /* SearchRoomGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757D61F05D8BE007EF12C /* SearchRoomGroupModel.swift */; };
+		0FA757D91F060000007EF12C /* SearchRoomNavagationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757D81F060000007EF12C /* SearchRoomNavagationBar.swift */; };
+		0FA757DB1F063C62007EF12C /* WatchHistoryModelFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757DA1F063C62007EF12C /* WatchHistoryModelFrame.swift */; };
 		0FB05C971EF20A0D008F13B7 /* QrcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */; };
 		0FCA412B1F00FC35007D773B /* SQLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCA412A1F00FC35007D773B /* SQLManager.swift */; };
 		0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D121EF773DA002D5E31 /* LiveSubViewController.swift */; };
@@ -173,7 +184,7 @@
 		0F05C7E91EF8EC4800AFD492 /* ProfileGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileGroupModel.swift; sourceTree = "<group>"; };
 		0F05C7EB1EF8EF1500AFD492 /* ProfileCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileCell.swift; sourceTree = "<group>"; };
 		0F05C7EE1EF924CE00AFD492 /* VerticalButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VerticalButton.swift; sourceTree = "<group>"; };
-		0F08F3C51D90AFE8009CCEAE /* NSDate+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSDate+Extension.swift"; sourceTree = "<group>"; };
+		0F08F3C51D90AFE8009CCEAE /* Date+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		0F08F3C71D90B0F4009CCEAE /* NetworkTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkTools.swift; sourceTree = "<group>"; };
 		0F08F3CA1D90B933009CCEAE /* RecommendViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendViewModel.swift; sourceTree = "<group>"; };
 		0F08F3CC1D90BD5E009CCEAE /* AnchorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnchorModel.swift; sourceTree = "<group>"; };
@@ -187,9 +198,10 @@
 		0F0C0E021EFD03B600B6828D /* searchViewTitles.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = searchViewTitles.plist; sourceTree = "<group>"; };
 		0F0C0E041EFD04FD00B6828D /* SearchHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadView.swift; sourceTree = "<group>"; };
 		0F0C0E061EFD051A00B6828D /* SearchHeadVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadVM.swift; sourceTree = "<group>"; };
-		0F0C0E0A1EFD0D6700B6828D /* SearchHeadCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadCell.swift; sourceTree = "<group>"; };
+		0F0C0E0A1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadRecentlyCell.swift; sourceTree = "<group>"; };
 		0F0FA5011DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorHeardView.swift; sourceTree = "<group>"; };
 		0F0FA5031DD19D8200B8E7C5 /* ShowAnchorHeardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowAnchorHeardView.xib; sourceTree = "<group>"; };
+		0F1307A11F03AC2F004D01A0 /* UserDefaultsManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManage.swift; sourceTree = "<group>"; };
 		0F1867F81DD1D8EF00FD8E9A /* user.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = user.plist; sourceTree = "<group>"; };
 		0F1867FA1DD2033C00FD8E9A /* RoomFollowPerson.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoomFollowPerson.swift; sourceTree = "<group>"; };
 		0F1867FC1DD208F100FD8E9A /* ShowAnchorHeadFollowPersonCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorHeadFollowPersonCell.swift; sourceTree = "<group>"; };
@@ -214,6 +226,12 @@
 		0F601CF11DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYRefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
 		0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVC.swift; sourceTree = "<group>"; };
 		0F601D221DCF2BC300FD001B /* ShowAnchorVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVCCell.swift; sourceTree = "<group>"; };
+		0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryVM.swift; sourceTree = "<group>"; };
+		0F6B0C131F04DF75006E7F60 /* SearchRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomViewController.swift; sourceTree = "<group>"; };
+		0F6B0C151F04E1CD006E7F60 /* SearchSubRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSubRoomViewController.swift; sourceTree = "<group>"; };
+		0F6B0C171F04FBA7006E7F60 /* SearchBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchBaseViewController.swift; sourceTree = "<group>"; };
+		0F6B0C1B1F050455006E7F60 /* SearchRoomVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomVM.swift; sourceTree = "<group>"; };
+		0F6B0C1D1F050765006E7F60 /* SearchRoomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomModel.swift; sourceTree = "<group>"; };
 		0F77DD131F01EB4900497D84 /* SearchModelFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModelFrame.swift; sourceTree = "<group>"; };
 		0F77DD151F01EEA200497D84 /* SearchModelGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchModelGroup.swift; sourceTree = "<group>"; };
 		0F77DD171F01F87E00497D84 /* SearchSectionHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSectionHeadView.swift; sourceTree = "<group>"; };
@@ -258,6 +276,10 @@
 		0F97482A1EF5120700C5B543 /* LiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewController.swift; sourceTree = "<group>"; };
 		0F97482D1EF5180C00C5B543 /* LiveViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveViewModel.swift; sourceTree = "<group>"; };
 		0F97482F1EF52D9D00C5B543 /* LiveModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveModel.swift; sourceTree = "<group>"; };
+		0FA757D41F05D596007EF12C /* SearchAnchorCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAnchorCell.swift; sourceTree = "<group>"; };
+		0FA757D61F05D8BE007EF12C /* SearchRoomGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomGroupModel.swift; sourceTree = "<group>"; };
+		0FA757D81F060000007EF12C /* SearchRoomNavagationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomNavagationBar.swift; sourceTree = "<group>"; };
+		0FA757DA1F063C62007EF12C /* WatchHistoryModelFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchHistoryModelFrame.swift; sourceTree = "<group>"; };
 		0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QrcodeViewController.swift; sourceTree = "<group>"; };
 		0FCA412A1F00FC35007D773B /* SQLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLManager.swift; sourceTree = "<group>"; };
 		0FCA412C1F00FD02007D773B /* DYZB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DYZB-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -365,6 +387,7 @@
 				0F05C7EE1EF924CE00AFD492 /* VerticalButton.swift */,
 				0FFD923B1EFA749400D1A31B /* UserIconView.swift */,
 				0FDA59921EFB931F00691013 /* DownButton.swift */,
+				0F1307A11F03AC2F004D01A0 /* UserDefaultsManage.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -377,7 +400,9 @@
 				0F8845C11DC1AFD200836715 /* AmuseViewModel.swift */,
 				0F8845CB1DC1FF2500836715 /* FunnyViewModel.swift */,
 				0F0C0DFA1EFCEAA300B6828D /* SearchVM.swift */,
+				0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */,
 				0F0C0E061EFD051A00B6828D /* SearchHeadVM.swift */,
+				0F6B0C1B1F050455006E7F60 /* SearchRoomVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -401,6 +426,7 @@
 				0FFD92361EFA577200D1A31B /* User.swift */,
 				0FDA59901EFB6FF200691013 /* GameCenterModel.swift */,
 				0FDA59981EFBAFD200691013 /* WatchHistoryModel.swift */,
+				0FA757DA1F063C62007EF12C /* WatchHistoryModelFrame.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -630,7 +656,10 @@
 				0F8845B81DC1997200836715 /* AmuseViewController.swift */,
 				0F8845BA1DC199FD00836715 /* FunnyViewController.swift */,
 				0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */,
+				0F6B0C171F04FBA7006E7F60 /* SearchBaseViewController.swift */,
 				0F0C0DF81EFCE68B00B6828D /* SearchViewController.swift */,
+				0F6B0C131F04DF75006E7F60 /* SearchRoomViewController.swift */,
+				0F6B0C151F04E1CD006E7F60 /* SearchSubRoomViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -643,6 +672,8 @@
 				0F0C0DFC1EFCEAB700B6828D /* SearchModel.swift */,
 				0F77DD151F01EEA200497D84 /* SearchModelGroup.swift */,
 				0F77DD131F01EB4900497D84 /* SearchModelFrame.swift */,
+				0F6B0C1D1F050765006E7F60 /* SearchRoomModel.swift */,
+				0FA757D61F05D8BE007EF12C /* SearchRoomGroupModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -666,8 +697,10 @@
 				0F8845C81DC1DA6A00836715 /* AmuseMenuViewCell.xib */,
 				0F0C0DFE1EFCEEEF00B6828D /* SearchCell.swift */,
 				0F0C0E041EFD04FD00B6828D /* SearchHeadView.swift */,
-				0F0C0E0A1EFD0D6700B6828D /* SearchHeadCell.swift */,
+				0F0C0E0A1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift */,
 				0F77DD171F01F87E00497D84 /* SearchSectionHeadView.swift */,
+				0FA757D41F05D596007EF12C /* SearchAnchorCell.swift */,
+				0FA757D81F060000007EF12C /* SearchRoomNavagationBar.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -712,7 +745,7 @@
 				0F84A3751D8AA275000705BE /* UIBarButotnItem+Extension.swift */,
 				0F5684021D8B9024002EAD23 /* Common.swift */,
 				0F26A75E1DD1C15D003F0E3C /* String+Extension.swift */,
-				0F08F3C51D90AFE8009CCEAE /* NSDate+Extension.swift */,
+				0F08F3C51D90AFE8009CCEAE /* Date+Extension.swift */,
 				0FF151D81DC6EBA500454F7C /* DYRefreshGifHeader.swift */,
 				0F601CF11DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift */,
 				0FF151DD1DC812F300454F7C /* UIImageView+Extension.swift */,
@@ -1062,9 +1095,11 @@
 				0F05C7EF1EF924CE00AFD492 /* VerticalButton.swift in Sources */,
 				0F0C0E051EFD04FD00B6828D /* SearchHeadView.swift in Sources */,
 				0F1D684F1D94D87300DDD7A8 /* RecommendCycleView.swift in Sources */,
+				0FA757D51F05D596007EF12C /* SearchAnchorCell.swift in Sources */,
 				0FCA412B1F00FC35007D773B /* SQLManager.swift in Sources */,
 				0F8845C91DC1DA6A00836715 /* AmuseMenuViewCell.swift in Sources */,
 				0F08F3C81D90B0F4009CCEAE /* NetworkTools.swift in Sources */,
+				0F6B0C1E1F050765006E7F60 /* SearchRoomModel.swift in Sources */,
 				0FCE3D1F1EF77806002D5E31 /* STContentView.swift in Sources */,
 				0F05C7E61EF8D10B00AFD492 /* ProfileModel.swift in Sources */,
 				0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */,
@@ -1082,6 +1117,7 @@
 				0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */,
 				0F1867FE1DD208F100FD8E9A /* ShowAnchorHeadFollowPersonCell.swift in Sources */,
 				0FF1524F1DC983CA00454F7C /* ZanAnimation.swift in Sources */,
+				0FA757D71F05D8BE007EF12C /* SearchRoomGroupModel.swift in Sources */,
 				0F77DD181F01F87E00497D84 /* SearchSectionHeadView.swift in Sources */,
 				0F27D9651D8F6B9000E022A0 /* RecommendViewController.swift in Sources */,
 				0F1D68571D950AC300DDD7A8 /* CycleModel.swift in Sources */,
@@ -1094,6 +1130,8 @@
 				0F601D231DCF2BC300FD001B /* ShowAnchorVCCell.swift in Sources */,
 				0FE1D65D1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift in Sources */,
 				0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */,
+				0F6B0C141F04DF75006E7F60 /* SearchRoomViewController.swift in Sources */,
+				0F6B0C181F04FBA7006E7F60 /* SearchBaseViewController.swift in Sources */,
 				0F77DD141F01EB4900497D84 /* SearchModelFrame.swift in Sources */,
 				0FDA59971EFBACF100691013 /* WatchHistoryVM.swift in Sources */,
 				0F3633C11DC2402B00897B4A /* GameAnchorViewController.swift in Sources */,
@@ -1106,11 +1144,12 @@
 				0F8845BD1DC1A16900836715 /* BaseAnchorViewController.swift in Sources */,
 				0FF151AF1DC6185500454F7C /* ProfileViewController.swift in Sources */,
 				0F8845C01DC1A97F00836715 /* BaseViewModel.swift in Sources */,
+				0FA757DB1F063C62007EF12C /* WatchHistoryModelFrame.swift in Sources */,
 				0F8845B61DC0B63000836715 /* BaseGameModel.swift in Sources */,
 				0FDA59911EFB6FF200691013 /* GameCenterModel.swift in Sources */,
 				0F97482E1EF5180C00C5B543 /* LiveViewModel.swift in Sources */,
 				0F05BC271DD31EE9000D9D27 /* PresentModel.swift in Sources */,
-				0F0C0E0B1EFD0D6700B6828D /* SearchHeadCell.swift in Sources */,
+				0F0C0E0B1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift in Sources */,
 				0F601CF21DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift in Sources */,
 				0FDA598B1EFB668000691013 /* GameCenterViewController.swift in Sources */,
 				0FF151CF1DC6D2C200454F7C /* RoomYKModel.swift in Sources */,
@@ -1128,6 +1167,7 @@
 				0F08F3CF1D90BEEF009CCEAE /* AnchorGroup.swift in Sources */,
 				0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */,
 				0F1BEEA01D969321004840F0 /* RecommendGameView.swift in Sources */,
+				0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */,
 				0FF152531DC983E700454F7C /* PraiseEmitterView.swift in Sources */,
 				0FDA59931EFB931F00691013 /* DownButton.swift in Sources */,
 				0F84A3731D8AA147000705BE /* HomeViewController.swift in Sources */,
@@ -1138,6 +1178,7 @@
 				0F1D066B1DD4603C008C3D2B /* ShowAnchorCatView.swift in Sources */,
 				0F8DD0B11D8FA912007A1625 /* CollectionHeaderView.swift in Sources */,
 				0FCE3D241EF77806002D5E31 /* UIColor-Extension.swift in Sources */,
+				0F6B0C161F04E1CD006E7F60 /* SearchSubRoomViewController.swift in Sources */,
 				0FDA59951EFBA71000691013 /* WatchHistoryViewController.swift in Sources */,
 				0F5684031D8B9024002EAD23 /* Common.swift in Sources */,
 				0FF151E01DC8154800454F7C /* UIViewController+Extension.swift in Sources */,
@@ -1157,13 +1198,16 @@
 				0FFD92371EFA577300D1A31B /* User.swift in Sources */,
 				0FCE3D1E1EF77806002D5E31 /* STContentFlowLayout.swift in Sources */,
 				0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */,
+				0F6B0C1C1F050455006E7F60 /* SearchRoomVM.swift in Sources */,
 				0F0C0DF91EFCE68B00B6828D /* SearchViewController.swift in Sources */,
 				0FCE3D211EF77806002D5E31 /* STPageView.swift in Sources */,
 				0F08F3CB1D90B933009CCEAE /* RecommendViewModel.swift in Sources */,
 				0FF152521DC983E700454F7C /* EmitterLayer_ST.swift in Sources */,
-				0F08F3C61D90AFE8009CCEAE /* NSDate+Extension.swift in Sources */,
+				0F08F3C61D90AFE8009CCEAE /* Date+Extension.swift in Sources */,
+				0FA757D91F060000007EF12C /* SearchRoomNavagationBar.swift in Sources */,
 				0FF151DB1DC7373300454F7C /* RoomAchorBottomView.swift in Sources */,
 				0FF151C91DC6413400454F7C /* RoomAnchorModel.swift in Sources */,
+				0F6B0C121F048763006E7F60 /* SearchHistoryVM.swift in Sources */,
 				0F05C7EA1EF8EC4800AFD492 /* ProfileGroupModel.swift in Sources */,
 				0F05BC2A1DD325CD000D9D27 /* ShowUserVC.swift in Sources */,
 				0F0FA5021DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift in Sources */,

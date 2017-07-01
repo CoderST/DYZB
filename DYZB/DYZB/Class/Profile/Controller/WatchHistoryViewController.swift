@@ -7,7 +7,8 @@
 //
 
 import UIKit
-fileprivate let itemHeight : CGFloat = 150
+import SVProgressHUD
+let WatchHistoryItemHeight : CGFloat = 120
 fileprivate let watchHistoryIdentifier  = "watchHistoryIdentifier"
 class WatchHistoryViewController: BaseViewController {
 
@@ -17,14 +18,14 @@ class WatchHistoryViewController: BaseViewController {
     fileprivate lazy var collectionView : UICollectionView = {
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
-        layout.itemSize = CGSize(width: sScreenW, height: itemHeight)
+        layout.itemSize = CGSize(width: sScreenW, height: WatchHistoryItemHeight)
 //        layout.headerReferenceSize = CGSize(width: sScreenW, height: sHeadHeight)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
 //        layout.sectionInset = UIEdgeInsets(top: 0, left: sEdgeMargin, bottom: 0, right: sEdgeMargin)
         
         // 创建UICollectionView
-        let collectionView = UICollectionView(frame: self.view.bounds, collectionViewLayout: layout)
+        let collectionView = UICollectionView(frame: CGRect(x: 0, y: sStatusBarH + sNavatationBarH, width: sScreenW, height: sScreenH - sStatusBarH - sNavatationBarH), collectionViewLayout: layout)
         // 设置数据源
         collectionView.dataSource = self
 //        collectionView.delegate = self
@@ -40,7 +41,6 @@ class WatchHistoryViewController: BaseViewController {
         
         baseContentView = collectionView
         
-        
         super.viewDidLoad()
 
        view.addSubview(collectionView)
@@ -49,7 +49,7 @@ class WatchHistoryViewController: BaseViewController {
             self.collectionView.reloadData()
             self.endAnimation()
         }, { (message) in
-            
+           SVProgressHUD.showError(withStatus: message)
         }) { 
             
         }
@@ -59,7 +59,7 @@ class WatchHistoryViewController: BaseViewController {
 extension WatchHistoryViewController : UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
-        return watchHistoryVM.watchHistoryModelArray.count
+        return watchHistoryVM.watchHistoryModelFrameArray.count
     }
     
     
@@ -67,7 +67,9 @@ extension WatchHistoryViewController : UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: watchHistoryIdentifier, for: indexPath) as! WatchHistoryCell
 //        cell.gameCenterModel = watchHistoryVM.watchHistoryModelArray[indexPath.item]
-        cell.contentView.backgroundColor = UIColor.randomColor()
+        let watchHistoryModelFrame = watchHistoryVM.watchHistoryModelFrameArray[indexPath.item]
+        cell.watchHistoryModelFrame = watchHistoryModelFrame
+//        cell.contentView.backgroundColor = UIColor.randomColor()
         return cell
     }
 }

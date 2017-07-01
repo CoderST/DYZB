@@ -18,6 +18,7 @@ class SearchVM: NSObject {
 
     
     func loadSearchDatas(_ insertTitle : String?, _ finishCallBack : ()->()) {
+        
         if var historyDictArray = userDefaults.array(forKey: historyKey) as? [[String : Any]]{
             if insertTitle != nil {
                 dictArray.removeAll()
@@ -26,7 +27,6 @@ class SearchVM: NSObject {
                 // 如果在历史记录中有最新的值 则不做处理,吧最新的值放在第一个位置
                 for historyDict in historyDictArray{
                     guard let historTitle = historyDict["title"] as? String else { continue }
-                    
                     if historTitle == insertTitle!{
                     let dictArray = historyDictArray as NSArray
                     let index =  dictArray.index(of: historyDict)
@@ -35,34 +35,36 @@ class SearchVM: NSObject {
                         userDefaults.set(historyDictArray, forKey: historyKey)
                         userDefaults.synchronize()
                         searchLocalModelArray.searchModelArray.removeAll()
-                        for dict in historyDictArray{
-                            let model = SearchModel(dict: dict)
-                            let modelFrame = SearchModelFrame(model)
-                            searchLocalModelArray.searchModelArray.append(modelFrame)
-                        }
+//                        for dict in historyDictArray{
+//                            let model = SearchModel(dict: dict)
+//                            let modelFrame = SearchModelFrame(model)
+//                            searchLocalModelArray.searchModelArray.append(modelFrame)
+//                        }
                         searchArrayGroup.append(searchLocalModelArray)
                         finishCallBack()
                         return
                     }
                     
                 }
+                
+                searchArrayGroup.removeAll()
                  searchLocalModelArray.searchModelArray.removeAll()
                 dictArray.append(dict)
                 historyDictArray = dictArray + historyDictArray
                 userDefaults.set(historyDictArray, forKey: historyKey)
                 userDefaults.synchronize()
             }
-            for dict in historyDictArray{
-                let model = SearchModel(dict: dict)
-                let modelFrame = SearchModelFrame(model)
-                searchLocalModelArray.searchModelArray.append(modelFrame)
-            }
+//            for dict in historyDictArray{
+//                let model = SearchModel(dict: dict)
+//                let modelFrame = SearchModelFrame(model)
+//                searchLocalModelArray.searchModelArray.append(modelFrame)
+//            }
             searchArrayGroup.append(searchLocalModelArray)
             
         }else{
             print("historyDictArray本地历史记录不存在")
 
-            if insertTitle != nil {
+            searchArrayGroup.removeAll()
                 if insertTitle != nil {
                     dictArray.removeAll()
                     let dict : [String : Any] = ["title" : insertTitle!]
@@ -70,17 +72,19 @@ class SearchVM: NSObject {
                     userDefaults.set(dictArray, forKey: historyKey)
                     userDefaults.synchronize()
                 
-                    let model = SearchModel(dict: dict)
-                    let modelFrame = SearchModelFrame(model)
-                    searchLocalModelArray.searchModelArray.append(modelFrame)
+//                    let model = SearchModel(dict: dict)
+//                    let modelFrame = SearchModelFrame(model)
+//                    searchLocalModelArray.searchModelArray.append(modelFrame)
 
                     searchArrayGroup.append(searchLocalModelArray)
                 
-                }
-                
-
+                }else{
+                    
+                    searchArrayGroup.append(searchLocalModelArray)
             }
-            searchArrayGroup.append(searchLocalModelArray)
+            
+
+            
         }
         
         
@@ -93,12 +97,12 @@ class SearchVM: NSObject {
             return }
         guard let dictArray = dict["searchArray"] as? [[String : Any]] else { return }
         searchModelArray.searchModelArray.removeAll()
-        for dict in dictArray{
-            let model = SearchModel(dict: dict)
-            let modelFrame = SearchModelFrame(model)
-            modelFrame.cellSize.width = sScreenW
-            searchModelArray.searchModelArray.append(modelFrame)
-        }
+//        for dict in dictArray{
+//            let model = SearchModel(dict: dict)
+//            let modelFrame = SearchModelFrame(model)
+//            modelFrame.cellSize.width = sScreenW
+//            searchModelArray.searchModelArray.append(modelFrame)
+//        }
         searchArrayGroup.append(searchModelArray)
         
         finishCallBack()

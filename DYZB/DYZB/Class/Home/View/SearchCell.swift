@@ -44,24 +44,21 @@ class SearchCell: UICollectionViewCell {
             guard let searchModel = searchModel else { return }
             let rank = searchModel.rank
             switch rank {
-            case "0":
-                print("")
+            case 1:
                 
-            case "1":
-                print("")
                 rankLabel.backgroundColor = UIColor.red
-            case "2":
-                print("")
+            case 2:
+                
                 rankLabel.backgroundColor = UIColor.purple
-            case "3":
-                print("")
+            case 3:
+               
                 rankLabel.backgroundColor = UIColor.orange
             default:
-                print("")
+            
                 rankLabel.backgroundColor = UIColor.gray
             }
             
-            rankLabel.text = searchModel.rank
+            rankLabel.text = "\(searchModel.rank)"
             titleLabel.text = searchModel.title
         }
     }
@@ -69,6 +66,7 @@ class SearchCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         contentView.addSubview(rankLabel)
+//        rankLabel.isHidden = true
         contentView.addSubview(titleLabel)
         contentView.addSubview(lineView)
     }
@@ -76,13 +74,13 @@ class SearchCell: UICollectionViewCell {
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        if searchModel?.rank == "0" {
-            rankLabel.isHidden = true
-            rankLabel.frame = CGRect(x: 10, y: (frame.height - rankWH) * 0.5, width: 0, height: rankWH)
-        }else{
-            rankLabel.isHidden = false
+//        if searchModel?.rank == 0 {
+//            rankLabel.isHidden = true
+//            rankLabel.frame = CGRect(x: 10, y: (frame.height - rankWH) * 0.5, width: 0, height: rankWH)
+//        }else{
+//            rankLabel.isHidden = false
             rankLabel.frame = CGRect(x: 10, y: (frame.height - rankWH) * 0.5, width: rankWH, height: rankWH)
-        }
+//        }
         
         titleLabel.frame = CGRect(x: rankLabel.frame.maxX + 10, y: 0, width: sScreenW, height: frame.height)
         

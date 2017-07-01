@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import STRowLayout
+import SVProgressHUD
 import UICollectionViewLeftAlignedLayout
 fileprivate let itemHeight : CGFloat = 44
 fileprivate let headViewHeight : CGFloat = 60
@@ -18,7 +18,8 @@ class SearchViewController: UIViewController {
     
     
     // MARK:- 懒加载
-    fileprivate lazy var searchVM : SearchVM = SearchVM()
+//    fileprivate lazy var searchVM : SearchVM = SearchVM()
+     fileprivate lazy var searchVM : SearchHistoryVM = SearchHistoryVM()
     
     fileprivate lazy var headView : SearchHeadView = {
        
@@ -37,7 +38,7 @@ class SearchViewController: UIViewController {
         layout.minimumLineSpacing = 2 * searchModelMargin
         layout.minimumInteritemSpacing = searchModelMargin
         // 这里有打印警告:::::因为设置sectionInset后宽度会报警告
-        layout.sectionInset = UIEdgeInsets(top: searchModelMargin, left: searchModelMargin, bottom: searchModelMargin, right: searchModelMargin)
+//        layout.sectionInset = UIEdgeInsets(top: searchModelMargin, left: searchModelMargin, bottom: searchModelMargin, right: searchModelMargin)
         // 创建UICollectionView
         let collectionView = UICollectionView(frame: CGRect.zero, collectionViewLayout: layout)
         
@@ -48,7 +49,7 @@ class SearchViewController: UIViewController {
         collectionView.backgroundColor = UIColor.white
         
         // 注册cell
-        collectionView.register(SearchHeadCell.self, forCellWithReuseIdentifier: searchHeadIdentifier)
+        collectionView.register(SearchHeadRecentlyCell.self, forCellWithReuseIdentifier: searchHeadIdentifier)
         collectionView.register(SearchCell.self, forCellWithReuseIdentifier: searchIdentifier)
         collectionView.register(SearchSectionHeadView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: searchSectionHeadViewIdentifier)
         return collectionView;
@@ -72,8 +73,11 @@ class SearchViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchVM.loadSearchDatas(nil) {
+
+        searchVM.loadSearchWillAppearDatas({ 
             self.collectionView.reloadData()
+        }) { (message) in
+            SVProgressHUD.showError(withStatus: message)
         }
     }
 }
@@ -82,10 +86,9 @@ class SearchViewController: UIViewController {
 extension SearchViewController {
     func DelHistory() {
         // 清除数组数据
-        searchVM.searchLocalModelArray.searchModelArray.removeAll()
+        searchVM.clearSearchOneGroup()
         // 清除本地缓存数据
-        userDefaults.removeObject(forKey: historyKey)
-        userDefaults.synchronize()
+        UserDefaultsManage.shareInstance().removeAllDatas(historyKey)
         collectionView.reloadData()
     }
     
@@ -118,7 +121,7 @@ extension SearchViewController : UICollectionViewDataSource {
         
         if indexPath.section == 0{
             
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchHeadIdentifier, for: indexPath) as! SearchHeadCell
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: searchHeadIdentifier, for: indexPath) as! SearchHeadRecentlyCell
             
             cell.searchFrame = modelFrame
             //            cell.contentView.backgroundColor = UIColor.red
@@ -142,13 +145,31 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
         let searchGroup = searchVM.searchArrayGroup[indexPath.section]
         let modelFrame = searchGroup.searchModelArray[indexPath.item]
         // 跳转界面
-        print(modelFrame.searchModel.title)
         let title = modelFrame.searchModel.title
-        
-        
-        searchVM.loadSearchDatas(title) {
+        searchVM.switchStringCacheDatas(title) { 
             self.collectionView.reloadData()
         }
+        
+        
+        
+        view.removeFromSuperview()
+        
+//        dismiss(animated: false) {
+//            
+//            guard let window = UIApplication.shared.keyWindow else { return }
+//            let tabVC = window.rootViewController as!UITabBarController
+//            let nava = tabVC.selectedViewController
+//            print("zzzzz",nava)
+//            guard let nav = tabVC.selectedViewController as? MainNavigationController else {
+//                print("没有 - HomeViewController")
+//                return }
+//            let searchRoomVC = SearchRoomViewController()
+//            nav.present(searchRoomVC, animated: false, completion: nil)
+//            
+//        }
+        let searchRoomVC = SearchRoomViewController()
+        searchRoomVC.delegate = self
+        present(searchRoomVC, animated: false, completion: nil)
         
     }
     
@@ -193,9 +214,15 @@ extension SearchViewController : UICollectionViewDelegateFlowLayout {
         let searchGroup = searchVM.searchArrayGroup[indexPath.section]
         let modelFrame = searchGroup.searchModelArray[indexPath.item]
         
-//        print(modelFrame.searchModel.title,modelFrame.cellSize)
         return modelFrame.cellSize
     }
     
+}
+
+extension SearchViewController : SearchRoomViewControllerDelegate{
+    
+    func dissMissVC(searchRoomViewController: SearchRoomViewController) {
+        dismiss(animated: false, completion: nil)
+    }
 }
 
