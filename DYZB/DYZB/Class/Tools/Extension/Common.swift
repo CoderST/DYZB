@@ -18,7 +18,7 @@ let historyKey : String = "historyKey"
 let sScreenW = UIScreen.main.bounds.width
 let sScreenH = UIScreen.main.bounds.height
 
-let TOKEN = "94153348_11_cd79b4bb454aed7b_2_22753003" // 重新获取最新
+let TOKEN = "94153348_11_7452d666f21c53f4_2_22753003" // 重新获取最新
 let AUTH = "fe73812c89c1a6fe5671cfc31a529331"   // 取不到最新的 广告数据出不来
 
 // MARK:- 通知
@@ -34,12 +34,16 @@ let sNotificationName_Dismiss = "sNotificationName_Dismiss"
 // 搜索Room界面dismiss
 let sNotificationName_RoomDismiss = "sNotificationName_RoomDismiss"
 
-func debugLog<T>(_ message : T, file : String = #file, lineNumber : Int = #line) {
-    
+func delog(filePath: String = #file, rowCount: Int = #line) {
     #if DEBUG
-        
-        let fileName = (file as NSString).lastPathComponent
-        print("[\(fileName):line:\(lineNumber)]- \(message)")
-        
+        let fileName = (filePath as NSString).lastPathComponent.replacingOccurrences(of: ".swift", with: "")
+        print(fileName + "/" + "\(rowCount)" + "\n")
+    #endif
+}
+
+func debugLog<T>(_ message: T, filePath: String = #file, rowCount: Int = #line) {
+    #if DEBUG
+        let fileName = (filePath as NSString).lastPathComponent.replacingOccurrences(of: ".swift", with: "")
+        print(fileName + "/" + "\(rowCount)" + " \(message)" + "\n")
     #endif
 }

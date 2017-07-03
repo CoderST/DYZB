@@ -139,11 +139,19 @@ extension ProfileHeadView {
     }
     
     @objc fileprivate  func mailButtonAction(){
+        let nav = getNavigation()
+        let interalMessageVC = InteralMessageViewController()
         
+        nav.pushViewController(interalMessageVC, animated: true)
     }
     
     @objc fileprivate  func taskButtonAction(){
+
+        let nav = getNavigation()
+        let myTaskVM = MyTaskViewController()
         
+        nav.pushViewController(myTaskVM, animated: true)
+
     }
     
     @objc fileprivate  func rechargeButtonAction(){
@@ -156,13 +164,5 @@ extension ProfileHeadView {
         
         return nav
     }
-    
-    fileprivate func setupCustomButton() {
-        
-        // 历史
-        
-        // 信
-        // 任务
-        // 充值
-    }
+
 }

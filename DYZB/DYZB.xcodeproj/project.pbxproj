@@ -30,6 +30,11 @@
 		0F0C0E051EFD04FD00B6828D /* SearchHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C0E041EFD04FD00B6828D /* SearchHeadView.swift */; };
 		0F0C0E071EFD051A00B6828D /* SearchHeadVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C0E061EFD051A00B6828D /* SearchHeadVM.swift */; };
 		0F0C0E0B1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0C0E0A1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift */; };
+		0F0F14781F09EB4B0024E53B /* InteralMessageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F14771F09EB4B0024E53B /* InteralMessageViewController.swift */; };
+		0F0F147C1F0A12EB0024E53B /* InteralMessageVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F147B1F0A12EB0024E53B /* InteralMessageVM.swift */; };
+		0F0F147E1F0A18050024E53B /* InteralMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F147D1F0A18050024E53B /* InteralMessageModel.swift */; };
+		0F0F14801F0A1D720024E53B /* InteralMessageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F147F1F0A1D720024E53B /* InteralMessageCell.swift */; };
+		0F0F14821F0A27E60024E53B /* MyTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0F14811F0A27E60024E53B /* MyTaskViewController.swift */; };
 		0F0FA5021DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F0FA5011DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift */; };
 		0F0FA5041DD19D8200B8E7C5 /* ShowAnchorHeardView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F0FA5031DD19D8200B8E7C5 /* ShowAnchorHeardView.xib */; };
 		0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1307A11F03AC2F004D01A0 /* UserDefaultsManage.swift */; };
@@ -200,6 +205,11 @@
 		0F0C0E041EFD04FD00B6828D /* SearchHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadView.swift; sourceTree = "<group>"; };
 		0F0C0E061EFD051A00B6828D /* SearchHeadVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadVM.swift; sourceTree = "<group>"; };
 		0F0C0E0A1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHeadRecentlyCell.swift; sourceTree = "<group>"; };
+		0F0F14771F09EB4B0024E53B /* InteralMessageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteralMessageViewController.swift; sourceTree = "<group>"; };
+		0F0F147B1F0A12EB0024E53B /* InteralMessageVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteralMessageVM.swift; sourceTree = "<group>"; };
+		0F0F147D1F0A18050024E53B /* InteralMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteralMessageModel.swift; sourceTree = "<group>"; };
+		0F0F147F1F0A1D720024E53B /* InteralMessageCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InteralMessageCell.swift; sourceTree = "<group>"; };
+		0F0F14811F0A27E60024E53B /* MyTaskViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTaskViewController.swift; sourceTree = "<group>"; };
 		0F0FA5011DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorHeardView.swift; sourceTree = "<group>"; };
 		0F0FA5031DD19D8200B8E7C5 /* ShowAnchorHeardView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowAnchorHeardView.xib; sourceTree = "<group>"; };
 		0F1307A11F03AC2F004D01A0 /* UserDefaultsManage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefaultsManage.swift; sourceTree = "<group>"; };
@@ -416,6 +426,8 @@
 				0F05C7E71EF8D39700AFD492 /* RecruitViewController.swift */,
 				0FDA598A1EFB668000691013 /* GameCenterViewController.swift */,
 				0FDA59941EFBA71000691013 /* WatchHistoryViewController.swift */,
+				0F0F14771F09EB4B0024E53B /* InteralMessageViewController.swift */,
+				0F0F14811F0A27E60024E53B /* MyTaskViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -429,6 +441,7 @@
 				0FDA59901EFB6FF200691013 /* GameCenterModel.swift */,
 				0FDA59981EFBAFD200691013 /* WatchHistoryModel.swift */,
 				0FA757DA1F063C62007EF12C /* WatchHistoryModelFrame.swift */,
+				0F0F147D1F0A18050024E53B /* InteralMessageModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -440,6 +453,7 @@
 				0F05C7EB1EF8EF1500AFD492 /* ProfileCell.swift */,
 				0FDA598C1EFB6CD100691013 /* GameCenterCell.swift */,
 				0FDA599A1EFBC4EA00691013 /* WatchHistoryCell.swift */,
+				0F0F147F1F0A1D720024E53B /* InteralMessageCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -887,6 +901,7 @@
 				0FFD92391EFA5C5100D1A31B /* ProfileViewModel.swift */,
 				0FDA598E1EFB6D1900691013 /* GameCenterVM.swift */,
 				0FDA59961EFBACF100691013 /* WatchHistoryVM.swift */,
+				0F0F147B1F0A12EB0024E53B /* InteralMessageVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1120,6 +1135,7 @@
 				0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */,
 				0F1867FE1DD208F100FD8E9A /* ShowAnchorHeadFollowPersonCell.swift in Sources */,
 				0FF1524F1DC983CA00454F7C /* ZanAnimation.swift in Sources */,
+				0F0F14781F09EB4B0024E53B /* InteralMessageViewController.swift in Sources */,
 				0FA757D71F05D8BE007EF12C /* SearchRoomGroupModel.swift in Sources */,
 				0F77DD181F01F87E00497D84 /* SearchSectionHeadView.swift in Sources */,
 				0F27D9651D8F6B9000E022A0 /* RecommendViewController.swift in Sources */,
@@ -1171,6 +1187,7 @@
 				0F08F3CF1D90BEEF009CCEAE /* AnchorGroup.swift in Sources */,
 				0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */,
 				0F1BEEA01D969321004840F0 /* RecommendGameView.swift in Sources */,
+				0F0F14821F0A27E60024E53B /* MyTaskViewController.swift in Sources */,
 				0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */,
 				0FF152531DC983E700454F7C /* PraiseEmitterView.swift in Sources */,
 				0FDA59931EFB931F00691013 /* DownButton.swift in Sources */,
@@ -1185,6 +1202,7 @@
 				0F6B0C161F04E1CD006E7F60 /* SearchSubRoomViewController.swift in Sources */,
 				0FDA59951EFBA71000691013 /* WatchHistoryViewController.swift in Sources */,
 				0F5684031D8B9024002EAD23 /* Common.swift in Sources */,
+				0F0F147E1F0A18050024E53B /* InteralMessageModel.swift in Sources */,
 				0FF151E01DC8154800454F7C /* UIViewController+Extension.swift in Sources */,
 				0F86EEF01DCDF8FC00CAD233 /* ShowAnchorListCell.swift in Sources */,
 				0F8845C41DC1CBE200836715 /* AmuseMenuView.swift in Sources */,
@@ -1197,6 +1215,7 @@
 				0FCE3D291EF7B523002D5E31 /* FollowViewController.swift in Sources */,
 				0F3633B31DC23E8E00897B4A /* MainNavigationController.swift in Sources */,
 				0FCE3D231EF77806002D5E31 /* STTitlesView.swift in Sources */,
+				0F0F147C1F0A12EB0024E53B /* InteralMessageVM.swift in Sources */,
 				0FFD92351EFA16D900D1A31B /* ADLinkViewController.swift in Sources */,
 				0F1D68541D95087C00DDD7A8 /* CollectionCycleCell.swift in Sources */,
 				0FFD92371EFA577300D1A31B /* User.swift in Sources */,
@@ -1204,6 +1223,7 @@
 				0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */,
 				0F6B0C1C1F050455006E7F60 /* SearchRoomVM.swift in Sources */,
 				0F0C0DF91EFCE68B00B6828D /* SearchViewController.swift in Sources */,
+				0F0F14801F0A1D720024E53B /* InteralMessageCell.swift in Sources */,
 				0FCE3D211EF77806002D5E31 /* STPageView.swift in Sources */,
 				0F08F3CB1D90B933009CCEAE /* RecommendViewModel.swift in Sources */,
 				0FF152521DC983E700454F7C /* EmitterLayer_ST.swift in Sources */,
@@ -1396,6 +1416,7 @@
 					"-framework",
 					"\"SnapKit\"",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiudou.xiudouiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c89dcbb0-4dd2-49bd-9f2b-e6299073d15e";
@@ -1435,6 +1456,7 @@
 					"-framework",
 					"\"SnapKit\"",
 				);
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -D DEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xiudou.xiudouiOS;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "c89dcbb0-4dd2-49bd-9f2b-e6299073d15e";

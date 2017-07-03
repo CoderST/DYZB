@@ -80,7 +80,8 @@ extension BaseAnchorViewController {
     }
 }
 
-extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionViewDelegate{
+// MARK:- UICollectionViewDataSource
+extension BaseAnchorViewController : UICollectionViewDataSource{
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
         
@@ -107,11 +108,32 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
         return cell
         
     }
+
+    
+    func showAnchorVC(_ room_id : Int64){
+        let showVC = ShowAnchorViewController()
+        showVC.room_id = room_id
+        present(showVC, animated: true, completion: nil)
+//        navigationController?.pushViewController(showVC, animated: true)
+    }
+    
+    func gameAnchorVC(){
+        // 先注释了,下面是直播控制器
+//        let gameVC = GameAnchorViewController()
+        let showListVC = ShowAnchorListVC()
+//        print("navigationController=",navigationController)
+        navigationController?.pushViewController(showListVC, animated: true)
+    }
+    
+}
+
+// MARK:- UICollectionViewDelegate
+extension BaseAnchorViewController : UICollectionViewDelegate{
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         // 1.取出section的HeaderView
         let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: sCellHeadIdentifier, for: indexPath) as!CollectionHeaderView
-                headerView.anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
+        headerView.anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
         return headerView
     }
     
@@ -125,24 +147,9 @@ extension BaseAnchorViewController : UICollectionViewDataSource,UICollectionView
         
         let anchorGroup = recommendViewModel.anchorGroups[indexPath.section]
         let anchorModel = anchorGroup.anchors[indexPath.item]
-
-        let roomID = anchorModel.room_id
-         anchorModel.isVertical == 0 ? gameAnchorVC() : showAnchorVC(roomID)
-    }
-    
-    func showAnchorVC(_ room_id : Int64){
-        let showVC = ShowAnchorViewController()
-        showVC.room_id = room_id
-        present(showVC, animated: true, completion: nil)
-//        navigationController?.pushViewController(showVC, animated: true)
-    }
-    
-    func gameAnchorVC(){
-        // 先注释了,下面是直播控制器
         
-//        let gameVC = GameAnchorViewController()
-        let showListVC = ShowAnchorListVC()
-        navigationController?.pushViewController(showListVC, animated: true)
+        let roomID = anchorModel.room_id
+        anchorModel.isVertical == 0 ? gameAnchorVC() : showAnchorVC(roomID)
     }
-    
+
 }

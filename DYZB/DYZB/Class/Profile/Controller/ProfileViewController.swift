@@ -141,7 +141,10 @@ extension ProfileViewController : UICollectionViewDelegateFlowLayout {
         let profileModel = group.groupModels[indexPath.item]
         if let desVC = profileModel.targetClass as? UIViewController.Type {
             let vc = desVC.init()
-            self.navigationController?.pushViewController(vc, animated: true)
+            
+//            print("navigationController =",navigationController)
+            
+            navigationController?.pushViewController(vc, animated: true)
         }
     }
     

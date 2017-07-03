@@ -23,10 +23,18 @@ class LiveSubViewController: BaseAnchorViewController {
         view.backgroundColor = UIColor.white
         setupLiveViewControllerUI()
         
-        
+//       collectionView.delegate = self
        loadMainData(cate_id)
         
+        
+        
     }
+    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        navigationController?.setNavigationBarHidden(false, animated: true)
+//    }
+    
     func setupLiveViewControllerUI() {
         
         super.setupUI()
@@ -51,3 +59,18 @@ class LiveSubViewController: BaseAnchorViewController {
     }
 
 }
+
+//extension LiveSubViewController {
+//    
+//    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+//        
+//        let pan = scrollView.panGestureRecognizer
+//        let velocity = pan.velocity(in: scrollView).y
+//        if velocity < -5 {
+//            self.navigationController?.setNavigationBarHidden(true, animated: true)
+//        } else if velocity > 5 {
+//            self.navigationController?.setNavigationBarHidden(false, animated: true)
+//        }
+//        
+//    }
+//}

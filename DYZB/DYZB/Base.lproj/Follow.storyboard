@@ -31,7 +31,7 @@
         <!--关注-->
         <scene sceneID="rSc-A9-WQZ">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBi-nn-4C1" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="TBi-nn-4C1" customClass="MainNavigationController" customModule="DYZB" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="关注" image="btn_live_normal" selectedImage="btn_live_selected" id="gu5-TJ-Ng2"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>

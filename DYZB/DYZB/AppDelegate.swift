@@ -8,6 +8,7 @@
 
 import UIKit
 import XHLaunchAd
+import SDWebImage
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -54,7 +55,7 @@ extension AppDelegate {
     
     func addAd(){
         //设置数据等待时间 请求广告URL前,必须设置,否则会先进入window的RootVC
-        XHLaunchAd.setWaitDataDuration(3)
+        XHLaunchAd.setWaitDataDuration(5)
 //        let now = Date()
 //        //当前时间的时间戳
 //        let timeInterval:TimeInterval = now.timeIntervalSince1970
@@ -68,7 +69,7 @@ extension AppDelegate {
         let URLString = String(format: "http://capi.douyucdn.cn/lapi/sign/appapi/getinfo?aid=ios&client_sys=ios&time=%@&token=\(TOKEN)&auth=%@", Date.getNowDate(),AUTH)
         
         NetworkTools.requestData(.post, URLString: URLString, parameters: params) { (result) in
-            
+//            print("current = ",Thread.current)
             guard let result = result as? [String : Any] else { return }
             
             debugLog(result)
@@ -85,40 +86,39 @@ extension AppDelegate {
                 let adModel = AdVertModel(dict: dict)
                 adModels.append(adModel)
             }
-      
-            let adModel = adModels.last!
+            guard let adModel = adModels.first else { return }
             self.proname = adModel.proname
-            //2.自定义配置
-            let imageAdconfiguration = XHLaunchImageAdConfiguration()
-            //广告停留时间
-            imageAdconfiguration.duration = adModel.showtime
-            //广告frame
-            imageAdconfiguration.frame = CGRect(x: 0, y: 0, width: sScreenW, height: sScreenH)
-            //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
-            imageAdconfiguration.imageNameOrURLString = adModel.srcid
-            //网络图片缓存机制(只对网络图片有效)
-            imageAdconfiguration.imageOption = .refreshCached
-            //图片填充模式
-            imageAdconfiguration.contentMode = .scaleToFill
-            //广告点击打开链接
-            imageAdconfiguration.openURLString = adModel.link
-            //广告显示完成动画
-            imageAdconfiguration.showFinishAnimate = .fadein
-            //广告显示完成动画时间
-//            imageAdconfiguration.showFinishAnimateTime = 0.8
-            //跳过按钮类型
-            imageAdconfiguration.skipButtonType = .timeText
-            //后台返回时,是否显示广告
-            imageAdconfiguration.showEnterForeground = false
-//            let view = UIView()
-//            view.frame = CGRect(x: 0, y: 0, width: 100, height: 100)
-//            view.backgroundColor = UIColor.red
-//            imageAdconfiguration.subViews = [view]
-            //显示图片开屏广告
-            XHLaunchAd.imageAd(with: imageAdconfiguration, delegate: self)
+            self.setupAD(adModel)
         }
     }
     
+    func setupAD(_ adModel : AdVertModel){
+        //2.自定义配置
+        let imageAdconfiguration = XHLaunchImageAdConfiguration()
+        //广告停留时间
+        imageAdconfiguration.duration = adModel.showtime
+        //广告frame
+        imageAdconfiguration.frame = CGRect(x: 0, y: 0, width: sScreenW, height: sScreenH)
+        //广告图片URLString/或本地图片名(.jpg/.gif请带上后缀)
+        imageAdconfiguration.imageNameOrURLString = adModel.srcid
+        //            print("srcid = ",adModel.srcid)
+        //网络图片缓存机制(只对网络图片有效)
+        imageAdconfiguration.imageOption = .refreshCached
+        //图片填充模式
+        imageAdconfiguration.contentMode = .scaleToFill
+        //广告点击打开链接
+        imageAdconfiguration.openURLString = adModel.link
+        //广告显示完成动画
+        imageAdconfiguration.showFinishAnimate = .fadein
+        //广告显示完成动画时间
+        //            imageAdconfiguration.showFinishAnimateTime = 0.8
+        //跳过按钮类型
+        imageAdconfiguration.skipButtonType = .timeText
+        //后台返回时,是否显示广告
+        imageAdconfiguration.showEnterForeground = true
+        //显示图片开屏广告
+        XHLaunchAd.imageAd(with: imageAdconfiguration, delegate: self)
+    }
 }
 
 // MARK:- 点击广告跳转
@@ -130,5 +130,11 @@ extension AppDelegate : XHLaunchAdDelegate{
         let tabVC = window?.rootViewController as!UITabBarController
         let nav = tabVC.selectedViewController as!UINavigationController
         nav.pushViewController(adVC, animated: true)
+    }
+    
+    /// 调用这个代理是因为 url是https的  框架好像不兼容
+    func xhLaunchAd(_ launchAd: XHLaunchAd, launchAdImageView: UIImageView, url: URL){
+//        print("url = \(url)")
+        launchAdImageView.sd_setImage(with: url, placeholderImage:  nil, options: .allowInvalidSSLCertificates)
     }
 }
