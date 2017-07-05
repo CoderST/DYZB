@@ -25,7 +25,7 @@ class BaseViewModel {
                         
                         continue
                     }
-                    self.anchorGroups.append(AnchorGroup(dic: dic))
+                    self.anchorGroups.append(AnchorGroup(dict: dic))
                 }
                 
             }else{
@@ -47,5 +47,30 @@ class BaseViewModel {
             finishCallBack()
         }
         
+    }
+}
+
+extension BaseViewModel {
+    
+    // http://capi.douyucdn.cn/api/v1/timestamp?client_sys=ios
+    func updateDate(_ finishCallBack:@escaping ()->()){
+        
+        NetworkTools.requestData(.get, URLString: "http://capi.douyucdn.cn/api/v1/timestamp?client_sys=ios") { (result) in
+            
+            guard let resultDict = result as? [String : Any] else { return }
+            guard let error = resultDict["error"] as? Int else{
+                return }
+            
+            if error != 0 {
+                debugLog(error)
+                return
+            }
+            
+            guard let date = resultDict["data"] else { return }
+            
+            userDefaults.set(date, forKey: dateKey)
+            userDefaults.synchronize()
+            finishCallBack()
+        }
     }
 }

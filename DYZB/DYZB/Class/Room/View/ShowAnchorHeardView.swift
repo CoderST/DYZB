@@ -90,7 +90,7 @@ class ShowAnchorHeardView: UIView {
     
     fileprivate func getDatas(){
         guard let path = Bundle.main.path(forResource: "user.plist", ofType: nil) else { return }
-        guard let dicArray = NSArray(contentsOfFile: path) as? [[String : AnyObject]] else { return }
+        guard let dicArray = NSArray(contentsOfFile: path) as? [[String : Any]] else { return }
         for dic in dicArray{
             let person = RoomFollowPerson(dic: dic)
             followPersonArray.append(person)

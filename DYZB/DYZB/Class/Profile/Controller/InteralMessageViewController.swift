@@ -87,7 +87,7 @@ extension InteralMessageViewController : UICollectionViewDataSource {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: InteralMessageCellIdentifier, for: indexPath) as! InteralMessageCell
         cell.contentView.backgroundColor = UIColor.randomColor()
-        let interalMessageModel = interalMessageVM.interalMessageModelArray[indexPath.item]
+//        let interalMessageModel = interalMessageVM.interalMessageModelArray[indexPath.item]
         return cell
     }
 }

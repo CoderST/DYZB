@@ -127,6 +127,7 @@
 		0FCE3D291EF7B523002D5E31 /* FollowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D281EF7B523002D5E31 /* FollowViewController.swift */; };
 		0FCE3D2B1EF7B5C6002D5E31 /* ProfileHeadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D2A1EF7B5C6002D5E31 /* ProfileHeadView.swift */; };
 		0FCE3D381EF7C87F002D5E31 /* AdVertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D341EF7C87F002D5E31 /* AdVertModel.swift */; };
+		0FD6CA531F0C6C07004DDE1A /* FishboneRechargBottomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD6CA521F0C6C07004DDE1A /* FishboneRechargBottomView.swift */; };
 		0FDA598B1EFB668000691013 /* GameCenterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA598A1EFB668000691013 /* GameCenterViewController.swift */; };
 		0FDA598D1EFB6CD100691013 /* GameCenterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA598C1EFB6CD100691013 /* GameCenterCell.swift */; };
 		0FDA598F1EFB6D1900691013 /* GameCenterVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA598E1EFB6D1900691013 /* GameCenterVM.swift */; };
@@ -168,6 +169,13 @@
 		0FFD92371EFA577300D1A31B /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD92361EFA577200D1A31B /* User.swift */; };
 		0FFD923A1EFA5C5100D1A31B /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD92391EFA5C5100D1A31B /* ProfileViewModel.swift */; };
 		0FFD923C1EFA749400D1A31B /* UserIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFD923B1EFA749400D1A31B /* UserIconView.swift */; };
+		0FFFA8001F0B3D7100423CF2 /* FishboneRechargeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFFA7FF1F0B3D7100423CF2 /* FishboneRechargeViewController.swift */; };
+		0FFFA8021F0B3DEA00423CF2 /* FishboneRechargeVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFFA8011F0B3DEA00423CF2 /* FishboneRechargeVM.swift */; };
+		0FFFA8041F0B3DFF00423CF2 /* FishboneRechargeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFFA8031F0B3DFF00423CF2 /* FishboneRechargeModel.swift */; };
+		0FFFA8061F0B414000423CF2 /* FishboneRechargeBigModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFFA8051F0B414000423CF2 /* FishboneRechargeBigModel.swift */; };
+		0FFFA8081F0B44B000423CF2 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFFA8071F0B44B000423CF2 /* BaseModel.swift */; };
+		0FFFA80A1F0B60A500423CF2 /* FishboneRechargeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFFA8091F0B60A500423CF2 /* FishboneRechargeCell.swift */; };
+		0FFFA80D1F0B7F0900423CF2 /* FishboneRecharge.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0FFFA80C1F0B7F0900423CF2 /* FishboneRecharge.plist */; };
 		A993C9536B2A7FFB269BCF03 /* Pods_DYZB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C9E8F49A92E935BBE5E0E36 /* Pods_DYZB.framework */; };
 /* End PBXBuildFile section */
 
@@ -307,6 +315,7 @@
 		0FCE3D281EF7B523002D5E31 /* FollowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FollowViewController.swift; sourceTree = "<group>"; };
 		0FCE3D2A1EF7B5C6002D5E31 /* ProfileHeadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileHeadView.swift; sourceTree = "<group>"; };
 		0FCE3D341EF7C87F002D5E31 /* AdVertModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AdVertModel.swift; sourceTree = "<group>"; };
+		0FD6CA521F0C6C07004DDE1A /* FishboneRechargBottomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishboneRechargBottomView.swift; sourceTree = "<group>"; };
 		0FDA598A1EFB668000691013 /* GameCenterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterViewController.swift; sourceTree = "<group>"; };
 		0FDA598C1EFB6CD100691013 /* GameCenterCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterCell.swift; sourceTree = "<group>"; };
 		0FDA598E1EFB6D1900691013 /* GameCenterVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameCenterVM.swift; sourceTree = "<group>"; };
@@ -348,6 +357,13 @@
 		0FFD92361EFA577200D1A31B /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		0FFD92391EFA5C5100D1A31B /* ProfileViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		0FFD923B1EFA749400D1A31B /* UserIconView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserIconView.swift; sourceTree = "<group>"; };
+		0FFFA7FF1F0B3D7100423CF2 /* FishboneRechargeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishboneRechargeViewController.swift; sourceTree = "<group>"; };
+		0FFFA8011F0B3DEA00423CF2 /* FishboneRechargeVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishboneRechargeVM.swift; sourceTree = "<group>"; };
+		0FFFA8031F0B3DFF00423CF2 /* FishboneRechargeModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishboneRechargeModel.swift; sourceTree = "<group>"; };
+		0FFFA8051F0B414000423CF2 /* FishboneRechargeBigModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishboneRechargeBigModel.swift; sourceTree = "<group>"; };
+		0FFFA8071F0B44B000423CF2 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		0FFFA8091F0B60A500423CF2 /* FishboneRechargeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FishboneRechargeCell.swift; sourceTree = "<group>"; };
+		0FFFA80C1F0B7F0900423CF2 /* FishboneRecharge.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = FishboneRecharge.plist; sourceTree = "<group>"; };
 		13F0BE12C2009507792D8D29 /* Pods-DYZB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYZB.release.xcconfig"; path = "Pods/Target Support Files/Pods-DYZB/Pods-DYZB.release.xcconfig"; sourceTree = "<group>"; };
 		2C9E8F49A92E935BBE5E0E36 /* Pods_DYZB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DYZB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9CCE96916AAA2257C6695DDF /* Pods-DYZB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DYZB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DYZB/Pods-DYZB.debug.xcconfig"; sourceTree = "<group>"; };
@@ -428,6 +444,7 @@
 				0FDA59941EFBA71000691013 /* WatchHistoryViewController.swift */,
 				0F0F14771F09EB4B0024E53B /* InteralMessageViewController.swift */,
 				0F0F14811F0A27E60024E53B /* MyTaskViewController.swift */,
+				0FFFA7FF1F0B3D7100423CF2 /* FishboneRechargeViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -442,6 +459,8 @@
 				0FDA59981EFBAFD200691013 /* WatchHistoryModel.swift */,
 				0FA757DA1F063C62007EF12C /* WatchHistoryModelFrame.swift */,
 				0F0F147D1F0A18050024E53B /* InteralMessageModel.swift */,
+				0FFFA8031F0B3DFF00423CF2 /* FishboneRechargeModel.swift */,
+				0FFFA8051F0B414000423CF2 /* FishboneRechargeBigModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -454,6 +473,8 @@
 				0FDA598C1EFB6CD100691013 /* GameCenterCell.swift */,
 				0FDA599A1EFBC4EA00691013 /* WatchHistoryCell.swift */,
 				0F0F147F1F0A1D720024E53B /* InteralMessageCell.swift */,
+				0FFFA8091F0B60A500423CF2 /* FishboneRechargeCell.swift */,
+				0FD6CA521F0C6C07004DDE1A /* FishboneRechargBottomView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -740,6 +761,7 @@
 				0F08F3CC1D90BD5E009CCEAE /* AnchorModel.swift */,
 				0F08F3CE1D90BEEF009CCEAE /* AnchorGroup.swift */,
 				0F8845B51DC0B63000836715 /* BaseGameModel.swift */,
+				0FFFA8071F0B44B000423CF2 /* BaseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -881,6 +903,7 @@
 				0FF152171DC87A9400454F7C /* danmu.plist */,
 				0F0C0E001EFCF06600B6828D /* SearchVC.plist */,
 				0F0C0E021EFD03B600B6828D /* searchViewTitles.plist */,
+				0FFFA80C1F0B7F0900423CF2 /* FishboneRecharge.plist */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -902,6 +925,7 @@
 				0FDA598E1EFB6D1900691013 /* GameCenterVM.swift */,
 				0FDA59961EFBACF100691013 /* WatchHistoryVM.swift */,
 				0F0F147B1F0A12EB0024E53B /* InteralMessageVM.swift */,
+				0FFFA8011F0B3DEA00423CF2 /* FishboneRechargeVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1042,6 +1066,7 @@
 				0F84A3391D8A3F50000705BE /* Assets.xcassets in Resources */,
 				0F86EEF11DCDF8FC00CAD233 /* ShowAnchorListCell.xib in Resources */,
 				0F84A35D1D8A8CB0000705BE /* Live.storyboard in Resources */,
+				0FFFA80D1F0B7F0900423CF2 /* FishboneRecharge.plist in Resources */,
 				0F84A3371D8A3F50000705BE /* Main.storyboard in Resources */,
 				0F0FA5041DD19D8200B8E7C5 /* ShowAnchorHeardView.xib in Resources */,
 			);
@@ -1151,6 +1176,7 @@
 				0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */,
 				0F6B0C141F04DF75006E7F60 /* SearchRoomViewController.swift in Sources */,
 				0F6B0C181F04FBA7006E7F60 /* SearchBaseViewController.swift in Sources */,
+				0FFFA8041F0B3DFF00423CF2 /* FishboneRechargeModel.swift in Sources */,
 				0F77DD141F01EB4900497D84 /* SearchModelFrame.swift in Sources */,
 				0FDA59971EFBACF100691013 /* WatchHistoryVM.swift in Sources */,
 				0F3633C11DC2402B00897B4A /* GameAnchorViewController.swift in Sources */,
@@ -1166,6 +1192,7 @@
 				0FA757DB1F063C62007EF12C /* WatchHistoryModelFrame.swift in Sources */,
 				0F8845B61DC0B63000836715 /* BaseGameModel.swift in Sources */,
 				0FDA59911EFB6FF200691013 /* GameCenterModel.swift in Sources */,
+				0FD6CA531F0C6C07004DDE1A /* FishboneRechargBottomView.swift in Sources */,
 				0FA46EF71F077EE200ECB9DA /* MessageViewController.swift in Sources */,
 				0F97482E1EF5180C00C5B543 /* LiveViewModel.swift in Sources */,
 				0F05BC271DD31EE9000D9D27 /* PresentModel.swift in Sources */,
@@ -1175,6 +1202,7 @@
 				0FF151CF1DC6D2C200454F7C /* RoomYKModel.swift in Sources */,
 				0FF151D91DC6EBA500454F7C /* DYRefreshGifHeader.swift in Sources */,
 				0F26A75F1DD1C15D003F0E3C /* String+Extension.swift in Sources */,
+				0FFFA80A1F0B60A500423CF2 /* FishboneRechargeCell.swift in Sources */,
 				0F8845CC1DC1FF2500836715 /* FunnyViewModel.swift in Sources */,
 				0F77DD161F01EEA200497D84 /* SearchModelGroup.swift in Sources */,
 				0FDA598F1EFB6D1900691013 /* GameCenterVM.swift in Sources */,
@@ -1187,6 +1215,7 @@
 				0F08F3CF1D90BEEF009CCEAE /* AnchorGroup.swift in Sources */,
 				0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */,
 				0F1BEEA01D969321004840F0 /* RecommendGameView.swift in Sources */,
+				0FFFA8061F0B414000423CF2 /* FishboneRechargeBigModel.swift in Sources */,
 				0F0F14821F0A27E60024E53B /* MyTaskViewController.swift in Sources */,
 				0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */,
 				0FF152531DC983E700454F7C /* PraiseEmitterView.swift in Sources */,
@@ -1197,16 +1226,19 @@
 				0FFD923C1EFA749400D1A31B /* UserIconView.swift in Sources */,
 				0F08F3FF1D9108C8009CCEAE /* CollectionBaseCell.swift in Sources */,
 				0F1D066B1DD4603C008C3D2B /* ShowAnchorCatView.swift in Sources */,
+				0FFFA8081F0B44B000423CF2 /* BaseModel.swift in Sources */,
 				0F8DD0B11D8FA912007A1625 /* CollectionHeaderView.swift in Sources */,
 				0FCE3D241EF77806002D5E31 /* UIColor-Extension.swift in Sources */,
 				0F6B0C161F04E1CD006E7F60 /* SearchSubRoomViewController.swift in Sources */,
 				0FDA59951EFBA71000691013 /* WatchHistoryViewController.swift in Sources */,
 				0F5684031D8B9024002EAD23 /* Common.swift in Sources */,
+				0FFFA8001F0B3D7100423CF2 /* FishboneRechargeViewController.swift in Sources */,
 				0F0F147E1F0A18050024E53B /* InteralMessageModel.swift in Sources */,
 				0FF151E01DC8154800454F7C /* UIViewController+Extension.swift in Sources */,
 				0F86EEF01DCDF8FC00CAD233 /* ShowAnchorListCell.swift in Sources */,
 				0F8845C41DC1CBE200836715 /* AmuseMenuView.swift in Sources */,
 				0FDA599B1EFBC4EA00691013 /* WatchHistoryCell.swift in Sources */,
+				0FFFA8021F0B3DEA00423CF2 /* FishboneRechargeVM.swift in Sources */,
 				0F1BEEA51D96A236004840F0 /* CollectionGameCell.swift in Sources */,
 				0FCE3D221EF77806002D5E31 /* STPageViewStyle.swift in Sources */,
 				0FDA59991EFBAFD200691013 /* WatchHistoryModel.swift in Sources */,

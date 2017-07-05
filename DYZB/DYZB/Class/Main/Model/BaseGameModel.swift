@@ -8,22 +8,10 @@
 
 import UIKit
 
-class BaseGameModel: NSObject {
+class BaseGameModel: BaseModel {
     // MARK:- 定义属性
     var tag_name : String = ""
     var icon_url : String = ""
     
-    override init() {
-        
-    }
-    
-    init(dic:[String : Any]){
-        super.init()
-        
-        setValuesForKeys(dic)
-    }
-    
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        
-    }
+
 }

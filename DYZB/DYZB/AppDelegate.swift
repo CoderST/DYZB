@@ -115,7 +115,7 @@ extension AppDelegate {
         //跳过按钮类型
         imageAdconfiguration.skipButtonType = .timeText
         //后台返回时,是否显示广告
-        imageAdconfiguration.showEnterForeground = true
+        imageAdconfiguration.showEnterForeground = false
         //显示图片开屏广告
         XHLaunchAd.imageAd(with: imageAdconfiguration, delegate: self)
     }

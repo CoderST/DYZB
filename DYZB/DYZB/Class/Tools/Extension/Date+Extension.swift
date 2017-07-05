@@ -17,6 +17,14 @@ extension Date{
         
         return "\(time)"
     }
+    
+    static func getNowDateInt()->Int{
+        let date = Date()
+        
+        let time = Int(date.timeIntervalSince1970)
+        
+        return time
+    }
 }
 
 extension Date{

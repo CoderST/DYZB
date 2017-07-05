@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AnchorModel: NSObject {
+class AnchorModel: BaseModel {
     
     
     /// 房间ID
@@ -26,20 +26,6 @@ class AnchorModel: NSObject {
     var online : Int = 0
     /// 所在城市
     var anchor_city : String = ""
-    
-    override init() {
-        
-    }
-    
-    // 自定义构造函数 ()
-    init(dict : [String : Any]) {
-        super.init()
-        setValuesForKeys(dict)
-    }
-    // 必须实现,不然会报错
-    override func setValue(_ value: Any?, forUndefinedKey key: String) {
-        
-    }
     
     // MARK:- 重写description属性(方便打印看到信息)
     override var description:String{

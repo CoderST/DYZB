@@ -155,12 +155,14 @@ extension ProfileHeadView {
     }
     
     @objc fileprivate  func rechargeButtonAction(){
-        
+        let fishboneRecharge = FishboneRechargeViewController()
+        let nav = getNavigation()
+        nav.pushViewController(fishboneRecharge, animated: true)
     }
     
-    fileprivate func getNavigation()->UINavigationController{
+    fileprivate func getNavigation()->MainNavigationController{
         let tabVC = window?.rootViewController as!UITabBarController
-        let nav = tabVC.selectedViewController as!UINavigationController
+        let nav = tabVC.selectedViewController as!MainNavigationController
         
         return nav
     }

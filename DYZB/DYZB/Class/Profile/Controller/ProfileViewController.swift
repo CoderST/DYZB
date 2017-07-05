@@ -12,6 +12,7 @@ fileprivate let ProfileCellIdentifier  = "ProfileCellIdentifier"
 class ProfileViewController: UIViewController {
     
     // MARK:- 懒加载
+    fileprivate lazy var baseViewModel : BaseViewModel = BaseViewModel()
     fileprivate lazy var headView : ProfileHeadView = {
        
         let headView = ProfileHeadView()
@@ -53,15 +54,21 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         setupUI()
         
-        setupProfileDatas()
+//        setupProfileDatas()
         
-        
+        baseViewModel.updateDate {
+            self.setupProfileDatas()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         navigationController?.navigationBar.isHidden = true
+        
+        baseViewModel.updateDate {
+            
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {

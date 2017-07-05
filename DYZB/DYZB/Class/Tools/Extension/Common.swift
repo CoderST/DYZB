@@ -14,12 +14,13 @@ let sTabBarH : CGFloat = 49
 
 let userDefaults = UserDefaults.standard
 let historyKey : String = "historyKey"
+let dateKey : String = "dateKey"
 
 let sScreenW = UIScreen.main.bounds.width
 let sScreenH = UIScreen.main.bounds.height
 
 let TOKEN = "94153348_11_7452d666f21c53f4_2_22753003" // 重新获取最新
-let AUTH = "fe73812c89c1a6fe5671cfc31a529331"   // 取不到最新的 广告数据出不来
+let AUTH = "af8969c3ae1953cc9929c58f2f438b58"   // 取不到最新的 广告数据出不来
 
 // MARK:- 通知
 let notificationCenter = NotificationCenter.default

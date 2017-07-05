@@ -8,7 +8,7 @@
 
 import UIKit
 import WebKit
-class MyTaskViewController: UIViewController,WKNavigationDelegate,WKUIDelegate {
+class MyTaskViewController: UIViewController {
 
     fileprivate var webView = WKWebView()
     fileprivate var progressView = UIProgressView()
@@ -17,7 +17,7 @@ class MyTaskViewController: UIViewController,WKNavigationDelegate,WKUIDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        setupUI()
+        initWKWebView()
     }
     
     deinit {
@@ -27,18 +27,37 @@ class MyTaskViewController: UIViewController,WKNavigationDelegate,WKUIDelegate {
 
 }
 
+
+
+extension MyTaskViewController: WKScriptMessageHandler {
+        func userContentController(_ userContentController: WKUserContentController, didReceive message: WKScriptMessage) {
+            print(message.body)
+        }
+    }
+
 extension MyTaskViewController {
     
-    fileprivate func setupUI(){
+    fileprivate func initWKWebView(){
         
-        view.backgroundColor = UIColor.white
-        // Do any additional setup after loading the view.
-        webView = WKWebView(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.height))
-        webView.navigationDelegate = self
-        webView.uiDelegate = self;
+        
+        let config = WKWebViewConfiguration()
+        config.userContentController = WKUserContentController()
+        
+        let preferences = WKPreferences()
+        preferences.javaScriptCanOpenWindowsAutomatically = true
+        preferences.minimumFontSize = 12
+        config.preferences = preferences
+
+        webView = WKWebView(frame: view.bounds, configuration: config)
         let url = URL(string: open_url)
         let request = URLRequest(url: url!)
         webView.load(request)
+        
+        webView.navigationDelegate = self
+        webView.uiDelegate = self
+        view.backgroundColor = UIColor.white
+        // Do any additional setup after loading the view.
+        
         /**
          增加的属性：
          1.webView.estimatedProgress加载进度
@@ -53,19 +72,19 @@ extension MyTaskViewController {
         progressView.progressTintColor = UIColor.orange
         navigationController?.navigationBar.addSubview(progressView)
         
-//        let item = UIBarButtonItem(title: "<--", style: .plain, target: self, action: #selector(backItemPressed))
-//        navigationItem.leftBarButtonItem = item
+        let item = UIBarButtonItem(title: "<--", style: .plain, target: self, action: #selector(backItemPressed))
+        navigationItem.leftBarButtonItem = item
     }
     
-//    func backItemPressed() {
-//        if webView.canGoBack {
-//            webView.goBack()
-//        }else{
-//            if let nav = self.navigationController {
-//                nav.popViewController(animated: true)
-//            }
-//        }
-//    }
+    func backItemPressed() {
+        if webView.canGoBack {
+            webView.goBack()
+        }else{
+            if let nav = navigationController {
+                nav.popViewController(animated: true)
+            }
+        }
+    }
     
     
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
@@ -78,5 +97,73 @@ extension MyTaskViewController {
     func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
         progressView.setProgress(0.0, animated: false)
         self.navigationItem.title = webView.title
+    }
+}
+
+extension MyTaskViewController : WKNavigationDelegate{
+    func webView(_ webView: WKWebView, decidePolicyFor navigationAction: WKNavigationAction, decisionHandler: @escaping (WKNavigationActionPolicy) -> Swift.Void){
+        
+        guard let url = navigationAction.request.url else {
+            print("url不存在")
+            return
+        }
+//        print("sourceFrame = ",navigationAction.sourceFrame )
+        guard let scheme = url.scheme else {
+            
+            print("scheme不存在")
+            return
+        }
+        
+        if scheme == "http" {
+            handleCustomAction(url: url)
+//            decisionHandler(.cancel)
+//            return;
+        }
+        
+        decisionHandler(.allow)
+    }
+    
+    func handleCustomAction(url : URL){
+        guard let host = url.host else {
+            print("host不存在")
+            return
+
+        }
+        print("host = ",host)
+        if host == "capi.douyucdn.cn" {
+            print("1")
+            getLocation()
+        }else if host == "scanClick"{
+            print("2")
+        }else if host == "scanClick"{
+            print("3")
+        }else if host == "scanClick"{
+            print("4")
+        }else if host == "scanClick"{
+            print("5")
+        }else if host == "scanClick"{
+            print("6")
+        }else{
+            print("7")
+        }
+    }
+    
+    func getLocation(){
+        
+        let jsStr = "handleAction('%@'),广东省深圳市南山区学府路XXXX号"
+        webView.evaluateJavaScript(jsStr) { (result, error) in
+            print(result ?? "result = 失败")
+        }
+    }
+}
+
+extension MyTaskViewController : WKUIDelegate{
+    func webView(_ webView: WKWebView, runJavaScriptAlertPanelWithMessage message: String, initiatedByFrame frame: WKFrameInfo, completionHandler: @escaping () -> Swift.Void){
+        let alert = UIAlertController(title: "提醒", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "知道了", style: .cancel, handler: { (action) in
+            completionHandler()
+        }))
+        
+        present(alert, animated: true, completion: nil)
     }
 }
