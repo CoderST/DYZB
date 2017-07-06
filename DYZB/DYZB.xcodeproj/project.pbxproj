@@ -99,6 +99,8 @@
 		0F8845C91DC1DA6A00836715 /* AmuseMenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845C71DC1DA6A00836715 /* AmuseMenuViewCell.swift */; };
 		0F8845CA1DC1DA6A00836715 /* AmuseMenuViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8845C81DC1DA6A00836715 /* AmuseMenuViewCell.xib */; };
 		0F8845CC1DC1FF2500836715 /* FunnyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845CB1DC1FF2500836715 /* FunnyViewModel.swift */; };
+		0F8D00DC1F0DDE89000C1385 /* AnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */; };
+		0F8D00DE1F0DDF0F000C1385 /* CicleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */; };
 		0F8DD0A81D8F81DE007A1625 /* CollectionViewNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DD0A61D8F81DE007A1625 /* CollectionViewNormalCell.swift */; };
 		0F8DD0A91D8F81DE007A1625 /* CollectionViewNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8DD0A71D8F81DE007A1625 /* CollectionViewNormalCell.xib */; };
 		0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DD0AA1D8F8260007A1625 /* CollectionViewPrettyCell.swift */; };
@@ -286,6 +288,8 @@
 		0F8845C71DC1DA6A00836715 /* AmuseMenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmuseMenuViewCell.swift; sourceTree = "<group>"; };
 		0F8845C81DC1DA6A00836715 /* AmuseMenuViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmuseMenuViewCell.xib; sourceTree = "<group>"; };
 		0F8845CB1DC1FF2500836715 /* FunnyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunnyViewModel.swift; sourceTree = "<group>"; };
+		0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationModel.swift; sourceTree = "<group>"; };
+		0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CicleButton.swift; sourceTree = "<group>"; };
 		0F8DD0A61D8F81DE007A1625 /* CollectionViewNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewNormalCell.swift; sourceTree = "<group>"; };
 		0F8DD0A71D8F81DE007A1625 /* CollectionViewNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewNormalCell.xib; sourceTree = "<group>"; };
 		0F8DD0AA1D8F8260007A1625 /* CollectionViewPrettyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewPrettyCell.swift; sourceTree = "<group>"; };
@@ -412,6 +416,7 @@
 		0F05C7ED1EF9249600AFD492 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */,
 				0F05C7EE1EF924CE00AFD492 /* VerticalButton.swift */,
 				0FFD923B1EFA749400D1A31B /* UserIconView.swift */,
 				0FDA59921EFB931F00691013 /* DownButton.swift */,
@@ -679,6 +684,7 @@
 				0F84A3741D8AA240000705BE /* Extension */,
 				0F08F3C71D90B0F4009CCEAE /* NetworkTools.swift */,
 				0FCA412A1F00FC35007D773B /* SQLManager.swift */,
+				0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1153,6 +1159,7 @@
 				0F0C0DFB1EFCEAA300B6828D /* SearchVM.swift in Sources */,
 				0FCE3D1D1EF77806002D5E31 /* HYPageCollectionView.swift in Sources */,
 				0F1FFF781DC2320700685CDA /* BaseViewController.swift in Sources */,
+				0F8D00DC1F0DDE89000C1385 /* AnimationModel.swift in Sources */,
 				0F1868021DD2A59F00FD8E9A /* ShowUserView.swift in Sources */,
 				0F84A3321D8A3F50000705BE /* AppDelegate.swift in Sources */,
 				0F8845AE1DC0A68A00836715 /* GameViewController.swift in Sources */,
@@ -1221,6 +1228,7 @@
 				0FF152531DC983E700454F7C /* PraiseEmitterView.swift in Sources */,
 				0FDA59931EFB931F00691013 /* DownButton.swift in Sources */,
 				0F84A3731D8AA147000705BE /* HomeViewController.swift in Sources */,
+				0F8D00DE1F0DDF0F000C1385 /* CicleButton.swift in Sources */,
 				0F8845C21DC1AFD200836715 /* AmuseViewModel.swift in Sources */,
 				0FCE3D381EF7C87F002D5E31 /* AdVertModel.swift in Sources */,
 				0FFD923C1EFA749400D1A31B /* UserIconView.swift in Sources */,

@@ -46,7 +46,7 @@
 				<key>exp</key>
 				<string>12</string>
 				<key>recharge_reward_msg</key>
-				<string>+99\u7ecf\u9a8c</string>
+				<string>+99经验</string>
 			</dict>
 			<dict>
 				<key>pid</key>
@@ -66,7 +66,7 @@
 				<key>exp</key>
 				<string>30</string>
 				<key>recharge_reward_msg</key>
-				<string>+99\u7ecf\u9a8c +1000\u9c7c\u4e38</string>
+				<string>+99经验 +1000鱼丸</string>
 			</dict>
 			<dict>
 				<key>pid</key>
@@ -86,7 +86,7 @@
 				<key>exp</key>
 				<string>50</string>
 				<key>recharge_reward_msg</key>
-				<string>+99\u7ecf\u9a8c +1000\u9c7c\u4e38</string>
+				<string>+99经验 +1000鱼丸</string>
 			</dict>
 			<dict>
 				<key>pid</key>
@@ -106,7 +106,7 @@
 				<key>exp</key>
 				<string>128</string>
 				<key>recharge_reward_msg</key>
-				<string>+1765\u7ecf\u9a8c +11000\u9c7c\u4e38</string>
+				<string>+1765经验 +11000鱼丸</string>
 			</dict>
 			<dict>
 				<key>pid</key>
@@ -126,7 +126,7 @@
 				<key>exp</key>
 				<string>618</string>
 				<key>recharge_reward_msg</key>
-				<string>+1765\u7ecf\u9a8c +11000\u9c7c\u4e38 +\u5145\u503c\u52cb\u7ae0x2\u679a</string>
+				<string>+1765经验 +11000鱼丸 +充值勋章x2枚</string>
 			</dict>
 		</array>
 		<key>pay_method_switch</key>

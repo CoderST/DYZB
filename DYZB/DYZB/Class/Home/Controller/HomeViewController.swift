@@ -8,9 +8,60 @@
 
 import UIKit
 
-private let pageTitlesViewH :CGFloat = 40
-
+fileprivate let pageTitlesViewH :CGFloat = 40
+fileprivate let cicleButtonWH : CGFloat = 44
 class HomeViewController: UIViewController {
+    
+    // MARK:- 懒加载 动画相关定义
+    fileprivate var duration : CFTimeInterval = 0.3
+    /// firstButton
+    fileprivate var transcribeButtonStartPoint : CGPoint = .zero
+    fileprivate var transcribeButtonEndPoint : CGPoint = .zero
+    fileprivate var transcribeButtonControlPoint : CGPoint = .zero
+    /// secondButton
+    fileprivate var liveButtonStartPoint : CGPoint = .zero
+    fileprivate var liveButtonEndPoint : CGPoint = .zero
+    fileprivate var liveButtonControlPoint : CGPoint = .zero
+    /// direction
+    fileprivate var direction : Direction = .plus
+    /// 变量
+    fileprivate var istranscribeButtonStart : Bool = false
+    fileprivate var isliveButtonStart : Bool = false
+    
+    fileprivate lazy var animationModel : AnimationModel = AnimationModel()
+    
+    fileprivate lazy var centerButton : CicleButton = {
+        let centerButton = CicleButton()
+        let normalImage = UIImage(named: "btn_livevideo_start_user")
+        let selectedImage = UIImage(named: "btn_livevideo_close_user")
+        centerButton.setBackgroundImage(normalImage, for: .normal)
+        centerButton.setBackgroundImage(selectedImage, for: .selected)
+        centerButton.frame = CGRect(x: sScreenW - cicleButtonWH - 10, y: sScreenH - cicleButtonWH - 10 - sTabBarH, width: cicleButtonWH, height: cicleButtonWH)
+        return centerButton
+    }()
+    
+    /// 录制
+    fileprivate lazy var transcribeButton : CicleButton = {
+        let transcribeButton = CicleButton()
+        let normalImage = UIImage(named: "btn_video_user")
+        transcribeButton.setBackgroundImage(normalImage, for: .normal)
+        transcribeButton.backgroundColor = .black
+        transcribeButton.frame = CGRect(x: 0, y: 0, width: cicleButtonWH, height: cicleButtonWH)
+        
+        return transcribeButton
+    }()
+    
+    /// 直播
+    fileprivate lazy var liveButton : CicleButton = {
+        let liveButton = CicleButton()
+        let normalImage = UIImage(named: "btn_live_user")
+        liveButton.setBackgroundImage(normalImage, for: .normal)
+        liveButton.frame = CGRect(x: 0, y: 0, width: cicleButtonWH, height: cicleButtonWH)
+        
+        return liveButton
+    }()
+
+    
     
     // MARK:- 懒加载
     // 滚动条下面装着要显示控制器
@@ -40,6 +91,8 @@ class HomeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        animationModel.delegate = self
+        
         automaticallyAdjustsScrollViewInsets = false
         
         setupUI()
@@ -61,6 +114,9 @@ extension HomeViewController{
         // 添加ContentView
         setupPageContentView()
         
+        // 添加按钮点击动画组件
+        setupAnimationButton()
+        
     }
     
     fileprivate func setupNavgationrBar(){
@@ -80,10 +136,29 @@ extension HomeViewController{
         navigationItem.rightBarButtonItems = [searchItem,qrcodeItem,historItem,messageItem]
         
     }
+
     
     fileprivate func setupPageContentView(){
         view.addSubview(pageView)
+        
+        view.addSubview(centerButton)
     }
+    
+    fileprivate func setupAnimationButton(){
+        /// 添加点击事件
+        centerButton.addTarget(self, action: #selector(centerButtonClick(sender:)), for: .touchUpInside)
+        transcribeButton.addTarget(self, action: #selector(transcribeButtonClick(sender:)), for: .touchUpInside)
+        liveButton.addTarget(self, action: #selector(liveButtonClick(sender:)), for: .touchUpInside)
+        
+        
+        transcribeButton.center = CGPoint(x: centerButton.center.x, y: centerButton.center.y)
+        liveButton.center = CGPoint(x: centerButton.center.x, y: centerButton.center.y)
+        
+        view.addSubview(transcribeButton)
+        view.addSubview(liveButton)
+        view.addSubview(centerButton)
+    }
+
     
 }
 
@@ -119,4 +194,84 @@ extension HomeViewController{
         navigationController?.pushViewController(messageVC, animated: true)
     }
 
+}
+
+// MARK:- 动画按钮点击事件
+extension HomeViewController {
+    
+    @objc fileprivate func centerButtonClick(sender : CicleButton){
+        sender.isSelected = !sender.isSelected
+        
+        if sender.isSelected == false{
+            
+            /// 中间按钮旋转
+            animationModel.rorateAnimation(holdView: sender, duration: duration, fromValue: M_PI / 4, toValue: 0)
+            
+            /// firstButton
+            animationModel.animationandView(direction: .minus, view: transcribeButton, rect: transcribeButton.frame, duration: duration, startPoint: transcribeButtonEndPoint, endPoint: transcribeButtonStartPoint, controlPoint: transcribeButtonControlPoint, finishBlock: {
+                self.istranscribeButtonStart = false
+            })
+            
+            /// liveButton
+            animationModel.animationandView(direction: .minus, view: liveButton, rect: liveButton.frame, duration: duration, startPoint: liveButtonEndPoint, endPoint: liveButtonStartPoint, controlPoint: liveButtonControlPoint, finishBlock: {
+                self.isliveButtonStart = false
+            })
+            
+        }else{
+            
+            /// 中间按钮旋转
+            animationModel.rorateAnimation(holdView: sender, duration: duration, fromValue: 0, toValue: M_PI / 4)
+            
+            /// firstButton
+            transcribeButtonStartPoint = centerButton.center
+            transcribeButtonEndPoint = CGPoint(x: centerButton.center.x, y: centerButton.frame.origin.y - centerButton.frame.height)
+            transcribeButtonControlPoint = CGPoint(x: centerButton.frame.origin.x - transcribeButton.frame.width, y: centerButton.frame.origin.y - 20)
+            animationModel.animationandView(direction: .plus, view: transcribeButton, rect: transcribeButton.frame, duration: duration, startPoint: transcribeButtonStartPoint, endPoint: transcribeButtonEndPoint, controlPoint: transcribeButtonControlPoint, finishBlock: {
+                self.istranscribeButtonStart = true
+            })
+            
+            /// liveButton
+            liveButtonStartPoint = centerButton.center
+            liveButtonEndPoint = CGPoint(x: centerButton.frame.origin.x - liveButton.frame.width, y: centerButton.center.y)
+            liveButtonControlPoint = CGPoint(x: centerButton.frame.origin.x - 20, y: centerButton.frame.maxY + liveButton.frame.height)
+            
+            animationModel.animationandView(direction: .plus, view: liveButton, rect: liveButton.frame, duration: duration, startPoint: liveButtonStartPoint, endPoint: liveButtonEndPoint, controlPoint: liveButtonControlPoint, finishBlock: {
+                self.isliveButtonStart = true
+            })
+        }
+        
+    }
+    
+    @objc fileprivate func transcribeButtonClick(sender : CicleButton){
+        
+        print("firstButtonClick")
+    }
+    
+    @objc fileprivate func liveButtonClick(sender : CicleButton){
+        print("secondButtonClick")
+    }
+}
+
+// MARK:- 代理
+extension HomeViewController : AnimationModelDelegate{
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+        
+        if flag && istranscribeButtonStart {
+            transcribeButton.center = transcribeButtonEndPoint
+        }else{
+            transcribeButton.center = transcribeButtonStartPoint
+        }
+        
+        if flag && isliveButtonStart {
+            liveButton.center = liveButtonEndPoint
+        }else{
+            liveButton.center = liveButtonStartPoint
+        }
+        
+        //        centerButton.layer.removeAllAnimations()
+        transcribeButton.layer.removeAllAnimations()
+        liveButton.layer.removeAllAnimations()
+    }
+    
 }

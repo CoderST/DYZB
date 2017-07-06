@@ -16,6 +16,8 @@ class FishboneRechargeViewController: UIViewController {
 
     fileprivate lazy var fishboneRechargeVM : FishboneRechargeVM = FishboneRechargeVM()
     
+    fileprivate lazy var fishboneRechargBottomView : FishboneRechargBottomView = FishboneRechargBottomView()
+    
     fileprivate lazy var collectionView : UICollectionView = {
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
@@ -46,7 +48,12 @@ class FishboneRechargeViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "鱼刺充值"
         view.addSubview(collectionView)
+        view.addSubview(fishboneRechargBottomView)
+        
+        fishboneRechargBottomView.frame = CGRect(x: 0, y: sScreenH - 100 - 20, width: sScreenW, height: 100)
+        
         stupData()
     }
 
@@ -77,7 +84,12 @@ extension FishboneRechargeViewController : UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FishboneRechargeCellIdentifier, for: indexPath) as! FishboneRechargeCell
-        cell.fishboneRechargeModel = fishboneRechargeVM.fishboneRechargeBigModel.fishboneRechargeModelArray[indexPath.item]
+        let fishboneRechargeModel = fishboneRechargeVM.fishboneRechargeBigModel.fishboneRechargeModelArray[indexPath.item]
+        cell.fishboneRechargeModel = fishboneRechargeModel
+        if fishboneRechargeModel.default_select == "1" {
+            fishboneRechargBottomView.fishboneRechargeModel = fishboneRechargeModel
+        }
+        
         return cell
     }
 }
@@ -91,7 +103,7 @@ extension FishboneRechargeViewController : UICollectionViewDelegateFlowLayout {
         }
         let fishboneRechargeModel = fishboneRechargeVM.fishboneRechargeBigModel.fishboneRechargeModelArray[indexPath.item]
         cell.didSelectedModelAction(fishboneRechargeModel)
-        
+        fishboneRechargBottomView.fishboneRechargeModel = fishboneRechargeModel
     }
 
 }
