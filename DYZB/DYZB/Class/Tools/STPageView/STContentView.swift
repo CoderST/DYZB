@@ -100,7 +100,7 @@ extension STContentView {
 extension STContentView {
     
     fileprivate func stupUI(){
-        collectionView.isScrollEnabled = style.isScrollEnabled
+        collectionView.isScrollEnabled = style.isContentViewScrollEnabled
         addSubview(collectionView)
         
         // 1 添加子控制器

@@ -8,7 +8,9 @@
 
 import UIKit
 
-class ProfileViewModel: NSObject {
+fileprivate let ProfileCellIdentifier  = "ProfileCellIdentifier"
+let profileHeadViewHeight : CGFloat = sScreenW * 5 / 6
+class ProfileViewModel: NSObject,ViewModelProtocol {
 
     var user : User?
     
@@ -82,4 +84,66 @@ class ProfileViewModel: NSObject {
 
     }
 
+    // MARK:- 绑定
+    func bindViewModel(bindView: UIView) {
+        if bindView is UICollectionView{
+            let collectionView = bindView as! UICollectionView
+            collectionView.dataSource = self
+            collectionView.delegate = self
+            // 注册cell
+            collectionView.register(ProfileCell.self, forCellWithReuseIdentifier: ProfileCellIdentifier)
+        }
+    }
+}
+
+extension ProfileViewModel : UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int{
+        
+        return groupDatas.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
+        let group = groupDatas[section]
+        return group.groupModels.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell{
+        
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProfileCellIdentifier, for: indexPath) as! ProfileCell
+        let group = groupDatas[indexPath.section]
+        let profileModel = group.groupModels[indexPath.item]
+        cell.profileModel = profileModel
+        return cell
+    }
+}
+
+extension ProfileViewModel : UICollectionViewDelegateFlowLayout {
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        debugLog(scrollView.contentOffset.y)
+        // 禁止下拉
+        if scrollView.contentOffset.y <= -profileHeadViewHeight {
+            scrollView.contentOffset.y = -profileHeadViewHeight
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let group = groupDatas[indexPath.section]
+        let profileModel = group.groupModels[indexPath.item]
+        if let desVC = profileModel.targetClass as? UIViewController.Type {
+            let vc = desVC.init()
+            
+            //            print("navigationController =",navigationController)
+            
+            getNavigation().pushViewController(vc, animated: true)
+        }
+    }
+    
+    // 组间距
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
+        
+        return UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
+    }
 }

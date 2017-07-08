@@ -80,3 +80,15 @@ extension RecommendGameView : UICollectionViewDataSource{
         return cell
     }
 }
+
+// MARK:- UICollectionViewDataSource
+extension RecommendGameView : UICollectionViewDelegate{
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        
+        let anchorGrop = anchorGroups![indexPath.item]
+        let recommendGameVC = RecommentGameViewController()
+        recommendGameVC.baseGameModel = anchorGrop
+        getNavigation().pushViewController(recommendGameVC, animated: true)
+    }
+}

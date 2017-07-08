@@ -58,6 +58,12 @@
 		0F3633B31DC23E8E00897B4A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */; };
 		0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */; };
 		0F3633C11DC2402B00897B4A /* GameAnchorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633C01DC2402B00897B4A /* GameAnchorViewController.swift */; };
+		0F48AFCC1F0F3519005C8BDB /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFCB1F0F3519005C8BDB /* ViewModelProtocol.swift */; };
+		0F48AFCE1F0F5C36005C8BDB /* RecommentGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFCD1F0F5C36005C8BDB /* RecommentGameViewController.swift */; };
+		0F48AFD01F0F6003005C8BDB /* RecommentGameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFCF1F0F6003005C8BDB /* RecommentGameVM.swift */; };
+		0F48AFD21F0F616D005C8BDB /* RecommentGameTitleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD11F0F616D005C8BDB /* RecommentGameTitleModel.swift */; };
+		0F48AFD61F0F6B99005C8BDB /* RecommentGameElseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD51F0F6B99005C8BDB /* RecommentGameElseModel.swift */; };
+		0F48AFDA1F0F6F8C005C8BDB /* RecommentGameSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD91F0F6F8C005C8BDB /* RecommentGameSubViewController.swift */; };
 		0F5684031D8B9024002EAD23 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5684021D8B9024002EAD23 /* Common.swift */; };
 		0F601CF21DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF11DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift */; };
 		0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */; };
@@ -101,6 +107,10 @@
 		0F8845CC1DC1FF2500836715 /* FunnyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845CB1DC1FF2500836715 /* FunnyViewModel.swift */; };
 		0F8D00DC1F0DDE89000C1385 /* AnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */; };
 		0F8D00DE1F0DDF0F000C1385 /* CicleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */; };
+		0F8D00E01F0E0552000C1385 /* PhoneStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DF1F0E0552000C1385 /* PhoneStatusModel.swift */; };
+		0F8D00E71F0E1704000C1385 /* PhoneBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00E61F0E1704000C1385 /* PhoneBindingViewController.swift */; };
+		0F8D00E91F0E1870000C1385 /* PhoneBindingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00E81F0E1870000C1385 /* PhoneBindingModel.swift */; };
+		0F8D00EB1F0E18F2000C1385 /* PhoneBindingModelFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00EA1F0E18F2000C1385 /* PhoneBindingModelFrame.swift */; };
 		0F8DD0A81D8F81DE007A1625 /* CollectionViewNormalCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DD0A61D8F81DE007A1625 /* CollectionViewNormalCell.swift */; };
 		0F8DD0A91D8F81DE007A1625 /* CollectionViewNormalCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8DD0A71D8F81DE007A1625 /* CollectionViewNormalCell.xib */; };
 		0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8DD0AA1D8F8260007A1625 /* CollectionViewPrettyCell.swift */; };
@@ -243,6 +253,12 @@
 		0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorViewController.swift; sourceTree = "<group>"; };
 		0F3633C01DC2402B00897B4A /* GameAnchorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAnchorViewController.swift; sourceTree = "<group>"; };
+		0F48AFCB1F0F3519005C8BDB /* ViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
+		0F48AFCD1F0F5C36005C8BDB /* RecommentGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameViewController.swift; sourceTree = "<group>"; };
+		0F48AFCF1F0F6003005C8BDB /* RecommentGameVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameVM.swift; sourceTree = "<group>"; };
+		0F48AFD11F0F616D005C8BDB /* RecommentGameTitleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameTitleModel.swift; sourceTree = "<group>"; };
+		0F48AFD51F0F6B99005C8BDB /* RecommentGameElseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameElseModel.swift; sourceTree = "<group>"; };
+		0F48AFD91F0F6F8C005C8BDB /* RecommentGameSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameSubViewController.swift; sourceTree = "<group>"; };
 		0F5684021D8B9024002EAD23 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		0F601CF11DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYRefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
 		0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVC.swift; sourceTree = "<group>"; };
@@ -290,6 +306,10 @@
 		0F8845CB1DC1FF2500836715 /* FunnyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunnyViewModel.swift; sourceTree = "<group>"; };
 		0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationModel.swift; sourceTree = "<group>"; };
 		0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CicleButton.swift; sourceTree = "<group>"; };
+		0F8D00DF1F0E0552000C1385 /* PhoneStatusModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneStatusModel.swift; sourceTree = "<group>"; };
+		0F8D00E61F0E1704000C1385 /* PhoneBindingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneBindingViewController.swift; sourceTree = "<group>"; };
+		0F8D00E81F0E1870000C1385 /* PhoneBindingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneBindingModel.swift; sourceTree = "<group>"; };
+		0F8D00EA1F0E18F2000C1385 /* PhoneBindingModelFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneBindingModelFrame.swift; sourceTree = "<group>"; };
 		0F8DD0A61D8F81DE007A1625 /* CollectionViewNormalCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewNormalCell.swift; sourceTree = "<group>"; };
 		0F8DD0A71D8F81DE007A1625 /* CollectionViewNormalCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionViewNormalCell.xib; sourceTree = "<group>"; };
 		0F8DD0AA1D8F8260007A1625 /* CollectionViewPrettyCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewPrettyCell.swift; sourceTree = "<group>"; };
@@ -436,6 +456,7 @@
 				0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */,
 				0F0C0E061EFD051A00B6828D /* SearchHeadVM.swift */,
 				0F6B0C1B1F050455006E7F60 /* SearchRoomVM.swift */,
+				0F48AFCF1F0F6003005C8BDB /* RecommentGameVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -560,6 +581,14 @@
 			path = View;
 			sourceTree = "<group>";
 		};
+		0F48AFCA1F0F34F5005C8BDB /* ViewModelProtocol */ = {
+			isa = PBXGroup;
+			children = (
+				0F48AFCB1F0F3519005C8BDB /* ViewModelProtocol.swift */,
+			);
+			path = ViewModelProtocol;
+			sourceTree = "<group>";
+		};
 		0F84A3251D8A3F50000705BE = {
 			isa = PBXGroup;
 			children = (
@@ -604,6 +633,7 @@
 		0F84A3511D8A7B77000705BE /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				0F48AFCA1F0F34F5005C8BDB /* ViewModelProtocol */,
 				0F84A3551D8A7B77000705BE /* Main */,
 				0F3633BA1DC23FBF00897B4A /* Room */,
 				0F84A3531D8A7B77000705BE /* Home */,
@@ -653,6 +683,7 @@
 		0F84A3551D8A7B77000705BE /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				0F8D00E11F0E16B7000C1385 /* Register */,
 				0FCE3D2C1EF7B9D6002D5E31 /* Advertising */,
 				0F84A36F1D8A9C45000705BE /* Model */,
 				0F84A3701D8A9C45000705BE /* View */,
@@ -704,6 +735,8 @@
 				0F6B0C131F04DF75006E7F60 /* SearchRoomViewController.swift */,
 				0F6B0C151F04E1CD006E7F60 /* SearchSubRoomViewController.swift */,
 				0FA46EF61F077EE200ECB9DA /* MessageViewController.swift */,
+				0F48AFCD1F0F5C36005C8BDB /* RecommentGameViewController.swift */,
+				0F48AFD91F0F6F8C005C8BDB /* RecommentGameSubViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -718,6 +751,8 @@
 				0F77DD131F01EB4900497D84 /* SearchModelFrame.swift */,
 				0F6B0C1D1F050765006E7F60 /* SearchRoomModel.swift */,
 				0FA757D61F05D8BE007EF12C /* SearchRoomGroupModel.swift */,
+				0F48AFD11F0F616D005C8BDB /* RecommentGameTitleModel.swift */,
+				0F48AFD51F0F6B99005C8BDB /* RecommentGameElseModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -768,6 +803,7 @@
 				0F08F3CE1D90BEEF009CCEAE /* AnchorGroup.swift */,
 				0F8845B51DC0B63000836715 /* BaseGameModel.swift */,
 				0FFFA8071F0B44B000423CF2 /* BaseModel.swift */,
+				0F8D00DF1F0E0552000C1385 /* PhoneStatusModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -804,6 +840,48 @@
 			isa = PBXGroup;
 			children = (
 				0F8845BF1DC1A97F00836715 /* BaseViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		0F8D00E11F0E16B7000C1385 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				0F8D00E31F0E16B7000C1385 /* Model */,
+				0F8D00E41F0E16B7000C1385 /* View */,
+				0F8D00E21F0E16B7000C1385 /* Controller */,
+				0F8D00E51F0E16B7000C1385 /* ViewModel */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
+		0F8D00E21F0E16B7000C1385 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				0F8D00E61F0E1704000C1385 /* PhoneBindingViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		0F8D00E31F0E16B7000C1385 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0F8D00E81F0E1870000C1385 /* PhoneBindingModel.swift */,
+				0F8D00EA1F0E18F2000C1385 /* PhoneBindingModelFrame.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0F8D00E41F0E16B7000C1385 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		0F8D00E51F0E16B7000C1385 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1186,6 +1264,7 @@
 				0FFFA8041F0B3DFF00423CF2 /* FishboneRechargeModel.swift in Sources */,
 				0F77DD141F01EB4900497D84 /* SearchModelFrame.swift in Sources */,
 				0FDA59971EFBACF100691013 /* WatchHistoryVM.swift in Sources */,
+				0F8D00E91F0E1870000C1385 /* PhoneBindingModel.swift in Sources */,
 				0F3633C11DC2402B00897B4A /* GameAnchorViewController.swift in Sources */,
 				0FF151DE1DC812F300454F7C /* UIImageView+Extension.swift in Sources */,
 				0FCE3D2B1EF7B5C6002D5E31 /* ProfileHeadView.swift in Sources */,
@@ -1194,6 +1273,7 @@
 				0FF151D61DC6DFBB00454F7C /* RoomAnchorCell.swift in Sources */,
 				0F8845B41DC0B62200836715 /* GameModel.swift in Sources */,
 				0F8845BD1DC1A16900836715 /* BaseAnchorViewController.swift in Sources */,
+				0F8D00E71F0E1704000C1385 /* PhoneBindingViewController.swift in Sources */,
 				0FF151AF1DC6185500454F7C /* ProfileViewController.swift in Sources */,
 				0F8845C01DC1A97F00836715 /* BaseViewModel.swift in Sources */,
 				0FA757DB1F063C62007EF12C /* WatchHistoryModelFrame.swift in Sources */,
@@ -1206,22 +1286,29 @@
 				0F0C0E0B1EFD0D6700B6828D /* SearchHeadRecentlyCell.swift in Sources */,
 				0F601CF21DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift in Sources */,
 				0FDA598B1EFB668000691013 /* GameCenterViewController.swift in Sources */,
+				0F48AFDA1F0F6F8C005C8BDB /* RecommentGameSubViewController.swift in Sources */,
 				0FF151CF1DC6D2C200454F7C /* RoomYKModel.swift in Sources */,
 				0FF151D91DC6EBA500454F7C /* DYRefreshGifHeader.swift in Sources */,
+				0F48AFD01F0F6003005C8BDB /* RecommentGameVM.swift in Sources */,
 				0F26A75F1DD1C15D003F0E3C /* String+Extension.swift in Sources */,
 				0FFFA80A1F0B60A500423CF2 /* FishboneRechargeCell.swift in Sources */,
+				0F48AFD61F0F6B99005C8BDB /* RecommentGameElseModel.swift in Sources */,
 				0F8845CC1DC1FF2500836715 /* FunnyViewModel.swift in Sources */,
 				0F77DD161F01EEA200497D84 /* SearchModelGroup.swift in Sources */,
+				0F48AFCC1F0F3519005C8BDB /* ViewModelProtocol.swift in Sources */,
 				0FDA598F1EFB6D1900691013 /* GameCenterVM.swift in Sources */,
 				0FFD923A1EFA5C5100D1A31B /* ProfileViewModel.swift in Sources */,
+				0F8D00EB1F0E18F2000C1385 /* PhoneBindingModelFrame.swift in Sources */,
 				0F0C0E071EFD051A00B6828D /* SearchHeadVM.swift in Sources */,
 				0F8845B91DC1997200836715 /* AmuseViewController.swift in Sources */,
 				0F1867FB1DD2033C00FD8E9A /* RoomFollowPerson.swift in Sources */,
 				0F08F3CD1D90BD5E009CCEAE /* AnchorModel.swift in Sources */,
 				0FDA598D1EFB6CD100691013 /* GameCenterCell.swift in Sources */,
+				0F48AFCE1F0F5C36005C8BDB /* RecommentGameViewController.swift in Sources */,
 				0F08F3CF1D90BEEF009CCEAE /* AnchorGroup.swift in Sources */,
 				0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */,
 				0F1BEEA01D969321004840F0 /* RecommendGameView.swift in Sources */,
+				0F48AFD21F0F616D005C8BDB /* RecommentGameTitleModel.swift in Sources */,
 				0FFFA8061F0B414000423CF2 /* FishboneRechargeBigModel.swift in Sources */,
 				0F0F14821F0A27E60024E53B /* MyTaskViewController.swift in Sources */,
 				0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */,
@@ -1229,6 +1316,7 @@
 				0FDA59931EFB931F00691013 /* DownButton.swift in Sources */,
 				0F84A3731D8AA147000705BE /* HomeViewController.swift in Sources */,
 				0F8D00DE1F0DDF0F000C1385 /* CicleButton.swift in Sources */,
+				0F8D00E01F0E0552000C1385 /* PhoneStatusModel.swift in Sources */,
 				0F8845C21DC1AFD200836715 /* AmuseViewModel.swift in Sources */,
 				0FCE3D381EF7C87F002D5E31 /* AdVertModel.swift in Sources */,
 				0FFD923C1EFA749400D1A31B /* UserIconView.swift in Sources */,

@@ -20,7 +20,9 @@ class NetworkTools {
         
         // 发送网络请求
        Alamofire.request(URLString, method: method, parameters: parameters).responseJSON { (response) in
-        
+        if let url =  response.request?.url{
+            print("请求的URL = \(url)")
+        }
         // 守护结果
         guard let result = response.result.value else{
             debugLog("没有结果")

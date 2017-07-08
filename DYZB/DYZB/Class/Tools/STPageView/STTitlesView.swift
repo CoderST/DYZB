@@ -151,13 +151,13 @@ extension STTitlesView {
         
         var titleX: CGFloat = 0.0
         var titleW: CGFloat = 0.0
-        let titleY: CGFloat = 0.0
-        let titleH : CGFloat = frame.height
+        var titleY: CGFloat = 0.0
+        var titleH : CGFloat = frame.height
         let count = titles.count
         
         for (index, label) in labelArray.enumerated() {
+            let rect = (titles[index] as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 0), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : label.font], context: nil)
             if style.isScrollEnable {
-                let rect = (titles[index] as NSString).boundingRect(with: CGSize(width: CGFloat(MAXFLOAT), height: 0), options: .usesLineFragmentOrigin, attributes: [NSFontAttributeName : label.font], context: nil)
                     titleW = rect.width
                 if index == 0 {
                     titleX = style.titleMargin * 0.5
@@ -171,6 +171,11 @@ extension STTitlesView {
                 titleX = titleW * CGFloat(index)
             }
             
+            if style.isShowCover {
+                titleH = rect.height
+                titleY = (frame.height - titleH) * 0.5
+            }
+            
             label.frame = CGRect(x: titleX, y: titleY, width: titleW, height: titleH)
             
             // 放大的代码
@@ -180,7 +185,8 @@ extension STTitlesView {
             }
 
     }
-        scrollView.contentSize = style.isScrollEnable ? CGSize(width: labelArray.last!.frame.maxX + style.titleMargin * 0.5, height: 0) : CGSize.zero
+        guard let lastLabel = labelArray.last else { return }
+        scrollView.contentSize = style.isScrollEnable ? CGSize(width: lastLabel.frame.maxX + style.titleMargin * 0.5, height: 0) : CGSize.zero
     
 }
     // 设置滚动条
@@ -193,8 +199,16 @@ extension STTitlesView {
     
     // 设置遮盖
     fileprivate func setupCoverView() {
-        scrollView.insertSubview(coverView, at: 0)
-        let firstLabel = labelArray[0]
+        if style.coverBoderStyle == .border {
+            coverView.backgroundColor = .clear
+        }else{
+            coverView.backgroundColor = style.coverColor
+        }
+        
+//        scrollView.insertSubview(coverView, at: 0)
+        scrollView.addSubview(coverView)
+        
+        guard let firstLabel = labelArray.first else { return }
         var coverW = firstLabel.frame.width
         let coverH = style.coverHeight
         var coverX = firstLabel.frame.origin.x
@@ -208,6 +222,11 @@ extension STTitlesView {
         
         coverView.layer.cornerRadius = style.coverRadius
         coverView.layer.masksToBounds = true
+        
+        if style.coverBoderStyle == .border{
+            coverView.layer.borderWidth = style.coverBoderWidth
+            coverView.layer.borderColor = style.coverBoderColor.cgColor
+        }
     }
 
 }
@@ -246,8 +265,8 @@ extension STTitlesView {
         // 3 判断是否显示遮盖
         if style.isShowCover{
             UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                self.coverView.frame.origin.x = targetLabel.frame.origin.x
-                self.coverView.frame.size.width = targetLabel.frame.width
+                self.coverView.frame.origin.x = targetLabel.frame.origin.x - self.style.coverMargin
+                self.coverView.frame.size.width = targetLabel.frame.width + 2 * self.style.coverMargin
             })
         }
         
@@ -283,8 +302,19 @@ extension STTitlesView {
             if offsetX > (scrollView.contentSize.width - scrollView.bounds.width) {
                 offsetX = scrollView.contentSize.width - scrollView.bounds.width
             }
-            // 设置label居中显示
-            scrollView.setContentOffset(CGPoint(x: offsetX, y : 0), animated: true)
+            
+            // 如果最后一个label的最大X值小于scrollView的宽度.则不滚动
+            // 取出最后一个label
+            guard let lastLabel = labelArray.last else { return }
+            let maxX = lastLabel.frame.maxX
+            if maxX <= frame.width {
+                // 设置label居中显示
+                scrollView.setContentOffset(CGPoint(x: 0, y : 0), animated: true)
+            }else{
+                
+                // 设置label居中显示
+                scrollView.setContentOffset(CGPoint(x: offsetX, y : 0), animated: true)
+            }
         }
         
         
@@ -324,8 +354,8 @@ extension STTitlesView : STContentViewDelegate {
         if style.isShowCover {
             let deltaX = targetLabel.frame.origin.x - sourceLabel.frame.origin.x
             let deltaW = targetLabel.frame.width - sourceLabel.frame.width
-            coverView.frame.origin.x = sourceLabel.frame.origin.x + deltaX * process
-            coverView.frame.size.width = sourceLabel.frame.width + deltaW * process
+            coverView.frame.origin.x = sourceLabel.frame.origin.x - style.coverMargin + deltaX * process
+            coverView.frame.size.width = sourceLabel.frame.width + style.coverMargin * 2 + deltaW * process
             
         }
         

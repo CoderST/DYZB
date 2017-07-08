@@ -78,19 +78,18 @@ extension LiveViewController {
                 subVC.cate_id = liveModelData.cate_id
                 childsVC.append(subVC)
             }
-            let rect = CGRect(x: 0, y: 64, width: sScreenW, height: sScreenH - 64 - 49)
+            let rect = CGRect(x: 0, y: 64, width: sScreenW, height: sScreenH - sStatusBarH - sNavatationBarH - sTabBarH)
             // 样式
             let style = STPageViewStyle()
             style.isShowScrollLine = true
             style.isScrollEnable = true
             style.normalColor = UIColor(r: 250, g: 250, b: 250, alpha: 0.8)
             style.selectColor = UIColor(r: 255.0, g: 255.0, b: 255.0)
-            style.isShowScrollLine = true
             style.bottomLineColor = UIColor.white
             style.titleViewBackgroundColor = UIColor.orange
             // titleView
             let titleView = self.navigationController?.navigationBar
-            let pageView = STPageView(frame: rect, titles: titles, childsVC: childsVC, parentVC: self, style: style, parentView: titleView)
+            let pageView = STPageView(frame: rect, titles: titles, childsVC: childsVC, parentVC: self, style: style, titleViewParentView: titleView)
             self.view.addSubview(pageView)
 
         }

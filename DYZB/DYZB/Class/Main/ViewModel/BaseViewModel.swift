@@ -8,9 +8,11 @@
 
 import UIKit
 
+/// 加载主播
 class BaseViewModel {
     
     lazy var anchorGroups : [AnchorGroup] = [AnchorGroup]()
+    lazy var phoneStatusModel : PhoneStatusModel = PhoneStatusModel()
     
     func loadAnchDates(_ isGroup : Bool, urlString : String, parameters : [String : Any]? = nil,finishCallBack:@escaping ()->()){
         NetworkTools.requestData(.get, URLString: urlString, parameters: parameters) { (result) -> () in
@@ -25,6 +27,7 @@ class BaseViewModel {
                         
                         continue
                     }
+                    debugLog(dic)
                     self.anchorGroups.append(AnchorGroup(dict: dic))
                 }
                 
@@ -50,6 +53,7 @@ class BaseViewModel {
     }
 }
 
+/// 获取时间
 extension BaseViewModel {
     
     // http://capi.douyucdn.cn/api/v1/timestamp?client_sys=ios
@@ -74,3 +78,29 @@ extension BaseViewModel {
         }
     }
 }
+
+/// iPhone状态
+extension BaseViewModel {
+    
+    func iPhoneStatus(_ finishCallBack:@escaping ()->(),_ messageCallBack:@escaping (_ message : String)->()){
+        
+        NetworkTools.requestData(.get, URLString: "http://capi.douyucdn.cn/api/v1/getStatus?token=\(TOKEN)&client_sys=ios") { (result) in
+            
+            guard let resultDict = result as? [String : Any] else { return }
+            guard let error = resultDict["error"] as? Int else{
+                return }
+            
+            if error != 0 {
+//                debugLog(error)
+                guard let data = resultDict["data"] as? String else { return }
+                messageCallBack("data = \(data),error = \(error)")
+                return
+            }
+            
+            guard let dateDict = resultDict["data"] as? [String : Any] else { return }
+            self.phoneStatusModel = PhoneStatusModel(dict: dateDict)
+            finishCallBack()
+        }
+    }
+}
+

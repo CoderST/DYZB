@@ -41,9 +41,9 @@ class SearchRoomViewController: UIViewController {
         // 样式
         let style = STPageViewStyle()
         style.titleViewHeight = 44
-        style.isScrollEnabled = false
+        style.isContentViewScrollEnabled = false
         style.titleViewBackgroundColor = .white
-        let pageView = STPageView(frame: rect, titles: titles, childsVC: childsVC, parentVC: self!, style: style, parentView: nil)
+        let pageView = STPageView(frame: rect, titles: titles, childsVC: childsVC, parentVC: self!, style: style, titleViewParentView: nil)
         return pageView
         }()
     

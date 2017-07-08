@@ -7,7 +7,7 @@
 //   首页面内的所有控件
 
 import UIKit
-
+import SVProgressHUD
 fileprivate let pageTitlesViewH :CGFloat = 40
 fileprivate let cicleButtonWH : CGFloat = 44
 class HomeViewController: UIViewController {
@@ -64,6 +64,7 @@ class HomeViewController: UIViewController {
     
     
     // MARK:- 懒加载
+    fileprivate lazy var baseVM : BaseViewModel = BaseViewModel()
     // 滚动条下面装着要显示控制器
     fileprivate lazy var pageView : STPageView = {[weak self] in
         
@@ -83,7 +84,7 @@ class HomeViewController: UIViewController {
         style.titleViewHeight = 44
         style.isShowScrollLine = true
 
-        let pageView = STPageView(frame: rect, titles: titles, childsVC: childsVC, parentVC: self!, style: style, parentView: nil)
+        let pageView = STPageView(frame: rect, titles: titles, childsVC: childsVC, parentVC: self!, style: style, titleViewParentView: nil)
         return pageView
         }()
     
@@ -242,13 +243,79 @@ extension HomeViewController {
         
     }
     
+    fileprivate func recoverActiion(){
+        centerButton.isSelected = false
+        animationModel.rorateAnimation(holdView: centerButton, duration: duration, fromValue: M_PI / 4, toValue: 0)
+        transcribeButton.center = transcribeButtonStartPoint
+        liveButton.center = liveButtonStartPoint
+
+    }
+    
     @objc fileprivate func transcribeButtonClick(sender : CicleButton){
-        
+        SVProgressHUD.show()
+//        [SVProgressHUD setDefaultMaskType:SVProgressHUDMaskTypeClear];
+        SVProgressHUD.setDefaultStyle(.light)
         print("firstButtonClick")
+        recoverActiion()
+        baseVM.iPhoneStatus({ 
+            SVProgressHUD.dismiss()
+            let model = self.baseVM.phoneStatusModel
+            if model.ident_status == "0"{
+                // 创建
+                let alertController = UIAlertController(title: "", message: "录制和上传视频需要绑定手机哦", preferredStyle:.alert)
+                
+                // 设置2个UIAlertAction
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+                let okAction = UIAlertAction(title: "去绑定", style: .default) { (UIAlertAction) in
+                    print("点击了好的")
+                }
+                
+                // 添加
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                
+                // 弹出
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }) { (message) in
+            SVProgressHUD.showInfo(withStatus: message)
+        }
+        
+//        baseVM.iPhoneStatus {
+//
+//        
+//        }
     }
     
     @objc fileprivate func liveButtonClick(sender : CicleButton){
-        print("secondButtonClick")
+        print("liveButtonClick")
+        SVProgressHUD.show()
+        recoverActiion()
+        baseVM.iPhoneStatus({ 
+            SVProgressHUD.dismiss()
+            SVProgressHUD.setDefaultStyle(.light)
+            let model = self.baseVM.phoneStatusModel
+            if model.ident_status == "0"{
+                // 创建
+                let alertController = UIAlertController(title: "", message: "需要绑定手机,并完成实名认证才能开启直播,成为斗鱼新秀仅一步之遥哟", preferredStyle:.alert)
+                
+                // 设置2个UIAlertAction
+                let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: { (UIAlertAction) in
+                })
+                let okAction = UIAlertAction(title: "去绑定", style: .default) { (UIAlertAction) in
+                    print("点击了好的")
+                }
+                
+                // 添加
+                alertController.addAction(cancelAction)
+                alertController.addAction(okAction)
+                
+                // 弹出
+                self.present(alertController, animated: true, completion: nil)
+            }
+        }) { (message) in
+            SVProgressHUD.showInfo(withStatus: message)
+        }
     }
 }
 

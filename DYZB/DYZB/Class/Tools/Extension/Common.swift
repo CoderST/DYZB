@@ -18,9 +18,11 @@ let dateKey : String = "dateKey"
 
 let sScreenW = UIScreen.main.bounds.width
 let sScreenH = UIScreen.main.bounds.height
-
-let TOKEN = "94153348_11_7452d666f21c53f4_2_22753003" // 重新获取最新
+//
+let TOKEN = "94153348_11_d14aaf02b311e9f6_2_22753003" // 重新获取最新
 let AUTH = "af8969c3ae1953cc9929c58f2f438b58"   // 取不到最新的 广告数据出不来
+
+let RecommentGameAllID : String = "10000"
 
 // MARK:- 通知
 let notificationCenter = NotificationCenter.default
@@ -48,3 +50,13 @@ func debugLog<T>(_ message: T, filePath: String = #file, rowCount: Int = #line) 
         print(fileName + "/" + "\(rowCount)" + " \(message)" + "\n")
     #endif
 }
+
+/// 获取MainNavigationController
+func getNavigation()->MainNavigationController{
+    let window = UIApplication.shared.keyWindow!
+    let tabVC = window.rootViewController as!UITabBarController
+    let nav = tabVC.selectedViewController as!MainNavigationController
+    
+    return nav
+}
+

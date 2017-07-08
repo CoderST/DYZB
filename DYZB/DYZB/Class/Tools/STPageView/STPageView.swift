@@ -16,7 +16,7 @@ class STPageView: UIView {
     fileprivate var parentVC : UIViewController
     fileprivate var style : STPageViewStyle
     fileprivate var titleView : STTitlesView!
-    fileprivate var parentView : Any?
+    fileprivate var titleViewParentView : Any?
     
     // MARK:- 自定义构造函数
     // frame : 给定的尺寸
@@ -25,13 +25,13 @@ class STPageView: UIView {
     // parentVC : 父类控制器
     // style : 指定样式
     // parentView : titleView被添加上的父类
-    init(frame: CGRect, titles : [String], childsVC : [UIViewController], parentVC : UIViewController, style : STPageViewStyle, parentView : Any?) {
+    init(frame: CGRect, titles : [String], childsVC : [UIViewController], parentVC : UIViewController, style : STPageViewStyle, titleViewParentView : Any?) {
         // 初始化前一定要给属性赋值,不然会报super dont init 错误
         self.titles = titles
         self.parentVC = parentVC
         self.childsVC = childsVC
         self.style = style
-        self.parentView = parentView
+        self.titleViewParentView = titleViewParentView
         super.init(frame: frame)
         
         stupUI()
@@ -58,11 +58,11 @@ extension STPageView {
         let titleviewF = CGRect(x: 0, y: 0, width: frame.width, height: style.titleViewHeight)
         titleView = STTitlesView(frame: titleviewF, titles: titles, style: style)
         titleView.backgroundColor = style.titleViewBackgroundColor
-        if parentView == nil{
+        if titleViewParentView == nil{
             
             addSubview(titleView)
         }else{
-            guard let parentView = parentView as? UIView else { return }
+            guard let parentView = titleViewParentView as? UIView else { return }
             parentView.addSubview(titleView)
         }
 
@@ -71,7 +71,7 @@ extension STPageView {
     fileprivate func setupContentView(){
         var contentViewY : CGFloat = 0
         var contentViewH : CGFloat = 0
-        if parentView == nil{
+        if titleViewParentView == nil{
             contentViewY = style.titleViewHeight
             contentViewH = frame.height - style.titleViewHeight
         }else {
