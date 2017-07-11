@@ -7,6 +7,7 @@
 //  轮播图view
 
 import UIKit
+import SVProgressHUD
 // MARK:- 常量
 private let cycleCellIdentifier = "cycleCellIdentifier"
 
@@ -103,6 +104,27 @@ extension RecommendCycleView : UICollectionViewDelegate{
     
     func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         addTime()
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
+        /*
+         if UIApplication.shared.canOpenURL(url) == true{
+         UIApplication.shared.openURL(url)
+         }else{
+         SVProgressHUD.showError(withStatus: "url失效")
+         }
+         */
+        let model = cycleModels![indexPath.item % (cycleModels?.count ?? 0)]
+        let id = model.id
+        let downUrlString = "https://itunes.apple.com/cn/app/id\(id)/"
+        guard let downUrl = URL(string: downUrlString) else { return }
+        if UIApplication.shared.canOpenURL(downUrl) == true{
+            UIApplication.shared.openURL(downUrl)
+        }else{
+            SVProgressHUD.showError(withStatus: "url失效")
+        }
+
+        print("-----")
     }
 }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 extension Date{
-    /// 获取当前时间
+    /// 获取当前时间 -> String
     static func getNowDate() ->String{
         let date = Date()
         
@@ -18,6 +18,7 @@ extension Date{
         return "\(time)"
     }
     
+    /// 获取当前时间 -> Int
     static func getNowDateInt()->Int{
         let date = Date()
         
@@ -27,6 +28,7 @@ extension Date{
     }
 }
 
+// MARK:- 多少分钟前
 extension Date{
     public static func createDateString(_ createAtStr : String) -> String {
         
@@ -134,5 +136,30 @@ extension Date{
         
         //格式化
         return formatter.string(from: requestDate as Date)
+    }
+}
+
+// MARK:- 指定formal 返回对应的时间
+/*
+ timeDateFormat : 日期样式 必须要和time格式一致
+ time       : 时间
+ toDateFormat : 最终需要的格式
+ */
+extension Date {
+    
+    static func getTimeFromeFormat(timeDateFormat : String, toDateFormat : String, time : String)->String?{
+        let formatter = DateFormatter()
+        formatter.dateFormat = timeDateFormat
+        guard let date =  formatter.date(from: time) else {return nil}
+        formatter.dateFormat = toDateFormat
+        let string =  formatter.string(from: date)
+        return string
+    }
+}
+
+// MARK:- date -> string
+extension Date {
+    func stringFromDate(date : Date){
+        
     }
 }

@@ -49,6 +49,7 @@ class FishboneRechargeViewController: UIViewController {
         super.viewDidLoad()
 
         title = "鱼刺充值"
+        view.backgroundColor = UIColor.white
         view.addSubview(collectionView)
         view.addSubview(fishboneRechargBottomView)
         

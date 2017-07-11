@@ -17,7 +17,7 @@ class FishboneRechargeBigModel: BaseModel {
     
     var fishboneRechargeModelArray : [FishboneRechargeModel] = [FishboneRechargeModel]()
     
-    
+    // MARK:- 必须调用super 不能省略
     override func setValue(_ value: Any?, forKey key: String) {
         if key == "list"{
             if let listArray = value as? [[String : Any]] {

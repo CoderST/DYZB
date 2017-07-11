@@ -165,4 +165,10 @@ extension UIImage{
         
     }
     
+    // MARK:- 不变形的拉伸图片
+    func resizableWithImageName(imageName : String)->UIImage?{
+        guard let image = UIImage(named: imageName) else { return nil }
+        let stretchableImage = image.stretchableImage(withLeftCapWidth: Int(image.size.width * 0.5), topCapHeight: Int(image.size.height * 0.5))
+        return stretchableImage
+    }
 }

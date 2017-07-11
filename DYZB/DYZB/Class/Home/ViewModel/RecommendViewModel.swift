@@ -28,7 +28,7 @@ class RecommendViewModel : BaseViewModel{
         NetworkTools.requestData(.get, URLString: "http://www.douyutv.com/api/v1/slide/6", parameters: parameters) { (result) -> () in
             guard let result = result as? [String : NSObject] else { return }
             
-            guard let resultDataArray = result["data"] as? [[String : NSObject]] else {return}
+            guard let resultDataArray = result["data"] as? [[String : Any]] else {return}
             
             for dict in resultDataArray{
                 let cycleModel = CycleModel(dict: dict)

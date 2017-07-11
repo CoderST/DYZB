@@ -8,7 +8,7 @@
 
 import UIKit
 import SVProgressHUD
-
+import FDFullscreenPopGesture
 fileprivate let cicleButtonWH : CGFloat = 55
 class ProfileViewController: UIViewController {
     
@@ -99,6 +99,8 @@ class ProfileViewController: UIViewController {
         super.viewDidLoad()
         
         animationModel.delegate = self
+        /// 三方设置隐藏
+        navigationController?.fd_prefersNavigationBarHidden = true
         
         setupUI()
         
@@ -109,8 +111,9 @@ class ProfileViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        navigationController?.navigationBar.isHidden = true
+        // 下面这种方式隐藏会出现BUG 用带animated的方式隐藏
+        // [self.navigationController setNavigationBarHidden:YES animated:animated];
+        navigationController?.setNavigationBarHidden(true, animated: true)
         
         baseViewModel.updateDate {
             
@@ -119,7 +122,9 @@ class ProfileViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        navigationController?.navigationBar.isHidden = false
+        // 下面这种方式隐藏会出现BUG 用带animated的方式隐藏
+//        navigationController?.navigationBar.isHidden = false
+        navigationController?.setNavigationBarHidden(false, animated: true)
     }
     
 }

@@ -13,8 +13,38 @@ class MainNavigationController: UINavigationController {
     override func viewDidLoad() {
         
         super.viewDidLoad()
+        /*
+         // MARK:- 不用自己的POP有个bug
+         我的详情界面(ProfileInforViewController) 在下拉或者上拉的时候会调用我界面(ProfileViewController)viewWillAppear的方法
+         
+         所以改用第三方FDFullscreenPopGesture
+         */
+//        addPopGesture()
+        
         setupNavigation()
-        //        navigationBar.barTintColor = UIColor.orange
+
+        
+       
+        
+    }
+    
+    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
+        if viewControllers.count > 0{
+            
+            setupBack(viewController)
+            
+            viewController.hidesBottomBarWhenPushed = true
+        }
+        
+        super.pushViewController(viewController, animated: true)
+    }
+    
+}
+
+// MARK:- 添加全局POP手势
+extension MainNavigationController {
+    
+    @objc fileprivate func addPopGesture(){
         
         // 手势 -> 手势对应的view -> target , arction
         // 1 获取系统手势
@@ -35,20 +65,7 @@ class MainNavigationController: UINavigationController {
         popGestureView.addGestureRecognizer(panGest)
         // 9 给手势添加事件
         panGest.addTarget(target!, action: action)
-        
     }
-    
-    override func pushViewController(_ viewController: UIViewController, animated: Bool) {
-        if viewControllers.count > 0{
-            
-            setupBack(viewController)
-            
-            viewController.hidesBottomBarWhenPushed = true
-        }
-        
-        super.pushViewController(viewController, animated: true)
-    }
-    
 }
 
 /// 设置全局Navigation

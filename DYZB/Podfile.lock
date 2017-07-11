@@ -1,6 +1,7 @@
 PODS:
   - Alamofire (4.2.0)
   - BarrageRenderer (1.9.1)
+  - FDFullscreenPopGesture (1.1)
   - LFLiveKit (2.6)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
@@ -21,6 +22,7 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - BarrageRenderer (~> 1.9.0)
+  - FDFullscreenPopGesture
   - LFLiveKit (~> 2.6)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
@@ -35,6 +37,7 @@ DEPENDENCIES:
 SPEC CHECKSUMS:
   Alamofire: aa2e09d871c9160ac53c90e83c68064a94e3dfbe
   BarrageRenderer: 55bbe4557d48adbdca6c1ebdfef96946fdb5e5b2
+  FDFullscreenPopGesture: a8a620179e3d9c40e8e00256dcee1c1a27c6d0f0
   LFLiveKit: 2219563721f8aa0f188effc3395a06e2d53b23f2
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
@@ -47,6 +50,6 @@ SPEC CHECKSUMS:
   UICollectionViewLeftAlignedLayout: 830bf6fa5bab9f9b464f62e3384f9d2e00b3c0f6
   XHLaunchAd: 6e30e509f09a6a16222a4615afa03c7409e2db59
 
-PODFILE CHECKSUM: 4bad6495feb531bdd6dd3f2c71d47f78b405dfa0
+PODFILE CHECKSUM: 0b93e68655cd4a2eaa8bb80926920ba070023c56
 
 COCOAPODS: 1.1.1

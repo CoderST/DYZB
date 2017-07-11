@@ -9,14 +9,25 @@
 import UIKit
 fileprivate let verticalButtonWidth : CGFloat = sScreenW / 4
 fileprivate let userIconImageViewHW : CGFloat = 80
+fileprivate let arrowImageViewWH : CGFloat = 20
 class ProfileHeadView: UIView {
 
     fileprivate lazy var backgroundImageView : UIImageView = {
         
         let backgroundImageView = UIImageView()
+        backgroundImageView.isUserInteractionEnabled = true
         backgroundImageView.contentMode = .center
         backgroundImageView.image = UIImage(named: "Image_userView_background")
         return backgroundImageView
+        
+    }()
+    
+    fileprivate lazy var arrowImageView : UIImageView = {
+        
+        let arrowImageView = UIImageView()
+        arrowImageView.contentMode = .center
+        arrowImageView.image = UIImage(named: "image_my_arrow_right_white")
+        return arrowImageView
         
     }()
     
@@ -54,7 +65,12 @@ class ProfileHeadView: UIView {
         super.init(frame: frame)
         backgroundColor = UIColor(r: 239, g: 239, b: 239)
         addSubview(backgroundImageView)
+        addSubview(arrowImageView)
         backgroundImageView.addSubview(userIconImageView)
+        
+        // 添加手势
+        let tap = UITapGestureRecognizer(target: self, action: #selector(myInforClick))
+        backgroundImageView.addGestureRecognizer(tap)
         
         addSubview(historyButton)
         addSubview(mailButton)
@@ -86,8 +102,11 @@ class ProfileHeadView: UIView {
         
         didSet{
             guard let user = user else { return }
-            guard let imageName = user.avatar?["small"] else { return }
-            userIconImageView.imageName = imageName
+            if let avatarModel = user.avatar{
+                let smallImageName = avatarModel.small
+                userIconImageView.imageName = smallImageName
+            }
+            
             userNameLabel.text = user.nickname
         }
     }
@@ -118,6 +137,11 @@ class ProfileHeadView: UIView {
         taskButton.frame = CGRect(x: mailButton.frame.maxX, y: backgroundImageView.frame.maxY, width: verticalButtonWidth, height: historyButton.frame.height)
         
         rechargeButton.frame = CGRect(x: taskButton.frame.maxX, y: backgroundImageView.frame.maxY, width: verticalButtonWidth, height: historyButton.frame.height)
+        
+        
+        arrowImageView.frame = CGRect(x: frame.width - arrowImageViewWH - 10, y: 0, width: arrowImageViewWH, height: arrowImageViewWH)
+        arrowImageView.center.y =  userIconImageView.center.y
+        
         
     }
 
@@ -158,6 +182,17 @@ extension ProfileHeadView {
         let fishboneRecharge = FishboneRechargeViewController()
         let nav = getNavigation()
         nav.pushViewController(fishboneRecharge, animated: true)
+    }
+    
+    
+    @objc fileprivate func myInforClick() {
+        debugLog("-------")
+        let profileInforViewController = ProfileInforViewController()
+        // 获取user
+        guard let user = user else { return }
+        profileInforViewController.user = user
+        let nav = getNavigation()
+        nav.pushViewController(profileInforViewController, animated: true)
     }
     
 //    fileprivate func getNavigation()->MainNavigationController{

@@ -10,10 +10,12 @@ pod 'SVProgressHUD'
 pod 'MJRefresh', '~> 3.1.12'
 pod 'LFLiveKit', '~> 2.6'
 pod 'MJExtension', '~> 3.0.13'
-pod 'BarrageRenderer', '~> 1.9.0'
-pod 'XHLaunchAd', '~> 3.3.0'
+pod 'BarrageRenderer', '~> 1.9.0'    # 弹幕
+pod 'XHLaunchAd', '~> 3.3.0'         # 广告
 pod 'UICollectionViewLeftAlignedLayout'
 #pod 'STCustomWidthLayout'
 pod 'STRowLayout'
 pod 'RealmSwift'
+
+pod 'FDFullscreenPopGesture'    # 一个丝滑的全屏滑动返回手势(百度大神之作)
 end

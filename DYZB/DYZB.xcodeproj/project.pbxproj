@@ -58,6 +58,18 @@
 		0F3633B31DC23E8E00897B4A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */; };
 		0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */; };
 		0F3633C11DC2402B00897B4A /* GameAnchorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633C01DC2402B00897B4A /* GameAnchorViewController.swift */; };
+		0F45D17A1F1223530051BA1E /* ProfileInforViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D1791F1223530051BA1E /* ProfileInforViewController.swift */; };
+		0F45D17C1F1223830051BA1E /* ProfileInforVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D17B1F1223830051BA1E /* ProfileInforVM.swift */; };
+		0F45D17E1F1226490051BA1E /* ProfileInforDataFrameModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D17D1F1226490051BA1E /* ProfileInforDataFrameModel.swift */; };
+		0F45D1A91F1254DB0051BA1E /* TestViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D1A81F1254DB0051BA1E /* TestViewController.swift */; };
+		0F45D1CE1F13199D0051BA1E /* ProfileInforCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D1CD1F13199D0051BA1E /* ProfileInforCell.swift */; };
+		0F45D1FE1F1370B60051BA1E /* SettingItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D1FD1F1370B60051BA1E /* SettingItem.swift */; };
+		0F45D2001F1371A00051BA1E /* ArrowItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D1FF1F1371A00051BA1E /* ArrowItem.swift */; };
+		0F45D2021F1371CF0051BA1E /* SwitchItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D2011F1371CF0051BA1E /* SwitchItem.swift */; };
+		0F45D2041F13723E0051BA1E /* BasicSettingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D2031F13723E0051BA1E /* BasicSettingCell.swift */; };
+		0F45D2061F1387670051BA1E /* ArrowImageItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D2051F1387670051BA1E /* ArrowImageItem.swift */; };
+		0F45D2081F144EF40051BA1E /* SettingGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D2071F144EF40051BA1E /* SettingGroup.swift */; };
+		0F45D20A1F14677A0051BA1E /* SettingItemFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F45D2091F14677A0051BA1E /* SettingItemFrame.swift */; };
 		0F48AFCC1F0F3519005C8BDB /* ViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFCB1F0F3519005C8BDB /* ViewModelProtocol.swift */; };
 		0F48AFCE1F0F5C36005C8BDB /* RecommentGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFCD1F0F5C36005C8BDB /* RecommentGameViewController.swift */; };
 		0F48AFD01F0F6003005C8BDB /* RecommentGameVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFCF1F0F6003005C8BDB /* RecommentGameVM.swift */; };
@@ -253,6 +265,18 @@
 		0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorViewController.swift; sourceTree = "<group>"; };
 		0F3633C01DC2402B00897B4A /* GameAnchorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameAnchorViewController.swift; sourceTree = "<group>"; };
+		0F45D1791F1223530051BA1E /* ProfileInforViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInforViewController.swift; sourceTree = "<group>"; };
+		0F45D17B1F1223830051BA1E /* ProfileInforVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInforVM.swift; sourceTree = "<group>"; };
+		0F45D17D1F1226490051BA1E /* ProfileInforDataFrameModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInforDataFrameModel.swift; sourceTree = "<group>"; };
+		0F45D1A81F1254DB0051BA1E /* TestViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestViewController.swift; sourceTree = "<group>"; };
+		0F45D1CD1F13199D0051BA1E /* ProfileInforCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileInforCell.swift; sourceTree = "<group>"; };
+		0F45D1FD1F1370B60051BA1E /* SettingItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItem.swift; sourceTree = "<group>"; };
+		0F45D1FF1F1371A00051BA1E /* ArrowItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowItem.swift; sourceTree = "<group>"; };
+		0F45D2011F1371CF0051BA1E /* SwitchItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchItem.swift; sourceTree = "<group>"; };
+		0F45D2031F13723E0051BA1E /* BasicSettingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicSettingCell.swift; sourceTree = "<group>"; };
+		0F45D2051F1387670051BA1E /* ArrowImageItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArrowImageItem.swift; sourceTree = "<group>"; };
+		0F45D2071F144EF40051BA1E /* SettingGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingGroup.swift; sourceTree = "<group>"; };
+		0F45D2091F14677A0051BA1E /* SettingItemFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingItemFrame.swift; sourceTree = "<group>"; };
 		0F48AFCB1F0F3519005C8BDB /* ViewModelProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelProtocol.swift; sourceTree = "<group>"; };
 		0F48AFCD1F0F5C36005C8BDB /* RecommentGameViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameViewController.swift; sourceTree = "<group>"; };
 		0F48AFCF1F0F6003005C8BDB /* RecommentGameVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameVM.swift; sourceTree = "<group>"; };
@@ -465,12 +489,14 @@
 			isa = PBXGroup;
 			children = (
 				0FF151AE1DC6185500454F7C /* ProfileViewController.swift */,
+				0F45D1791F1223530051BA1E /* ProfileInforViewController.swift */,
 				0F05C7E71EF8D39700AFD492 /* RecruitViewController.swift */,
 				0FDA598A1EFB668000691013 /* GameCenterViewController.swift */,
 				0FDA59941EFBA71000691013 /* WatchHistoryViewController.swift */,
 				0F0F14771F09EB4B0024E53B /* InteralMessageViewController.swift */,
 				0F0F14811F0A27E60024E53B /* MyTaskViewController.swift */,
 				0FFFA7FF1F0B3D7100423CF2 /* FishboneRechargeViewController.swift */,
+				0F45D1A81F1254DB0051BA1E /* TestViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -479,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				0F05C7E51EF8D10B00AFD492 /* ProfileModel.swift */,
+				0F45D17D1F1226490051BA1E /* ProfileInforDataFrameModel.swift */,
 				0F05C7E91EF8EC4800AFD492 /* ProfileGroupModel.swift */,
 				0FFD92361EFA577200D1A31B /* User.swift */,
 				0FDA59901EFB6FF200691013 /* GameCenterModel.swift */,
@@ -487,6 +514,12 @@
 				0F0F147D1F0A18050024E53B /* InteralMessageModel.swift */,
 				0FFFA8031F0B3DFF00423CF2 /* FishboneRechargeModel.swift */,
 				0FFFA8051F0B414000423CF2 /* FishboneRechargeBigModel.swift */,
+				0F45D1FD1F1370B60051BA1E /* SettingItem.swift */,
+				0F45D2091F14677A0051BA1E /* SettingItemFrame.swift */,
+				0F45D2071F144EF40051BA1E /* SettingGroup.swift */,
+				0F45D1FF1F1371A00051BA1E /* ArrowItem.swift */,
+				0F45D2051F1387670051BA1E /* ArrowImageItem.swift */,
+				0F45D2011F1371CF0051BA1E /* SwitchItem.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -496,11 +529,13 @@
 			children = (
 				0FCE3D2A1EF7B5C6002D5E31 /* ProfileHeadView.swift */,
 				0F05C7EB1EF8EF1500AFD492 /* ProfileCell.swift */,
+				0F45D1CD1F13199D0051BA1E /* ProfileInforCell.swift */,
 				0FDA598C1EFB6CD100691013 /* GameCenterCell.swift */,
 				0FDA599A1EFBC4EA00691013 /* WatchHistoryCell.swift */,
 				0F0F147F1F0A1D720024E53B /* InteralMessageCell.swift */,
 				0FFFA8091F0B60A500423CF2 /* FishboneRechargeCell.swift */,
 				0FD6CA521F0C6C07004DDE1A /* FishboneRechargBottomView.swift */,
+				0F45D2031F13723E0051BA1E /* BasicSettingCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1006,6 +1041,7 @@
 			isa = PBXGroup;
 			children = (
 				0FFD92391EFA5C5100D1A31B /* ProfileViewModel.swift */,
+				0F45D17B1F1223830051BA1E /* ProfileInforVM.swift */,
 				0FDA598E1EFB6D1900691013 /* GameCenterVM.swift */,
 				0FDA59961EFBACF100691013 /* WatchHistoryVM.swift */,
 				0F0F147B1F0A12EB0024E53B /* InteralMessageVM.swift */,
@@ -1223,6 +1259,7 @@
 				0F0C0E051EFD04FD00B6828D /* SearchHeadView.swift in Sources */,
 				0F1D684F1D94D87300DDD7A8 /* RecommendCycleView.swift in Sources */,
 				0FA757D51F05D596007EF12C /* SearchAnchorCell.swift in Sources */,
+				0F45D17C1F1223830051BA1E /* ProfileInforVM.swift in Sources */,
 				0FCA412B1F00FC35007D773B /* SQLManager.swift in Sources */,
 				0F8845C91DC1DA6A00836715 /* AmuseMenuViewCell.swift in Sources */,
 				0F08F3C81D90B0F4009CCEAE /* NetworkTools.swift in Sources */,
@@ -1232,6 +1269,7 @@
 				0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */,
 				0FB05C971EF20A0D008F13B7 /* QrcodeViewController.swift in Sources */,
 				0F84A3761D8AA275000705BE /* UIBarButotnItem+Extension.swift in Sources */,
+				0F45D20A1F14677A0051BA1E /* SettingItemFrame.swift in Sources */,
 				0F05BC2D1DD3541B000D9D27 /* STPresentationController.swift in Sources */,
 				0F8845B01DC0AFEB00836715 /* GameViewModel.swift in Sources */,
 				0F0C0DFB1EFCEAA300B6828D /* SearchVM.swift in Sources */,
@@ -1257,7 +1295,9 @@
 				0F05C7E81EF8D39700AFD492 /* RecruitViewController.swift in Sources */,
 				0F8DD0A81D8F81DE007A1625 /* CollectionViewNormalCell.swift in Sources */,
 				0F601D231DCF2BC300FD001B /* ShowAnchorVCCell.swift in Sources */,
+				0F45D1FE1F1370B60051BA1E /* SettingItem.swift in Sources */,
 				0FE1D65D1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift in Sources */,
+				0F45D2061F1387670051BA1E /* ArrowImageItem.swift in Sources */,
 				0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */,
 				0F6B0C141F04DF75006E7F60 /* SearchRoomViewController.swift in Sources */,
 				0F6B0C181F04FBA7006E7F60 /* SearchBaseViewController.swift in Sources */,
@@ -1296,19 +1336,25 @@
 				0F8845CC1DC1FF2500836715 /* FunnyViewModel.swift in Sources */,
 				0F77DD161F01EEA200497D84 /* SearchModelGroup.swift in Sources */,
 				0F48AFCC1F0F3519005C8BDB /* ViewModelProtocol.swift in Sources */,
+				0F45D2041F13723E0051BA1E /* BasicSettingCell.swift in Sources */,
 				0FDA598F1EFB6D1900691013 /* GameCenterVM.swift in Sources */,
+				0F45D2081F144EF40051BA1E /* SettingGroup.swift in Sources */,
 				0FFD923A1EFA5C5100D1A31B /* ProfileViewModel.swift in Sources */,
 				0F8D00EB1F0E18F2000C1385 /* PhoneBindingModelFrame.swift in Sources */,
+				0F45D1A91F1254DB0051BA1E /* TestViewController.swift in Sources */,
 				0F0C0E071EFD051A00B6828D /* SearchHeadVM.swift in Sources */,
+				0F45D2021F1371CF0051BA1E /* SwitchItem.swift in Sources */,
 				0F8845B91DC1997200836715 /* AmuseViewController.swift in Sources */,
 				0F1867FB1DD2033C00FD8E9A /* RoomFollowPerson.swift in Sources */,
 				0F08F3CD1D90BD5E009CCEAE /* AnchorModel.swift in Sources */,
 				0FDA598D1EFB6CD100691013 /* GameCenterCell.swift in Sources */,
 				0F48AFCE1F0F5C36005C8BDB /* RecommentGameViewController.swift in Sources */,
 				0F08F3CF1D90BEEF009CCEAE /* AnchorGroup.swift in Sources */,
+				0F45D17A1F1223530051BA1E /* ProfileInforViewController.swift in Sources */,
 				0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */,
 				0F1BEEA01D969321004840F0 /* RecommendGameView.swift in Sources */,
 				0F48AFD21F0F616D005C8BDB /* RecommentGameTitleModel.swift in Sources */,
+				0F45D2001F1371A00051BA1E /* ArrowItem.swift in Sources */,
 				0FFFA8061F0B414000423CF2 /* FishboneRechargeBigModel.swift in Sources */,
 				0F0F14821F0A27E60024E53B /* MyTaskViewController.swift in Sources */,
 				0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */,
@@ -1350,10 +1396,12 @@
 				0FCE3D1E1EF77806002D5E31 /* STContentFlowLayout.swift in Sources */,
 				0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */,
 				0F6B0C1C1F050455006E7F60 /* SearchRoomVM.swift in Sources */,
+				0F45D1CE1F13199D0051BA1E /* ProfileInforCell.swift in Sources */,
 				0F0C0DF91EFCE68B00B6828D /* SearchViewController.swift in Sources */,
 				0F0F14801F0A1D720024E53B /* InteralMessageCell.swift in Sources */,
 				0FCE3D211EF77806002D5E31 /* STPageView.swift in Sources */,
 				0F08F3CB1D90B933009CCEAE /* RecommendViewModel.swift in Sources */,
+				0F45D17E1F1226490051BA1E /* ProfileInforDataFrameModel.swift in Sources */,
 				0FF152521DC983E700454F7C /* EmitterLayer_ST.swift in Sources */,
 				0F08F3C61D90AFE8009CCEAE /* Date+Extension.swift in Sources */,
 				0FA757D91F060000007EF12C /* SearchRoomNavagationBar.swift in Sources */,
