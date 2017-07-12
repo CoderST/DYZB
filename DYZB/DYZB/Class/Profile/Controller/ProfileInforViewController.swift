@@ -7,14 +7,39 @@
 //  我的详情页面
 
 import UIKit
+import SVProgressHUD
+import TZImagePickerController
 let BasicSettingCellIdentifier = "BasicSettingCellIdentifier"
 let headImageCellHeight : CGFloat = 60
 let normalCellHeight : CGFloat = 44
 class ProfileInforViewController: BaseViewController {
     
-    var user : User?
+    fileprivate var user : User?{
+        
+        didSet{
+            
+            guard let user = user else { return }
+            
+            //            if let user = user {
+            groups.removeAll()
+            profileInforDataFrameModel = ProfileInforDataFrameModel(user: user)
+            // 第一组
+            setuoGroupOne(profileInforDataFrameModel)
+            // 第二组
+            setuoGroupTwo(profileInforDataFrameModel)
+            // 第三组
+            setuoGroupThree(profileInforDataFrameModel)
+            
+            endAnimation()
+            
+            collectionView.reloadData()
+            //            }
+            
+        }
+    }
     var profileInforDataFrameModel : ProfileInforDataFrameModel!
     
+    fileprivate lazy var profileInforVM : ProfileInforVM = ProfileInforVM()
     
     fileprivate lazy var groups : [SettingGroup] = [SettingGroup]()
     
@@ -37,29 +62,53 @@ class ProfileInforViewController: BaseViewController {
         
     }()
     
+    // MARK:- 生命周期
     override func viewDidLoad() {
         
-        super.viewDidLoad()
         baseContentView = collectionView
-        
         view.addSubview(collectionView)
         
-        if let user = user {
-            
-            profileInforDataFrameModel = ProfileInforDataFrameModel(user: user)
-            // 第一组
-            setuoGroupOne(profileInforDataFrameModel)
-            // 第二组
-            setuoGroupTwo(profileInforDataFrameModel)
-            // 第三组
-            setuoGroupThree(profileInforDataFrameModel)
-            
-            endAnimation()
-            
-            collectionView.reloadData()
-        }
-
+        super.viewDidLoad()
+        
+        title = "个人信息"
+        
+        //  请求一下最新数据
+        setupData()
+        
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        SVProgressHUD.dismiss()
+    }
+    
+    deinit {
+        debugLog("ProfileInforViewController -- 销毁")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        debugLog("viewWillAppear")
+    }
+}
+
+// MARK:- 获取数据
+extension ProfileInforViewController {
+    fileprivate func setupData(){
+        
+        profileInforVM.loadProfileInforDatas({
+            self.user = self.profileInforVM.user
+        }, { (message) in
+            
+        }) {
+            
+        }
+        
+    }
+}
+
+// MARK:- 创建组
+extension ProfileInforViewController {
     
     fileprivate func setuoGroupOne(_ profileInforDataFrameModel : ProfileInforDataFrameModel){
         /// 头像
@@ -76,8 +125,16 @@ class ProfileInforViewController: BaseViewController {
             
             // 设置2个UIAlertAction
             let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
-            let photographAction = UIAlertAction(title: "拍照", style: .default, handler: nil)
-            let photoAlbumAction = UIAlertAction(title: "从相册选择", style: .default, handler: nil)
+            let photographAction = UIAlertAction(title: "拍照", style: .default, handler: { (alertAction) in
+                
+            })
+            let photoAlbumAction = UIAlertAction(title: "从相册选择", style: .default, handler: { (alertAction) in
+                guard let imagePickerVc = TZImagePickerController(maxImagesCount: 1, delegate: self) else { return }
+                imagePickerVc.sortAscendingByModificationDate = false
+                imagePickerVc.photoWidth = 1024.0
+                imagePickerVc.photoPreviewMaxWidth = 3072.0
+                self?.navigationController?.present(imagePickerVc, animated: true, completion: nil)
+            })
             
             // 添加到UIAlertController
             alertController.addAction(cancelAction)
@@ -86,9 +143,9 @@ class ProfileInforViewController: BaseViewController {
             
             // 弹出
             self?.present(alertController, animated: true, completion: nil)
-
+            
         }
-        avaModel.optionHeight = {[weak self] in
+        avaModel.optionHeight = {
             return headImageCellHeight
         }
         
@@ -100,12 +157,62 @@ class ProfileInforViewController: BaseViewController {
         let sexModel = ArrowItem(icon: "", title: "性别", subtitle: profileInforDataFrameModel.sexString, VcClass: nil)
         let sexModelFrame = SettingItemFrame(sexModel)
         sexModel.optionHandler = {[weak self] in
-            print("setuoGroupOne点击了性别")
+            // preferredStyle 为 ActionSheet
+            let alertController = UIAlertController(title: "上传头像", message: nil, preferredStyle:.actionSheet)
+            
+            // 设置2个UIAlertAction
+            let cancelAction = UIAlertAction(title: "取消", style: .cancel, handler: nil)
+            let womanAction = UIAlertAction(title: "女", style: .default, handler: { (alertAction) in
+                self?.profileInforVM.loadSexProfileInforDatas(sexString: "2", {
+                    SVProgressHUD.showSuccess(withStatus: "成功")
+                    // 再次请求个人详情的数据
+                    self?.profileInforVM.loadProfileInforDatas({
+                        self?.user = self?.profileInforVM.user
+                    }, { (message) in
+                        
+                    }, {
+                        
+                    })
+                }, { (message) in
+                    SVProgressHUD.showInfo(withStatus: message)
+                }, {
+                    SVProgressHUD.showError(withStatus: "")
+                })
+            })
+            let manAction = UIAlertAction(title: "男", style: .default, handler: { (alertAction) in
+                self?.profileInforVM.loadSexProfileInforDatas(sexString: "1", {
+                    
+                    // 再次请求个人详情的数据
+                    self?.profileInforVM.loadProfileInforDatas({
+                        self?.user = self?.profileInforVM.user
+                        SVProgressHUD.showSuccess(withStatus: "成功")
+                    }, { (message) in
+                        
+                    }, {
+                        
+                    })
+                }, { (message) in
+                    SVProgressHUD.showInfo(withStatus: message)
+                }, {
+                    SVProgressHUD.showError(withStatus: "")
+                })
+            })
+            
+            // 添加到UIAlertController
+            alertController.addAction(cancelAction)
+            alertController.addAction(manAction)
+            alertController.addAction(womanAction)
+            
+            // 弹出
+            self?.present(alertController, animated: true, completion: nil)
         }
         
         /// 生日
         let birthDayModel = ArrowItem(icon: "", title: "生日", subtitle: profileInforDataFrameModel.birthdayString, VcClass: nil)
         let birthDayModelFrame = SettingItemFrame(birthDayModel)
+        birthDayModel.optionHandler = {
+            
+        }
         
         /// 所在地
         let locationModel = ArrowItem(icon: "", title: "所在地", subtitle: profileInforDataFrameModel.locationString, VcClass: nil)
@@ -116,7 +223,7 @@ class ProfileInforViewController: BaseViewController {
         settingGroup.settingGroup = [avaModelFrame,nickNameModelFrame,sexModelFrame,birthDayModelFrame,locationModelFrame]
         
         groups.append(settingGroup)
-
+        
         
     }
     
@@ -146,11 +253,11 @@ class ProfileInforViewController: BaseViewController {
     }
     
     fileprivate func setuoGroupThree(_ profileInforDataFrameModel : ProfileInforDataFrameModel){
-  
-        let nickNameModel = ArrowItem(icon: "", title: "经验值", subtitle: profileInforDataFrameModel.empiricalValue, VcClass: nil)
+        
+        let  nickNameModel = SettingItem(icon: "", title: "经验值", subTitle: profileInforDataFrameModel.empiricalValue)
         let nickNameModelFrame = SettingItemFrame(nickNameModel)
         
-        let sexModel = ArrowItem(icon: "", title: "鱼丸", subtitle: profileInforDataFrameModel.fishBall, VcClass: nil)
+        let sexModel = SettingItem(icon: "", title: "鱼丸", subTitle: profileInforDataFrameModel.fishBall)
         let sexModelFrame = SettingItemFrame(sexModel)
         
         let birthDayModel = ArrowItem(icon: "", title: "鱼翅", subtitle: profileInforDataFrameModel.fin, VcClass: TestViewController.self)
@@ -162,14 +269,9 @@ class ProfileInforViewController: BaseViewController {
         
         groups.append(settingGroup)
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        debugLog("viewWillAppear")
-    }
 }
 
-
+// MARK:- UICollectionViewDataSource
 extension ProfileInforViewController : UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int{
@@ -189,13 +291,12 @@ extension ProfileInforViewController : UICollectionViewDataSource {
         let group = groups[indexPath.section]
         let settingItemFrame = group.settingGroup[indexPath.item]
         cell.settingItemFrame = settingItemFrame
-//        cell.contentView.backgroundColor = UIColor.randomColor()
         return cell
     }
 }
-
+// MARK:- UICollectionViewDelegateFlowLayout
 extension ProfileInforViewController : UICollectionViewDelegateFlowLayout {
-        
+    
     // 组间距
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets{
         
@@ -230,4 +331,20 @@ extension ProfileInforViewController : UICollectionViewDelegateFlowLayout {
         
     }
 }
-
+// MARK:- TZImagePickerControllerDelegate
+extension ProfileInforViewController : TZImagePickerControllerDelegate{
+    
+    func imagePickerController(_ picker: TZImagePickerController!, didFinishPickingPhotos photos: [UIImage]!, sourceAssets assets: [Any]!, isSelectOriginalPhoto: Bool, infos: [[AnyHashable : Any]]!){
+        guard let image = photos.first else { return }
+        
+        guard let imageData = UIImageJPEGRepresentation(image, 0.3) else { return }
+        debugLog(imageData)
+        profileInforVM.loadUpImageProfileInforDatas(imageData: imageData, {
+            
+        }, { (message) in
+            
+        }) {
+            
+        }
+    }
+}

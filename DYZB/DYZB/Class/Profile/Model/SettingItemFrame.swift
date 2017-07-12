@@ -36,7 +36,7 @@ class SettingItemFrame: NSObject {
     init(_ settingItem : SettingItem) {
         self.settingItem = settingItem
         super.init()
-        // 判断是哪一种类型的model
+        // 判断是哪一种类型的model  ArrowImageItem ArrowItem必有箭头 SettingItem没有箭头
         if settingItem is ArrowImageItem  {  /// 带右边的头像的item
             let arrowImageItem = settingItem as! ArrowImageItem
             
@@ -68,13 +68,7 @@ class SettingItemFrame: NSObject {
             let arrowItem = settingItem as! ArrowItem
             
             /// 箭头
-            if arrowItem.VcClass == nil {  // 没有下个控制器->没有箭头
-                arrowFrame = CGRect(x: sScreenW - arrowWH - ItemFrameMargin, y: (normalCellHeight - arrowWH) * 0.5, width: 0, height: 0)
-            }else{
-                
                 arrowFrame = CGRect(x: sScreenW - arrowWH - ItemFrameMargin, y: (normalCellHeight - arrowWH) * 0.5, width: arrowWH, height: arrowWH)
-            }
-            
             /// 右边的标题
             let subTitleSize = arrowItem.subTitle.sizeWithFont(subTitleFont, size: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)))
             subTitleFrame = CGRect(x: arrowFrame.origin.x - ItemFrameMargin - subTitleSize.width, y: (normalCellHeight - subTitleSize.height) * 0.5, width: subTitleSize.width, height: subTitleSize.height)
@@ -96,6 +90,27 @@ class SettingItemFrame: NSObject {
             }
             
             
+        }else{
+            /// 右边的标题
+            let settingItem = settingItem 
+            let subTitleSize = settingItem.subTitle.sizeWithFont(subTitleFont, size: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)))
+            subTitleFrame = CGRect(x: sScreenW - ItemFrameMargin - subTitleSize.width, y: (normalCellHeight - subTitleSize.height) * 0.5, width: subTitleSize.width, height: subTitleSize.height)
+            
+            ///  左边的icon
+            if settingItem.icon == nil || settingItem.icon == "" {   //  左边的icon不存在
+                iconImageViewFrame = CGRect(x: ItemFrameMargin, y: 0, width: 0, height: 0)
+                /// 左边的标题
+                let titleSize = settingItem.title.sizeWithFont(nicknameFont, size: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)))
+                titleFrame = CGRect(x: iconImageViewFrame.maxX, y: (normalCellHeight - titleSize.height) * 0.5, width: titleSize.width, height: titleSize.height)
+                
+                
+            }else{
+                iconImageViewFrame = CGRect(x: ItemFrameMargin, y: (normalCellHeight - iconWH) * 0.5, width: iconWH, height: iconWH)
+                /// 左边的标题
+                let titleSize = settingItem.title.sizeWithFont(nicknameFont, size: CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT)))
+                titleFrame = CGRect(x: iconImageViewFrame.maxX + ItemFrameMargin, y: (normalCellHeight - titleSize.height) * 0.5, width: titleSize.width, height: titleSize.height)
+                
+            }
         }
         var X : CGFloat = 0
         var Y : CGFloat = normalCellHeight - 0.5

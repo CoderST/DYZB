@@ -14,12 +14,13 @@ class MainNavigationController: UINavigationController {
         
         super.viewDidLoad()
         /*
-         // MARK:- 不用自己的POP有个bug
+         // MARK:- 不用自己的POP有个bug(在简书解决问题:http://www.jianshu.com/p/9461f79b14b7)
          我的详情界面(ProfileInforViewController) 在下拉或者上拉的时候会调用我界面(ProfileViewController)viewWillAppear的方法
-         
          所以改用第三方FDFullscreenPopGesture
          */
-//        addPopGesture()
+        
+        
+        addPopGesture()
         
         setupNavigation()
 

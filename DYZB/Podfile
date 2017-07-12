@@ -17,5 +17,6 @@ pod 'UICollectionViewLeftAlignedLayout'
 pod 'STRowLayout'
 pod 'RealmSwift'
 
-pod 'FDFullscreenPopGesture'    # 一个丝滑的全屏滑动返回手势(百度大神之作)
+#pod 'FDFullscreenPopGesture'    # 一个丝滑的全屏滑动返回手势(百度大神之作) oc版本
+pod 'TZImagePickerController'   # 相册选择 oc版本
 end

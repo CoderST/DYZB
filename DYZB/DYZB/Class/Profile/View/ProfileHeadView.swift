@@ -189,8 +189,8 @@ extension ProfileHeadView {
         debugLog("-------")
         let profileInforViewController = ProfileInforViewController()
         // 获取user
-        guard let user = user else { return }
-        profileInforViewController.user = user
+//        guard let user = user else { return }
+//        profileInforViewController.user = user
         let nav = getNavigation()
         nav.pushViewController(profileInforViewController, animated: true)
     }
