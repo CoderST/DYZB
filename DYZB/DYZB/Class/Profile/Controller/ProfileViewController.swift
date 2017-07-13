@@ -107,6 +107,10 @@ class ProfileViewController: UIViewController {
         baseViewModel.updateDate {
             self.setupProfileDatas()
         }
+        
+        
+        // 测试取值
+    
     }
     
     override func viewWillAppear(_ animated: Bool) {

@@ -64,7 +64,7 @@ class ProfileInforViewController: BaseViewController {
     
     // MARK:- 生命周期
     override func viewDidLoad() {
-        
+        automaticallyAdjustsScrollViewInsets = false
         baseContentView = collectionView
         view.addSubview(collectionView)
         
@@ -166,13 +166,14 @@ extension ProfileInforViewController {
                 self?.profileInforVM.loadSexProfileInforDatas(sexString: "2", {
                     SVProgressHUD.showSuccess(withStatus: "成功")
                     // 再次请求个人详情的数据
-                    self?.profileInforVM.loadProfileInforDatas({
-                        self?.user = self?.profileInforVM.user
-                    }, { (message) in
-                        
-                    }, {
-                        
-                    })
+//                    self?.profileInforVM.loadProfileInforDatas({
+//                        self?.user = self?.profileInforVM.user
+//                    }, { (message) in
+//                        
+//                    }, {
+//                        
+//                    })
+                    self?.reLoadProfileInforData()
                 }, { (message) in
                     SVProgressHUD.showInfo(withStatus: message)
                 }, {
@@ -183,14 +184,15 @@ extension ProfileInforViewController {
                 self?.profileInforVM.loadSexProfileInforDatas(sexString: "1", {
                     
                     // 再次请求个人详情的数据
-                    self?.profileInforVM.loadProfileInforDatas({
-                        self?.user = self?.profileInforVM.user
-                        SVProgressHUD.showSuccess(withStatus: "成功")
-                    }, { (message) in
-                        
-                    }, {
-                        
-                    })
+                    self?.reLoadProfileInforData()
+//                    self?.profileInforVM.loadProfileInforDatas({
+//                        self?.user = self?.profileInforVM.user
+//                        SVProgressHUD.showSuccess(withStatus: "成功")
+//                    }, { (message) in
+//                        
+//                    }, {
+//                        
+//                    })
                 }, { (message) in
                     SVProgressHUD.showInfo(withStatus: message)
                 }, {
@@ -211,11 +213,15 @@ extension ProfileInforViewController {
         let birthDayModel = ArrowItem(icon: "", title: "生日", subtitle: profileInforDataFrameModel.birthdayString, VcClass: nil)
         let birthDayModelFrame = SettingItemFrame(birthDayModel)
         birthDayModel.optionHandler = {
-            
+            guard let birthdayString = self.user?.birthday else { return }
+            guard let date = Date.dateFromString("yyyyMMdd", birthdayString) else { return }
+            let showDate = DatePackerView(frame: self.view.bounds, date)
+            showDate.showDatePicker(self.view)
+            showDate.delegate = self
         }
         
         /// 所在地
-        let locationModel = ArrowItem(icon: "", title: "所在地", subtitle: profileInforDataFrameModel.locationString, VcClass: nil)
+        let locationModel = ArrowItem(icon: "", title: "所在地", subtitle: profileInforDataFrameModel.locationString, VcClass: LocationViewController.self)
         let locationModelFrame = SettingItemFrame(locationModel)
         
         let settingGroup : SettingGroup = SettingGroup()
@@ -270,6 +276,22 @@ extension ProfileInforViewController {
         groups.append(settingGroup)
     }
 }
+
+extension ProfileInforViewController {
+    
+    fileprivate func reLoadProfileInforData(){
+            // 再次请求个人详情的数据
+            profileInforVM.loadProfileInforDatas({
+                self.user = self.profileInforVM.user
+            }, { (message) in
+                
+            }, {
+                
+            })
+        }
+
+    }
+
 
 // MARK:- UICollectionViewDataSource
 extension ProfileInforViewController : UICollectionViewDataSource {
@@ -344,6 +366,20 @@ extension ProfileInforViewController : TZImagePickerControllerDelegate{
         }, { (message) in
             
         }) {
+            
+        }
+    }
+}
+
+extension ProfileInforViewController : DatePackerViewDelegate {
+    
+    func datePackerView(_ datePackerView: DatePackerView, indexItem: String) {
+        print(indexItem)
+        profileInforVM.loadBirthDayProfileInforDatas(birthDay: indexItem, {
+            self.reLoadProfileInforData()
+        }, { (message) in
+            
+        }) { 
             
         }
     }

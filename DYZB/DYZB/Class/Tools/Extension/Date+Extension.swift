@@ -163,3 +163,16 @@ extension Date {
         
     }
 }
+
+// MARK:- string -> date
+extension Date {
+    static func dateFromString(_ dateFormat : String, _ dateString : String)->Date?{
+        // 2.初始化DateFormatter类
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale.current
+        
+        dateFormatter.dateFormat = dateFormat
+        guard let date = dateFormatter.date(from: dateString) else { return nil}
+        return date
+    }
+}

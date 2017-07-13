@@ -76,6 +76,11 @@
 		0F48AFD21F0F616D005C8BDB /* RecommentGameTitleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD11F0F616D005C8BDB /* RecommentGameTitleModel.swift */; };
 		0F48AFD61F0F6B99005C8BDB /* RecommentGameElseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD51F0F6B99005C8BDB /* RecommentGameElseModel.swift */; };
 		0F48AFDA1F0F6F8C005C8BDB /* RecommentGameSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD91F0F6F8C005C8BDB /* RecommentGameSubViewController.swift */; };
+		0F498FD91F16203500057531 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F498FD81F16203500057531 /* ProvincesAndCities.plist */; };
+		0F498FDB1F1620CA00057531 /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FDA1F1620CA00057531 /* LocationVM.swift */; };
+		0F498FDD1F1621C800057531 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FDC1F1621C800057531 /* LocationModel.swift */; };
+		0F498FDF1F1624C900057531 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FDE1F1624C900057531 /* LocationViewController.swift */; };
+		0F498FE11F16286600057531 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FE01F16286600057531 /* LocationCell.swift */; };
 		0F5684031D8B9024002EAD23 /* Common.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5684021D8B9024002EAD23 /* Common.swift */; };
 		0F601CF21DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF11DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift */; };
 		0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */; };
@@ -117,6 +122,9 @@
 		0F8845C91DC1DA6A00836715 /* AmuseMenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845C71DC1DA6A00836715 /* AmuseMenuViewCell.swift */; };
 		0F8845CA1DC1DA6A00836715 /* AmuseMenuViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F8845C81DC1DA6A00836715 /* AmuseMenuViewCell.xib */; };
 		0F8845CC1DC1FF2500836715 /* FunnyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8845CB1DC1FF2500836715 /* FunnyViewModel.swift */; };
+		0F8C0C461F16EED6008BD8AC /* LocationSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8C0C451F16EED6008BD8AC /* LocationSubViewController.swift */; };
+		0F8C0C481F1707A3008BD8AC /* STCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8C0C471F1707A3008BD8AC /* STCollectionView.swift */; };
+		0F8C0C4A1F170FC0008BD8AC /* STCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8C0C491F170FC0008BD8AC /* STCollectionViewCell.swift */; };
 		0F8D00DC1F0DDE89000C1385 /* AnimationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */; };
 		0F8D00DE1F0DDF0F000C1385 /* CicleButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */; };
 		0F8D00E01F0E0552000C1385 /* PhoneStatusModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8D00DF1F0E0552000C1385 /* PhoneStatusModel.swift */; };
@@ -138,6 +146,7 @@
 		0FA757D91F060000007EF12C /* SearchRoomNavagationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757D81F060000007EF12C /* SearchRoomNavagationBar.swift */; };
 		0FA757DB1F063C62007EF12C /* WatchHistoryModelFrame.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA757DA1F063C62007EF12C /* WatchHistoryModelFrame.swift */; };
 		0FB05C971EF20A0D008F13B7 /* QrcodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */; };
+		0FBCD8BF1F15F46A0047BCDA /* DatePackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */; };
 		0FCA412B1F00FC35007D773B /* SQLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCA412A1F00FC35007D773B /* SQLManager.swift */; };
 		0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D121EF773DA002D5E31 /* LiveSubViewController.swift */; };
 		0FCE3D1D1EF77806002D5E31 /* HYPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D151EF77806002D5E31 /* HYPageCollectionView.swift */; };
@@ -283,6 +292,11 @@
 		0F48AFD11F0F616D005C8BDB /* RecommentGameTitleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameTitleModel.swift; sourceTree = "<group>"; };
 		0F48AFD51F0F6B99005C8BDB /* RecommentGameElseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameElseModel.swift; sourceTree = "<group>"; };
 		0F48AFD91F0F6F8C005C8BDB /* RecommentGameSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameSubViewController.swift; sourceTree = "<group>"; };
+		0F498FD81F16203500057531 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
+		0F498FDA1F1620CA00057531 /* LocationVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
+		0F498FDC1F1621C800057531 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
+		0F498FDE1F1624C900057531 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
+		0F498FE01F16286600057531 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		0F5684021D8B9024002EAD23 /* Common.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Common.swift; sourceTree = "<group>"; };
 		0F601CF11DCEE07700FD001B /* DYRefreshAutoNormalFooter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DYRefreshAutoNormalFooter.swift; sourceTree = "<group>"; };
 		0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVC.swift; sourceTree = "<group>"; };
@@ -328,6 +342,9 @@
 		0F8845C71DC1DA6A00836715 /* AmuseMenuViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AmuseMenuViewCell.swift; sourceTree = "<group>"; };
 		0F8845C81DC1DA6A00836715 /* AmuseMenuViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AmuseMenuViewCell.xib; sourceTree = "<group>"; };
 		0F8845CB1DC1FF2500836715 /* FunnyViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FunnyViewModel.swift; sourceTree = "<group>"; };
+		0F8C0C451F16EED6008BD8AC /* LocationSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSubViewController.swift; sourceTree = "<group>"; };
+		0F8C0C471F1707A3008BD8AC /* STCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCollectionView.swift; sourceTree = "<group>"; };
+		0F8C0C491F170FC0008BD8AC /* STCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STCollectionViewCell.swift; sourceTree = "<group>"; };
 		0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimationModel.swift; sourceTree = "<group>"; };
 		0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CicleButton.swift; sourceTree = "<group>"; };
 		0F8D00DF1F0E0552000C1385 /* PhoneStatusModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhoneStatusModel.swift; sourceTree = "<group>"; };
@@ -349,6 +366,7 @@
 		0FA757D81F060000007EF12C /* SearchRoomNavagationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomNavagationBar.swift; sourceTree = "<group>"; };
 		0FA757DA1F063C62007EF12C /* WatchHistoryModelFrame.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchHistoryModelFrame.swift; sourceTree = "<group>"; };
 		0FB05C961EF20A0D008F13B7 /* QrcodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QrcodeViewController.swift; sourceTree = "<group>"; };
+		0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePackerView.swift; sourceTree = "<group>"; };
 		0FCA412A1F00FC35007D773B /* SQLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLManager.swift; sourceTree = "<group>"; };
 		0FCA412C1F00FD02007D773B /* DYZB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DYZB-Bridging-Header.h"; sourceTree = "<group>"; };
 		0FCE3D121EF773DA002D5E31 /* LiveSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveSubViewController.swift; sourceTree = "<group>"; };
@@ -460,6 +478,7 @@
 		0F05C7ED1EF9249600AFD492 /* Category */ = {
 			isa = PBXGroup;
 			children = (
+				0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */,
 				0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */,
 				0F05C7EE1EF924CE00AFD492 /* VerticalButton.swift */,
 				0FFD923B1EFA749400D1A31B /* UserIconView.swift */,
@@ -497,6 +516,8 @@
 				0F0F14811F0A27E60024E53B /* MyTaskViewController.swift */,
 				0FFFA7FF1F0B3D7100423CF2 /* FishboneRechargeViewController.swift */,
 				0F45D1A81F1254DB0051BA1E /* TestViewController.swift */,
+				0F498FDE1F1624C900057531 /* LocationViewController.swift */,
+				0F8C0C451F16EED6008BD8AC /* LocationSubViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -520,6 +541,7 @@
 				0F45D1FF1F1371A00051BA1E /* ArrowItem.swift */,
 				0F45D2051F1387670051BA1E /* ArrowImageItem.swift */,
 				0F45D2011F1371CF0051BA1E /* SwitchItem.swift */,
+				0F498FDC1F1621C800057531 /* LocationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -536,6 +558,7 @@
 				0FFFA8091F0B60A500423CF2 /* FishboneRechargeCell.swift */,
 				0FD6CA521F0C6C07004DDE1A /* FishboneRechargBottomView.swift */,
 				0F45D2031F13723E0051BA1E /* BasicSettingCell.swift */,
+				0F498FE01F16286600057531 /* LocationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -851,6 +874,8 @@
 				0F8DD0AA1D8F8260007A1625 /* CollectionViewPrettyCell.swift */,
 				0F8DD0AB1D8F8260007A1625 /* CollectionViewPrettyCell.xib */,
 				0F08F3FE1D9108C8009CCEAE /* CollectionBaseCell.swift */,
+				0F8C0C471F1707A3008BD8AC /* STCollectionView.swift */,
+				0F8C0C491F170FC0008BD8AC /* STCollectionViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -1018,6 +1043,7 @@
 		0FF152161DC87A6100454F7C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0F498FD81F16203500057531 /* ProvincesAndCities.plist */,
 				0F1867F81DD1D8EF00FD8E9A /* user.plist */,
 				0FF152171DC87A9400454F7C /* danmu.plist */,
 				0F0C0E001EFCF06600B6828D /* SearchVC.plist */,
@@ -1046,6 +1072,7 @@
 				0FDA59961EFBACF100691013 /* WatchHistoryVM.swift */,
 				0F0F147B1F0A12EB0024E53B /* InteralMessageVM.swift */,
 				0FFFA8011F0B3DEA00423CF2 /* FishboneRechargeVM.swift */,
+				0F498FDA1F1620CA00057531 /* LocationVM.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1171,6 +1198,7 @@
 				0F1867F91DD1D8EF00FD8E9A /* user.plist in Resources */,
 				0F84A3631D8A8CD6000705BE /* Profile.storyboard in Resources */,
 				0F84A3601D8A8CC5000705BE /* Follow.storyboard in Resources */,
+				0F498FD91F16203500057531 /* ProvincesAndCities.plist in Resources */,
 				0F8DD0A91D8F81DE007A1625 /* CollectionViewNormalCell.xib in Resources */,
 				0F8845CA1DC1DA6A00836715 /* AmuseMenuViewCell.xib in Resources */,
 				0F1D68551D95087C00DDD7A8 /* CollectionCycleCell.xib in Resources */,
@@ -1258,6 +1286,7 @@
 				0F05C7EF1EF924CE00AFD492 /* VerticalButton.swift in Sources */,
 				0F0C0E051EFD04FD00B6828D /* SearchHeadView.swift in Sources */,
 				0F1D684F1D94D87300DDD7A8 /* RecommendCycleView.swift in Sources */,
+				0F8C0C461F16EED6008BD8AC /* LocationSubViewController.swift in Sources */,
 				0FA757D51F05D596007EF12C /* SearchAnchorCell.swift in Sources */,
 				0F45D17C1F1223830051BA1E /* ProfileInforVM.swift in Sources */,
 				0FCA412B1F00FC35007D773B /* SQLManager.swift in Sources */,
@@ -1280,9 +1309,12 @@
 				0F84A3321D8A3F50000705BE /* AppDelegate.swift in Sources */,
 				0F8845AE1DC0A68A00836715 /* GameViewController.swift in Sources */,
 				0FCE3D201EF77806002D5E31 /* STPageCollectionView.swift in Sources */,
+				0F498FDD1F1621C800057531 /* LocationModel.swift in Sources */,
 				0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */,
 				0F1867FE1DD208F100FD8E9A /* ShowAnchorHeadFollowPersonCell.swift in Sources */,
 				0FF1524F1DC983CA00454F7C /* ZanAnimation.swift in Sources */,
+				0F8C0C4A1F170FC0008BD8AC /* STCollectionViewCell.swift in Sources */,
+				0F498FE11F16286600057531 /* LocationCell.swift in Sources */,
 				0F0F14781F09EB4B0024E53B /* InteralMessageViewController.swift in Sources */,
 				0FA757D71F05D8BE007EF12C /* SearchRoomGroupModel.swift in Sources */,
 				0F77DD181F01F87E00497D84 /* SearchSectionHeadView.swift in Sources */,
@@ -1296,6 +1328,7 @@
 				0F8DD0A81D8F81DE007A1625 /* CollectionViewNormalCell.swift in Sources */,
 				0F601D231DCF2BC300FD001B /* ShowAnchorVCCell.swift in Sources */,
 				0F45D1FE1F1370B60051BA1E /* SettingItem.swift in Sources */,
+				0FBCD8BF1F15F46A0047BCDA /* DatePackerView.swift in Sources */,
 				0FE1D65D1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift in Sources */,
 				0F45D2061F1387670051BA1E /* ArrowImageItem.swift in Sources */,
 				0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */,
@@ -1373,6 +1406,7 @@
 				0FCE3D241EF77806002D5E31 /* UIColor-Extension.swift in Sources */,
 				0F6B0C161F04E1CD006E7F60 /* SearchSubRoomViewController.swift in Sources */,
 				0FDA59951EFBA71000691013 /* WatchHistoryViewController.swift in Sources */,
+				0F8C0C481F1707A3008BD8AC /* STCollectionView.swift in Sources */,
 				0F5684031D8B9024002EAD23 /* Common.swift in Sources */,
 				0FFFA8001F0B3D7100423CF2 /* FishboneRechargeViewController.swift in Sources */,
 				0F0F147E1F0A18050024E53B /* InteralMessageModel.swift in Sources */,
@@ -1388,10 +1422,12 @@
 				0FE1D65A1DC5B78C00ACFAFA /* BaseShowViewController.swift in Sources */,
 				0FCE3D291EF7B523002D5E31 /* FollowViewController.swift in Sources */,
 				0F3633B31DC23E8E00897B4A /* MainNavigationController.swift in Sources */,
+				0F498FDB1F1620CA00057531 /* LocationVM.swift in Sources */,
 				0FCE3D231EF77806002D5E31 /* STTitlesView.swift in Sources */,
 				0F0F147C1F0A12EB0024E53B /* InteralMessageVM.swift in Sources */,
 				0FFD92351EFA16D900D1A31B /* ADLinkViewController.swift in Sources */,
 				0F1D68541D95087C00DDD7A8 /* CollectionCycleCell.swift in Sources */,
+				0F498FDF1F1624C900057531 /* LocationViewController.swift in Sources */,
 				0FFD92371EFA577300D1A31B /* User.swift in Sources */,
 				0FCE3D1E1EF77806002D5E31 /* STContentFlowLayout.swift in Sources */,
 				0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */,
