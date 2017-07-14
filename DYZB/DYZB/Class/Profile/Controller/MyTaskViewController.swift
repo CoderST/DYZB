@@ -12,7 +12,7 @@ class MyTaskViewController: UIViewController {
 
     fileprivate var webView = WKWebView()
     fileprivate var progressView = UIProgressView()
-    var open_url:String = "http://capi.douyucdn.cn/api/v1/nc_page_usertask/1?token=\(TOKEN)&idfa=99F096BA-477A-4D0A-AB26-69B76DDB85C6&client_sys=ios"
+    var open_url:String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

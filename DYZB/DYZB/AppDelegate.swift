@@ -72,7 +72,7 @@ extension AppDelegate {
 //            print("current = ",Thread.current)
             guard let result = result as? [String : Any] else { return }
             
-            debugLog(result)
+//            debugLog(result)
             guard let error = result["error"] as? Int else { return }
             
             if error != 0 {

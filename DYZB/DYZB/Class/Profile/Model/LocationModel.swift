@@ -10,15 +10,16 @@ import UIKit
 
 class LocationModel: BaseModel {
 
-    var State : String = ""
-    var Cities : [LocationSubModel] = [LocationSubModel]()
+    var name : String = ""
+    var code : Int = 0
+    var city : [LocationSubModel] = [LocationSubModel]()
     
     override func setValue(_ value: Any?, forKey key: String) {
-        if key == "Cities"{
+        if key == "city"{
             guard let CitiesArray = value as? [[String : Any]] else { return }
             for dict in CitiesArray{
                 let model = LocationSubModel(dict: dict)
-                Cities.append(model)
+                city.append(model)
             }
         }else{
             
@@ -30,7 +31,14 @@ class LocationModel: BaseModel {
 
 class LocationSubModel : BaseModel {
     
-    var city : String = ""
+    var name : String = ""
+    var code : Int = 0
 //    var lat : Int = ""
 //    var lon : String = ""
+}
+
+class LocationModelGroup: BaseModel {
+    
+    var locationModelGroup : [LocationModel] = [LocationModel]()
+    var headString : String = ""
 }

@@ -75,6 +75,9 @@ class ProfileInforViewController: BaseViewController {
         //  请求一下最新数据
         setupData()
         
+        // 接收通知
+       notificationCenter.addObserver(self, selector: #selector(reLoadProfileInforData), name: NSNotification.Name(rawValue: sNotificationName_ReLoadProfileInforData), object: nil)
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -239,10 +242,17 @@ extension ProfileInforViewController {
         avaModel.optionHandler = {[weak self] in
             print("setuoGroupTwo点击了实名认证")
         }
-        let nickNameModel = ArrowItem(icon: "", title: "密码", subtitle: profileInforDataFrameModel.passWord, VcClass: TestViewController.self)
+        let nickNameModel = ArrowItem(icon: "", title: "密码", subtitle: profileInforDataFrameModel.passWord, VcClass: MyTaskViewController.self)
         let nickNameModelFrame = SettingItemFrame(nickNameModel)
         
-        let sexModel = ArrowItem(icon: "", title: "邮箱", subtitle: profileInforDataFrameModel.emailString, VcClass: TestViewController.self)
+        // 如果邮箱有值则不能跳转  没哟值则跳转绑定
+        var sexModel : SettingItem!
+        if profileInforDataFrameModel.emailString.characters.count > 0{
+            sexModel = SettingItem(icon: "", title: "邮箱", subTitle: profileInforDataFrameModel.emailString)
+        }else{
+            
+            sexModel = ArrowItem(icon: "", title: "邮箱", subtitle: profileInforDataFrameModel.emailString, VcClass: TestViewController.self)
+        }
         let sexModelFrame = SettingItemFrame(sexModel)
         
         let birthDayModel = ArrowItem(icon: "", title: "手机", subtitle: profileInforDataFrameModel.mobile_phoneString, VcClass: TestViewController.self)
@@ -279,7 +289,7 @@ extension ProfileInforViewController {
 
 extension ProfileInforViewController {
     
-    fileprivate func reLoadProfileInforData(){
+    @objc fileprivate func reLoadProfileInforData(){
             // 再次请求个人详情的数据
             profileInforVM.loadProfileInforDatas({
                 self.user = self.profileInforVM.user
@@ -336,6 +346,11 @@ extension ProfileInforViewController : UICollectionViewDelegateFlowLayout {
             guard let desClass = arrowItem.VcClass else { return }
             guard let desVCType = desClass as? UIViewController.Type else { return }
             let desVC = desVCType.init()
+            if desVC is MyTaskViewController{
+                let desvc = desVC as! MyTaskViewController
+                desvc.open_url = "http://www.douyu.com/api/v1/change_password?client_sys=ios&token=\(TOKEN)&auth=\(AUTH)"
+            }
+            desVC.title = arrowItem.title
             navigationController?.pushViewController(desVC, animated: true)
         }
         

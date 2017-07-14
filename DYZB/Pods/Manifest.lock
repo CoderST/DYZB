@@ -4,11 +4,6 @@ PODS:
   - LFLiveKit (2.6)
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
-  - Realm (2.1.2):
-    - Realm/Headers (= 2.1.2)
-  - Realm/Headers (2.1.2)
-  - RealmSwift (2.1.2):
-    - Realm (= 2.1.2)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -25,7 +20,6 @@ DEPENDENCIES:
   - LFLiveKit (~> 2.6)
   - MJExtension (~> 3.0.13)
   - MJRefresh (~> 3.1.12)
-  - RealmSwift
   - SDWebImage (~> 3.8.0)
   - SnapKit
   - STRowLayout
@@ -40,8 +34,6 @@ SPEC CHECKSUMS:
   LFLiveKit: 2219563721f8aa0f188effc3395a06e2d53b23f2
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
-  Realm: efe855f4d977c8ce5a82d3116d9f1ff155a6550c
-  RealmSwift: 17d6ee30b6f9df86364408c2197492e33bfea567
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SnapKit: 12b24f569cb7c143acc9c22b9d91b23e7b1c84a2
   STRowLayout: 319cabddac815c544670b148304c0b6bdb1c1e9d
@@ -50,6 +42,6 @@ SPEC CHECKSUMS:
   UICollectionViewLeftAlignedLayout: 830bf6fa5bab9f9b464f62e3384f9d2e00b3c0f6
   XHLaunchAd: 6e30e509f09a6a16222a4615afa03c7409e2db59
 
-PODFILE CHECKSUM: 2be85201ad6dbd2d91d44b076a39c3ebb1ee905b
+PODFILE CHECKSUM: 4774c599fa26e886d05b5aa115bb3a2775b58dbf
 
 COCOAPODS: 1.1.1

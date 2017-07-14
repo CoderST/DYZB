@@ -173,7 +173,7 @@ extension ProfileHeadView {
 
         let nav = getNavigation()
         let myTaskVM = MyTaskViewController()
-        
+        myTaskVM.open_url = "http://capi.douyucdn.cn/api/v1/nc_page_usertask/1?token=\(TOKEN)&idfa=99F096BA-477A-4D0A-AB26-69B76DDB85C6&client_sys=ios"
         nav.pushViewController(myTaskVM, animated: true)
 
     }

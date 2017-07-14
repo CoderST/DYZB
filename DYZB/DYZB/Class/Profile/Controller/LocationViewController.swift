@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import SVProgressHUD
 class LocationViewController: UIViewController {
     
     fileprivate lazy var locationVM : LocationVM = LocationVM()
+    fileprivate lazy var locationSubVM : LocationSubVM = LocationSubVM()
     
     fileprivate lazy var collectionView : STCollectionView = STCollectionView()
     
@@ -51,20 +53,37 @@ extension LocationViewController {
 }
 
 extension LocationViewController : STCollectionViewDataSource{
-    func numberOfRowsInSTCollectionView(_ collectionView: STCollectionView) -> NSInteger {
+    
+    func numberOfSections(in stCollectionView: STCollectionView) -> Int {
         
-        return locationVM.locationModelArray.count
+        let sectionCount = locationVM.locationModelGroups.count
+        
+        return sectionCount
+    }
+    
+    
+    func collectionView(_ stCollectionView: STCollectionView, numberOfItemsInSection section: Int) -> Int {
+        
+        let group = locationVM.locationModelGroups[section]
+        
+        return group.locationModelGroup.count
     }
     
     func collectionViewTitleInRow(_ collectionView: STCollectionView, _ indexPath: IndexPath) -> String {
-        let model = locationVM.locationModelArray[indexPath.item]
-        return model.State
+
+        let group = locationVM.locationModelGroups[indexPath.section]
         
+        let model = group.locationModelGroup[indexPath.item]
+        
+        return model.name
     }
     
     func isHiddenArrowImageView(_ collectionView: STCollectionView, _ indexPath: IndexPath) -> Bool {
-        let model = locationVM.locationModelArray[indexPath.item]
-        if model.Cities.count > 0 {
+        let group = locationVM.locationModelGroups[indexPath.section]
+        
+        let model = group.locationModelGroup[indexPath.item]
+
+        if model.city.count > 0 {
             return false
         }else{
             
@@ -76,11 +95,32 @@ extension LocationViewController : STCollectionViewDataSource{
 extension LocationViewController : STCollectionViewDelegate {
     
     func stCollection(_ stCollectionView: STCollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = locationVM.locationModelArray[indexPath.item]
-        let cities = model.Cities
+        let group = locationVM.locationModelGroups[indexPath.section]
         
+        let locationModel = group.locationModelGroup[indexPath.item]
+
         let locationSubVC = LocationSubViewController()
-        locationSubVC.cities = cities
-        navigationController?.pushViewController(locationSubVC, animated: true)
+        if locationModel.city.count > 0 {
+            locationSubVC.locationModel = locationModel
+            navigationController?.pushViewController(locationSubVC, animated: true)
+        }else{
+            
+            let proID = locationModel.code  // 省会ID
+            locationSubVM.upLoadLocationDatas("\(proID)", {
+                notificationCenter.post(name: Notification.Name(rawValue: sNotificationName_ReLoadProfileInforData), object: nil, userInfo: nil)
+                self.navigationController?.popViewController(animated: true)
+            }, { (message) in
+                SVProgressHUD.showInfo(withStatus: message)
+            }) { 
+                
+            }
+
+        }
+    }
+    
+ 
+    func stCollectionHeadInSection(_ stCollectionView: STCollectionView, at indexPath: IndexPath) -> String {
+        let group = locationVM.locationModelGroups[indexPath.section]
+        return group.headString
     }
 }

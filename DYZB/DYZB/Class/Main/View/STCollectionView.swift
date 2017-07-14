@@ -9,10 +9,12 @@
 import UIKit
 
 fileprivate let STCollectionViewCellIdentifier = "STCollectionViewCellIdentifier"
+fileprivate let STLocationReusableViewIdentifier = "STLocationReusableViewIdentifier"
 @objc protocol  STCollectionViewDataSource : class {
     /*********必须实现***********/
+    // func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     /// 多少行
-    @objc func numberOfRowsInSTCollectionView(_ stCollectionView : STCollectionView)->NSInteger
+    @objc func collectionView(_ stCollectionView: STCollectionView, numberOfItemsInSection section: Int) -> Int
     
     /// 每行的标题
     @objc func collectionViewTitleInRow(_ stCollectionView : STCollectionView, _ indexPath : IndexPath)->String
@@ -24,6 +26,9 @@ fileprivate let STCollectionViewCellIdentifier = "STCollectionViewCellIdentifier
     /// 高亮图片
 //    @objc optional func highImageName(_ collectionView : STCollectionView, _ indexPath : IndexPath)->String
     
+    /// 多少区间
+    @objc optional func numberOfSections(in stCollectionView: STCollectionView) -> Int
+
     /// 是否有箭头
     @objc optional func isHiddenArrowImageView(_ stCollectionView : STCollectionView, _ indexPath : IndexPath)->Bool
 }
@@ -32,6 +37,9 @@ fileprivate let STCollectionViewCellIdentifier = "STCollectionViewCellIdentifier
 
     /// 点击事件
     @objc optional func stCollection(_ stCollectionView : STCollectionView, didSelectItemAt indexPath: IndexPath)
+    
+    // 区间头部head的文字
+    @objc optional func  stCollectionHeadInSection(_ stCollectionView: STCollectionView, at indexPath: IndexPath) -> String
     
 
 }
@@ -43,7 +51,7 @@ class STCollectionView: UIView {
     weak var delegate : STCollectionViewDelegate?
     
     // MARK:- 懒加载
-    fileprivate lazy var collectionView : UICollectionView = {
+     lazy var collectionView : UICollectionView = {
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
         
@@ -52,7 +60,7 @@ class STCollectionView: UIView {
         layout.itemSize = CGSize(width: width, height: 44)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
-        
+        layout.headerReferenceSize = CGSize(width: sScreenW, height: 20)
         // 创建UICollectionView
         let collectionView = UICollectionView(frame: CGRect(x: 0, y:0 , width: 0 , height: 0), collectionViewLayout: layout)
         
@@ -63,6 +71,7 @@ class STCollectionView: UIView {
         
         // 注册cell
         collectionView.register(STCollectionViewCell.self, forCellWithReuseIdentifier: STCollectionViewCellIdentifier)
+        collectionView.register(LocationReusableView.self, forSupplementaryViewOfKind: UICollectionElementKindSectionHeader, withReuseIdentifier: STLocationReusableViewIdentifier)
         
         return collectionView;
         
@@ -90,9 +99,19 @@ class STCollectionView: UIView {
 
 extension STCollectionView : UICollectionViewDataSource {
     
+    func numberOfSections(in collectionView: UICollectionView) -> Int{
+        
+        let sectionCount = dataSource?.numberOfSections?(in: self)
+        if sectionCount == nil || sectionCount == 0 {
+            return 1
+        }else{
+            return sectionCount!
+        }
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int{
         
-        guard let itemsCount = dataSource?.numberOfRowsInSTCollectionView(self) else { return 0 }
+        guard let itemsCount = dataSource?.collectionView(self, numberOfItemsInSection: section) else { return 0 }
         
         return itemsCount
     }
@@ -118,15 +137,23 @@ extension STCollectionView : UICollectionViewDataSource {
         return cell
         
     }
-
-
 }
 
-extension STCollectionView : UICollectionViewDelegate {
+extension STCollectionView : UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
         delegate?.stCollection?(self, didSelectItemAt: indexPath)
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        
+        let view = collectionView.dequeueReusableSupplementaryView(ofKind: UICollectionElementKindSectionHeader, withReuseIdentifier: STLocationReusableViewIdentifier, for: indexPath) as! LocationReusableView
+        
+        view.titleString = delegate?.stCollectionHeadInSection?(self, at: indexPath)
+        
+        return view
     }
 }
 

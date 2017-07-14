@@ -15,8 +15,9 @@ pod 'XHLaunchAd', '~> 3.3.0'         # 广告
 pod 'UICollectionViewLeftAlignedLayout'
 #pod 'STCustomWidthLayout'
 pod 'STRowLayout'
-pod 'RealmSwift'
+#pod 'RealmSwift'
 
 #pod 'FDFullscreenPopGesture'    # 一个丝滑的全屏滑动返回手势(百度大神之作) oc版本
 pod 'TZImagePickerController'   # 相册选择 oc版本
+#pod 'HYBUnicodeReadable'       # 会和XHLaunchAd框架产生冲突,暂时关闭
 end

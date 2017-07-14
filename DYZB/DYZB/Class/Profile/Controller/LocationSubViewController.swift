@@ -10,8 +10,10 @@ import UIKit
 import SVProgressHUD
 class LocationSubViewController: UIViewController {
     
-    var cities : [LocationSubModel] = [LocationSubModel]()
+    /// 省会model
+    var locationModel : LocationModel = LocationModel()
     
+    fileprivate lazy var locationSubVM : LocationSubVM = LocationSubVM()
     
     fileprivate lazy var collectionView : STCollectionView = STCollectionView()
     
@@ -45,18 +47,19 @@ extension LocationSubViewController {
 }
 
 extension LocationSubViewController : STCollectionViewDataSource{
-    func numberOfRowsInSTCollectionView(_ collectionView: STCollectionView) -> NSInteger {
-        
-        return cities.count
-    }
     
     func collectionViewTitleInRow(_ collectionView: STCollectionView, _ indexPath: IndexPath) -> String {
-        let model = cities[indexPath.item]
-        return model.city
+        let model = locationModel.city[indexPath.item]
+        return model.name
         
+    }
+
+    func collectionView(_ stCollectionView: STCollectionView, numberOfItemsInSection section: Int) -> Int {
+        return locationModel.city.count
     }
     
     func isHiddenArrowImageView(_ collectionView: STCollectionView, _ indexPath: IndexPath) -> Bool {
+        // 没有下级页面 全部隐藏
         return true
     }
 }
@@ -64,15 +67,32 @@ extension LocationSubViewController : STCollectionViewDataSource{
 extension LocationSubViewController : STCollectionViewDelegate {
     
     func stCollection(_ stCollectionView: STCollectionView, didSelectItemAt indexPath: IndexPath) {
-        let model = cities[indexPath.item]
-        let city = model.city
+        let locationSubModel = locationModel.city[indexPath.item]
+//        let city = model.name
         /** http://capi.douyucdn.cn/api/v1/set_userinfo_custom?aid=ios&client_sys=ios&time=1499930940&auth=3d4bf3c09cfd003962eb3394dffb3617
          location 蚌埠 13,12
-         要更改plist
-         
          */
-        debugLog(city)
-        SVProgressHUD.showInfo(withStatus: city)
+        let proID = locationModel.code  // 省会ID
+        let cityID = locationSubModel.code  // 市区ID
+        var ID  : String = ""
+        if locationModel.city.count > 0{
+          ID = String(format: "%d,%d",proID,cityID)
+        }else{
+            ID = "\(proID)"
+        }
+        locationSubVM.upLoadLocationDatas(ID, {
+             notificationCenter.post(name: Notification.Name(rawValue: sNotificationName_ReLoadProfileInforData), object: nil, userInfo: nil)
+            self.popAction()
+        }, { (message) in
+             SVProgressHUD.showInfo(withStatus: message)
+        }) { 
+            
+        }
+        
+        
+    }
+    
+    fileprivate func popAction(){
         
         // 在请求回调成功里pop到个人信息(ProfileInforViewController)指定控制器
         for i in 0..<(navigationController?.viewControllers.count)! {
@@ -81,7 +101,7 @@ extension LocationSubViewController : STCollectionViewDelegate {
                 
                 _ = navigationController?.popToViewController(navigationController?.viewControllers[i] as! ProfileInforViewController, animated: true)
                 break
-            }            
+            }
         }
     }
 }
