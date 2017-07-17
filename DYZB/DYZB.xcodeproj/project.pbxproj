@@ -52,6 +52,7 @@
 		0F1D68551D95087C00DDD7A8 /* CollectionCycleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0F1D68531D95087C00DDD7A8 /* CollectionCycleCell.xib */; };
 		0F1D68571D950AC300DDD7A8 /* CycleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D68561D950AC300DDD7A8 /* CycleModel.swift */; };
 		0F1FFF781DC2320700685CDA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FFF771DC2320700685CDA /* BaseViewController.swift */; };
+		0F27BF161F1C3E3900639352 /* IPhoneBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F27BF141F1C3E3900639352 /* IPhoneBindingViewController.swift */; };
 		0F27D9651D8F6B9000E022A0 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F27D9641D8F6B9000E022A0 /* RecommendViewController.swift */; };
 		0F3633B31DC23E8E00897B4A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */; };
 		0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */; };
@@ -271,6 +272,7 @@
 		0F1D68531D95087C00DDD7A8 /* CollectionCycleCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollectionCycleCell.xib; sourceTree = "<group>"; };
 		0F1D68561D950AC300DDD7A8 /* CycleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleModel.swift; sourceTree = "<group>"; };
 		0F1FFF771DC2320700685CDA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		0F27BF141F1C3E3900639352 /* IPhoneBindingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhoneBindingViewController.swift; sourceTree = "<group>"; };
 		0F27D9641D8F6B9000E022A0 /* RecommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorViewController.swift; sourceTree = "<group>"; };
@@ -525,6 +527,7 @@
 				0F45D1A81F1254DB0051BA1E /* TestViewController.swift */,
 				0F498FDE1F1624C900057531 /* LocationViewController.swift */,
 				0F8C0C451F16EED6008BD8AC /* LocationSubViewController.swift */,
+				0F27BF141F1C3E3900639352 /* IPhoneBindingViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -1441,6 +1444,7 @@
 				0FFD92371EFA577300D1A31B /* User.swift in Sources */,
 				0FCE3D1E1EF77806002D5E31 /* STContentFlowLayout.swift in Sources */,
 				0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */,
+				0F27BF161F1C3E3900639352 /* IPhoneBindingViewController.swift in Sources */,
 				0FBCA8E71F183C1800BBD1F7 /* DYRefreshGifHeader.swift in Sources */,
 				0F6B0C1C1F050455006E7F60 /* SearchRoomVM.swift in Sources */,
 				0F45D1CE1F13199D0051BA1E /* ProfileInforCell.swift in Sources */,

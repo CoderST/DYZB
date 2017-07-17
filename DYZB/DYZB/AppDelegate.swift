@@ -9,6 +9,7 @@
 import UIKit
 import XHLaunchAd
 import SDWebImage
+import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -19,6 +20,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         UITabBar.appearance().tintColor = UIColor.orange
+        
+        /// 全局开启防键盘遮挡功能
+        IQKeyboardManager.sharedManager().enable = true
+//        IQKeyboardManager.sharedManager().enableAutoToolbar = false
         
         // 添加广告
         addAd()

@@ -255,7 +255,7 @@ extension ProfileInforViewController {
         }
         let sexModelFrame = SettingItemFrame(sexModel)
         
-        let birthDayModel = ArrowItem(icon: "", title: "手机", subtitle: profileInforDataFrameModel.mobile_phoneString, VcClass: TestViewController.self)
+        let birthDayModel = ArrowItem(icon: "", title: "手机", subtitle: profileInforDataFrameModel.mobile_phoneString, VcClass: IPhoneBindingViewController.self)
         let birthDayModelFrame = SettingItemFrame(birthDayModel)
         
         let locationModel = ArrowItem(icon: "", title: "QQ", subtitle: profileInforDataFrameModel.qq, VcClass: TestViewController.self)
