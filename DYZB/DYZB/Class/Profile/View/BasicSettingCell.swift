@@ -60,6 +60,7 @@ class BasicSettingCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame : frame)
         contentView.backgroundColor = .white
+        contentView.addSubview(leftImageView)
         contentView.addSubview(arrowView)
         contentView.addSubview(titleLabel)
         contentView.addSubview(subTitleLabel)

@@ -106,7 +106,6 @@ class ProfileInforDataFrameModel: NSObject {
             mobile_phoneString = "未绑定"
         }
         /// QQ
-        var qq : String = ""
         if user.qq == "" {
            qq = "未填写"
         }else{

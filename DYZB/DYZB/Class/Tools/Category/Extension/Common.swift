@@ -18,9 +18,15 @@ let userDefaults = UserDefaults.standard
 let historyKey : String = "historyKey"
 let dateKey : String = "dateKey"
 
-//   94153348_11_48bad7d1568ad349_2_22753003
-let TOKEN = "94153348_11_48bad7d1568ad349_2_22753003" // 重新获取最新
-let AUTH = "9aae82688e43730c78d045f21bde1e85"   // 取不到最新的 广告数据出不来
+// MARK:- tag值
+let AreaCodeTextFieldTag : Int = 1000
+let IPhoneNumberTextFieldTag : Int = 1001
+let VerificationCodeTextFieldTag : Int = 1002
+let VoiceTextFieldTag : Int = 1003
+
+// MARK:- TOKEN/AUTH
+let TOKEN = "94153348_11_4c28b846a6af724a_2_22753003" // 重新获取最新
+let AUTH = "dcd11dd7d51157aeb8939489ce353044"   // 取不到最新的 广告数据出不来
 
 let RecommentGameAllID : String = "10000"
 

@@ -41,9 +41,9 @@ class ProfileInforViewController: BaseViewController {
     
     fileprivate lazy var profileInforVM : ProfileInforVM = ProfileInforVM()
     
-    fileprivate lazy var groups : [SettingGroup] = [SettingGroup]()
+    lazy var groups : [SettingGroup] = [SettingGroup]()
     
-    fileprivate lazy var collectionView : UICollectionView = {
+    lazy var collectionView : UICollectionView = {
         // 设置layout属性
         let layout = UICollectionViewFlowLayout()
         layout.itemSize = CGSize(width: sScreenW, height: 44)
@@ -258,7 +258,7 @@ extension ProfileInforViewController {
         let birthDayModel = ArrowItem(icon: "", title: "手机", subtitle: profileInforDataFrameModel.mobile_phoneString, VcClass: IPhoneBindingViewController.self)
         let birthDayModelFrame = SettingItemFrame(birthDayModel)
         
-        let locationModel = ArrowItem(icon: "", title: "QQ", subtitle: profileInforDataFrameModel.qq, VcClass: TestViewController.self)
+        let locationModel = ArrowItem(icon: "", title: "QQ", subtitle: profileInforDataFrameModel.qq, VcClass: BindQQViewController.self)
         let locationModelFrame = SettingItemFrame(locationModel)
         
         let settingGroup : SettingGroup = SettingGroup()
@@ -346,9 +346,20 @@ extension ProfileInforViewController : UICollectionViewDelegateFlowLayout {
             guard let desClass = arrowItem.VcClass else { return }
             guard let desVCType = desClass as? UIViewController.Type else { return }
             let desVC = desVCType.init()
+            // 修改密码
             if desVC is MyTaskViewController{
                 let desvc = desVC as! MyTaskViewController
                 desvc.open_url = "http://www.douyu.com/api/v1/change_password?client_sys=ios&token=\(TOKEN)&auth=\(AUTH)"
+            }
+            
+            // QQ 
+            if desVC is BindQQViewController{
+                let desvc = desVC as! BindQQViewController
+                
+                desvc.completeButtonValue(completeButtoncallBack: { (isok) in
+                    // 刷新页面
+                    self.reLoadProfileInforData()
+                })
             }
             desVC.title = arrowItem.title
             navigationController?.pushViewController(desVC, animated: true)

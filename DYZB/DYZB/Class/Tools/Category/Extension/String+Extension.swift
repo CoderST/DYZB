@@ -11,11 +11,19 @@ import UIKit
 /// 文本宽高
 extension String{
     
-     func sizeWithFont(_ font:UIFont,size:CGSize) -> CGSize {
+     func sizeWithFont(_ font:UIFont,size : CGSize) -> CGSize {
         let attributes = [NSFontAttributeName: font]
         let option = NSStringDrawingOptions.usesLineFragmentOrigin
         let size = self.boundingRect(with: size, options: option, attributes: attributes, context: nil).size
         return size;
+    }
+    
+    func sizeWithFont(_ font : UIFont) -> CGSize {
+        let attributes = [NSFontAttributeName: font]
+        let option = NSStringDrawingOptions.usesLineFragmentOrigin
+        let size = CGSize(width: CGFloat(MAXFLOAT), height: CGFloat(MAXFLOAT))
+        let resultSize = self.boundingRect(with: size, options: option, attributes: attributes, context: nil).size
+        return resultSize;
     }
     
 }

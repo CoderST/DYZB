@@ -53,6 +53,10 @@
 		0F1D68571D950AC300DDD7A8 /* CycleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1D68561D950AC300DDD7A8 /* CycleModel.swift */; };
 		0F1FFF781DC2320700685CDA /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F1FFF771DC2320700685CDA /* BaseViewController.swift */; };
 		0F27BF161F1C3E3900639352 /* IPhoneBindingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F27BF141F1C3E3900639352 /* IPhoneBindingViewController.swift */; };
+		0F27BF191F1CAACA00639352 /* country.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F27BF181F1CAACA00639352 /* country.plist */; };
+		0F27BF1B1F1CAAE600639352 /* CountryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F27BF1A1F1CAAE600639352 /* CountryViewController.swift */; };
+		0F27BF1D1F1CAB5900639352 /* CountryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F27BF1C1F1CAB5900639352 /* CountryModel.swift */; };
+		0F27BF1F1F1CABBF00639352 /* CountryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F27BF1E1F1CABBF00639352 /* CountryViewModel.swift */; };
 		0F27D9651D8F6B9000E022A0 /* RecommendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F27D9641D8F6B9000E022A0 /* RecommendViewController.swift */; };
 		0F3633B31DC23E8E00897B4A /* MainNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */; };
 		0F3633BF1DC2401900897B4A /* ShowAnchorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */; };
@@ -75,11 +79,15 @@
 		0F48AFD21F0F616D005C8BDB /* RecommentGameTitleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD11F0F616D005C8BDB /* RecommentGameTitleModel.swift */; };
 		0F48AFD61F0F6B99005C8BDB /* RecommentGameElseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD51F0F6B99005C8BDB /* RecommentGameElseModel.swift */; };
 		0F48AFDA1F0F6F8C005C8BDB /* RecommentGameSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F48AFD91F0F6F8C005C8BDB /* RecommentGameSubViewController.swift */; };
-		0F498FD91F16203500057531 /* ProvincesAndCities.plist in Resources */ = {isa = PBXBuildFile; fileRef = 0F498FD81F16203500057531 /* ProvincesAndCities.plist */; };
 		0F498FDB1F1620CA00057531 /* LocationVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FDA1F1620CA00057531 /* LocationVM.swift */; };
 		0F498FDD1F1621C800057531 /* LocationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FDC1F1621C800057531 /* LocationModel.swift */; };
 		0F498FDF1F1624C900057531 /* LocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FDE1F1624C900057531 /* LocationViewController.swift */; };
 		0F498FE11F16286600057531 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F498FE01F16286600057531 /* LocationCell.swift */; };
+		0F50211A1F1D8C0500CB5793 /* CountryVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5021191F1D8C0500CB5793 /* CountryVCCell.swift */; };
+		0F50211C1F1D904100CB5793 /* CountryGroupModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50211B1F1D904100CB5793 /* CountryGroupModel.swift */; };
+		0F50211E1F1DA90000CB5793 /* CountryVCSectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F50211D1F1DA90000CB5793 /* CountryVCSectionView.swift */; };
+		0F5021221F1DAF2600CB5793 /* XDPlanFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5021211F1DAF2600CB5793 /* XDPlanFlowLayout.swift */; };
+		0F5021241F1DB27F00CB5793 /* IPhoneBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5021231F1DB27F00CB5793 /* IPhoneBindingView.swift */; };
 		0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */; };
 		0F601D231DCF2BC300FD001B /* ShowAnchorVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601D221DCF2BC300FD001B /* ShowAnchorVCCell.swift */; };
 		0F6B0C121F048763006E7F60 /* SearchHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */; };
@@ -155,6 +163,13 @@
 		0FBCA8FF1F18707E00BBD1F7 /* LocationSubVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCA8FE1F18707E00BBD1F7 /* LocationSubVM.swift */; };
 		0FBCA9011F18988D00BBD1F7 /* LocationReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCA9001F18988D00BBD1F7 /* LocationReusableView.swift */; };
 		0FBCD8BF1F15F46A0047BCDA /* DatePackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */; };
+		0FBD67371F1ED45000C00061 /* IPhoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD67361F1ED45000C00061 /* IPhoneButton.swift */; };
+		0FC54DF91F2030B7003A1F70 /* BindQQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54DF81F2030B7003A1F70 /* BindQQViewController.swift */; };
+		0FC54DFB1F2031A0003A1F70 /* BindQQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC54DFA1F2031A0003A1F70 /* BindQQViewController.xib */; };
+		0FC54DFD1F203596003A1F70 /* CheckDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54DFC1F203596003A1F70 /* CheckDataTool.swift */; };
+		0FC54DFF1F205304003A1F70 /* QRCodeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54DFE1F205304003A1F70 /* QRCodeTool.swift */; };
+		0FC54E011F208406003A1F70 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54E001F208406003A1F70 /* MyAccountViewController.swift */; };
+		0FC54E031F20888A003A1F70 /* CostRecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54E021F20888A003A1F70 /* CostRecordViewController.swift */; };
 		0FCA412B1F00FC35007D773B /* SQLManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCA412A1F00FC35007D773B /* SQLManager.swift */; };
 		0FCE3D131EF773DA002D5E31 /* LiveSubViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D121EF773DA002D5E31 /* LiveSubViewController.swift */; };
 		0FCE3D1D1EF77806002D5E31 /* HYPageCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FCE3D151EF77806002D5E31 /* HYPageCollectionView.swift */; };
@@ -273,6 +288,10 @@
 		0F1D68561D950AC300DDD7A8 /* CycleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CycleModel.swift; sourceTree = "<group>"; };
 		0F1FFF771DC2320700685CDA /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		0F27BF141F1C3E3900639352 /* IPhoneBindingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhoneBindingViewController.swift; sourceTree = "<group>"; };
+		0F27BF181F1CAACA00639352 /* country.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = country.plist; sourceTree = "<group>"; };
+		0F27BF1A1F1CAAE600639352 /* CountryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryViewController.swift; sourceTree = "<group>"; };
+		0F27BF1C1F1CAB5900639352 /* CountryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryModel.swift; sourceTree = "<group>"; };
+		0F27BF1E1F1CABBF00639352 /* CountryViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryViewModel.swift; sourceTree = "<group>"; };
 		0F27D9641D8F6B9000E022A0 /* RecommendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommendViewController.swift; sourceTree = "<group>"; };
 		0F3633B21DC23E8E00897B4A /* MainNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainNavigationController.swift; sourceTree = "<group>"; };
 		0F3633BE1DC2401900897B4A /* ShowAnchorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorViewController.swift; sourceTree = "<group>"; };
@@ -295,11 +314,15 @@
 		0F48AFD11F0F616D005C8BDB /* RecommentGameTitleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameTitleModel.swift; sourceTree = "<group>"; };
 		0F48AFD51F0F6B99005C8BDB /* RecommentGameElseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameElseModel.swift; sourceTree = "<group>"; };
 		0F48AFD91F0F6F8C005C8BDB /* RecommentGameSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecommentGameSubViewController.swift; sourceTree = "<group>"; };
-		0F498FD81F16203500057531 /* ProvincesAndCities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = ProvincesAndCities.plist; sourceTree = "<group>"; };
 		0F498FDA1F1620CA00057531 /* LocationVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVM.swift; sourceTree = "<group>"; };
 		0F498FDC1F1621C800057531 /* LocationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationModel.swift; sourceTree = "<group>"; };
 		0F498FDE1F1624C900057531 /* LocationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationViewController.swift; sourceTree = "<group>"; };
 		0F498FE01F16286600057531 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
+		0F5021191F1D8C0500CB5793 /* CountryVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryVCCell.swift; sourceTree = "<group>"; };
+		0F50211B1F1D904100CB5793 /* CountryGroupModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryGroupModel.swift; sourceTree = "<group>"; };
+		0F50211D1F1DA90000CB5793 /* CountryVCSectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CountryVCSectionView.swift; sourceTree = "<group>"; };
+		0F5021211F1DAF2600CB5793 /* XDPlanFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = XDPlanFlowLayout.swift; sourceTree = "<group>"; };
+		0F5021231F1DB27F00CB5793 /* IPhoneBindingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhoneBindingView.swift; sourceTree = "<group>"; };
 		0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVC.swift; sourceTree = "<group>"; };
 		0F601D221DCF2BC300FD001B /* ShowAnchorVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVCCell.swift; sourceTree = "<group>"; };
 		0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryVM.swift; sourceTree = "<group>"; };
@@ -379,6 +402,13 @@
 		0FBCA8FE1F18707E00BBD1F7 /* LocationSubVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationSubVM.swift; sourceTree = "<group>"; };
 		0FBCA9001F18988D00BBD1F7 /* LocationReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationReusableView.swift; sourceTree = "<group>"; };
 		0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePackerView.swift; sourceTree = "<group>"; };
+		0FBD67361F1ED45000C00061 /* IPhoneButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhoneButton.swift; sourceTree = "<group>"; };
+		0FC54DF81F2030B7003A1F70 /* BindQQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindQQViewController.swift; sourceTree = "<group>"; };
+		0FC54DFA1F2031A0003A1F70 /* BindQQViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindQQViewController.xib; sourceTree = "<group>"; };
+		0FC54DFC1F203596003A1F70 /* CheckDataTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckDataTool.swift; sourceTree = "<group>"; };
+		0FC54DFE1F205304003A1F70 /* QRCodeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeTool.swift; sourceTree = "<group>"; };
+		0FC54E001F208406003A1F70 /* MyAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
+		0FC54E021F20888A003A1F70 /* CostRecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CostRecordViewController.swift; sourceTree = "<group>"; };
 		0FCA412A1F00FC35007D773B /* SQLManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SQLManager.swift; sourceTree = "<group>"; };
 		0FCA412C1F00FD02007D773B /* DYZB-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DYZB-Bridging-Header.h"; sourceTree = "<group>"; };
 		0FCE3D121EF773DA002D5E31 /* LiveSubViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveSubViewController.swift; sourceTree = "<group>"; };
@@ -487,8 +517,10 @@
 			isa = PBXGroup;
 			children = (
 				0FBCA8DA1F183C1800BBD1F7 /* Extension */,
+				0F5021211F1DAF2600CB5793 /* XDPlanFlowLayout.swift */,
 				0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */,
 				0F8D00DD1F0DDF0F000C1385 /* CicleButton.swift */,
+				0FBD67361F1ED45000C00061 /* IPhoneButton.swift */,
 				0F05C7EE1EF924CE00AFD492 /* VerticalButton.swift */,
 				0FFD923B1EFA749400D1A31B /* UserIconView.swift */,
 				0FDA59921EFB931F00691013 /* DownButton.swift */,
@@ -519,6 +551,7 @@
 				0FF151AE1DC6185500454F7C /* ProfileViewController.swift */,
 				0F45D1791F1223530051BA1E /* ProfileInforViewController.swift */,
 				0F05C7E71EF8D39700AFD492 /* RecruitViewController.swift */,
+				0FC54E001F208406003A1F70 /* MyAccountViewController.swift */,
 				0FDA598A1EFB668000691013 /* GameCenterViewController.swift */,
 				0FDA59941EFBA71000691013 /* WatchHistoryViewController.swift */,
 				0F0F14771F09EB4B0024E53B /* InteralMessageViewController.swift */,
@@ -528,6 +561,10 @@
 				0F498FDE1F1624C900057531 /* LocationViewController.swift */,
 				0F8C0C451F16EED6008BD8AC /* LocationSubViewController.swift */,
 				0F27BF141F1C3E3900639352 /* IPhoneBindingViewController.swift */,
+				0F27BF1A1F1CAAE600639352 /* CountryViewController.swift */,
+				0FC54DF81F2030B7003A1F70 /* BindQQViewController.swift */,
+				0FC54DFA1F2031A0003A1F70 /* BindQQViewController.xib */,
+				0FC54E021F20888A003A1F70 /* CostRecordViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -552,6 +589,8 @@
 				0F45D2051F1387670051BA1E /* ArrowImageItem.swift */,
 				0F45D2011F1371CF0051BA1E /* SwitchItem.swift */,
 				0F498FDC1F1621C800057531 /* LocationModel.swift */,
+				0F27BF1C1F1CAB5900639352 /* CountryModel.swift */,
+				0F50211B1F1D904100CB5793 /* CountryGroupModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -570,6 +609,9 @@
 				0F45D2031F13723E0051BA1E /* BasicSettingCell.swift */,
 				0F498FE01F16286600057531 /* LocationCell.swift */,
 				0FBCA9001F18988D00BBD1F7 /* LocationReusableView.swift */,
+				0F5021231F1DB27F00CB5793 /* IPhoneBindingView.swift */,
+				0F5021191F1D8C0500CB5793 /* CountryVCCell.swift */,
+				0F50211D1F1DA90000CB5793 /* CountryVCSectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -784,6 +826,8 @@
 				0F08F3C71D90B0F4009CCEAE /* NetworkTools.swift */,
 				0FCA412A1F00FC35007D773B /* SQLManager.swift */,
 				0F8D00DB1F0DDE89000C1385 /* AnimationModel.swift */,
+				0FC54DFC1F203596003A1F70 /* CheckDataTool.swift */,
+				0FC54DFE1F205304003A1F70 /* QRCodeTool.swift */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1053,8 +1097,8 @@
 		0FF152161DC87A6100454F7C /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				0F27BF181F1CAACA00639352 /* country.plist */,
 				0FBCA8FC1F18623700BBD1F7 /* china.plist */,
-				0F498FD81F16203500057531 /* ProvincesAndCities.plist */,
 				0F1867F81DD1D8EF00FD8E9A /* user.plist */,
 				0FF152171DC87A9400454F7C /* danmu.plist */,
 				0F0C0E001EFCF06600B6828D /* SearchVC.plist */,
@@ -1085,6 +1129,7 @@
 				0FFFA8011F0B3DEA00423CF2 /* FishboneRechargeVM.swift */,
 				0F498FDA1F1620CA00057531 /* LocationVM.swift */,
 				0FBCA8FE1F18707E00BBD1F7 /* LocationSubVM.swift */,
+				0F27BF1E1F1CABBF00639352 /* CountryViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -1209,9 +1254,10 @@
 				0FBCA8FD1F18623700BBD1F7 /* china.plist in Resources */,
 				0F1D68511D94D88500DDD7A8 /* RecommendCycleView.xib in Resources */,
 				0F1867F91DD1D8EF00FD8E9A /* user.plist in Resources */,
+				0FC54DFB1F2031A0003A1F70 /* BindQQViewController.xib in Resources */,
+				0F27BF191F1CAACA00639352 /* country.plist in Resources */,
 				0F84A3631D8A8CD6000705BE /* Profile.storyboard in Resources */,
 				0F84A3601D8A8CC5000705BE /* Follow.storyboard in Resources */,
-				0F498FD91F16203500057531 /* ProvincesAndCities.plist in Resources */,
 				0F8DD0A91D8F81DE007A1625 /* CollectionViewNormalCell.xib in Resources */,
 				0F8845CA1DC1DA6A00836715 /* AmuseMenuViewCell.xib in Resources */,
 				0F1D68551D95087C00DDD7A8 /* CollectionCycleCell.xib in Resources */,
@@ -1323,6 +1369,7 @@
 				0FCE3D201EF77806002D5E31 /* STPageCollectionView.swift in Sources */,
 				0F498FDD1F1621C800057531 /* LocationModel.swift in Sources */,
 				0F8DD0AC1D8F8260007A1625 /* CollectionViewPrettyCell.swift in Sources */,
+				0FC54DFF1F205304003A1F70 /* QRCodeTool.swift in Sources */,
 				0F1867FE1DD208F100FD8E9A /* ShowAnchorHeadFollowPersonCell.swift in Sources */,
 				0FF1524F1DC983CA00454F7C /* ZanAnimation.swift in Sources */,
 				0F8C0C4A1F170FC0008BD8AC /* STCollectionViewCell.swift in Sources */,
@@ -1375,9 +1422,12 @@
 				0FF151CF1DC6D2C200454F7C /* RoomYKModel.swift in Sources */,
 				0F48AFD01F0F6003005C8BDB /* RecommentGameVM.swift in Sources */,
 				0FFFA80A1F0B60A500423CF2 /* FishboneRechargeCell.swift in Sources */,
+				0FC54DFD1F203596003A1F70 /* CheckDataTool.swift in Sources */,
 				0F48AFD61F0F6B99005C8BDB /* RecommentGameElseModel.swift in Sources */,
 				0F8845CC1DC1FF2500836715 /* FunnyViewModel.swift in Sources */,
+				0F50211C1F1D904100CB5793 /* CountryGroupModel.swift in Sources */,
 				0F77DD161F01EEA200497D84 /* SearchModelGroup.swift in Sources */,
+				0F27BF1B1F1CAAE600639352 /* CountryViewController.swift in Sources */,
 				0F48AFCC1F0F3519005C8BDB /* ViewModelProtocol.swift in Sources */,
 				0F45D2041F13723E0051BA1E /* BasicSettingCell.swift in Sources */,
 				0FDA598F1EFB6D1900691013 /* GameCenterVM.swift in Sources */,
@@ -1385,6 +1435,7 @@
 				0FFD923A1EFA5C5100D1A31B /* ProfileViewModel.swift in Sources */,
 				0F8D00EB1F0E18F2000C1385 /* PhoneBindingModelFrame.swift in Sources */,
 				0F45D1A91F1254DB0051BA1E /* TestViewController.swift in Sources */,
+				0FC54E011F208406003A1F70 /* MyAccountViewController.swift in Sources */,
 				0F0C0E071EFD051A00B6828D /* SearchHeadVM.swift in Sources */,
 				0F45D2021F1371CF0051BA1E /* SwitchItem.swift in Sources */,
 				0F8845B91DC1997200836715 /* AmuseViewController.swift in Sources */,
@@ -1395,12 +1446,16 @@
 				0F08F3CF1D90BEEF009CCEAE /* AnchorGroup.swift in Sources */,
 				0F45D17A1F1223530051BA1E /* ProfileInforViewController.swift in Sources */,
 				0F97482B1EF5120700C5B543 /* LiveViewController.swift in Sources */,
+				0F27BF1F1F1CABBF00639352 /* CountryViewModel.swift in Sources */,
+				0F27BF1D1F1CAB5900639352 /* CountryModel.swift in Sources */,
 				0F1BEEA01D969321004840F0 /* RecommendGameView.swift in Sources */,
 				0F48AFD21F0F616D005C8BDB /* RecommentGameTitleModel.swift in Sources */,
 				0F45D2001F1371A00051BA1E /* ArrowItem.swift in Sources */,
 				0FFFA8061F0B414000423CF2 /* FishboneRechargeBigModel.swift in Sources */,
 				0F0F14821F0A27E60024E53B /* MyTaskViewController.swift in Sources */,
 				0F1307A21F03AC2F004D01A0 /* UserDefaultsManage.swift in Sources */,
+				0F5021221F1DAF2600CB5793 /* XDPlanFlowLayout.swift in Sources */,
+				0F50211E1F1DA90000CB5793 /* CountryVCSectionView.swift in Sources */,
 				0FF152531DC983E700454F7C /* PraiseEmitterView.swift in Sources */,
 				0FDA59931EFB931F00691013 /* DownButton.swift in Sources */,
 				0F84A3731D8AA147000705BE /* HomeViewController.swift in Sources */,
@@ -1411,6 +1466,7 @@
 				0FBCA8EC1F183C1800BBD1F7 /* UIViewController+Extension.swift in Sources */,
 				0F8845C21DC1AFD200836715 /* AmuseViewModel.swift in Sources */,
 				0FCE3D381EF7C87F002D5E31 /* AdVertModel.swift in Sources */,
+				0FBD67371F1ED45000C00061 /* IPhoneButton.swift in Sources */,
 				0FFD923C1EFA749400D1A31B /* UserIconView.swift in Sources */,
 				0F08F3FF1D9108C8009CCEAE /* CollectionBaseCell.swift in Sources */,
 				0F1D066B1DD4603C008C3D2B /* ShowAnchorCatView.swift in Sources */,
@@ -1426,6 +1482,7 @@
 				0F86EEF01DCDF8FC00CAD233 /* ShowAnchorListCell.swift in Sources */,
 				0F8845C41DC1CBE200836715 /* AmuseMenuView.swift in Sources */,
 				0FDA599B1EFBC4EA00691013 /* WatchHistoryCell.swift in Sources */,
+				0F50211A1F1D8C0500CB5793 /* CountryVCCell.swift in Sources */,
 				0FFFA8021F0B3DEA00423CF2 /* FishboneRechargeVM.swift in Sources */,
 				0F1BEEA51D96A236004840F0 /* CollectionGameCell.swift in Sources */,
 				0FCE3D221EF77806002D5E31 /* STPageViewStyle.swift in Sources */,
@@ -1435,6 +1492,7 @@
 				0FCE3D291EF7B523002D5E31 /* FollowViewController.swift in Sources */,
 				0FBCA8E91F183C1800BBD1F7 /* UIBarButotnItem+Extension.swift in Sources */,
 				0F3633B31DC23E8E00897B4A /* MainNavigationController.swift in Sources */,
+				0F5021241F1DB27F00CB5793 /* IPhoneBindingView.swift in Sources */,
 				0F498FDB1F1620CA00057531 /* LocationVM.swift in Sources */,
 				0FCE3D231EF77806002D5E31 /* STTitlesView.swift in Sources */,
 				0F0F147C1F0A12EB0024E53B /* InteralMessageVM.swift in Sources */,
@@ -1461,8 +1519,10 @@
 				0FF151C91DC6413400454F7C /* RoomAnchorModel.swift in Sources */,
 				0F6B0C121F048763006E7F60 /* SearchHistoryVM.swift in Sources */,
 				0F05C7EA1EF8EC4800AFD492 /* ProfileGroupModel.swift in Sources */,
+				0FC54DF91F2030B7003A1F70 /* BindQQViewController.swift in Sources */,
 				0F05BC2A1DD325CD000D9D27 /* ShowUserVC.swift in Sources */,
 				0F0FA5021DD19D3C00B8E7C5 /* ShowAnchorHeardView.swift in Sources */,
+				0FC54E031F20888A003A1F70 /* CostRecordViewController.swift in Sources */,
 				0F0C0DFF1EFCEEEF00B6828D /* SearchCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

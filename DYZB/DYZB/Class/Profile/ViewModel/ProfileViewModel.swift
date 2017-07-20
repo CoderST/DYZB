@@ -17,12 +17,14 @@ class ProfileViewModel: NSObject,ViewModelProtocol {
     // 本地cell数据数组
     var groupDatas : [ProfileGroupModel] = [ProfileGroupModel]()
     
+    // 获取最新请求时间
+    fileprivate lazy var baseViewModel : BaseViewModel = BaseViewModel()
     
     func loadProfileDatas(_ finishCallBack:@escaping ()->(), _ messageCallBack :@escaping (_ message : String)->(), _ failCallBack :@escaping ()->()){
         let group = DispatchGroup()
         group.enter()
         // 第一组数据
-        let recruit = ProfileModel(imageName: "image_my_recruitment", titleName: "主播招募", subTitleName: "", targetClass: RecruitViewController.self)
+        let recruit = ProfileModel(imageName: "image_my_recruitment", titleName: "主播招募", subTitleName: "", targetClass: MyTaskViewController.self)
         let groupOne = ProfileGroupModel()
         groupOne.groupModels = [recruit]
         
@@ -33,7 +35,7 @@ class ProfileViewModel: NSObject,ViewModelProtocol {
         groupTwo.groupModels = [myVideo,videoCollect]
         
         // 第三组数据
-        let myAccount = ProfileModel(imageName: "image_my_account", titleName: "我的账户", subTitleName: "", targetClass: RecruitViewController.self)
+        let myAccount = ProfileModel(imageName: "image_my_account", titleName: "我的账户", subTitleName: "", targetClass: MyAccountViewController.self)
         let platCenter = ProfileModel(imageName: "image_my_recommend", titleName: "游戏中心", subTitleName: "", targetClass: GameCenterViewController.self)
         let groupThree = ProfileGroupModel()
         groupThree.groupModels = [myAccount,platCenter]
@@ -135,9 +137,22 @@ extension ProfileViewModel : UICollectionViewDelegateFlowLayout {
         if let desVC = profileModel.targetClass as? UIViewController.Type {
             let vc = desVC.init()
             
-            //            print("navigationController =",navigationController)
+            if vc is MyTaskViewController {
+                let desvc = vc as!MyTaskViewController
+                // 获取时间
+                baseViewModel.updateDate {
+                    guard let time = userDefaults.object(forKey: dateKey) as? Int else { return }
+                    let url = "http://www.douyu.com/h5mobile/welcome/jump/5?aid=ios&client_sys=ios&time=\(time)&token=\(TOKEN)&auth=\(AUTH)"
+                    desvc.open_url = url
+                    getNavigation().pushViewController(vc, animated: true)
+                }
+
+                
+            }else{
+                
+                getNavigation().pushViewController(vc, animated: true)
+            }
             
-            getNavigation().pushViewController(vc, animated: true)
         }
     }
     
