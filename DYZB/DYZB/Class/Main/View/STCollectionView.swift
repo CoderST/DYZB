@@ -53,8 +53,8 @@ class STCollectionView: UIView {
     // MARK:- 懒加载
      lazy var collectionView : UICollectionView = {
         // 设置layout属性
-        let layout = UICollectionViewFlowLayout()
-        
+        let layout = XDPlanFlowLayout()
+        layout.naviHeight = 64
         let width = sScreenW
         // 默认值(如果改动可以添加代理方法)
         layout.itemSize = CGSize(width: width, height: 44)

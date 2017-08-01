@@ -276,7 +276,7 @@ extension ProfileInforViewController {
         let sexModel = SettingItem(icon: "", title: "鱼丸", subTitle: profileInforDataFrameModel.fishBall)
         let sexModelFrame = SettingItemFrame(sexModel)
         
-        let birthDayModel = ArrowItem(icon: "", title: "鱼翅", subtitle: profileInforDataFrameModel.fin, VcClass: TestViewController.self)
+        let birthDayModel = ArrowItem(icon: "", title: "鱼翅", subtitle: profileInforDataFrameModel.fin, VcClass: FishboneRechargeViewController.self)
         let birthDayModelFrame = SettingItemFrame(birthDayModel)
         
         let settingGroup : SettingGroup = SettingGroup()

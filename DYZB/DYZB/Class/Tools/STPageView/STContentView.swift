@@ -19,7 +19,7 @@ class STContentView: UIView {
 
     // MARK:- 定义属性
     fileprivate var childsVC : [UIViewController]
-    fileprivate var parentVC : UIViewController
+    fileprivate weak var parentVC : UIViewController?
     fileprivate var style : STPageViewStyle
     
     var sourceIndex : Int = 0
@@ -104,6 +104,10 @@ extension STContentView {
         addSubview(collectionView)
         
         // 1 添加子控制器
+        guard let parentVC = parentVC else {
+            print("请检查传入的parentVC")
+            return
+        }
         for (_, vc) in childsVC.enumerated(){
             parentVC.addChildViewController(vc)
 //            vc.view.backgroundColor = UIColor.randomColor()

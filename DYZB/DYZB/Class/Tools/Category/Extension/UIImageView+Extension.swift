@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import AVFoundation
 
 extension UIImageView{
     
@@ -34,3 +34,38 @@ extension UIImageView{
     }
     
 }
+
+// MARK:- 获取网络视频截图第一帧
+extension UIImageView {
+    
+    func getNetWorkVidoeImage(url:String){
+        
+        DispatchQueue.global().async {
+            //需要长时间处理的代码
+            
+            let asset = AVURLAsset(url: URL(string: url)!)
+            
+            let generator = AVAssetImageGenerator(asset: asset)
+            
+            generator.appliesPreferredTrackTransform=true
+            
+            let time = CMTimeMakeWithSeconds(0.0,600)
+            
+            var actualTime : CMTime = CMTimeMake(0,0)
+            
+            var image:CGImage!
+            
+            do{
+                image = try generator.copyCGImage(at: time, actualTime: &actualTime)
+            }catch let error as NSError{
+                print(error)
+            }
+
+            DispatchQueue.main.async {
+                self.image = UIImage(cgImage: image)
+            }
+        }
+        
+    }
+}
+

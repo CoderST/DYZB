@@ -27,6 +27,19 @@ extension String{
     }
     
 }
+// MARK:-  转换成时分秒
+extension String {
+    
+    func timeFormatted(_ totalSeconds : Int)->String{
+        let seconds = totalSeconds % 60
+        let minutes = (totalSeconds / 60) % 60
+        let hours = totalSeconds / 3600
+        
+        let string = String(format: "%02d:%02d:%02d",hours,minutes,seconds)
+        return string
+        
+    }
+}
 
 /// 改变字段字体
 extension String{

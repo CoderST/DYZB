@@ -8,13 +8,28 @@
 
 import UIKit
 import SVProgressHUD
+import IQKeyboardManagerSwift
 // 声明闭包
 typealias completeButtonCallBack = (_ isOK : Bool)->Void
 
 
 class BindQQViewController: UIViewController {
-    @IBOutlet weak var qqTextField: UITextField!
-    @IBOutlet weak var completeButton: UIButton!
+    
+    fileprivate lazy var qqTextField : QQTextField = {
+        let qqTextField = QQTextField()
+        qqTextField.keyboardType = .numberPad
+        qqTextField.backgroundColor = .white
+        qqTextField.placeholder = "QQ号码"
+        return qqTextField
+    }()
+    
+    fileprivate lazy var completeButton : UIButton = {
+        let completeButton = UIButton()
+        completeButton.setTitle("完成", for: .normal)
+        completeButton.setTitleColor(.white, for: .normal)
+        completeButton.backgroundColor = .orange
+        return completeButton
+    }()
     
     // 把声明的闭包设置成属性
     var callBack : completeButtonCallBack?
@@ -27,14 +42,22 @@ class BindQQViewController: UIViewController {
         super.viewDidLoad()
         
         title = "绑定QQ"
-       
+        view.backgroundColor = UIColor(r: 239, g: 239, b: 239)
+        view.addSubview(qqTextField)
+        view.addSubview(completeButton)
+        
         qqTextField.delegate = self
+        qqTextField.frame = CGRect(x: 10, y: 74, width: sScreenW - 20, height: 40)
+        completeButton.frame = CGRect(x: qqTextField.frame.origin.x, y: qqTextField.frame.maxY + 20, width: qqTextField.frame.width, height: qqTextField.frame.height)
         
         completeButton.addTarget(self, action: #selector(BindQQViewController.completeButtonClick), for: .touchUpInside)
- 
+        
     }
     
-
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        IQKeyboardManager.sharedManager().enableAutoToolbar = false
+    }
     
     func completeButtonClick() {
         // 请求数据
@@ -72,19 +95,23 @@ class BindQQViewController: UIViewController {
     
     func sendData() {
         
-
-
+        
+        
     }
 }
 
 extension BindQQViewController : UITextFieldDelegate {
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool{
+//        debugLog(string)
+        if string == "" {  // 删除不做效验
+            return true
+        }
         
         guard let text = textField.text else { return false }
-
+        
         let saveText = text as NSString
-
+        
         let newText = saveText.replacingCharacters(in: range, with: string)
         
         return checkQQ(newText)

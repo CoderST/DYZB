@@ -13,7 +13,7 @@ class STPageView: UIView {
     // MARK:- 定义属性
     fileprivate var titles : [String]
     fileprivate var childsVC : [UIViewController]
-    fileprivate var parentVC : UIViewController
+    fileprivate weak var parentVC : UIViewController?
     fileprivate var style : STPageViewStyle
     fileprivate var titleView : STTitlesView!
     fileprivate var titleViewParentView : Any?
@@ -80,7 +80,10 @@ extension STPageView {
         }
         
         let contentViewF = CGRect(x: 0, y: contentViewY, width: frame.width, height: contentViewH)
-        
+        guard let parentVC = parentVC else {
+            print("请检查传入的parentVC")
+            return
+        }
         let contentView = STContentView(frame: contentViewF, childsVC: childsVC, parentVC: parentVC, style: style)
         addSubview(contentView)
         

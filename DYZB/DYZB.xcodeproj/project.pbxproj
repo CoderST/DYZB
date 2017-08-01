@@ -90,6 +90,7 @@
 		0F5021241F1DB27F00CB5793 /* IPhoneBindingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F5021231F1DB27F00CB5793 /* IPhoneBindingView.swift */; };
 		0F601CF41DCF1AE700FD001B /* ShowAnchorVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */; };
 		0F601D231DCF2BC300FD001B /* ShowAnchorVCCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F601D221DCF2BC300FD001B /* ShowAnchorVCCell.swift */; };
+		0F64C6101F257514002592BA /* QQTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F64C60F1F257514002592BA /* QQTextField.swift */; };
 		0F6B0C121F048763006E7F60 /* SearchHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */; };
 		0F6B0C141F04DF75006E7F60 /* SearchRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C131F04DF75006E7F60 /* SearchRoomViewController.swift */; };
 		0F6B0C161F04E1CD006E7F60 /* SearchSubRoomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F6B0C151F04E1CD006E7F60 /* SearchSubRoomViewController.swift */; };
@@ -165,7 +166,6 @@
 		0FBCD8BF1F15F46A0047BCDA /* DatePackerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */; };
 		0FBD67371F1ED45000C00061 /* IPhoneButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FBD67361F1ED45000C00061 /* IPhoneButton.swift */; };
 		0FC54DF91F2030B7003A1F70 /* BindQQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54DF81F2030B7003A1F70 /* BindQQViewController.swift */; };
-		0FC54DFB1F2031A0003A1F70 /* BindQQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0FC54DFA1F2031A0003A1F70 /* BindQQViewController.xib */; };
 		0FC54DFD1F203596003A1F70 /* CheckDataTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54DFC1F203596003A1F70 /* CheckDataTool.swift */; };
 		0FC54DFF1F205304003A1F70 /* QRCodeTool.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54DFE1F205304003A1F70 /* QRCodeTool.swift */; };
 		0FC54E011F208406003A1F70 /* MyAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FC54E001F208406003A1F70 /* MyAccountViewController.swift */; };
@@ -325,6 +325,7 @@
 		0F5021231F1DB27F00CB5793 /* IPhoneBindingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhoneBindingView.swift; sourceTree = "<group>"; };
 		0F601CF31DCF1AE700FD001B /* ShowAnchorVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVC.swift; sourceTree = "<group>"; };
 		0F601D221DCF2BC300FD001B /* ShowAnchorVCCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowAnchorVCCell.swift; sourceTree = "<group>"; };
+		0F64C60F1F257514002592BA /* QQTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QQTextField.swift; sourceTree = "<group>"; };
 		0F6B0C111F048763006E7F60 /* SearchHistoryVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchHistoryVM.swift; sourceTree = "<group>"; };
 		0F6B0C131F04DF75006E7F60 /* SearchRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchRoomViewController.swift; sourceTree = "<group>"; };
 		0F6B0C151F04E1CD006E7F60 /* SearchSubRoomViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchSubRoomViewController.swift; sourceTree = "<group>"; };
@@ -404,7 +405,6 @@
 		0FBCD8BE1F15F46A0047BCDA /* DatePackerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePackerView.swift; sourceTree = "<group>"; };
 		0FBD67361F1ED45000C00061 /* IPhoneButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = IPhoneButton.swift; sourceTree = "<group>"; };
 		0FC54DF81F2030B7003A1F70 /* BindQQViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindQQViewController.swift; sourceTree = "<group>"; };
-		0FC54DFA1F2031A0003A1F70 /* BindQQViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BindQQViewController.xib; sourceTree = "<group>"; };
 		0FC54DFC1F203596003A1F70 /* CheckDataTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CheckDataTool.swift; sourceTree = "<group>"; };
 		0FC54DFE1F205304003A1F70 /* QRCodeTool.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QRCodeTool.swift; sourceTree = "<group>"; };
 		0FC54E001F208406003A1F70 /* MyAccountViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyAccountViewController.swift; sourceTree = "<group>"; };
@@ -525,6 +525,7 @@
 				0FFD923B1EFA749400D1A31B /* UserIconView.swift */,
 				0FDA59921EFB931F00691013 /* DownButton.swift */,
 				0F1307A11F03AC2F004D01A0 /* UserDefaultsManage.swift */,
+				0F64C60F1F257514002592BA /* QQTextField.swift */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -563,7 +564,6 @@
 				0F27BF141F1C3E3900639352 /* IPhoneBindingViewController.swift */,
 				0F27BF1A1F1CAAE600639352 /* CountryViewController.swift */,
 				0FC54DF81F2030B7003A1F70 /* BindQQViewController.swift */,
-				0FC54DFA1F2031A0003A1F70 /* BindQQViewController.xib */,
 				0FC54E021F20888A003A1F70 /* CostRecordViewController.swift */,
 			);
 			path = Controller;
@@ -1254,7 +1254,6 @@
 				0FBCA8FD1F18623700BBD1F7 /* china.plist in Resources */,
 				0F1D68511D94D88500DDD7A8 /* RecommendCycleView.xib in Resources */,
 				0F1867F91DD1D8EF00FD8E9A /* user.plist in Resources */,
-				0FC54DFB1F2031A0003A1F70 /* BindQQViewController.xib in Resources */,
 				0F27BF191F1CAACA00639352 /* country.plist in Resources */,
 				0F84A3631D8A8CD6000705BE /* Profile.storyboard in Resources */,
 				0F84A3601D8A8CC5000705BE /* Follow.storyboard in Resources */,
@@ -1404,6 +1403,7 @@
 				0FF151D61DC6DFBB00454F7C /* RoomAnchorCell.swift in Sources */,
 				0F8845B41DC0B62200836715 /* GameModel.swift in Sources */,
 				0F8845BD1DC1A16900836715 /* BaseAnchorViewController.swift in Sources */,
+				0F64C6101F257514002592BA /* QQTextField.swift in Sources */,
 				0F8D00E71F0E1704000C1385 /* PhoneBindingViewController.swift in Sources */,
 				0FBCA8E51F183C1800BBD1F7 /* Date+Extension.swift in Sources */,
 				0FF151AF1DC6185500454F7C /* ProfileViewController.swift in Sources */,
