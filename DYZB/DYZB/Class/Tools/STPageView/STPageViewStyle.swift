@@ -74,6 +74,6 @@ class STPageViewStyle {
     /***************** UIPageControl相关设置 ******************/
     
     /// 每一个item间的间距
-    let titleMargin : CGFloat = 10
+    var titleMargin : CGFloat = 10
     
 }

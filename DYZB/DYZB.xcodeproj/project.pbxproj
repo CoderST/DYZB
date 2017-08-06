@@ -193,6 +193,7 @@
 		0FDA59971EFBACF100691013 /* WatchHistoryVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA59961EFBACF100691013 /* WatchHistoryVM.swift */; };
 		0FDA59991EFBAFD200691013 /* WatchHistoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA59981EFBAFD200691013 /* WatchHistoryModel.swift */; };
 		0FDA599B1EFBC4EA00691013 /* WatchHistoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDA599A1EFBC4EA00691013 /* WatchHistoryCell.swift */; };
+		0FDED36F1F3179FC00244C5A /* LinearCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FDED36E1F3179FC00244C5A /* LinearCollectionViewLayout.swift */; };
 		0FE1D65A1DC5B78C00ACFAFA /* BaseShowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D6591DC5B78C00ACFAFA /* BaseShowViewController.swift */; };
 		0FE1D65D1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FE1D65B1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift */; };
 		0FF151AF1DC6185500454F7C /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FF151AE1DC6185500454F7C /* ProfileViewController.swift */; };
@@ -433,6 +434,7 @@
 		0FDA59961EFBACF100691013 /* WatchHistoryVM.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchHistoryVM.swift; sourceTree = "<group>"; };
 		0FDA59981EFBAFD200691013 /* WatchHistoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchHistoryModel.swift; sourceTree = "<group>"; };
 		0FDA599A1EFBC4EA00691013 /* WatchHistoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WatchHistoryCell.swift; sourceTree = "<group>"; };
+		0FDED36E1F3179FC00244C5A /* LinearCollectionViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinearCollectionViewLayout.swift; sourceTree = "<group>"; };
 		0FE1D6591DC5B78C00ACFAFA /* BaseShowViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseShowViewController.swift; sourceTree = "<group>"; };
 		0FE1D65B1DC5CBC600ACFAFA /* ShowBaseSanFangViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowBaseSanFangViewController.swift; sourceTree = "<group>"; };
 		0FF151AE1DC6185500454F7C /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -995,6 +997,7 @@
 		0FBCA8DA1F183C1800BBD1F7 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				0FDED36E1F3179FC00244C5A /* LinearCollectionViewLayout.swift */,
 				0FBCA8DB1F183C1800BBD1F7 /* Common.swift */,
 				0FBCA8DC1F183C1800BBD1F7 /* Date+Extension.swift */,
 				0FBCA8DD1F183C1800BBD1F7 /* DYRefreshAutoNormalFooter.swift */,
@@ -1469,6 +1472,7 @@
 				0FBD67371F1ED45000C00061 /* IPhoneButton.swift in Sources */,
 				0FFD923C1EFA749400D1A31B /* UserIconView.swift in Sources */,
 				0F08F3FF1D9108C8009CCEAE /* CollectionBaseCell.swift in Sources */,
+				0FDED36F1F3179FC00244C5A /* LinearCollectionViewLayout.swift in Sources */,
 				0F1D066B1DD4603C008C3D2B /* ShowAnchorCatView.swift in Sources */,
 				0FFFA8081F0B44B000423CF2 /* BaseModel.swift in Sources */,
 				0F8DD0B11D8FA912007A1625 /* CollectionHeaderView.swift in Sources */,

@@ -75,7 +75,10 @@ extension UIViewController{
      隐藏动画
      */
     func hideGifLoading(){
-        gifImageView!.stopAnimating()
-        gifImageView = nil
+        if gifImageView != nil {
+            
+            gifImageView!.stopAnimating()
+            gifImageView = nil
+        }
     }
 }

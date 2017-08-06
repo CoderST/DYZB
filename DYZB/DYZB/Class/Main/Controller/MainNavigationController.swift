@@ -73,6 +73,8 @@ extension MainNavigationController {
 extension MainNavigationController{
     func setupNavigation(){
         let bar = UINavigationBar.appearance()
+        // 添加全局bar背景 要加下面这一句
+        bar.isTranslucent = true
         let backgroundImage = UIImage(named: "Img_orange")
         bar.setBackgroundImage(backgroundImage, for: .default)
         
